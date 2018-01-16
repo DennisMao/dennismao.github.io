@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="Hugo 0.26" />
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link href="http://localhost:1313/index.xml" rel="alternate" type="application/rss+xml" title="后端小筑" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Proto3使用手记 | 后端小筑</title>
+  </head>
+  <body>
+    <div id="wrap">
+      
+      <header class="site-header">
+        <div class="site-header-left">
+          <a class="site-header-title" href="http://localhost:1313/">后端小筑</a>
+        </div>
+      </header>
+      <div class="container">
+        <div id="main">
+
+<div class="article">
+  <header>
+    <div class="article-header">
+      <h1>Proto3使用手记</h1>
+      <div class="article-meta">
+        <span class="posttime">2017/08/22</span>
+        
+<div class="tags">
+  <ul>
+    
+    <li>
+        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F">分布式</a>
+    </li>
+    
+    <li>
+        <a href="/tags/rpc">rpc</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    
+<div id="share-buttons">
+  <ul>
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+
+  </header>
+  <div class="content">
+      <span>目录</span>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#proto3-是什么">Proto3 是什么？</a></li>
+<li><a href="#proto3-有何功能">Proto3 有何功能?</a></li>
+<li><a href="#为什么要选用它">为什么要选用它？</a></li>
+<li><a href="#使用过程中需要注意什么">使用过程中需要注意什么？</a></li>
+<li><a href="#使用过程">使用过程</a></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul></li>
+</ul>
+</nav>
+    
+
+<h2 id="proto3-是什么">Proto3 是什么？</h2>
+
+<p>最近正在使用gRPC，当前版本gRPC使用的是google开发的Proto 3版本，因此顺带写一篇。Proto 3全称是 Protocol buffers v3.0,是谷歌公司开发的一款序列化数据结构。支持多种语言。与proto2相比主要有以下几点改变：</p>
+
+<ul>
+<li>原生支持更多语言 JavaNano,Go,Ruby,Objective-C和C#等</li>
+<li>调整部分语法 比如 default,optional,repeated 使得语法更简洁<br /></li>
+<li>增加部分特性
+<br /></li>
+</ul>
+
+<p>具体改变介绍推荐以下这篇文章<br />
+<a href="https://solicomo.com/network-dev/protobuf-proto3-vs-proto2.html">Protobuf 的 proto3 与 proto2 的区别</a><br />
+最新特性详情可查阅<br />
+<a href="https://github.com/google/protobuf/releases">Protobuf Release</a></p>
+
+<h2 id="proto3-有何功能">Proto3 有何功能?</h2>
+
+<p>通过定义接口描述文件 .proto文件，可通过这些描述自动生成出响应代码，用于编列或解码数据流。</p>
+
+<h2 id="为什么要选用它">为什么要选用它？</h2>
+
+<h2 id="使用过程中需要注意什么">使用过程中需要注意什么？</h2>
+
+<h2 id="使用过程">使用过程</h2>
+
+<h2 id="参考资料">参考资料</h2>
+
+<p><a href="https://developers.google.com/protocol-buffers/docs/proto3">Proto3 开发文档</a></p>
+
+  </div>
+  <footer>
+    <div class="article-footer">
+      
+<div class="tags">
+  <ul>
+    
+    <li>
+        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F">分布式</a>
+    </li>
+    
+    <li>
+        <a href="/tags/rpc">rpc</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      
+      
+<div id="share-buttons">
+  <ul>
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+
+      
+      
+      <div id="pagenavigation-next-prev">
+        
+        <div id="pagenavigation-next">
+          <span class="pagenav-label">Previous</span>
+          <a href="http://localhost:1313/about/">关于我</a>
+        </div>
+        
+        
+        <div id="pagenavigation-prev">
+          <span class="pagenav-label">Next</span>
+          <a href="http://localhost:1313/post/2017/07/websocket%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/">Websocket使用手记</a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </footer>
+</div>
+        </div>
+        <div class="sidebar">
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Author</span>
+    </div>
+    <div id="author">
+      <img id="author-avatar" src=https://timgsa.baidu.com/timg?image&amp;quality&#61;80&amp;size&#61;b9999_10000&amp;sec&#61;1503335130274&amp;di&#61;f0fa80423e5ef4b900440dda1ae25bba&amp;imgtype&#61;0&amp;src&#61;http%3A%2F%2Fimage16.poco.cn%2Fmypoco%2Fmyphoto%2F20141109%2F19%2F54993387201411091915324249172376294_075.jpg>     
+      <span id="author-name">Razil233</span>
+      <span id="author-description">专注后端技术 go/c/java</span>        
+      <div>
+        
+        
+        <a href="https://github.com/github.com/dennismao"><i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Categories</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+        <li>
+          <a href="/categories/golang"><span></span>golang (3)</a>
+        </li>
+        
+        <li>
+          <a href="/categories/rpc"><span></span>rpc (1)</a>
+        </li>
+        
+        <li>
+          <a href="/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0"><span></span>使用手记 (3)</a>
+        </li>
+        
+        <li>
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93"><span></span>数据库 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/categories/%E8%AF%91%E6%96%87"><span></span>译文 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0"><span></span>阅读笔记 (1)</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+  
+    
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Tags</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+        <li>
+          <a href="/tags/csapp"><span></span>csapp (1)</a>
+        </li>
+        
+        <li>
+          <a href="/tags/elasticsearch"><span></span>elasticsearch (1)</a>
+        </li>
+        
+        <li>
+          <a href="/tags/golang"><span></span>golang (2)</a>
+        </li>
+        
+        <li>
+          <a href="/tags/influxdb"><span></span>influxdb (1)</a>
+        </li>
+        
+        <li>
+          <a href="/tags/rpc"><span></span>rpc (1)</a>
+        </li>
+        
+        <li>
+          <a href="/tags/websocket"><span></span>websocket (1)</a>
+        </li>
+        
+        <li>
+          <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F"><span></span>分布式 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/tags/%E6%AD%A3%E5%88%99"><span></span>正则 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB"><span></span>网络爬虫 (1)</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+  
+    
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>RSS</span>
+    </div>
+    <div id="rss">
+      <a href="http://localhost:1313/index.xml" type="application/rss+xml" target="_blank">
+        <i class="fa fa-rss-square fa-2x" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <footer>
+        <div id="site-footer-wrap">
+          <div id="site-footer">
+            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
+            <span>
+              
+              Copyright (c) 2017, <a href="http://localhost:1313/">后端小筑</a>
+              
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  <script data-no-instant>document.write('<script src="/livereload.js?port=1313&mindelay=10"></' + 'script>')</script></body>
+</html>
+
