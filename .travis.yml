@@ -1,9 +1,10 @@
 language: go
 
-git:
-  depth: 1
+go:
+  - 1.9.2
 
-install: go get -v github.com/spf13/hugo
+install:
+  - go get github.com/spf13/hugo
 
 script:
   - hugo
@@ -16,7 +17,7 @@ after_script:
   - git config user.email "raymond_2008@yahoo.com"
   - git add .
   - git commit -m "Update docs"
-  - git push --force --quiet "https://${GIT_TOKEN}@${GH_REF}" master:master
+  - git push --force --quiet "https://${GH_REF}@${GIT_TOKEN}" master:master
   
 branches:
   only:
