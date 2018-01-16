@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Beego on 后端小筑</title>
+    <link>https//dennismao.github.io/tags/beego/</link>
+    <description>Recent content in Beego on 后端小筑</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 Dec 2017 15:35:04 +0800</lastBuildDate>
+    <atom:link href="https/dennismao.github.io/tags/beego/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>使用Beego处理多文件上传</title>
+      <link>https//dennismao.github.io/post/2017/12/beego-multi-file-upload/</link>
+      <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
+      
+      <guid>https//dennismao.github.io/post/2017/12/beego-multi-file-upload/</guid>
+      <description>实现方法 Beego 在controller处理上提供了GetFile和GetFiles方法，以获取MultipartForm里的文件内容。详细说明查看godoc。
+获取单个文件 func (*Controller) GetFile
+ func (c *Controller) GetFile(key string) (multipart.File, *multipart.FileHeader, error) GetFile returns the file data in file upload field named as key. it returns the first one of multi-uploaded files.
+ 获取多个文件 func (*Controller) GetFiles
+ func (c *Controller) GetFiles(key string) ([]*multipart.FileHeader, error)
+ 本文结合示例代码和工程应用提供实际可用解决方法。 前端页面上传的请求格式按照rfc1867标准即可。 Body内容如下图所示
+服务端代码 import( &amp;quot;io&amp;quot; &amp;quot;os&amp;quot; &amp;quot;strings&amp;quot; &amp;quot;github.com/astaxie/beego&amp;quot; &amp;quot;github.com/astaxie/beego/logs&amp;quot; ) //默认参数 const ( STATIC_PATH = &amp;quot;tmp/&amp;quot; ) //	文件信息格式 type FileRecord struct { FileName string `json:&amp;quot;file_name&amp;quot;` Path string `json:&amp;quot;path&amp;quot;` FileSize string `json:&amp;quot;file_size&amp;quot;` UploadTime string `json:&amp;quot;upload_time&amp;quot;` } //	上传 type UploadController struct { beego.</description>
+    </item>
+    
+  </channel>
+</rss>

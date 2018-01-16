@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elasticsearch on 后端小筑</title>
+    <link>https//dennismao.github.io/tags/elasticsearch/</link>
+    <description>Recent content in Elasticsearch on 后端小筑</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 19 Oct 2017 23:38:17 +0800</lastBuildDate>
+    <atom:link href="https/dennismao.github.io/tags/elasticsearch/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>系统监控:InfluxDB vs Elasticsearch</title>
+      <link>https//dennismao.github.io/post/2017/10/influxdbvselasticsearch/</link>
+      <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
+      
+      <guid>https//dennismao.github.io/post/2017/10/influxdbvselasticsearch/</guid>
+      <description>前言 译者: Razil
+本文译自: System monitoring with InfluxDB vs Elasticsearch
+系统的监控一直都扮演着重要角色。它能帮助我们了解系统的健康情况,发现问题甚至能预测问题。
+如今，由于以下这些原因监控变得越来越重要:
+ 云服务（存储价格的降低）使我们可以一直监控和存储几乎所有东西 系统变得越来越复杂。系统包含了各种各样的灵活部件比如虚拟机、docker、数据库和服务,应有尽有。 物联网的逐步普及使得大量的硬件设备需要我们去追踪和监测。 数据分析得以升级，让我们只需要通过关注系统的稳定性和健康状态，就能达到了解客户需求、掌握发展趋势、对客户进行分类等多种目的。  本文将对比两个流行的监控解决方案。两者有着不同的处理方法和实现方式，相比起来各有千秋。 首先是TICK框架中的InfluxDB，第二个是ELK框架中的Elasticsearch。
+什么是监控？ 监控由以下活动组成：
+ 采集数据 保存数据 可视化数据 产生告警  TICK Tick框架:
+ Telegraf - 用于在系统运行时从系统或者其他服务采集指标和数据 InfluxDB - 高可用和高性能的时序数据库 Chronograf - 数据可视化的web应用 Kapacitor - 告警和数据处理引擎  本框架的而核心是时序数据库InfluxDB。时序数据库(Time series database TSDB)是一个为了处理时序数据(一系列由时间作为索引的数据)而特别优化的软件系统。例如，一段时间内锅炉里的水温或者一段时间内CPU的使用率。TSDB是一个NoSQL数据库，它支持增删改查操作和条件查询。与其他类型数据库最大的区别在于，它能在数据量庞大的情况下对时间索引维护的最优化。其他主要的时序数据库有 Graphite,Prometheus,OpenTSDB等等。我选择InfluxDB的真实原因是它是一个现代的数据库，用Go语言编写，非常容易安装和配置，而且性能出色。
+InfluxDB的数据模型 InfluxDB 是一种无模式数据库。我们可以任意添加series,measurements和tags。例如：
+app_degrees, country=Canada, city=Toronto degree=77.5 1422568543702900257  相关术语（这里表述的还是比较抽象，括号是本人的理解）:
+ Measurement - 一个数字值 (相当于关系型数据里的一个表) Series - 数据收集和分析的单位 (一个表里数据的系列,可以理解为多条曲线) Tag - Key/Value 键值对,可选,用于描述measurement (字符串型的键值对，用于描述这个点，可以用作索引) Timestamp - Measurement的确切时间点(微妙级时间戳)  这个模型是的我们可以高效而且便捷地插入Measurements。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="Hugo 0.26" />
+    <link rel="shortcut icon" href="/https/dennismao.github.io/images/favicon.ico">
+    <link href="https//dennismao.github.io/index.xml" rel="alternate" type="application/rss+xml" title="后端小筑" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" type="text/css" href="/https/dennismao.github.io/css/style.css">
+    <title>《CSAPP》读书笔记 | 后端小筑</title>
+  </head>
+  <body>
+    <div id="wrap">
+      
+      <header class="site-header">
+        <div class="site-header-left">
+          <a class="site-header-title" href="https//dennismao.github.io/">后端小筑</a>
+           <p id="author-tar">技术方向:服务器应用、分布式系统</p>  
+        </div>
+      </header>
+      <div class="container">
+        <div id="main">
+
+<div class="article">
+  <header>
+    <div class="article-header">
+      <h1>《CSAPP》读书笔记</h1>
+      <div class="article-meta">
+        <span class="posttime">2017/09/21</span>
+        
+<div class="tags">
+  <ul>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/csapp">CSAPP</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    
+<div id="share-buttons">
+  <ul>
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+
+  </header>
+  <div class="content">
+      <span>目录</span>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#章1-计算机系统漫游">章1 计算机系统漫游</a></li>
+<li><a href="#章2">章2</a></li>
+<li><a href="#章3">章3</a></li>
+<li><a href="#章4">章4</a></li>
+<li><a href="#章5">章5</a></li>
+<li><a href="#章6">章6</a></li>
+<li><a href="#章7">章7</a></li>
+<li><a href="#章9-虚拟内存">章9 虚拟内存</a></li>
+<li><a href="#章10">章10</a></li>
+<li><a href="#章11">章11</a></li>
+<li><a href="#章12">章12</a></li>
+</ul></li>
+</ul>
+</nav>
+    
+
+<h2 id="章1-计算机系统漫游">章1 计算机系统漫游</h2>
+
+<ul>
+<li>并发和并行
+【并发】同一时间具有多个活动
+【并行】用并发来使一个系统运行更快
+
+<ul>
+<li>线程级并发
+通过使计算机在进程间快速切换，以模拟达到并发的效果</li>
+<li>指令级并行
+定义：现代处理器可以同时执行多条指令的属性，通过这个模型可以优化程序设计，使其运行指令符合处理器的并行优化要求。核心【流水线Pipeline】</li>
+<li>单指令、多数据并行
+定义：现代处理器允许一条指令产生多个可以并行执行的操作</li>
+</ul></li>
+<li>计算机系统的抽象
+
+<ul>
+<li>虚拟机
+
+<ul>
+<li>操作系统</li>
+<li>进程
+
+<ul>
+<li>指令架构
+
+<ul>
+<li>处理器</li>
+</ul></li>
+<li>虚拟内存
+
+<ul>
+<li>主存</li>
+<li>文件（I/O设备）
+<br /></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h2 id="章2">章2</h2>
+
+<h2 id="章3">章3</h2>
+
+<h2 id="章4">章4</h2>
+
+<h2 id="章5">章5</h2>
+
+<h2 id="章6">章6</h2>
+
+<h2 id="章7">章7</h2>
+
+<h2 id="章9-虚拟内存">章9 虚拟内存</h2>
+
+<p>+【虚拟内存】: 主存的抽象，为硬件异常、硬件地址翻译、主存、磁盘文件和内核软件提供交互，为每个进程提供一个<strong>大的、一致的、和私有的地址空间</strong><br />
+    三个重要能力:<br />
+    + 将主存看成是一个存储在磁盘上的地址空间的高速缓存，在主存中只保存活动区域，并根据需要在磁盘和主存之间来回传输数据
+    + 为每个进程提供一致的地址空间，简化内存管理
+    + 保护了每个进程的地址空间不被其他进程破坏</p>
+
+<h2 id="章10">章10</h2>
+
+<h2 id="章11">章11</h2>
+
+<h2 id="章12">章12</h2>
+
+  </div>
+  <footer>
+    <div class="article-footer">
+      
+<div class="tags">
+  <ul>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/csapp">CSAPP</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      
+      
+<div id="share-buttons">
+  <ul>
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+
+      
+      
+      <div id="pagenavigation-next-prev">
+        
+        <div id="pagenavigation-next">
+          <span class="pagenav-label">Previous</span>
+          <a href="https//dennismao.github.io/post/2017/07/gowebsocket-experience/">Websocket使用手记</a>
+        </div>
+        
+        
+        <div id="pagenavigation-prev">
+          <span class="pagenav-label">Next</span>
+          <a href="https//dennismao.github.io/post/2017/10/meet-go-scrapy/">Go爬虫初探</a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </footer>
+</div>
+        </div>
+        <div class="sidebar">
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Author</span>
+    </div>
+    <div id="author">
+      <img id="author-avatar" src=https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/5d6034a85edf8db10237879c0e23dd54564e7429.jpg>     
+      <span id="author-name">Razil</span>
+        </br>
+      <span id="author-lang">语言:C/C&#43;&#43;/Go </span>    
+      <span id="author-tar">技术方向:服务器应用、分布式系统</span>  
+      <div>
+        
+        
+        <a href="https://github.com/github.com/dennismao"><i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Categories</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/"><span></span> (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/golang"><span></span>golang (5)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/rpc"><span></span>rpc (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0"><span></span>使用手记 (4)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F"><span></span>分布式 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93"><span></span>数据库 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E8%AF%91%E6%96%87"><span></span>译文 (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0"><span></span>阅读笔记 (1)</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+  
+    
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Tags</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/"><span></span> (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/beego"><span></span>beego (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/context"><span></span>context (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/csapp"><span></span>csapp (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/elasticsearch"><span></span>elasticsearch (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/golang"><span></span>golang (3)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/grpc"><span></span>grpc (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/influxdb"><span></span>influxdb (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/json"><span></span>json (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/rpc"><span></span>rpc (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/web"><span></span>web (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/websocket"><span></span>websocket (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F"><span></span>分布式 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E6%AD%A3%E5%88%99"><span></span>正则 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB"><span></span>网络爬虫 (1)</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+  
+    
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>RSS</span>
+    </div>
+    <div id="rss">
+      <a href="https//dennismao.github.io/index.xml" type="application/rss+xml" target="_blank">
+        <i class="fa fa-rss-square fa-2x" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <footer>
+        <div id="site-footer-wrap">
+          <div id="site-footer">
+            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
+            <span>
+              
+              Copyright (c) 2018, <a href="https//dennismao.github.io/">后端小筑</a>
+              
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
