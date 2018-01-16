@@ -1,18 +1,23 @@
 language: go
 
+git:
+  depth: 1
+
+install: go get -v github.com/spf13/hugo
+
 script:
-  - hugo --baseUrl=dennismao.github.io
+  - hugo
 
 after_script:
   - cd ./public
+  - cp ../CNAME CNAME
   - git init
   - git config user.name "dennismao"
   - git config user.email "raymond_2008@yahoo.com"
   - git add .
   - git commit -m "Update docs"
   - git push --force --quiet "https://${GIT_TOKEN}@${GH_REF}" master:master
-# E: Build LifeCycle
-
+  
 branches:
   only:
     - blog-source
