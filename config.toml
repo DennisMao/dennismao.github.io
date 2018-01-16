@@ -1,4 +1,4 @@
-baseurl = "http://dennismao.github.io/"
+baseurl = "https//dennismao.github.io/"
 languageCode = "en-us"
 title = "后端小筑"
 theme= "hugo-theme-geppaku"
@@ -12,7 +12,7 @@ disqusShortname = ""
     avatar = "https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/5d6034a85edf8db10237879c0e23dd54564e7429.jpg"
     description = "语言:C/C++/Go"
     lang = "语言:C/C++/Go "
-    tar = "技术方向:应用后端、分布式"
+    tar = "技术方向:服务器应用、分布式系统"
 
     # Please set account ids
     # This is Optional values
