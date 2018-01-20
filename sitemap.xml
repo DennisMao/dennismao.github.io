@@ -3,302 +3,302 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https//dennismao.github.io/post/2018/01/about-block-chain/</loc>
+    <loc>dennismao.github.io/post/2018/01/about-block-chain/</loc>
     <lastmod>2018-01-16T23:04:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</loc>
+    <loc>dennismao.github.io/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</loc>
     <lastmod>2018-01-16T23:04:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/12/beego-multi-file-upload/</loc>
+    <loc>dennismao.github.io/post/2017/12/beego-multi-file-upload/</loc>
     <lastmod>2017-12-27T15:35:04+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/12/dynamic-json/</loc>
+    <loc>dennismao.github.io/post/2017/12/dynamic-json/</loc>
     <lastmod>2017-12-14T00:22:45+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/11/go-context-is-not-for-cancel/</loc>
+    <loc>dennismao.github.io/post/2017/11/go-context-is-not-for-cancel/</loc>
     <lastmod>2017-11-30T20:47:48+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/10/influxdbvselasticsearch/</loc>
+    <loc>dennismao.github.io/post/2017/10/influxdbvselasticsearch/</loc>
     <lastmod>2017-10-19T23:38:17+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/10/meet-go-scrapy/</loc>
+    <loc>dennismao.github.io/post/2017/10/meet-go-scrapy/</loc>
     <lastmod>2017-09-26T23:29:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/07/gowebsocket-experience/</loc>
+    <loc>dennismao.github.io/post/2017/07/gowebsocket-experience/</loc>
     <lastmod>2017-09-21T23:51:49+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/08/proto3-note/</loc>
+    <loc>dennismao.github.io/post/2017/08/proto3-note/</loc>
     <lastmod>2017-08-22T23:49:14+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/08/grpc-note/</loc>
+    <loc>dennismao.github.io/post/2017/08/grpc-note/</loc>
     <lastmod>2017-08-22T23:44:21+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/about/</loc>
+    <loc>dennismao.github.io/about/</loc>
     <lastmod>2017-08-20T09:49:04+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/07/reflect-on-beego-orm/</loc>
+    <loc>dennismao.github.io/post/2017/07/reflect-on-beego-orm/</loc>
     <lastmod>2017-07-20T15:03:41+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/05/solve-no-buildable-go-source/</loc>
+    <loc>dennismao.github.io/post/2017/05/solve-no-buildable-go-source/</loc>
     <lastmod>2017-05-20T15:10:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/05/go-regexp-pkg/</loc>
+    <loc>dennismao.github.io/post/2017/05/go-regexp-pkg/</loc>
     <lastmod>2017-05-17T14:58:17+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/04/docker-deploy-1/</loc>
+    <loc>dennismao.github.io/post/2017/04/docker-deploy-1/</loc>
     <lastmod>2017-04-19T15:24:29+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/2017/03/go-encrypt/</loc>
+    <loc>dennismao.github.io/post/2017/03/go-encrypt/</loc>
     <lastmod>2017-03-28T00:08:18+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/</loc>
+    <loc>dennismao.github.io/tags/</loc>
     <lastmod>2017-05-20T15:10:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/beego/</loc>
+    <loc>dennismao.github.io/tags/beego/</loc>
     <lastmod>2017-12-27T15:35:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/</loc>
+    <loc>dennismao.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/context/</loc>
+    <loc>dennismao.github.io/tags/context/</loc>
     <lastmod>2017-11-30T20:47:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/docker/</loc>
+    <loc>dennismao.github.io/tags/docker/</loc>
     <lastmod>2017-04-19T15:24:29+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/docker/</loc>
+    <loc>dennismao.github.io/categories/docker/</loc>
     <lastmod>2017-04-19T15:24:29+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/elasticsearch/</loc>
+    <loc>dennismao.github.io/tags/elasticsearch/</loc>
     <lastmod>2017-10-19T23:38:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/go/</loc>
+    <loc>dennismao.github.io/tags/go/</loc>
     <lastmod>2017-05-20T15:10:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/go/</loc>
+    <loc>dennismao.github.io/categories/go/</loc>
     <lastmod>2018-01-16T23:04:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/golang/</loc>
+    <loc>dennismao.github.io/tags/golang/</loc>
     <lastmod>2017-12-27T15:35:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/golang/</loc>
+    <loc>dennismao.github.io/categories/golang/</loc>
     <lastmod>2017-12-27T15:35:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/grpc/</loc>
+    <loc>dennismao.github.io/tags/grpc/</loc>
     <lastmod>2017-08-22T23:44:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/influxdb/</loc>
+    <loc>dennismao.github.io/tags/influxdb/</loc>
     <lastmod>2017-10-19T23:38:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/json/</loc>
+    <loc>dennismao.github.io/tags/json/</loc>
     <lastmod>2017-12-14T00:22:45+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/orm/</loc>
+    <loc>dennismao.github.io/tags/orm/</loc>
     <lastmod>2017-07-20T15:03:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/post/</loc>
+    <loc>dennismao.github.io/post/</loc>
     <lastmod>2018-01-16T23:04:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/relfect/</loc>
+    <loc>dennismao.github.io/tags/relfect/</loc>
     <lastmod>2017-07-20T15:03:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/rpc/</loc>
+    <loc>dennismao.github.io/tags/rpc/</loc>
     <lastmod>2017-08-22T23:49:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/rpc/</loc>
+    <loc>dennismao.github.io/categories/rpc/</loc>
     <lastmod>2017-08-22T23:49:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/</loc>
+    <loc>dennismao.github.io/tags/</loc>
     <lastmod>2017-05-20T15:10:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/web/</loc>
+    <loc>dennismao.github.io/tags/web/</loc>
     <lastmod>2017-12-27T15:35:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/websocket/</loc>
+    <loc>dennismao.github.io/tags/websocket/</loc>
     <lastmod>2017-09-21T23:51:49+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</loc>
+    <loc>dennismao.github.io/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</loc>
     <lastmod>2018-01-16T23:04:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</loc>
+    <loc>dennismao.github.io/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</loc>
     <lastmod>2017-09-26T23:29:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
+    <loc>dennismao.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
     <lastmod>2017-08-22T23:49:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
+    <loc>dennismao.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
     <lastmod>2017-08-22T23:44:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/%E5%8A%A0%E5%AF%86/</loc>
+    <loc>dennismao.github.io/tags/%E5%8A%A0%E5%AF%86/</loc>
     <lastmod>2017-03-28T00:08:18+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
+    <loc>dennismao.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
     <lastmod>2018-01-16T23:04:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
+    <loc>dennismao.github.io/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
     <lastmod>2017-03-28T00:08:18+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>dennismao.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
     <lastmod>2017-10-19T23:38:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/%E6%AD%A3%E5%88%99/</loc>
+    <loc>dennismao.github.io/tags/%E6%AD%A3%E5%88%99/</loc>
     <lastmod>2017-09-26T23:29:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D/</loc>
+    <loc>dennismao.github.io/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D/</loc>
     <lastmod>2017-05-17T14:58:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</loc>
+    <loc>dennismao.github.io/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</loc>
     <lastmod>2017-09-26T23:29:00+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/</loc>
+    <loc>dennismao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/</loc>
     <lastmod>2018-01-16T23:04:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/</loc>
+    <loc>dennismao.github.io/</loc>
     <lastmod>2018-01-16T23:04:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/%E8%AF%91%E6%96%87/</loc>
+    <loc>dennismao.github.io/categories/%E8%AF%91%E6%96%87/</loc>
     <lastmod>2017-11-30T20:47:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https//dennismao.github.io/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>dennismao.github.io/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2018-01-16T23:04:21+08:00</lastmod>
     <priority>0</priority>
   </url>

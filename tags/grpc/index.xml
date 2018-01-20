@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Grpc on 行者小筑</title>
-    <link>https//dennismao.github.io/tags/grpc/</link>
+    <link>dennismao.github.io/tags/grpc/</link>
     <description>Recent content in Grpc on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 22 Aug 2017 23:44:21 +0800</lastBuildDate>
-    <atom:link href="https/dennismao.github.io/tags/grpc/" rel="self" type="application/rss+xml" />
+    <atom:link href="dennismao.github.io/tags/grpc/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>gRPC使用手记</title>
-      <link>https//dennismao.github.io/post/2017/08/grpc-note/</link>
+      <link>dennismao.github.io/post/2017/08/grpc-note/</link>
       <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
       
-      <guid>https//dennismao.github.io/post/2017/08/grpc-note/</guid>
+      <guid>dennismao.github.io/post/2017/08/grpc-note/</guid>
       <description>gRPC是什么? gRPC是由谷歌开发的一款高性能，通用的开源RPC框架，基于HTTP/2协议标准设计.支持全双工、双向流、流控制、头部压缩单连接上的多服用请求等特性。目前提供C、Java和Go三个语言版本。 三个项目版本地址分别是: C-gRPC
 Go-gRPC
 JAVA-gRPC

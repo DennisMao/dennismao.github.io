@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>使用手记 on 行者小筑</title>
-    <link>https//dennismao.github.io/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</link>
+    <link>dennismao.github.io/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</link>
     <description>Recent content in 使用手记 on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 16 Jan 2018 23:04:21 +0800</lastBuildDate>
-    <atom:link href="https/dennismao.github.io/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/" rel="self" type="application/rss+xml" />
+    <atom:link href="dennismao.github.io/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>使用TravisCI持续部署Hugo博客到gitpages</title>
-      <link>https//dennismao.github.io/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</link>
+      <link>dennismao.github.io/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</link>
       <pubDate>Tue, 16 Jan 2018 23:04:21 +0800</pubDate>
       
-      <guid>https//dennismao.github.io/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</guid>
+      <guid>dennismao.github.io/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</guid>
       <description>背景 操作步骤 最终效果 注意事项 参考 Continuous Deployment: Hugo + Travis CI → GitHub Pages Hugo借助Travis CI实现GitHub Pages自动部署实践</description>
     </item>
     

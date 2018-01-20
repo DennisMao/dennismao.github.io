@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web on 行者小筑</title>
-    <link>https//dennismao.github.io/tags/web/</link>
+    <link>dennismao.github.io/tags/web/</link>
     <description>Recent content in Web on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 27 Dec 2017 15:35:04 +0800</lastBuildDate>
-    <atom:link href="https/dennismao.github.io/tags/web/" rel="self" type="application/rss+xml" />
+    <atom:link href="dennismao.github.io/tags/web/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>使用Beego处理多文件上传</title>
-      <link>https//dennismao.github.io/post/2017/12/beego-multi-file-upload/</link>
+      <link>dennismao.github.io/post/2017/12/beego-multi-file-upload/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>https//dennismao.github.io/post/2017/12/beego-multi-file-upload/</guid>
+      <guid>dennismao.github.io/post/2017/12/beego-multi-file-upload/</guid>
       <description>实现方法 Beego 在controller处理上提供了GetFile和GetFiles方法，以获取MultipartForm里的文件内容。详细说明查看godoc。
 获取单个文件 func (*Controller) GetFile
  func (c *Controller) GetFile(key string) (multipart.File, *multipart.FileHeader, error) GetFile returns the file data in file upload field named as key. it returns the first one of multi-uploaded files.
