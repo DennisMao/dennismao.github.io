@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="Hugo 0.26" />
+    <link rel="shortcut icon" href="/https/dennismao.github.io/images/favicon.ico">
+    <link href="https//dennismao.github.io/index.xml" rel="alternate" type="application/rss+xml" title="行者小筑" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" type="text/css" href="/https/dennismao.github.io/css/style.css">
+    <title>【Go】反射在Beego/Orm中的应用 | 行者小筑</title>
+  </head>
+  <body>
+    <div id="wrap">
+      
+      <header class="site-header">
+        <div class="site-header-left">
+          <a class="site-header-title" href="https//dennismao.github.io/">行者小筑</a>
+           <p id="author-tar">技术方向:服务器应用、分布式系统</p>  
+        </div>
+      </header>
+      <div class="container">
+        <div id="main">
+
+<div class="article">
+  <header>
+    <div class="article-header">
+      <h1>【Go】反射在Beego/Orm中的应用</h1>
+      <div class="article-meta">
+        <span class="posttime">2017/07/20</span>
+        
+<div class="tags">
+  <ul>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/beego">beego</a>
+    </li>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/orm">orm</a>
+    </li>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/relfect">relfect</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    
+<div id="share-buttons">
+  <ul>
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+
+  </header>
+  <div class="content">
+      <span>目录</span>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#应用">应用</a></li>
+<li><a href="#完整代码">完整代码</a></li>
+</ul></li>
+</ul>
+</nav>
+    
+
+<h2 id="应用">应用</h2>
+
+<p>在Beego Orm中，作者使用了go的反射机制，实现
+1、通过数据模型建立数据表</p>
+
+<blockquote>
+<p>type DataSheet struct {
+    Name    string <code>orm:&quot;NOT NULL&quot; json:&quot;name&quot;</code>    //表名称
+    Type    string <code>orm:&quot;NOT NULL&quot; json:&quot;type&quot;</code>    //周期类型  日/月/季/年
+    Way     string <code>orm:&quot;NOT NULL&quot; json:&quot;way&quot;</code>     //生成方式
+    Time    string <code>orm:&quot;NOT NULL&quot; json:&quot;time&quot;</code>    //创建时间
+    Creator string <code>orm:&quot;NOT NULL&quot; json:&quot;creator&quot;</code> //制作人
+}</p>
+</blockquote>
+
+<p>在调用 orm.RegisterModel(new(DataSheet)) 后会自动生成名为 data_sheet 的数据表
+2、通过模型中的tag
+&gt; <code>orm:&quot;auto;pk&quot;</code>
+&gt; <code>orm:&quot;rel(m2m)&quot;</code></p>
+
+<p>自动设置字段属性和表之间关系</p>
+
+<h2 id="完整代码">完整代码</h2>
+
+<pre><code class="language-go">package main
+
+import (
+	&quot;errors&quot;
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+type DataSheet struct {
+	Name    string `orm:&quot;NOT NULL&quot; json:&quot;name&quot;`    //表名称
+	Type    string `orm:&quot;NOT NULL&quot; json:&quot;type&quot;`    //周期类型  日/月/季/年
+	Way     string `orm:&quot;NOT NULL&quot; json:&quot;way&quot;`     //生成方式
+	Time    string `orm:&quot;NOT NULL&quot; json:&quot;time&quot;`    //创建时间
+	Creator string `orm:&quot;NOT NULL&quot; json:&quot;creator&quot;` //制作人
+}
+
+func main() {
+	fmt.Println(&quot;=================================&quot;)
+	sql, _ := registerModel(&amp;DataSheet{
+		Name: &quot;模板名&quot;,
+		Type: &quot;周期类型&quot;,
+		Way:  &quot;生成方式&quot;,
+		Time: &quot;2017-01-01 00:00:00&quot;})
+	fmt.Println(sql)
+}
+
+//根据数据结构模型自动生成sql查询语句
+func registerModel(models interface{}) (string, error) {
+	valModels := reflect.ValueOf(models) //获取models内的值得指针位置
+	indModels := reflect.Indirect(valModels)
+	//检查传入类型，必须为指针类型
+	if valModels.Kind() != reflect.Ptr {
+		return &quot;&quot;, errors.New(&quot;Invalid input models&quot;)
+	}
+	//输出数据模型名
+	name := reflect.TypeOf(models).Name()
+	fmt.Println(&quot;结构体名:&quot;, name)
+	if indModels.NumField() == 0 {
+		return &quot;&quot;, errors.New(&quot;No valid fields&quot;)
+	}
+	//输出变量名 与 对应值
+	for i := 0; i &lt; indModels.NumField(); i++ {
+		//获取字段
+		k := indModels.Type().Field(i)
+		fmt.Println(&quot;字段名:&quot;, k.Name, &quot; 字段类型:&quot;, k.Type, &quot; 字段标识:&quot;, k.Tag)
+		//获取内容
+		c := indModels.Field(i)
+		if c.Kind() != reflect.Invalid {
+			fmt.Println(&quot;内容:&quot;, c.String())
+		}
+		//fmt.Println(&quot;类型&quot;, c.Kind())
+
+	}
+	return name, nil
+}
+</code></pre>
+
+<p>输出结果</p>
+
+<blockquote>
+<p>=================================
+结构体名:
+字段名: Name  字段类型: string  字段标识: orm:&ldquo;NOT NULL&rdquo; json:&ldquo;name&rdquo;
+内容: 模板名
+字段名: Type  字段类型: string  字段标识: orm:&ldquo;NOT NULL&rdquo; json:&ldquo;type&rdquo;
+内容: 周期类型
+字段名: Way  字段类型: string  字段标识: orm:&ldquo;NOT NULL&rdquo; json:&ldquo;way&rdquo;
+内容: 生成方式
+字段名: Time  字段类型: string  字段标识: orm:&ldquo;NOT NULL&rdquo; json:&ldquo;time&rdquo;
+内容: 2017-01-01 00:00:00
+字段名: Creator  字段类型: string  字段标识: orm:&ldquo;NOT NULL&rdquo; json:&ldquo;creator&rdquo;
+内容:</p>
+</blockquote>
+
+  </div>
+  <footer>
+    <div class="article-footer">
+      
+<div class="tags">
+  <ul>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/beego">beego</a>
+    </li>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/orm">orm</a>
+    </li>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/relfect">relfect</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      
+      
+<div id="share-buttons">
+  <ul>
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+
+      
+      
+      <div id="pagenavigation-next-prev">
+        
+        <div id="pagenavigation-next">
+          <span class="pagenav-label">Previous</span>
+          <a href="https//dennismao.github.io/post/2017/05/solve-no-buildable-go-source/">【Go】解决“can&#39;t load package: no buildable Go source files in /...</a>
+        </div>
+        
+        
+        <div id="pagenavigation-prev">
+          <span class="pagenav-label">Next</span>
+          <a href="https//dennismao.github.io/about/">关于我</a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </footer>
+</div>
+        </div>
+        <div class="sidebar">
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Author</span>
+    </div>
+    <div id="author">
+      <img id="author-avatar" src=https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/5d6034a85edf8db10237879c0e23dd54564e7429.jpg>     
+      <span id="author-name">Razil</span>
+        </br>
+      <span id="author-lang">语言:C/C&#43;&#43;/Go </span>    
+      <span id="author-tar">技术方向:服务器应用、分布式系统</span>  
+      <div>
+        
+        
+        <a href="https://github.com/github.com/dennismao"><i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Categories</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/docker"><span></span>docker (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/go"><span></span>go (6)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/golang"><span></span>golang (5)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/rpc"><span></span>rpc (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0"><span></span>使用手记 (4)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F"><span></span>分布式 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E5%AF%86%E7%A0%81%E5%AD%A6"><span></span>密码学 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93"><span></span>数据库 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E8%AF%91%E6%96%87"><span></span>译文 (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E9%9A%8F%E7%AC%94"><span></span>随笔 (1)</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+  
+    
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Tags</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/"><span></span> (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/beego"><span></span>beego (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/context"><span></span>context (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/docker"><span></span>docker (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/elasticsearch"><span></span>elasticsearch (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/go"><span></span>go (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/golang"><span></span>golang (3)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/grpc"><span></span>grpc (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/influxdb"><span></span>influxdb (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/json"><span></span>json (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/orm"><span></span>orm (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/relfect"><span></span>relfect (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/rpc"><span></span>rpc (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/web"><span></span>web (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/websocket"><span></span>websocket (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0"><span></span>使用手记 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F"><span></span>分布式 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E5%8A%A0%E5%AF%86"><span></span>加密 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE"><span></span>区块链 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E6%AD%A3%E5%88%99"><span></span>正则 (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D"><span></span>正则匹配 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB"><span></span>网络爬虫 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA"><span></span>自动化构建 (1)</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+  
+    
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>RSS</span>
+    </div>
+    <div id="rss">
+      <a href="https//dennismao.github.io/index.xml" type="application/rss+xml" target="_blank">
+        <i class="fa fa-rss-square fa-2x" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <footer>
+        <div id="site-footer-wrap">
+          <div id="site-footer">
+            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
+            <span>
+              
+              Copyright (c) 2018, <a href="https//dennismao.github.io/">行者小筑</a>
+              
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+

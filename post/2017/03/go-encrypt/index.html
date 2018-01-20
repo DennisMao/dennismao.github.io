@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="Hugo 0.26" />
+    <link rel="shortcut icon" href="/https/dennismao.github.io/images/favicon.ico">
+    <link href="https//dennismao.github.io/index.xml" rel="alternate" type="application/rss+xml" title="行者小筑" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    
+    <script src="https://apis.google.com/js/platform.js" async defer>{lang: 'ja'}</script>
+    
+    <link rel="stylesheet" href="https://yandex.st/highlightjs/8.0/styles/default.min.css">
+    <script src="https://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+    <link rel="stylesheet" type="text/css" href="/https/dennismao.github.io/css/style.css">
+    <title>【Go】Web加密方案与Go语言解决 | 行者小筑</title>
+  </head>
+  <body>
+    <div id="wrap">
+      
+      <header class="site-header">
+        <div class="site-header-left">
+          <a class="site-header-title" href="https//dennismao.github.io/">行者小筑</a>
+           <p id="author-tar">技术方向:服务器应用、分布式系统</p>  
+        </div>
+      </header>
+      <div class="container">
+        <div id="main">
+
+<div class="article">
+  <header>
+    <div class="article-header">
+      <h1>【Go】Web加密方案与Go语言解决</h1>
+      <div class="article-meta">
+        <span class="posttime">2017/03/28</span>
+        
+<div class="tags">
+  <ul>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/go">go</a>
+    </li>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/%E5%8A%A0%E5%AF%86">加密</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      </div>
+    </div>
+    
+<div id="share-buttons">
+  <ul>
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+
+  </header>
+  <div class="content">
+      <span>目录</span>
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#常见加密方案">常见加密方案</a></li>
+<li><a href="#加密解决方案">加密解决方案</a>
+<ul>
+<li><a href="#1-md5加盐">1. MD5加盐</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+    
+
+<h2 id="常见加密方案">常见加密方案</h2>
+
+<p>###1、对称加密：
+即加密方和解密方都使用相同的加密算法和密钥，这种方案的密钥的保存非常关键，因为算法是公开的，而密钥是保密的，一旦密匙泄露，黑客仍然可以轻易解密。
+常见的对称加密算法有：AES、DES、3DES、Blowfish、IDEA、RC4、RC5、RC6和 等。</p>
+
+<p>###2、非对称加密：
+即使用不同的密钥来进行加解密，密钥被分为公钥和私钥，用私钥加密的数据必须使用公钥来解密，同样用公钥加密的数据必须用对应的私钥来解密，
+常见的非对称加密算法有：RSA、ECC（移动设备用）、Diffie-Hellman、El Gamal、DSA（数字签名用）等。</p>
+
+<p>###3、不可逆加密：
+利用哈希算法使数据加密之后无法解密回原数据。
+这样的哈希算法常用的有：SHA-256, SHA-1, MD2、MD4、MD5、HAVAL等。</p>
+
+<p>Go语言对这三种加密算法的实现如下所示：</p>
+
+<pre><code>//import &quot;crypto/sha256&quot;
+h := sha256.New()
+io.WriteString(h, &quot;His money is twice tainted: 'taint yours and 'taint mine.&quot;)
+fmt.Printf(&quot;% x&quot;, h.Sum(nil))
+
+//import &quot;crypto/sha1&quot;
+h := sha1.New()
+io.WriteString(h, &quot;His money is twice tainted: 'taint yours and 'taint mine.&quot;)
+fmt.Printf(&quot;% x&quot;, h.Sum(nil))
+
+//import &quot;crypto/md5&quot;
+h := md5.New()
+io.WriteString(h, &quot;需要加密的密码&quot;)
+fmt.Printf(&quot;%x&quot;, h.Sum(nil))
+
+</code></pre>
+
+<h2 id="加密解决方案">加密解决方案</h2>
+
+<h3 id="1-md5加盐">1. MD5加盐</h3>
+
+<blockquote>
+<p>对MD5加密的数据加入揉合进特定的随机数，再二次生成MD5。</p>
+</blockquote>
+
+<p>在我们上面登录系统的示例代码中，$md5password = md5($password); 从这句代码可以看到采用了md5的不可逆加密算法来存储密码，这也是多年来业界常用的密码加密算法，但是这仍然不安全。为什么呢？这是因为md5加密有一个特点：同样的字符串经过md5哈希计算之后生成的加密字符串也是相同的，由于业界采用这种加密的方式由来已久，黑客们也准备了自己强大的md5彩虹表来逆向匹配加密前的字符串，这种用于逆向反推MD5加密的彩虹表在互联网上随处可见，在Google里使用md5 解密作为关键词搜索，一下就能找到md5在线破解网站，把我们插入用户数据时候的MD5加密字符串e10adc3949ba59abbe56e057f20f883e填入进去，瞬间就能得到加密前的密码：123456。</p>
+
+<p>当然也并不是每一个都能成功，但可以肯定的是，这个彩虹表会越来越完善。所以，我们有迫切的需求采用更好的方法对密码数据进行不可逆加密，通常的做法是为每个用户确定不同的密码加盐（salt）后，再混合用户的真实密码进行md5加密，如以下代码：</p>
+
+<pre><code>//用户注册时候设置的password
+$password = $_POST['password'];
+//md5加密，传统做法直接将加密后的字符串存入数据库，但这不够，我们继续改良
+$passwordmd5 = md5($password);
+//为用户生成不同的密码盐，算法可以根据自己业务的需要而不同
+$salt = substr(uniqid(rand()), -6);
+//新的加密字符串包含了密码盐
+$passwordmd5 = md5($passwordmd5.$salt);
+
+</code></pre>
+
+<p>###2. 外部方案Scrypt
+scrypt方案，scrypt是由著名的FreeBSD黑客Colin Percival为他的备份服务Tarsnap开发。Scrypt不仅计算所需时间长，而且占用的内存也多，使得并行计算多个摘要异常困难，因此利用rainbow table进行暴力攻击更加困难。</p>
+
+<p>目前Go语言里面支持的库<a href="http://code.google.com/p/go/source/browse?repo=crypto#hg%2Fscrypt">http://code.google.com/p/go/source/browse?repo=crypto#hg%2Fscrypt</a></p>
+
+<p>dk := scrypt.Key([]byte(&ldquo;some password&rdquo;), []byte(salt), 16384, 8, 1, 32)
+通过上面的的方法可以获取唯一的相应的密码值，这是目前为止最难破解的。</p>
+
+<p>参考资料：</p>
+
+<p>链接：<a href="https://www.zhihu.com/question/22953267/answer/80141632">https://www.zhihu.com/question/22953267/answer/80141632</a> 作者：潘良虎
+链接：<a href="http://www.kancloud.cn/kancloud/web-application-with-golang/44198">http://www.kancloud.cn/kancloud/web-application-with-golang/44198</a> 作者：Asta谢</p>
+
+  </div>
+  <footer>
+    <div class="article-footer">
+      
+<div class="tags">
+  <ul>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/go">go</a>
+    </li>
+    
+    <li>
+        <a href="/https/dennismao.github.io/tags/%E5%8A%A0%E5%AF%86">加密</a>
+    </li>
+    
+  </ul>
+</div>
+
+
+      
+      
+<div id="share-buttons">
+  <ul>
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+
+      
+      
+      <div id="pagenavigation-next-prev">
+        
+        
+        <div id="pagenavigation-prev">
+          <span class="pagenav-label">Next</span>
+          <a href="https//dennismao.github.io/post/2017/04/docker-deploy-1/">【docker】Docker实战 - 将go工程部署到docker</a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </footer>
+</div>
+        </div>
+        <div class="sidebar">
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Author</span>
+    </div>
+    <div id="author">
+      <img id="author-avatar" src=https://gss0.baidu.com/9vo3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/5d6034a85edf8db10237879c0e23dd54564e7429.jpg>     
+      <span id="author-name">Razil</span>
+        </br>
+      <span id="author-lang">语言:C/C&#43;&#43;/Go </span>    
+      <span id="author-tar">技术方向:服务器应用、分布式系统</span>  
+      <div>
+        
+        
+        <a href="https://github.com/github.com/dennismao"><i class="fa fa-github-square fa-2x" aria-hidden="true"></i></a>
+        
+        
+        
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Categories</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/docker"><span></span>docker (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/go"><span></span>go (6)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/golang"><span></span>golang (5)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/rpc"><span></span>rpc (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0"><span></span>使用手记 (4)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E5%88%86%E5%B8%83%E5%BC%8F"><span></span>分布式 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E5%AF%86%E7%A0%81%E5%AD%A6"><span></span>密码学 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93"><span></span>数据库 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E8%AF%91%E6%96%87"><span></span>译文 (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/categories/%E9%9A%8F%E7%AC%94"><span></span>随笔 (1)</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+  
+    
+  
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>Tags</span>
+    </div>
+    <div class="categories">
+      <ul>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/"><span></span> (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/beego"><span></span>beego (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/context"><span></span>context (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/docker"><span></span>docker (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/elasticsearch"><span></span>elasticsearch (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/go"><span></span>go (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/golang"><span></span>golang (3)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/grpc"><span></span>grpc (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/influxdb"><span></span>influxdb (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/json"><span></span>json (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/orm"><span></span>orm (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/relfect"><span></span>relfect (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/rpc"><span></span>rpc (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/web"><span></span>web (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/websocket"><span></span>websocket (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0"><span></span>使用手记 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F"><span></span>分布式 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E5%8A%A0%E5%AF%86"><span></span>加密 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE"><span></span>区块链 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E6%AD%A3%E5%88%99"><span></span>正则 (2)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D"><span></span>正则匹配 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB"><span></span>网络爬虫 (1)</a>
+        </li>
+        
+        <li>
+          <a href="/https/dennismao.github.io/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA"><span></span>自动化构建 (1)</a>
+        </li>
+        
+      </ul>
+    </div>
+  </div>
+  
+    
+  <div class="sidebar-content">
+    <div class="sidebar-header">
+      <span>RSS</span>
+    </div>
+    <div id="rss">
+      <a href="https//dennismao.github.io/index.xml" type="application/rss+xml" target="_blank">
+        <i class="fa fa-rss-square fa-2x" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <footer>
+        <div id="site-footer-wrap">
+          <div id="site-footer">
+            <span>Powered by <a href="https://gohugo.io/">Hugo</a>.</span>
+            <span>
+              
+              Copyright (c) 2018, <a href="https//dennismao.github.io/">行者小筑</a>
+              
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
