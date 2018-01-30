@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>网络爬虫 on 行者小筑</title>
-    <link>dennismao.github.io/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</link>
+    <link>razil.cc/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</link>
     <description>Recent content in 网络爬虫 on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Sep 2017 23:29:00 +0800</lastBuildDate>
-    <atom:link href="dennismao.github.io/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" rel="self" type="application/rss+xml" />
+    <atom:link href="razil.cc/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go爬虫初探</title>
-      <link>dennismao.github.io/post/2017/10/meet-go-scrapy/</link>
+      <link>razil.cc/post/2017/10/meet-go-scrapy/</link>
       <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
       
-      <guid>dennismao.github.io/post/2017/10/meet-go-scrapy/</guid>
+      <guid>razil.cc/post/2017/10/meet-go-scrapy/</guid>
       <description>背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布式数据库配套库，开发起来十分高效。对于复杂的爬虫规则和验证规则，Python的相关生态也能提供很好的解决方案。回到golang，也想尝试是否能用go语言也构建一个基本爬虫，看实现上会有多大差异。
 目标功能 获取 http://razil.cc 首页上的网站名称元素内容。
 目标内容为“后端小筑”

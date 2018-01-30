@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Elasticsearch on 行者小筑</title>
-    <link>dennismao.github.io/tags/elasticsearch/</link>
+    <link>razil.cc/tags/elasticsearch/</link>
     <description>Recent content in Elasticsearch on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 19 Oct 2017 23:38:17 +0800</lastBuildDate>
-    <atom:link href="dennismao.github.io/tags/elasticsearch/" rel="self" type="application/rss+xml" />
+    <atom:link href="razil.cc/tags/elasticsearch/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>系统监控:InfluxDB vs Elasticsearch</title>
-      <link>dennismao.github.io/post/2017/10/influxdbvselasticsearch/</link>
+      <link>razil.cc/post/2017/10/influxdbvselasticsearch/</link>
       <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
       
-      <guid>dennismao.github.io/post/2017/10/influxdbvselasticsearch/</guid>
+      <guid>razil.cc/post/2017/10/influxdbvselasticsearch/</guid>
       <description>前言 译者: Razil
 本文译自: System monitoring with InfluxDB vs Elasticsearch
 系统的监控一直都扮演着重要角色。它能帮助我们了解系统的健康情况,发现问题甚至能预测问题。
