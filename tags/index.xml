@@ -1,147 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on 行者小筑</title>
+    <title>行者小筑</title>
     <link>dennismao.github.io/tags/</link>
-    <description>Recent content in Tags on 行者小筑</description>
+    <description>Recent content on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 20 May 2017 15:10:00 +0800</lastBuildDate>
     <atom:link href="dennismao.github.io/tags/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title></title>
-      <link>dennismao.github.io/tags/</link>
+      <title>【Go】解决“can&#39;t load package: no buildable Go source files in /...</title>
+      <link>dennismao.github.io/post/2017/05/solve-no-buildable-go-source/</link>
       <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
       
-      <guid>dennismao.github.io/tags/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Beego</title>
-      <link>dennismao.github.io/tags/beego/</link>
-      <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/beego/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Context</title>
-      <link>dennismao.github.io/tags/context/</link>
-      <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/context/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Docker</title>
-      <link>dennismao.github.io/tags/docker/</link>
-      <pubDate>Wed, 19 Apr 2017 15:24:29 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Elasticsearch</title>
-      <link>dennismao.github.io/tags/elasticsearch/</link>
-      <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/elasticsearch/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>dennismao.github.io/tags/go/</link>
-      <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>dennismao.github.io/tags/golang/</link>
-      <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Grpc</title>
-      <link>dennismao.github.io/tags/grpc/</link>
-      <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/grpc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Influxdb</title>
-      <link>dennismao.github.io/tags/influxdb/</link>
-      <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/influxdb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Json</title>
-      <link>dennismao.github.io/tags/json/</link>
-      <pubDate>Thu, 14 Dec 2017 00:22:45 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/json/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Orm</title>
-      <link>dennismao.github.io/tags/orm/</link>
-      <pubDate>Thu, 20 Jul 2017 15:03:41 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/orm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Relfect</title>
-      <link>dennismao.github.io/tags/relfect/</link>
-      <pubDate>Thu, 20 Jul 2017 15:03:41 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/relfect/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rpc</title>
-      <link>dennismao.github.io/tags/rpc/</link>
-      <pubDate>Tue, 22 Aug 2017 23:49:14 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/rpc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Web</title>
-      <link>dennismao.github.io/tags/web/</link>
-      <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/web/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Websocket</title>
-      <link>dennismao.github.io/tags/websocket/</link>
-      <pubDate>Thu, 21 Sep 2017 23:51:49 +0800</pubDate>
-      
-      <guid>dennismao.github.io/tags/websocket/</guid>
-      <description></description>
+      <guid>dennismao.github.io/post/2017/05/solve-no-buildable-go-source/</guid>
+      <description>最近在调用golang.org/x/net出现这个错误。经检查后解决方法如下。在调用外部包时候出现这种情况，应检查以下设置 &amp;gt; 1.目标外部包的编译环境是否与当前工程的环境相同 2.先使用go get 获取外部包 使用 go install 直接编译安装
+关于本地未科学上网的情况下使用golang.org官方包的方法 &amp;gt; 1.到https://github.com/golang/找到对应的包的镜像文件 2.下载zip文件，解压后，修改文件目录为原始 golang.org目录 3.go install 编译安装
+举个实例: golang.org/x/net 对应 github上的镜像地址是 https://github.com/golang/net</description>
     </item>
     
   </channel>

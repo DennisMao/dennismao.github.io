@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>阅读笔记 on 行者小筑</title>
+    <link>dennismao.github.io/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+    <description>Recent content in 阅读笔记 on 行者小筑</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Nov 2017 20:54:52 +0800</lastBuildDate>
+    <atom:link href="dennismao.github.io/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>2017文章汇总</title>
+      <link>dennismao.github.io/post/2017/12/awsome-articles-2017/</link>
+      <pubDate>Thu, 30 Nov 2017 20:54:52 +0800</pubDate>
+      
+      <guid>dennismao.github.io/post/2017/12/awsome-articles-2017/</guid>
+      <description>基础 数据库 关系型 非关系型 深入理解etcd Etcd v3 服务注册与发现 Go代码
+架构 高并发 分布式 设计模式 DDD TDD,BDD,FDD&amp;amp;ATDD
+业务 AWS开发工具包发布适用Go 2.0的开发者预览版 JS实现的Markdown解析器
+运维 软件 CentOS7 安装svn
+CI Jenkins 基于jenkins整合ant和svn的持续集成环境 Jenkins+Maven+SVN快速搭建持续集成环境
+Travis CI .travis.yml在线验证工具 Hexo持续集成自动部署到github travis.yml文件说明文档
+测试 有趣项目 Go go-algorithms: 使用Go语言实现多种经典算法 TensorFlow用Go实现的图像识别</description>
+    </item>
+    
+  </channel>
+</rss>
