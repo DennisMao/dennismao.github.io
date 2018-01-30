@@ -10,7 +10,7 @@
     <atom:link href="dennismao.github.io/categories/%E9%9A%8F%E7%AC%94/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Go Practices in 2017</title>
+      <title>2017 Go语言使用总结</title>
       <link>dennismao.github.io/post/2018/01/go-practices-in-2017/</link>
       <pubDate>Sun, 28 Jan 2018 22:53:37 +0800</pubDate>
       
@@ -27,15 +27,6 @@ func xx() (err error) { defer func() { if err != nil { collcetErr(err) return } 
 滥用协程 由于在绝大部分介绍中都强调了Go的goroutine优势，在前面的优点讲述中就不再过多描述。但是正因为Go开协程是如此便捷，在初期开发时，会遇到在底层模块中滥用goroutine的现象。部分协程由于开了后，跑完主任务却没有正确关闭，资源一直被占用。 对于这种解决方法有三个。 (1)针对编程习惯上，参考了官方的并发模型，对代码质量进行规范，加强code review中这部分的检查。通过runtime/pprof包能十分便捷有效地查看当前的goroutine信息，判断是否有异常和未正确关闭的协程。 (2)引入context包进行上下文控制，在并发模型中有cancel和wait模型，底层模块我们更多选择的是cancel模型来规范和解决goroutine管理的问题。但是在业务流程调用的时候会偏向于选择wait模型。 (3)构建集中的任务管理器包，采用注册的方式对需要用到goroutine的任务采用wait模型进行管理。
 第三方包质量 虽然官方的底层操作库已经十分完善，但在系统整个开发过程中难免会用到第三方包。而第三方包的质量问题一直存开发过程中。由于Go语言还属于一门新的语言，跟JAVA和C++相比，相关的第三方功能包都不是那么完善，在蓬勃发展中。所以在当前需要使用第三方包还是要格外慎重，决定引入之前需要根据项目需求进行深入测试。 这个问题主要影响是的开发的进度。底层组件开发过程，修复第三方包花费了一定时间。
 下面整理了第三方包容易存在的一些问题: + 多系统环境兼容性: 第三方包容易出现只支持某个系统，多系统的兼容在设计初并未考虑到 + 版本控制: 早期包很多未采用版本控制，当第三方包内由引入其他包时候直接go get -u会引发各种奇怪问题。所以在进行二次开发时候注意增加像dep,glide这种，包的版本控制工具。 + CGO: 有部分包因为调用了c++/c的代码引入了cgo，在开发过程中着重检查其中的c/c++代码正确性。 + Go语言版本: 部分包会使用到一些新语法特性,像1.</description>
-    </item>
-    
-    <item>
-      <title>【随笔】关于区块链</title>
-      <link>dennismao.github.io/post/2018/01/about-block-chain/</link>
-      <pubDate>Tue, 16 Jan 2018 23:04:21 +0800</pubDate>
-      
-      <guid>dennismao.github.io/post/2018/01/about-block-chain/</guid>
-      <description></description>
     </item>
     
   </channel>

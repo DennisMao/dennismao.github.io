@@ -8,11 +8,6 @@
   </url>
   
   <url>
-    <loc>dennismao.github.io/post/2018/01/about-block-chain/</loc>
-    <lastmod>2018-01-16T23:04:21+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>dennismao.github.io/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</loc>
     <lastmod>2018-01-16T23:04:21+08:00</lastmod>
   </url>
@@ -250,12 +245,6 @@
   <url>
     <loc>dennismao.github.io/tags/%E5%8A%A0%E5%AF%86/</loc>
     <lastmod>2017-03-28T00:08:18+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>dennismao.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</loc>
-    <lastmod>2018-01-16T23:04:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
