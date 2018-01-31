@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go on 行者小筑</title>
-    <link>razil.cc/categories/go/</link>
+    <link>/categories/go/</link>
     <description>Recent content in Go on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Jan 2018 22:53:37 +0800</lastBuildDate>
-    <atom:link href="razil.cc/categories/go/" rel="self" type="application/rss+xml" />
+    <atom:link href="/categories/go/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>2017 Go语言使用总结</title>
-      <link>razil.cc/post/2018/01/go-practices-in-2017/</link>
+      <link>/post/2018/01/go-practices-in-2017/</link>
       <pubDate>Sun, 28 Jan 2018 22:53:37 +0800</pubDate>
       
-      <guid>razil.cc/post/2018/01/go-practices-in-2017/</guid>
+      <guid>/post/2018/01/go-practices-in-2017/</guid>
       <description>到了年末，谈谈这一年的收获与坑。
 所参与的项目从C++转到Go有两年，产品今年已经正式投入到线上商用运行。自己也从刚开始的基础模块设计开发，逐渐转到上层业务的开发。从底层到业务层的转变，对语言的需求和看法，也了有一定的变化。作为小coder，谈谈这年在实际项目中用Go语言的一些心得和踩坑经历。
 语法风格简单 Go在开发方面很吸引人的一点就是语法简单，容易上手。组里的同事基本都是从C++和JAVA两个方向转到Go语言来开发这个项目。通过相互沟通，大家普通花了一个月时间左右熟悉这门语言并能上手进行开发实际模块。因为有官方的gofmt格式化工具，大家的代码风格都基本与《effective go》中的相近。这点好处就是非常有效地提高code review的效率和效果。
@@ -31,19 +31,19 @@ func xx() (err error) { defer func() { if err != nil { collcetErr(err) return } 
     
     <item>
       <title>使用TravisCI持续部署Hugo博客到gitpages</title>
-      <link>razil.cc/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</link>
+      <link>/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</link>
       <pubDate>Tue, 16 Jan 2018 23:04:21 +0800</pubDate>
       
-      <guid>razil.cc/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</guid>
+      <guid>/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</guid>
       <description>背景 操作步骤 最终效果 注意事项 参考 Continuous Deployment: Hugo + Travis CI → GitHub Pages Hugo借助Travis CI实现GitHub Pages自动部署实践</description>
     </item>
     
     <item>
       <title>【Go】反射在Beego/Orm中的应用</title>
-      <link>razil.cc/post/2017/07/reflect-on-beego-orm/</link>
+      <link>/post/2017/07/reflect-on-beego-orm/</link>
       <pubDate>Thu, 20 Jul 2017 15:03:41 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/07/reflect-on-beego-orm/</guid>
+      <guid>/post/2017/07/reflect-on-beego-orm/</guid>
       <description>应用 在Beego Orm中，作者使用了go的反射机制，实现 1、通过数据模型建立数据表
  type DataSheet struct { Name string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;name&amp;quot; //表名称 Type string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;type&amp;quot; //周期类型 日/月/季/年 Way string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;way&amp;quot; //生成方式 Time string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;time&amp;quot; //创建时间 Creator string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;creator&amp;quot; //制作人 }
  在调用 orm.RegisterModel(new(DataSheet)) 后会自动生成名为 data_sheet 的数据表 2、通过模型中的tag &amp;gt; orm:&amp;quot;auto;pk&amp;quot; &amp;gt; orm:&amp;quot;rel(m2m)&amp;quot;
@@ -53,10 +53,10 @@ func xx() (err error) { defer func() { if err != nil { collcetErr(err) return } 
     
     <item>
       <title>【Go】解决“can&#39;t load package: no buildable Go source files in /...</title>
-      <link>razil.cc/post/2017/05/solve-no-buildable-go-source/</link>
+      <link>/post/2017/05/solve-no-buildable-go-source/</link>
       <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/05/solve-no-buildable-go-source/</guid>
+      <guid>/post/2017/05/solve-no-buildable-go-source/</guid>
       <description>最近在调用golang.org/x/net出现这个错误。经检查后解决方法如下。在调用外部包时候出现这种情况，应检查以下设置 &amp;gt; 1.目标外部包的编译环境是否与当前工程的环境相同 2.先使用go get 获取外部包 使用 go install 直接编译安装
 关于本地未科学上网的情况下使用golang.org官方包的方法 &amp;gt; 1.到https://github.com/golang/找到对应的包的镜像文件 2.下载zip文件，解压后，修改文件目录为原始 golang.org目录 3.go install 编译安装
 举个实例: golang.org/x/net 对应 github上的镜像地址是 https://github.com/golang/net</description>
@@ -64,19 +64,19 @@ func xx() (err error) { defer func() { if err != nil { collcetErr(err) return } 
     
     <item>
       <title>【Go】常用的正则表达式</title>
-      <link>razil.cc/post/2017/05/go-regexp-pkg/</link>
+      <link>/post/2017/05/go-regexp-pkg/</link>
       <pubDate>Wed, 17 May 2017 14:58:17 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/05/go-regexp-pkg/</guid>
+      <guid>/post/2017/05/go-regexp-pkg/</guid>
       <description>/*********************************************************** *名字 golang 正则工具 *功能 支持数字，字母，字符，常用信息（电话，邮箱）等的正则匹配 *作者 Razil ************************************************************/ package models import ( &amp;quot;regexp&amp;quot; ) type RegexCheck struct { } /************************* 自定义类型 ************************/ //数字+字母 不限制大小写 6~30位 func (ic *RegexCheck) IsID(str ...string) bool { var b bool for _, s := range str { b, _ = regexp.MatchString(&amp;quot;^[0-9a-zA-Z]{6,30}$&amp;quot;, s) if false == b { return b } } return b } //数字+字母+符号 6~30位 func (ic *RegexCheck) IsPwd(str ...string) bool { var b bool for _, s := range str { b, _ = regexp.</description>
     </item>
     
     <item>
       <title>【docker】Docker实战 - 将go工程部署到docker</title>
-      <link>razil.cc/post/2017/04/docker-deploy-1/</link>
+      <link>/post/2017/04/docker-deploy-1/</link>
       <pubDate>Wed, 19 Apr 2017 15:24:29 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/04/docker-deploy-1/</guid>
+      <guid>/post/2017/04/docker-deploy-1/</guid>
       <description>###目标功能 + 使用go语言实现基本http服务 访问 localhost:8080 时能够返回 &amp;ldquo;hellodocker&amp;rdquo; + 将工程部署到docker，并在后台启动 ###环境介绍 docker: golang: host(宿主机环境): Mac os 10.12
 ###重点难点 + dockerfile结构 + docker网络结构
 ###操作步骤
@@ -88,10 +88,10 @@ FROM golang:latest MAINTAINER Razil &amp;quot;raymond_2008@yahoo.com&amp;quot; W
     
     <item>
       <title>【Go】Web加密方案与Go语言解决</title>
-      <link>razil.cc/post/2017/03/go-encrypt/</link>
+      <link>/post/2017/03/go-encrypt/</link>
       <pubDate>Tue, 28 Mar 2017 00:08:18 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/03/go-encrypt/</guid>
+      <guid>/post/2017/03/go-encrypt/</guid>
       <description>常见加密方案 ###1、对称加密： 即加密方和解密方都使用相同的加密算法和密钥，这种方案的密钥的保存非常关键，因为算法是公开的，而密钥是保密的，一旦密匙泄露，黑客仍然可以轻易解密。 常见的对称加密算法有：AES、DES、3DES、Blowfish、IDEA、RC4、RC5、RC6和 等。
 ###2、非对称加密： 即使用不同的密钥来进行加解密，密钥被分为公钥和私钥，用私钥加密的数据必须使用公钥来解密，同样用公钥加密的数据必须用对应的私钥来解密， 常见的非对称加密算法有：RSA、ECC（移动设备用）、Diffie-Hellman、El Gamal、DSA（数字签名用）等。
 ###3、不可逆加密： 利用哈希算法使数据加密之后无法解密回原数据。 这样的哈希算法常用的有：SHA-256, SHA-1, MD2、MD4、MD5、HAVAL等。

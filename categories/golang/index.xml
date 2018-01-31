@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on 行者小筑</title>
-    <link>razil.cc/categories/golang/</link>
+    <link>/categories/golang/</link>
     <description>Recent content in Golang on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 27 Dec 2017 15:35:04 +0800</lastBuildDate>
-    <atom:link href="razil.cc/categories/golang/" rel="self" type="application/rss+xml" />
+    <atom:link href="/categories/golang/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>使用Beego处理多文件上传</title>
-      <link>razil.cc/post/2017/12/beego-multi-file-upload/</link>
+      <link>/post/2017/12/beego-multi-file-upload/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/beego-multi-file-upload/</guid>
+      <guid>/post/2017/12/beego-multi-file-upload/</guid>
       <description>实现方法 Beego 在controller处理上提供了GetFile和GetFiles方法，以获取MultipartForm里的文件内容。详细说明查看godoc。
 获取单个文件 func (*Controller) GetFile
  func (c *Controller) GetFile(key string) (multipart.File, *multipart.FileHeader, error) GetFile returns the file data in file upload field named as key. it returns the first one of multi-uploaded files.
@@ -26,10 +26,10 @@
     
     <item>
       <title>使用Go语言处理动态JSON类型</title>
-      <link>razil.cc/post/2017/12/dynamic-json/</link>
+      <link>/post/2017/12/dynamic-json/</link>
       <pubDate>Thu, 14 Dec 2017 00:22:45 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/dynamic-json/</guid>
+      <guid>/post/2017/12/dynamic-json/</guid>
       <description>背景 在项目中有遇到JSON格式的数据流，对接的数据源其内容格式会有变化，但是内部会有字段表示其内容的类型，比如以下结构:
 type DataJson struct { JsonType string `json:&amp;quot;json_type&amp;quot;` Data interface{} `json:&amp;quot;data&amp;quot;` }  其中DataJson是固定每次数据流返回的JSON数据格式，但是其中的Data有以下几种可能：字符串、Int64数值、结构体对象。
 这种情况需要根据Json去进行判断。
@@ -40,20 +40,20 @@ type DataJson struct { JsonType string `json:&amp;quot;json_type&amp;quot;` Data
     
     <item>
       <title>[译]Context并非为cancel而生</title>
-      <link>razil.cc/post/2017/11/go-context-is-not-for-cancel/</link>
+      <link>/post/2017/11/go-context-is-not-for-cancel/</link>
       <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/11/go-context-is-not-for-cancel/</guid>
+      <guid>/post/2017/11/go-context-is-not-for-cancel/</guid>
       <description>前言 译者:Razil
 本文译自:Context isn’t for cancellation</description>
     </item>
     
     <item>
       <title>Go爬虫初探</title>
-      <link>razil.cc/post/2017/10/meet-go-scrapy/</link>
+      <link>/post/2017/10/meet-go-scrapy/</link>
       <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/10/meet-go-scrapy/</guid>
+      <guid>/post/2017/10/meet-go-scrapy/</guid>
       <description>背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布式数据库配套库，开发起来十分高效。对于复杂的爬虫规则和验证规则，Python的相关生态也能提供很好的解决方案。回到golang，也想尝试是否能用go语言也构建一个基本爬虫，看实现上会有多大差异。
 目标功能 获取 http://razil.cc 首页上的网站名称元素内容。
 目标内容为“后端小筑”
@@ -69,10 +69,10 @@ requests库 + re库
     
     <item>
       <title>Websocket使用手记</title>
-      <link>razil.cc/post/2017/07/gowebsocket-experience/</link>
+      <link>/post/2017/07/gowebsocket-experience/</link>
       <pubDate>Thu, 21 Sep 2017 23:51:49 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/07/gowebsocket-experience/</guid>
+      <guid>/post/2017/07/gowebsocket-experience/</guid>
       <description>websocket是什么? Websocket最起初是在HTTP协议的基础上发展而来，后独立成为了一个标准。其特点是只要建立一次连接，即可保持服务端与客户端的长连接状态，期间可保持全双工的通讯(实时双方互传)。由于省去了重复建立连接产生的性能和带宽消耗，WebSocket可实现高性能的数据实时传递。
 用于什么场景? 可应用在前后端数据需要实时数据互传的情况，比如：
  聊天系统 股票显示 实时交互游戏  为什么要选用它? 选用websocket的理由: + 相比起直接建立TCP连接，使用WebSocket可以更便捷，协议内已处理了粘包、压缩、心跳等问题。 + 协议的握手建立在http 1.1，因此在开发过程中可以很好的集成到现有的Restful风格中。 + 协议中的数据传递虽然是websocket的独立协议，但是其传输过程与http请求响应风格相近,开发难度低，学习成本低。 + 协议的本质还是建立一个socket连接。原生支持wss安全访问，底层支持数据压缩、自动检验和消息包自动拆分。 + 客户端应用简单，前端对于websocket的处理，代码简单，开发效率高。

@@ -2,145 +2,145 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on 行者小筑</title>
-    <link>razil.cc/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 20 May 2017 15:10:00 +0800</lastBuildDate>
-    <atom:link href="razil.cc/tags/" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/" rel="self" type="application/rss+xml" />
     
     <item>
       <title></title>
-      <link>razil.cc/tags/</link>
+      <link>/tags/</link>
       <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
       
-      <guid>razil.cc/tags/</guid>
+      <guid>/tags/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Beego</title>
-      <link>razil.cc/tags/beego/</link>
+      <link>/tags/beego/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/tags/beego/</guid>
+      <guid>/tags/beego/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Context</title>
-      <link>razil.cc/tags/context/</link>
+      <link>/tags/context/</link>
       <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
       
-      <guid>razil.cc/tags/context/</guid>
+      <guid>/tags/context/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>razil.cc/tags/docker/</link>
+      <link>/tags/docker/</link>
       <pubDate>Wed, 19 Apr 2017 15:24:29 +0800</pubDate>
       
-      <guid>razil.cc/tags/docker/</guid>
+      <guid>/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Elasticsearch</title>
-      <link>razil.cc/tags/elasticsearch/</link>
+      <link>/tags/elasticsearch/</link>
       <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
       
-      <guid>razil.cc/tags/elasticsearch/</guid>
+      <guid>/tags/elasticsearch/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>razil.cc/tags/go/</link>
+      <link>/tags/go/</link>
       <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
       
-      <guid>razil.cc/tags/go/</guid>
+      <guid>/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>razil.cc/tags/golang/</link>
+      <link>/tags/golang/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/tags/golang/</guid>
+      <guid>/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Grpc</title>
-      <link>razil.cc/tags/grpc/</link>
+      <link>/tags/grpc/</link>
       <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
       
-      <guid>razil.cc/tags/grpc/</guid>
+      <guid>/tags/grpc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Influxdb</title>
-      <link>razil.cc/tags/influxdb/</link>
+      <link>/tags/influxdb/</link>
       <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
       
-      <guid>razil.cc/tags/influxdb/</guid>
+      <guid>/tags/influxdb/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Json</title>
-      <link>razil.cc/tags/json/</link>
+      <link>/tags/json/</link>
       <pubDate>Thu, 14 Dec 2017 00:22:45 +0800</pubDate>
       
-      <guid>razil.cc/tags/json/</guid>
+      <guid>/tags/json/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Orm</title>
-      <link>razil.cc/tags/orm/</link>
+      <link>/tags/orm/</link>
       <pubDate>Thu, 20 Jul 2017 15:03:41 +0800</pubDate>
       
-      <guid>razil.cc/tags/orm/</guid>
+      <guid>/tags/orm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Relfect</title>
-      <link>razil.cc/tags/relfect/</link>
+      <link>/tags/relfect/</link>
       <pubDate>Thu, 20 Jul 2017 15:03:41 +0800</pubDate>
       
-      <guid>razil.cc/tags/relfect/</guid>
+      <guid>/tags/relfect/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rpc</title>
-      <link>razil.cc/tags/rpc/</link>
+      <link>/tags/rpc/</link>
       <pubDate>Tue, 22 Aug 2017 23:49:14 +0800</pubDate>
       
-      <guid>razil.cc/tags/rpc/</guid>
+      <guid>/tags/rpc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Web</title>
-      <link>razil.cc/tags/web/</link>
+      <link>/tags/web/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/tags/web/</guid>
+      <guid>/tags/web/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Websocket</title>
-      <link>razil.cc/tags/websocket/</link>
+      <link>/tags/websocket/</link>
       <pubDate>Thu, 21 Sep 2017 23:51:49 +0800</pubDate>
       
-      <guid>razil.cc/tags/websocket/</guid>
+      <guid>/tags/websocket/</guid>
       <description></description>
     </item>
     

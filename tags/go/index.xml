@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go on 行者小筑</title>
-    <link>razil.cc/tags/go/</link>
+    <link>/tags/go/</link>
     <description>Recent content in Go on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 20 May 2017 15:10:00 +0800</lastBuildDate>
-    <atom:link href="razil.cc/tags/go/" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/go/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>【Go】解决“can&#39;t load package: no buildable Go source files in /...</title>
-      <link>razil.cc/post/2017/05/solve-no-buildable-go-source/</link>
+      <link>/post/2017/05/solve-no-buildable-go-source/</link>
       <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/05/solve-no-buildable-go-source/</guid>
+      <guid>/post/2017/05/solve-no-buildable-go-source/</guid>
       <description>最近在调用golang.org/x/net出现这个错误。经检查后解决方法如下。在调用外部包时候出现这种情况，应检查以下设置 &amp;gt; 1.目标外部包的编译环境是否与当前工程的环境相同 2.先使用go get 获取外部包 使用 go install 直接编译安装
 关于本地未科学上网的情况下使用golang.org官方包的方法 &amp;gt; 1.到https://github.com/golang/找到对应的包的镜像文件 2.下载zip文件，解压后，修改文件目录为原始 golang.org目录 3.go install 编译安装
 举个实例: golang.org/x/net 对应 github上的镜像地址是 https://github.com/golang/net</description>
@@ -22,10 +22,10 @@
     
     <item>
       <title>【Go】Web加密方案与Go语言解决</title>
-      <link>razil.cc/post/2017/03/go-encrypt/</link>
+      <link>/post/2017/03/go-encrypt/</link>
       <pubDate>Tue, 28 Mar 2017 00:08:18 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/03/go-encrypt/</guid>
+      <guid>/post/2017/03/go-encrypt/</guid>
       <description>常见加密方案 ###1、对称加密： 即加密方和解密方都使用相同的加密算法和密钥，这种方案的密钥的保存非常关键，因为算法是公开的，而密钥是保密的，一旦密匙泄露，黑客仍然可以轻易解密。 常见的对称加密算法有：AES、DES、3DES、Blowfish、IDEA、RC4、RC5、RC6和 等。
 ###2、非对称加密： 即使用不同的密钥来进行加解密，密钥被分为公钥和私钥，用私钥加密的数据必须使用公钥来解密，同样用公钥加密的数据必须用对应的私钥来解密， 常见的非对称加密算法有：RSA、ECC（移动设备用）、Diffie-Hellman、El Gamal、DSA（数字签名用）等。
 ###3、不可逆加密： 利用哈希算法使数据加密之后无法解密回原数据。 这样的哈希算法常用的有：SHA-256, SHA-1, MD2、MD4、MD5、HAVAL等。

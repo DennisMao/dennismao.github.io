@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>行者小筑 on 行者小筑</title>
-    <link>razil.cc/</link>
+    <link>/</link>
     <description>Recent content in 行者小筑 on 行者小筑</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 28 Jan 2018 22:53:37 +0800</lastBuildDate>
-    <atom:link href="razil.cc/" rel="self" type="application/rss+xml" />
+    <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
       <title>2017 Go语言使用总结</title>
-      <link>razil.cc/post/2018/01/go-practices-in-2017/</link>
+      <link>/post/2018/01/go-practices-in-2017/</link>
       <pubDate>Sun, 28 Jan 2018 22:53:37 +0800</pubDate>
       
-      <guid>razil.cc/post/2018/01/go-practices-in-2017/</guid>
+      <guid>/post/2018/01/go-practices-in-2017/</guid>
       <description>到了年末，谈谈这一年的收获与坑。
 所参与的项目从C++转到Go有两年，产品今年已经正式投入到线上商用运行。自己也从刚开始的基础模块设计开发，逐渐转到上层业务的开发。从底层到业务层的转变，对语言的需求和看法，也了有一定的变化。作为小coder，谈谈这年在实际项目中用Go语言的一些心得和踩坑经历。
 语法风格简单 Go在开发方面很吸引人的一点就是语法简单，容易上手。组里的同事基本都是从C++和JAVA两个方向转到Go语言来开发这个项目。通过相互沟通，大家普通花了一个月时间左右熟悉这门语言并能上手进行开发实际模块。因为有官方的gofmt格式化工具，大家的代码风格都基本与《effective go》中的相近。这点好处就是非常有效地提高code review的效率和效果。
@@ -31,19 +31,19 @@ func xx() (err error) { defer func() { if err != nil { collcetErr(err) return } 
     
     <item>
       <title>使用TravisCI持续部署Hugo博客到gitpages</title>
-      <link>razil.cc/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</link>
+      <link>/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</link>
       <pubDate>Tue, 16 Jan 2018 23:04:21 +0800</pubDate>
       
-      <guid>razil.cc/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</guid>
+      <guid>/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</guid>
       <description>背景 操作步骤 最终效果 注意事项 参考 Continuous Deployment: Hugo + Travis CI → GitHub Pages Hugo借助Travis CI实现GitHub Pages自动部署实践</description>
     </item>
     
     <item>
       <title>使用Beego处理多文件上传</title>
-      <link>razil.cc/post/2017/12/beego-multi-file-upload/</link>
+      <link>/post/2017/12/beego-multi-file-upload/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/beego-multi-file-upload/</guid>
+      <guid>/post/2017/12/beego-multi-file-upload/</guid>
       <description>实现方法 Beego 在controller处理上提供了GetFile和GetFiles方法，以获取MultipartForm里的文件内容。详细说明查看godoc。
 获取单个文件 func (*Controller) GetFile
  func (c *Controller) GetFile(key string) (multipart.File, *multipart.FileHeader, error) GetFile returns the file data in file upload field named as key. it returns the first one of multi-uploaded files.
@@ -55,10 +55,10 @@ func xx() (err error) { defer func() { if err != nil { collcetErr(err) return } 
     
     <item>
       <title>使用Go语言处理动态JSON类型</title>
-      <link>razil.cc/post/2017/12/dynamic-json/</link>
+      <link>/post/2017/12/dynamic-json/</link>
       <pubDate>Thu, 14 Dec 2017 00:22:45 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/dynamic-json/</guid>
+      <guid>/post/2017/12/dynamic-json/</guid>
       <description>背景 在项目中有遇到JSON格式的数据流，对接的数据源其内容格式会有变化，但是内部会有字段表示其内容的类型，比如以下结构:
 type DataJson struct { JsonType string `json:&amp;quot;json_type&amp;quot;` Data interface{} `json:&amp;quot;data&amp;quot;` }  其中DataJson是固定每次数据流返回的JSON数据格式，但是其中的Data有以下几种可能：字符串、Int64数值、结构体对象。
 这种情况需要根据Json去进行判断。
@@ -69,10 +69,10 @@ type DataJson struct { JsonType string `json:&amp;quot;json_type&amp;quot;` Data
     
     <item>
       <title>2017文章汇总</title>
-      <link>razil.cc/post/2017/12/awsome-articles-2017/</link>
+      <link>/post/2017/12/awsome-articles-2017/</link>
       <pubDate>Thu, 30 Nov 2017 20:54:52 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/awsome-articles-2017/</guid>
+      <guid>/post/2017/12/awsome-articles-2017/</guid>
       <description>基础 数据库 关系型 非关系型 深入理解etcd Etcd v3 服务注册与发现 Go代码
 架构 高并发 分布式 设计模式 DDD TDD,BDD,FDD&amp;amp;ATDD
 业务 AWS开发工具包发布适用Go 2.0的开发者预览版 JS实现的Markdown解析器
@@ -84,20 +84,20 @@ Travis CI .travis.yml在线验证工具 Hexo持续集成自动部署到github tr
     
     <item>
       <title>[译]Context并非为cancel而生</title>
-      <link>razil.cc/post/2017/11/go-context-is-not-for-cancel/</link>
+      <link>/post/2017/11/go-context-is-not-for-cancel/</link>
       <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/11/go-context-is-not-for-cancel/</guid>
+      <guid>/post/2017/11/go-context-is-not-for-cancel/</guid>
       <description>前言 译者:Razil
 本文译自:Context isn’t for cancellation</description>
     </item>
     
     <item>
       <title>系统监控:InfluxDB vs Elasticsearch</title>
-      <link>razil.cc/post/2017/10/influxdbvselasticsearch/</link>
+      <link>/post/2017/10/influxdbvselasticsearch/</link>
       <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/10/influxdbvselasticsearch/</guid>
+      <guid>/post/2017/10/influxdbvselasticsearch/</guid>
       <description>前言 译者: Razil
 本文译自: System monitoring with InfluxDB vs Elasticsearch
 系统的监控一直都扮演着重要角色。它能帮助我们了解系统的健康情况,发现问题甚至能预测问题。
@@ -113,10 +113,10 @@ app_degrees, country=Canada, city=Toronto degree=77.5 1422568543702900257  相�
     
     <item>
       <title>Go爬虫初探</title>
-      <link>razil.cc/post/2017/10/meet-go-scrapy/</link>
+      <link>/post/2017/10/meet-go-scrapy/</link>
       <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/10/meet-go-scrapy/</guid>
+      <guid>/post/2017/10/meet-go-scrapy/</guid>
       <description>背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布式数据库配套库，开发起来十分高效。对于复杂的爬虫规则和验证规则，Python的相关生态也能提供很好的解决方案。回到golang，也想尝试是否能用go语言也构建一个基本爬虫，看实现上会有多大差异。
 目标功能 获取 http://razil.cc 首页上的网站名称元素内容。
 目标内容为“后端小筑”
@@ -132,10 +132,10 @@ requests库 + re库
     
     <item>
       <title>Websocket使用手记</title>
-      <link>razil.cc/post/2017/07/gowebsocket-experience/</link>
+      <link>/post/2017/07/gowebsocket-experience/</link>
       <pubDate>Thu, 21 Sep 2017 23:51:49 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/07/gowebsocket-experience/</guid>
+      <guid>/post/2017/07/gowebsocket-experience/</guid>
       <description>websocket是什么? Websocket最起初是在HTTP协议的基础上发展而来，后独立成为了一个标准。其特点是只要建立一次连接，即可保持服务端与客户端的长连接状态，期间可保持全双工的通讯(实时双方互传)。由于省去了重复建立连接产生的性能和带宽消耗，WebSocket可实现高性能的数据实时传递。
 用于什么场景? 可应用在前后端数据需要实时数据互传的情况，比如：
  聊天系统 股票显示 实时交互游戏  为什么要选用它? 选用websocket的理由: + 相比起直接建立TCP连接，使用WebSocket可以更便捷，协议内已处理了粘包、压缩、心跳等问题。 + 协议的握手建立在http 1.1，因此在开发过程中可以很好的集成到现有的Restful风格中。 + 协议中的数据传递虽然是websocket的独立协议，但是其传输过程与http请求响应风格相近,开发难度低，学习成本低。 + 协议的本质还是建立一个socket连接。原生支持wss安全访问，底层支持数据压缩、自动检验和消息包自动拆分。 + 客户端应用简单，前端对于websocket的处理，代码简单，开发效率高。
@@ -160,10 +160,10 @@ websocket
     
     <item>
       <title>Proto3使用手记</title>
-      <link>razil.cc/post/2017/08/proto3-note/</link>
+      <link>/post/2017/08/proto3-note/</link>
       <pubDate>Tue, 22 Aug 2017 23:49:14 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/08/proto3-note/</guid>
+      <guid>/post/2017/08/proto3-note/</guid>
       <description>Proto3 是什么？ 最近正在使用gRPC，当前版本gRPC使用的是google开发的Proto 3版本，因此顺带写一篇。Proto 3全称是 Protocol buffers v3.0,是谷歌公司开发的一款序列化数据结构。支持多种语言。与proto2相比主要有以下几点改变：
  原生支持更多语言 JavaNano,Go,Ruby,Objective-C和C#等 调整部分语法 比如 default,optional,repeated 使得语法更简洁
  增加部分特性   具体改变介绍推荐以下这篇文章
@@ -176,10 +176,10 @@ Proto3 有何功能? 通过定义接口描述文件 .proto文件，可通过这�
     
     <item>
       <title>gRPC使用手记</title>
-      <link>razil.cc/post/2017/08/grpc-note/</link>
+      <link>/post/2017/08/grpc-note/</link>
       <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/08/grpc-note/</guid>
+      <guid>/post/2017/08/grpc-note/</guid>
       <description>gRPC是什么? gRPC是由谷歌开发的一款高性能，通用的开源RPC框架，基于HTTP/2协议标准设计.支持全双工、双向流、流控制、头部压缩单连接上的多服用请求等特性。目前提供C、Java和Go三个语言版本。 三个项目版本地址分别是: C-gRPC
 Go-gRPC
 JAVA-gRPC
@@ -197,10 +197,10 @@ $ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:hellow
     
     <item>
       <title>关于我</title>
-      <link>razil.cc/about/</link>
+      <link>/about/</link>
       <pubDate>Sun, 20 Aug 2017 09:49:04 +0800</pubDate>
       
-      <guid>razil.cc/about/</guid>
+      <guid>/about/</guid>
       <description>职位 后端开发工程师
 工作经历 项目经历 技术栈 Golang、Java语言的Web后端，C++音视频。
 联系方式 邮箱: psrazil@gmail.com Github: dennismao.github.com Blog: dennismao.github.io</description>
@@ -208,10 +208,10 @@ $ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:hellow
     
     <item>
       <title>【Go】反射在Beego/Orm中的应用</title>
-      <link>razil.cc/post/2017/07/reflect-on-beego-orm/</link>
+      <link>/post/2017/07/reflect-on-beego-orm/</link>
       <pubDate>Thu, 20 Jul 2017 15:03:41 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/07/reflect-on-beego-orm/</guid>
+      <guid>/post/2017/07/reflect-on-beego-orm/</guid>
       <description>应用 在Beego Orm中，作者使用了go的反射机制，实现 1、通过数据模型建立数据表
  type DataSheet struct { Name string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;name&amp;quot; //表名称 Type string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;type&amp;quot; //周期类型 日/月/季/年 Way string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;way&amp;quot; //生成方式 Time string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;time&amp;quot; //创建时间 Creator string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;creator&amp;quot; //制作人 }
  在调用 orm.RegisterModel(new(DataSheet)) 后会自动生成名为 data_sheet 的数据表 2、通过模型中的tag &amp;gt; orm:&amp;quot;auto;pk&amp;quot; &amp;gt; orm:&amp;quot;rel(m2m)&amp;quot;
@@ -221,10 +221,10 @@ $ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:hellow
     
     <item>
       <title>【Go】解决“can&#39;t load package: no buildable Go source files in /...</title>
-      <link>razil.cc/post/2017/05/solve-no-buildable-go-source/</link>
+      <link>/post/2017/05/solve-no-buildable-go-source/</link>
       <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/05/solve-no-buildable-go-source/</guid>
+      <guid>/post/2017/05/solve-no-buildable-go-source/</guid>
       <description>最近在调用golang.org/x/net出现这个错误。经检查后解决方法如下。在调用外部包时候出现这种情况，应检查以下设置 &amp;gt; 1.目标外部包的编译环境是否与当前工程的环境相同 2.先使用go get 获取外部包 使用 go install 直接编译安装
 关于本地未科学上网的情况下使用golang.org官方包的方法 &amp;gt; 1.到https://github.com/golang/找到对应的包的镜像文件 2.下载zip文件，解压后，修改文件目录为原始 golang.org目录 3.go install 编译安装
 举个实例: golang.org/x/net 对应 github上的镜像地址是 https://github.com/golang/net</description>
@@ -232,10 +232,10 @@ $ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:hellow
     
     <item>
       <title>【Go】常用的正则表达式</title>
-      <link>razil.cc/post/2017/05/go-regexp-pkg/</link>
+      <link>/post/2017/05/go-regexp-pkg/</link>
       <pubDate>Wed, 17 May 2017 14:58:17 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/05/go-regexp-pkg/</guid>
+      <guid>/post/2017/05/go-regexp-pkg/</guid>
       <description>/*********************************************************** *名字 golang 正则工具 *功能 支持数字，字母，字符，常用信息（电话，邮箱）等的正则匹配 *作者 Razil ************************************************************/ package models import ( &amp;quot;regexp&amp;quot; ) type RegexCheck struct { } /************************* 自定义类型 ************************/ //数字+字母 不限制大小写 6~30位 func (ic *RegexCheck) IsID(str ...string) bool { var b bool for _, s := range str { b, _ = regexp.MatchString(&amp;quot;^[0-9a-zA-Z]{6,30}$&amp;quot;, s) if false == b { return b } } return b } //数字+字母+符号 6~30位 func (ic *RegexCheck) IsPwd(str ...string) bool { var b bool for _, s := range str { b, _ = regexp.</description>
     </item>
     
