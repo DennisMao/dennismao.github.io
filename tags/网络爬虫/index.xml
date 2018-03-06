@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>网络爬虫 on 行者小筑</title>
-    <link>/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</link>
-    <description>Recent content in 网络爬虫 on 行者小筑</description>
+    <title>网络爬虫 on Razil&#39;s Blog</title>
+    <link>razil.cc/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</link>
+    <description>Recent content in 网络爬虫 on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Tue, 26 Sep 2017 23:29:00 +0800</lastBuildDate>
-    <atom:link href="/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="razil.cc/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Go爬虫初探</title>
-      <link>/post/2017/10/meet-go-scrapy/</link>
+      <link>razil.cc/post/2017/10/meet-go-scrapy/</link>
       <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
       
-      <guid>/post/2017/10/meet-go-scrapy/</guid>
-      <description>背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布式数据库配套库，开发起来十分高效。对于复杂的爬虫规则和验证规则，Python的相关生态也能提供很好的解决方案。回到golang，也想尝试是否能用go语言也构建一个基本爬虫，看实现上会有多大差异。
-目标功能 获取 http://razil.cc 首页上的网站名称元素内容。
-目标内容为“后端小筑”
-基本结构 由于是基本的定向爬虫，类比Python的结构是
-requests库 + re库
-即基本请求后处理转码，再通过正则获得需要的数据
-在go实现的结构如下:
- [net/http] 基本请求
- [mahonia] 第三方库实现编码转换
- [regexp] 正则匹配数据
-  代码实现 package main import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;regexp&amp;quot; encodingConvert &amp;quot;github.com/DennisMao/mahonia&amp;quot; ) func SimpleScrapy(url string) (string, error) { //http请求 resp, err := http.Get(url) if err != nil { return &amp;quot;&amp;quot;, err } //获取响应数据 if resp.StatusCode != 200 { return &amp;quot;&amp;quot;, errors.New(&amp;quot;resp statuscode = :&amp;quot; + fmt.</description>
+      <guid>razil.cc/post/2017/10/meet-go-scrapy/</guid>
+      <description>背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布</description>
     </item>
     
   </channel>

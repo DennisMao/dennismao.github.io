@@ -1,50 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rpc on 行者小筑</title>
-    <link>/tags/rpc/</link>
-    <description>Recent content in Rpc on 行者小筑</description>
+    <title>Rpc on Razil&#39;s Blog</title>
+    <link>razil.cc/tags/rpc/</link>
+    <description>Recent content in Rpc on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Tue, 22 Aug 2017 23:49:14 +0800</lastBuildDate>
-    <atom:link href="/tags/rpc/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="razil.cc/tags/rpc/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Proto3使用手记</title>
-      <link>/post/2017/08/proto3-note/</link>
+      <link>razil.cc/post/2017/08/proto3-note/</link>
       <pubDate>Tue, 22 Aug 2017 23:49:14 +0800</pubDate>
       
-      <guid>/post/2017/08/proto3-note/</guid>
-      <description>Proto3 是什么？ 最近正在使用gRPC，当前版本gRPC使用的是google开发的Proto 3版本，因此顺带写一篇。Proto 3全称是 Protocol buffers v3.0,是谷歌公司开发的一款序列化数据结构。支持多种语言。与proto2相比主要有以下几点改变：
- 原生支持更多语言 JavaNano,Go,Ruby,Objective-C和C#等 调整部分语法 比如 default,optional,repeated 使得语法更简洁
- 增加部分特性   具体改变介绍推荐以下这篇文章
-Protobuf 的 proto3 与 proto2 的区别
-最新特性详情可查阅
-Protobuf Release
-Proto3 有何功能? 通过定义接口描述文件 .proto文件，可通过这些描述自动生成出响应代码，用于编列或解码数据流。
-为什么要选用它？ 使用过程中需要注意什么？ 使用过程 参考资料 Proto3 开发文档</description>
+      <guid>razil.cc/post/2017/08/proto3-note/</guid>
+      <description>Proto3 是什么？ 最近正在使用gRPC，当前版本gRPC使用的是google开发的Proto 3版本，因此顺带写一篇。Proto 3全称是 Protocol buffers v3.0,</description>
     </item>
     
     <item>
       <title>gRPC使用手记</title>
-      <link>/post/2017/08/grpc-note/</link>
+      <link>razil.cc/post/2017/08/grpc-note/</link>
       <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
       
-      <guid>/post/2017/08/grpc-note/</guid>
-      <description>gRPC是什么? gRPC是由谷歌开发的一款高性能，通用的开源RPC框架，基于HTTP/2协议标准设计.支持全双工、双向流、流控制、头部压缩单连接上的多服用请求等特性。目前提供C、Java和Go三个语言版本。 三个项目版本地址分别是: C-gRPC
-Go-gRPC
-JAVA-gRPC
-为什么要选用它? 1.gRPC基于HTTP/2设计，相对于其他RPC框架，其功能更强大，真正实现全双工，支持头部压缩和多复用请求。因此能够很好的节省带宽和TCP链接次数，节省CPU使用，对于移动端的使用非常适用，也能提高云端的服务和Web应用性能。
-2.支持Protobuf，在社区上看到不少人是出于Protobuf而选择gPRC.Protobuf拥有灵活、高效、结构化的特点，相比于其他传统的序列化方式，它更小、更快、更简单。其数据结构化一次可以支持多语言使用。支持不同版本的数据结构数据传递，实现数据结构的前向兼容。
-3.拥有Golang版本（笔者选择的原因之一）
-使用过程 Protobuf 3.0 安装protobuf
-go get -u github.com/golang/protobuf/proto // golang protobuf 库  1、安装protoc工具，用于根据protobuf文件生成出Go代码
-go get -u github.com/golang/protobuf/protoc-gen-go //protoc --go_out 工具  2、编写Protobuf3文件,可参考 helloword.proto
-3、生成Go源代码，记得加上plugins=grpc否则将无法生成服务端接口
-$ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:helloworld  gRPC 代码中需要引用到官方的context包，可在以下链接下载 https://github.com/golang/net 引用刚才我们通过protoc工具生成的代码并分别进行实现。
-1、实现服务端代码,参考greeter_server
- package main import ( &amp;quot;log&amp;quot; &amp;quot;net&amp;quot; pb &amp;quot;your_path_to_gen_pb_dir/helloworld&amp;quot; &amp;quot;golang.org/x/net/context&amp;quot; &amp;quot;google.golang.org/grpc&amp;quot; ) // RPC服务端口 const ( port = &amp;quot;:50051&amp;quot; ) type server struct{} // 远程方法的具体实现 func (s *server) SayHello(ctx context.</description>
+      <guid>razil.cc/post/2017/08/grpc-note/</guid>
+      <description>gRPC是什么? gRPC是由谷歌开发的一款高性能，通用的开源RPC框架，基于HTTP/2协议标准设计.支持全双工、双向流、流控制、头部压缩单</description>
     </item>
     
   </channel>

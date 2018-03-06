@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>使用手记 on 行者小筑</title>
-    <link>/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</link>
-    <description>Recent content in 使用手记 on 行者小筑</description>
+    <title>使用手记 on Razil&#39;s Blog</title>
+    <link>razil.cc/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</link>
+    <description>Recent content in 使用手记 on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Tue, 16 Jan 2018 23:04:21 +0800</lastBuildDate>
-    <atom:link href="/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="razil.cc/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>使用TravisCI持续部署Hugo博客到gitpages</title>
-      <link>/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</link>
+      <link>razil.cc/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</link>
       <pubDate>Tue, 16 Jan 2018 23:04:21 +0800</pubDate>
       
-      <guid>/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</guid>
-      <description> 背景 年中时候着手用hugo搭建自己的技术博客。由于hugo同hexo一样，生成出的都是纯静态的页面。因此可以使用github来作为服务器存放页面，并且github page支持CNAME解析。因此将自己的razil.cc域名解析到了dennismao.github.io上。具体搭建方法可以参考白老师的文章http://tonybai.com/2015/09/23/intro-of-gohugo/。接着便开始了将csdn的文章开始往github博客上迁移。
-实际使用中逐渐发现博客的维护有点麻烦。
-痛点 + 1、编辑、更新后的发布流程过于繁琐 + 2、多人协作
-操作步骤 最终效果 注意事项 参考  Continuous Deployment: Hugo + Travis CI → GitHub Pages
- Hugo借助Travis CI实现GitHub Pages自动部署实践  </description>
+      <guid>razil.cc/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</guid>
+      <description>背景 年中时候着手用hugo搭建自己的技术博客。由于hugo同hexo一样，生成出的都是纯静态的页面。因此可以使用github来作为服务器存放</description>
     </item>
     
   </channel>

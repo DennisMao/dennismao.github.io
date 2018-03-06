@@ -1,33 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>随笔 on 行者小筑</title>
-    <link>/categories/%E9%9A%8F%E7%AC%94/</link>
-    <description>Recent content in 随笔 on 行者小筑</description>
+    <title>随笔 on Razil&#39;s Blog</title>
+    <link>razil.cc/categories/%E9%9A%8F%E7%AC%94/</link>
+    <description>Recent content in 随笔 on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Sun, 28 Jan 2018 22:53:37 +0800</lastBuildDate>
-    <atom:link href="/categories/%E9%9A%8F%E7%AC%94/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="razil.cc/categories/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>2017 Go语言使用总结</title>
-      <link>/post/2018/01/go-practices-in-2017/</link>
+      <link>razil.cc/post/2018/01/go-practices-in-2017/</link>
       <pubDate>Sun, 28 Jan 2018 22:53:37 +0800</pubDate>
       
-      <guid>/post/2018/01/go-practices-in-2017/</guid>
-      <description>到了年末，谈谈这一年的收获与坑。
-所参与的项目从C++转到Go有两年，产品今年已经正式投入到线上商用运行。自己也从刚开始的基础模块设计开发，逐渐转到上层业务的开发。从底层到业务层的转变，对语言的需求和看法，也了有一定的变化。作为小coder，谈谈这年在实际项目中用Go语言的一些心得和踩坑经历。
-语法风格简单 Go在开发方面很吸引人的一点就是语法简单，容易上手。组里的同事基本都是从C++和JAVA两个方向转到Go语言来开发这个项目。通过相互沟通，大家普通花了一个月时间左右熟悉这门语言并能上手进行开发实际模块。因为有官方的gofmt格式化工具，大家的代码风格都基本与《effective go》中的相近。这点好处就是非常有效地提高code review的效率和效果。
-关于网上的一直争议的错误处理，团队也有过讨论。讨论的结果就是两种方案有原则的并存,根据业务情况进行选择。 在一般流程中，使用独立的错误处理
-if err := func();err != nil { return err }  在业务流中，使用统一的错误处理
-func xx() (err error) { defer func() { if err != nil { collcetErr(err) return } }() return }  支持跨平台 在go 1.5后，语言原生支持了跨平台编译，通过设置环境参数GOOS和GOARCH,直接go build，即可非常便捷地进行跨平台编译。如果代码中有需要加入CGO的东西，则会稍麻烦些。与所在操作系统一下，安装支持跨平台编辑gcc，在go env中配置好cc的参数即可。由于项目需要兼容多种环境，支持跨平台编辑还是非常便于开发和部署管理。
-高性能、低消耗、易部署 实际项目使用中最明显的应该是它的运行效率非常高、内存消耗低和直接可以生成可执行文件部署起来十分便捷。生成出的可执行文件体积很小，生成docker container体积相比起java的也是小不少。 当然效率高和消耗低与开发是密切相关的。前期在对语言使用上还不够理解深入的情况下，开发过程中会有出现部分内存泄漏、GC过频等情况。通过官方提供的pprof、test包和benchmark工具，搭配像flamegraph等工具。可以高效地进行程序的漏洞修复和性能调优。
-有了上述的优点，团队也开始考虑能否能进一步拓宽Go语言的应用领域，往物联网和其他硬件相关的领域发展。
-坑 说完了优点，再说说开发和应用过程中，踩过的坑和一些解决方法。
-滥用协程 由于在绝大部分介绍中都强调了Go的goroutine优势，在前面的优点讲述中就不再过多描述。但是正因为Go开协程是如此便捷，在初期开发时，会遇到在底层模块中滥用goroutine的现象。部分协程由于开了后，跑完主任务却没有正确关闭，资源一直被占用。 对于这种解决方法有三个。 (1)针对编程习惯上，参考了官方的并发模型，对代码质量进行规范，加强code review中这部分的检查。通过runtime/pprof包能十分便捷有效地查看当前的goroutine信息，判断是否有异常和未正确关闭的协程。 (2)引入context包进行上下文控制，在并发模型中有cancel和wait模型，底层模块我们更多选择的是cancel模型来规范和解决goroutine管理的问题。但是在业务流程调用的时候会偏向于选择wait模型。 (3)构建集中的任务管理器包，采用注册的方式对需要用到goroutine的任务采用wait模型进行管理。
-第三方包质量 虽然官方的底层操作库已经十分完善，但在系统整个开发过程中难免会用到第三方包。而第三方包的质量问题一直存开发过程中。由于Go语言还属于一门新的语言，跟JAVA和C++相比，相关的第三方功能包都不是那么完善，在蓬勃发展中。所以在当前需要使用第三方包还是要格外慎重，决定引入之前需要根据项目需求进行深入测试。 这个问题主要影响是的开发的进度。底层组件开发过程，修复第三方包花费了一定时间。
-下面整理了第三方包容易存在的一些问题: + 多系统环境兼容性: 第三方包容易出现只支持某个系统，多系统的兼容在设计初并未考虑到 + 版本控制: 早期包很多未采用版本控制，当第三方包内由引入其他包时候直接go get -u会引发各种奇怪问题。所以在进行二次开发时候注意增加像dep,glide这种，包的版本控制工具。 + CGO: 有部分包因为调用了c++/c的代码引入了cgo，在开发过程中着重检查其中的c/c++代码正确性。 + Go语言版本: 部分包会使用到一些新语法特性,像1.</description>
+      <guid>razil.cc/post/2018/01/go-practices-in-2017/</guid>
+      <description>到了年末，谈谈这一年的收获与坑。 所参与的项目从C++转到Go有两年，产品今年已经正式投入到线上商用运行。自己也从刚开始的基础模块设计开发，逐</description>
     </item>
     
   </channel>

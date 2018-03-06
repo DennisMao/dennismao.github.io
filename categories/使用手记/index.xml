@@ -1,97 +1,51 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>使用手记 on 行者小筑</title>
-    <link>/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</link>
-    <description>Recent content in 使用手记 on 行者小筑</description>
+    <title>使用手记 on Razil&#39;s Blog</title>
+    <link>razil.cc/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</link>
+    <description>Recent content in 使用手记 on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Tue, 26 Sep 2017 23:29:00 +0800</lastBuildDate>
-    <atom:link href="/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="razil.cc/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Go爬虫初探</title>
-      <link>/post/2017/10/meet-go-scrapy/</link>
+      <link>razil.cc/post/2017/10/meet-go-scrapy/</link>
       <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
       
-      <guid>/post/2017/10/meet-go-scrapy/</guid>
-      <description>背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布式数据库配套库，开发起来十分高效。对于复杂的爬虫规则和验证规则，Python的相关生态也能提供很好的解决方案。回到golang，也想尝试是否能用go语言也构建一个基本爬虫，看实现上会有多大差异。
-目标功能 获取 http://razil.cc 首页上的网站名称元素内容。
-目标内容为“后端小筑”
-基本结构 由于是基本的定向爬虫，类比Python的结构是
-requests库 + re库
-即基本请求后处理转码，再通过正则获得需要的数据
-在go实现的结构如下:
- [net/http] 基本请求
- [mahonia] 第三方库实现编码转换
- [regexp] 正则匹配数据
-  代码实现 package main import ( &amp;quot;errors&amp;quot; &amp;quot;fmt&amp;quot; &amp;quot;io/ioutil&amp;quot; &amp;quot;net/http&amp;quot; &amp;quot;regexp&amp;quot; encodingConvert &amp;quot;github.com/DennisMao/mahonia&amp;quot; ) func SimpleScrapy(url string) (string, error) { //http请求 resp, err := http.Get(url) if err != nil { return &amp;quot;&amp;quot;, err } //获取响应数据 if resp.StatusCode != 200 { return &amp;quot;&amp;quot;, errors.New(&amp;quot;resp statuscode = :&amp;quot; + fmt.</description>
+      <guid>razil.cc/post/2017/10/meet-go-scrapy/</guid>
+      <description>背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布</description>
     </item>
     
     <item>
       <title>Websocket使用手记</title>
-      <link>/post/2017/07/gowebsocket-experience/</link>
+      <link>razil.cc/post/2017/07/gowebsocket-experience/</link>
       <pubDate>Thu, 21 Sep 2017 23:51:49 +0800</pubDate>
       
-      <guid>/post/2017/07/gowebsocket-experience/</guid>
-      <description>websocket是什么? Websocket最起初是在HTTP协议的基础上发展而来，后独立成为了一个标准。其特点是只要建立一次连接，即可保持服务端与客户端的长连接状态，期间可保持全双工的通讯(实时双方互传)。由于省去了重复建立连接产生的性能和带宽消耗，WebSocket可实现高性能的数据实时传递。
-用于什么场景? 可应用在前后端数据需要实时数据互传的情况，比如：
- 聊天系统 股票显示 实时交互游戏  为什么要选用它? 选用websocket的理由: + 相比起直接建立TCP连接，使用WebSocket可以更便捷，协议内已处理了粘包、压缩、心跳等问题。 + 协议的握手建立在http 1.1，因此在开发过程中可以很好的集成到现有的Restful风格中。 + 协议中的数据传递虽然是websocket的独立协议，但是其传输过程与http请求响应风格相近,开发难度低，学习成本低。 + 协议的本质还是建立一个socket连接。原生支持wss安全访问，底层支持数据压缩、自动检验和消息包自动拆分。 + 客户端应用简单，前端对于websocket的处理，代码简单，开发效率高。
-使用过程 服务端 目前Go语言主流的Websocket库有两个：
- 官方golang.org/x/websocket 库
- github.com/gorilla/websocket 库
-  官方的库目前支持情况不太理想,godoc官方的websocket包页面介绍上推荐使用Gorilla的库。两者对比下，官方的包目前能够实现基本的服务器和客户端连接、收发功能。如果需要快捷开发基本WebSocket功能可使用官方包。需要协议的高级功能的推荐采用Gorilla包。
-Gorilla/websocket包，丰富了支持Websocket协议内的数据压缩、心跳检测事件、碎片信息。
-程序结构
-websocket
- main()
- 注册普通HTTP路由
- 监听HTTP服务
- websocket_handler()
- Upgrade 升级普通HTTP协议为Websocket协议，建立连接
- For循环
- ReadMessage 读取信息
- WriteMessage 写入信息
-     服务端的编写并不复杂，与普通HTTP服务编写相近，先编写一个Handler处理函数，再在主程序中注册路由，开启服务，不同的主要在处理函数中。由于普通HTTP的响应都是无状态，即请求后响应即可退出协程，但Websocket需要协程一直在跑，而且句柄固定，因此我们需要在Websocket的处理函数中加入循环，不让它关闭。
- 客户端主动断开连接 服务端接收信息失败 服务端发送信息失败 心跳检查失败  客户端 javascript 参考websocket.</description>
+      <guid>razil.cc/post/2017/07/gowebsocket-experience/</guid>
+      <description>websocket是什么? Websocket最起初是在HTTP协议的基础上发展而来，后独立成为了一个标准。其特点是只要建立一次连接，即可保持</description>
     </item>
     
     <item>
       <title>Proto3使用手记</title>
-      <link>/post/2017/08/proto3-note/</link>
+      <link>razil.cc/post/2017/08/proto3-note/</link>
       <pubDate>Tue, 22 Aug 2017 23:49:14 +0800</pubDate>
       
-      <guid>/post/2017/08/proto3-note/</guid>
-      <description>Proto3 是什么？ 最近正在使用gRPC，当前版本gRPC使用的是google开发的Proto 3版本，因此顺带写一篇。Proto 3全称是 Protocol buffers v3.0,是谷歌公司开发的一款序列化数据结构。支持多种语言。与proto2相比主要有以下几点改变：
- 原生支持更多语言 JavaNano,Go,Ruby,Objective-C和C#等 调整部分语法 比如 default,optional,repeated 使得语法更简洁
- 增加部分特性   具体改变介绍推荐以下这篇文章
-Protobuf 的 proto3 与 proto2 的区别
-最新特性详情可查阅
-Protobuf Release
-Proto3 有何功能? 通过定义接口描述文件 .proto文件，可通过这些描述自动生成出响应代码，用于编列或解码数据流。
-为什么要选用它？ 使用过程中需要注意什么？ 使用过程 参考资料 Proto3 开发文档</description>
+      <guid>razil.cc/post/2017/08/proto3-note/</guid>
+      <description>Proto3 是什么？ 最近正在使用gRPC，当前版本gRPC使用的是google开发的Proto 3版本，因此顺带写一篇。Proto 3全称是 Protocol buffers v3.0,</description>
     </item>
     
     <item>
       <title>gRPC使用手记</title>
-      <link>/post/2017/08/grpc-note/</link>
+      <link>razil.cc/post/2017/08/grpc-note/</link>
       <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
       
-      <guid>/post/2017/08/grpc-note/</guid>
-      <description>gRPC是什么? gRPC是由谷歌开发的一款高性能，通用的开源RPC框架，基于HTTP/2协议标准设计.支持全双工、双向流、流控制、头部压缩单连接上的多服用请求等特性。目前提供C、Java和Go三个语言版本。 三个项目版本地址分别是: C-gRPC
-Go-gRPC
-JAVA-gRPC
-为什么要选用它? 1.gRPC基于HTTP/2设计，相对于其他RPC框架，其功能更强大，真正实现全双工，支持头部压缩和多复用请求。因此能够很好的节省带宽和TCP链接次数，节省CPU使用，对于移动端的使用非常适用，也能提高云端的服务和Web应用性能。
-2.支持Protobuf，在社区上看到不少人是出于Protobuf而选择gPRC.Protobuf拥有灵活、高效、结构化的特点，相比于其他传统的序列化方式，它更小、更快、更简单。其数据结构化一次可以支持多语言使用。支持不同版本的数据结构数据传递，实现数据结构的前向兼容。
-3.拥有Golang版本（笔者选择的原因之一）
-使用过程 Protobuf 3.0 安装protobuf
-go get -u github.com/golang/protobuf/proto // golang protobuf 库  1、安装protoc工具，用于根据protobuf文件生成出Go代码
-go get -u github.com/golang/protobuf/protoc-gen-go //protoc --go_out 工具  2、编写Protobuf3文件,可参考 helloword.proto
-3、生成Go源代码，记得加上plugins=grpc否则将无法生成服务端接口
-$ protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:helloworld  gRPC 代码中需要引用到官方的context包，可在以下链接下载 https://github.com/golang/net 引用刚才我们通过protoc工具生成的代码并分别进行实现。
-1、实现服务端代码,参考greeter_server
- package main import ( &amp;quot;log&amp;quot; &amp;quot;net&amp;quot; pb &amp;quot;your_path_to_gen_pb_dir/helloworld&amp;quot; &amp;quot;golang.org/x/net/context&amp;quot; &amp;quot;google.golang.org/grpc&amp;quot; ) // RPC服务端口 const ( port = &amp;quot;:50051&amp;quot; ) type server struct{} // 远程方法的具体实现 func (s *server) SayHello(ctx context.</description>
+      <guid>razil.cc/post/2017/08/grpc-note/</guid>
+      <description>gRPC是什么? gRPC是由谷歌开发的一款高性能，通用的开源RPC框架，基于HTTP/2协议标准设计.支持全双工、双向流、流控制、头部压缩单</description>
     </item>
     
   </channel>

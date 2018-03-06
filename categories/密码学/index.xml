@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>密码学 on 行者小筑</title>
-    <link>/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
-    <description>Recent content in 密码学 on 行者小筑</description>
+    <title>密码学 on Razil&#39;s Blog</title>
+    <link>razil.cc/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
+    <description>Recent content in 密码学 on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Tue, 28 Mar 2017 00:08:18 +0800</lastBuildDate>
-    <atom:link href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="self" type="application/rss+xml" />
+    
+	<atom:link href="razil.cc/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>【Go】Web加密方案与Go语言解决</title>
-      <link>/post/2017/03/go-encrypt/</link>
+      <link>razil.cc/post/2017/03/go-encrypt/</link>
       <pubDate>Tue, 28 Mar 2017 00:08:18 +0800</pubDate>
       
-      <guid>/post/2017/03/go-encrypt/</guid>
-      <description>常见加密方案 ###1、对称加密： 即加密方和解密方都使用相同的加密算法和密钥，这种方案的密钥的保存非常关键，因为算法是公开的，而密钥是保密的，一旦密匙泄露，黑客仍然可以轻易解密。 常见的对称加密算法有：AES、DES、3DES、Blowfish、IDEA、RC4、RC5、RC6和 等。
-###2、非对称加密： 即使用不同的密钥来进行加解密，密钥被分为公钥和私钥，用私钥加密的数据必须使用公钥来解密，同样用公钥加密的数据必须用对应的私钥来解密， 常见的非对称加密算法有：RSA、ECC（移动设备用）、Diffie-Hellman、El Gamal、DSA（数字签名用）等。
-###3、不可逆加密： 利用哈希算法使数据加密之后无法解密回原数据。 这样的哈希算法常用的有：SHA-256, SHA-1, MD2、MD4、MD5、HAVAL等。
-Go语言对这三种加密算法的实现如下所示：
-//import &amp;quot;crypto/sha256&amp;quot; h := sha256.New() io.WriteString(h, &amp;quot;His money is twice tainted: &#39;taint yours and &#39;taint mine.&amp;quot;) fmt.Printf(&amp;quot;% x&amp;quot;, h.Sum(nil)) //import &amp;quot;crypto/sha1&amp;quot; h := sha1.New() io.WriteString(h, &amp;quot;His money is twice tainted: &#39;taint yours and &#39;taint mine.&amp;quot;) fmt.Printf(&amp;quot;% x&amp;quot;, h.Sum(nil)) //import &amp;quot;crypto/md5&amp;quot; h := md5.New() io.WriteString(h, &amp;quot;需要加密的密码&amp;quot;) fmt.Printf(&amp;quot;%x&amp;quot;, h.Sum(nil))  加密解决方案 1. MD5加盐  对MD5加密的数据加入揉合进特定的随机数，再二次生成MD5。
- 在我们上面登录系统的示例代码中，$md5password = md5($password); 从这句代码可以看到采用了md5的不可逆加密算法来存储密码，这也是多年来业界常用的密码加密算法，但是这仍然不安全。为什么呢？这是因为md5加密有一个特点：同样的字符串经过md5哈希计算之后生成的加密字符串也是相同的，由于业界采用这种加密的方式由来已久，黑客们也准备了自己强大的md5彩虹表来逆向匹配加密前的字符串，这种用于逆向反推MD5加密的彩虹表在互联网上随处可见，在Google里使用md5 解密作为关键词搜索，一下就能找到md5在线破解网站，把我们插入用户数据时候的MD5加密字符串e10adc3949ba59abbe56e057f20f883e填入进去，瞬间就能得到加密前的密码：123456。</description>
+      <guid>razil.cc/post/2017/03/go-encrypt/</guid>
+      <description>常见加密方案 1、对称加密 即加密方和解密方都使用相同的加密算法和密钥，这种方案的密钥的保存非常关键，因为算法是公开的，而密钥是保密的，一旦密匙</description>
     </item>
     
   </channel>
