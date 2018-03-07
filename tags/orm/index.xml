@@ -2,22 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Orm on Razil&#39;s Blog</title>
-    <link>razil.cc/tags/orm/</link>
+    <link>/tags/orm/</link>
     <description>Recent content in Orm on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Thu, 20 Jul 2017 15:03:41 +0800</lastBuildDate>
     
-	<atom:link href="razil.cc/tags/orm/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/orm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>【Go】反射在Beego/Orm中的应用</title>
-      <link>razil.cc/post/2017/07/reflect-on-beego-orm/</link>
+      <link>/post/2017/07/reflect-on-beego-orm/</link>
       <pubDate>Thu, 20 Jul 2017 15:03:41 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/07/reflect-on-beego-orm/</guid>
+      <guid>/post/2017/07/reflect-on-beego-orm/</guid>
       <description>应用 在Beego Orm中，作者使用了go的反射机制，实现 1、通过数据模型建立数据表 type DataSheet struct { Name string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;name&amp;quot; //表名称 Type string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;type&amp;quot; //周期类型 日/月/</description>
     </item>
     

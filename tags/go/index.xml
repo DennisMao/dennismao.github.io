@@ -2,31 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go on Razil&#39;s Blog</title>
-    <link>razil.cc/tags/go/</link>
+    <link>/tags/go/</link>
     <description>Recent content in Go on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Sat, 20 May 2017 15:10:00 +0800</lastBuildDate>
     
-	<atom:link href="razil.cc/tags/go/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>【Go】解决“can&#39;t load package: no buildable Go source files in /...</title>
-      <link>razil.cc/post/2017/05/solve-no-buildable-go-source/</link>
+      <link>/post/2017/05/solve-no-buildable-go-source/</link>
       <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/05/solve-no-buildable-go-source/</guid>
+      <guid>/post/2017/05/solve-no-buildable-go-source/</guid>
       <description>最近在调用golang.org/x/net出现这个错误。经检查后解决方法如下。在调用外部包时候出现这种情况，应检查以下设置 &amp;gt; 1.目标外部包的</description>
     </item>
     
     <item>
       <title>【Go】Web加密方案与Go语言解决</title>
-      <link>razil.cc/post/2017/03/go-encrypt/</link>
+      <link>/post/2017/03/go-encrypt/</link>
       <pubDate>Tue, 28 Mar 2017 00:08:18 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/03/go-encrypt/</guid>
+      <guid>/post/2017/03/go-encrypt/</guid>
       <description>常见加密方案 1、对称加密 即加密方和解密方都使用相同的加密算法和密钥，这种方案的密钥的保存非常关键，因为算法是公开的，而密钥是保密的，一旦密匙</description>
     </item>
     

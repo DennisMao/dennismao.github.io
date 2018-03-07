@@ -2,22 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>随笔 on Razil&#39;s Blog</title>
-    <link>razil.cc/categories/%E9%9A%8F%E7%AC%94/</link>
+    <link>/categories/%E9%9A%8F%E7%AC%94/</link>
     <description>Recent content in 随笔 on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Sun, 28 Jan 2018 22:53:37 +0800</lastBuildDate>
     
-	<atom:link href="razil.cc/categories/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>2017 Go语言使用总结</title>
-      <link>razil.cc/post/2018/01/go-practices-in-2017/</link>
+      <link>/post/2018/01/go-practices-in-2017/</link>
       <pubDate>Sun, 28 Jan 2018 22:53:37 +0800</pubDate>
       
-      <guid>razil.cc/post/2018/01/go-practices-in-2017/</guid>
+      <guid>/post/2018/01/go-practices-in-2017/</guid>
       <description>到了年末，谈谈这一年的收获与坑。 所参与的项目从C++转到Go有两年，产品今年已经正式投入到线上商用运行。自己也从刚开始的基础模块设计开发，逐</description>
     </item>
     

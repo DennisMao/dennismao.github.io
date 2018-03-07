@@ -2,22 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>网络爬虫 on Razil&#39;s Blog</title>
-    <link>razil.cc/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</link>
+    <link>/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</link>
     <description>Recent content in 网络爬虫 on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Tue, 26 Sep 2017 23:29:00 +0800</lastBuildDate>
     
-	<atom:link href="razil.cc/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Go爬虫初探</title>
-      <link>razil.cc/post/2017/10/meet-go-scrapy/</link>
+      <link>/post/2017/10/meet-go-scrapy/</link>
       <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/10/meet-go-scrapy/</guid>
+      <guid>/post/2017/10/meet-go-scrapy/</guid>
       <description>背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布</description>
     </item>
     

@@ -2,58 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Golang on Razil&#39;s Blog</title>
-    <link>razil.cc/categories/golang/</link>
+    <link>/categories/golang/</link>
     <description>Recent content in Golang on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Wed, 27 Dec 2017 15:35:04 +0800</lastBuildDate>
     
-	<atom:link href="razil.cc/categories/golang/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/golang/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用Beego处理多文件上传</title>
-      <link>razil.cc/post/2017/12/beego-multi-file-upload/</link>
+      <link>/post/2017/12/beego-multi-file-upload/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/beego-multi-file-upload/</guid>
+      <guid>/post/2017/12/beego-multi-file-upload/</guid>
       <description>实现方法 Beego 在controller处理上提供了GetFile和GetFiles方法，以获取MultipartForm里的文件内容。详细说明查看</description>
     </item>
     
     <item>
       <title>使用Go语言处理动态JSON类型</title>
-      <link>razil.cc/post/2017/12/dynamic-json/</link>
+      <link>/post/2017/12/dynamic-json/</link>
       <pubDate>Thu, 14 Dec 2017 00:22:45 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/dynamic-json/</guid>
+      <guid>/post/2017/12/dynamic-json/</guid>
       <description>背景 在项目中有遇到JSON格式的数据流，对接的数据源其内容格式会有变化，但是内部会有字段表示其内容的类型，比如以下结构: type DataJson struct { JsonType string `json:&amp;quot;json_type&amp;quot;` Data interface{} `json:&amp;quot;data&amp;quot;`</description>
     </item>
     
     <item>
       <title>[译]Context并非为cancel而生</title>
-      <link>razil.cc/post/2017/11/go-context-is-not-for-cancel/</link>
+      <link>/post/2017/11/go-context-is-not-for-cancel/</link>
       <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/11/go-context-is-not-for-cancel/</guid>
+      <guid>/post/2017/11/go-context-is-not-for-cancel/</guid>
       <description>前言 译者:Razil 本文译自:Context isn’t for cancellation</description>
     </item>
     
     <item>
       <title>Go爬虫初探</title>
-      <link>razil.cc/post/2017/10/meet-go-scrapy/</link>
+      <link>/post/2017/10/meet-go-scrapy/</link>
       <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/10/meet-go-scrapy/</guid>
+      <guid>/post/2017/10/meet-go-scrapy/</guid>
       <description>背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布</description>
     </item>
     
     <item>
       <title>Websocket使用手记</title>
-      <link>razil.cc/post/2017/07/gowebsocket-experience/</link>
+      <link>/post/2017/07/gowebsocket-experience/</link>
       <pubDate>Thu, 21 Sep 2017 23:51:49 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/07/gowebsocket-experience/</guid>
+      <guid>/post/2017/07/gowebsocket-experience/</guid>
       <description>websocket是什么? Websocket最起初是在HTTP协议的基础上发展而来，后独立成为了一个标准。其特点是只要建立一次连接，即可保持</description>
     </item>
     

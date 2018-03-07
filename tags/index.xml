@@ -2,229 +2,228 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Razil&#39;s Blog</title>
-    <link>razil.cc/tags/</link>
+    <link>/tags/</link>
     <description>Recent content in Tags on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Sat, 20 May 2017 15:10:00 +0800</lastBuildDate>
     
-	<atom:link href="razil.cc/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title></title>
-      <link>razil.cc/tags/</link>
+      <link>/tags/</link>
       <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
       
-      <guid>razil.cc/tags/</guid>
+      <guid>/tags/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Beego</title>
-      <link>razil.cc/tags/beego/</link>
+      <link>/tags/beego/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/tags/beego/</guid>
+      <guid>/tags/beego/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Context</title>
-      <link>razil.cc/tags/context/</link>
+      <link>/tags/context/</link>
       <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
       
-      <guid>razil.cc/tags/context/</guid>
+      <guid>/tags/context/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Docker</title>
-      <link>razil.cc/tags/docker/</link>
+      <link>/tags/docker/</link>
       <pubDate>Wed, 19 Apr 2017 15:24:29 +0800</pubDate>
       
-      <guid>razil.cc/tags/docker/</guid>
+      <guid>/tags/docker/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Elasticsearch</title>
-      <link>razil.cc/tags/elasticsearch/</link>
+      <link>/tags/elasticsearch/</link>
       <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
       
-      <guid>razil.cc/tags/elasticsearch/</guid>
+      <guid>/tags/elasticsearch/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>razil.cc/tags/go/</link>
+      <link>/tags/go/</link>
       <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
       
-      <guid>razil.cc/tags/go/</guid>
+      <guid>/tags/go/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>razil.cc/tags/golang/</link>
+      <link>/tags/golang/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/tags/golang/</guid>
+      <guid>/tags/golang/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Grpc</title>
-      <link>razil.cc/tags/grpc/</link>
+      <link>/tags/grpc/</link>
       <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
       
-      <guid>razil.cc/tags/grpc/</guid>
+      <guid>/tags/grpc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Influxdb</title>
-      <link>razil.cc/tags/influxdb/</link>
+      <link>/tags/influxdb/</link>
       <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
       
-      <guid>razil.cc/tags/influxdb/</guid>
+      <guid>/tags/influxdb/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Json</title>
-      <link>razil.cc/tags/json/</link>
+      <link>/tags/json/</link>
       <pubDate>Thu, 14 Dec 2017 00:22:45 +0800</pubDate>
       
-      <guid>razil.cc/tags/json/</guid>
+      <guid>/tags/json/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Orm</title>
-      <link>razil.cc/tags/orm/</link>
+      <link>/tags/orm/</link>
       <pubDate>Thu, 20 Jul 2017 15:03:41 +0800</pubDate>
       
-      <guid>razil.cc/tags/orm/</guid>
+      <guid>/tags/orm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Relfect</title>
-      <link>razil.cc/tags/relfect/</link>
+      <link>/tags/relfect/</link>
       <pubDate>Thu, 20 Jul 2017 15:03:41 +0800</pubDate>
       
-      <guid>razil.cc/tags/relfect/</guid>
+      <guid>/tags/relfect/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rpc</title>
-      <link>razil.cc/tags/rpc/</link>
+      <link>/tags/rpc/</link>
       <pubDate>Tue, 22 Aug 2017 23:49:14 +0800</pubDate>
       
-      <guid>razil.cc/tags/rpc/</guid>
+      <guid>/tags/rpc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Web</title>
-      <link>razil.cc/tags/web/</link>
+      <link>/tags/web/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/tags/web/</guid>
+      <guid>/tags/web/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Websocket</title>
-      <link>razil.cc/tags/websocket/</link>
+      <link>/tags/websocket/</link>
       <pubDate>Thu, 21 Sep 2017 23:51:49 +0800</pubDate>
       
-      <guid>razil.cc/tags/websocket/</guid>
+      <guid>/tags/websocket/</guid>
       <description></description>
     </item>
     
     <item>
       <title>使用手记</title>
-      <link>razil.cc/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</link>
+      <link>/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</link>
       <pubDate>Tue, 16 Jan 2018 23:04:21 +0800</pubDate>
       
-      <guid>razil.cc/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</guid>
+      <guid>/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</guid>
       <description></description>
     </item>
     
     <item>
       <title>分布式</title>
-      <link>razil.cc/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+      <link>/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
       <pubDate>Tue, 22 Aug 2017 23:49:14 +0800</pubDate>
       
-      <guid>razil.cc/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
+      <guid>/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
       <description></description>
     </item>
     
     <item>
       <title>加密</title>
-      <link>razil.cc/tags/%E5%8A%A0%E5%AF%86/</link>
+      <link>/tags/%E5%8A%A0%E5%AF%86/</link>
       <pubDate>Tue, 28 Mar 2017 00:08:18 +0800</pubDate>
       
-      <guid>razil.cc/tags/%E5%8A%A0%E5%AF%86/</guid>
+      <guid>/tags/%E5%8A%A0%E5%AF%86/</guid>
       <description></description>
     </item>
     
     <item>
       <title>正则</title>
-      <link>razil.cc/tags/%E6%AD%A3%E5%88%99/</link>
+      <link>/tags/%E6%AD%A3%E5%88%99/</link>
       <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
       
-      <guid>razil.cc/tags/%E6%AD%A3%E5%88%99/</guid>
+      <guid>/tags/%E6%AD%A3%E5%88%99/</guid>
       <description></description>
     </item>
     
     <item>
       <title>正则匹配</title>
-      <link>razil.cc/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D/</link>
+      <link>/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D/</link>
       <pubDate>Wed, 17 May 2017 14:58:17 +0800</pubDate>
       
-      <guid>razil.cc/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D/</guid>
+      <guid>/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D/</guid>
       <description></description>
     </item>
     
     <item>
       <title>汇总</title>
-      <link>razil.cc/tags/%E6%B1%87%E6%80%BB/</link>
+      <link>/tags/%E6%B1%87%E6%80%BB/</link>
       <pubDate>Thu, 30 Nov 2017 20:54:52 +0800</pubDate>
       
-      <guid>razil.cc/tags/%E6%B1%87%E6%80%BB/</guid>
+      <guid>/tags/%E6%B1%87%E6%80%BB/</guid>
       <description></description>
     </item>
     
     <item>
       <title>网络爬虫</title>
-      <link>razil.cc/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</link>
+      <link>/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</link>
       <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
       
-      <guid>razil.cc/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</guid>
+      <guid>/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/</guid>
       <description></description>
     </item>
     
     <item>
       <title>自动化构建</title>
-      <link>razil.cc/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/</link>
+      <link>/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/</link>
       <pubDate>Tue, 16 Jan 2018 23:04:21 +0800</pubDate>
       
-      <guid>razil.cc/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/</guid>
+      <guid>/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA/</guid>
       <description></description>
     </item>
     
     <item>
       <title>随笔</title>
-      <link>razil.cc/tags/%E9%9A%8F%E7%AC%94/</link>
+      <link>/tags/%E9%9A%8F%E7%AC%94/</link>
       <pubDate>Sun, 28 Jan 2018 22:53:37 +0800</pubDate>
       
-      <guid>razil.cc/tags/%E9%9A%8F%E7%AC%94/</guid>
+      <guid>/tags/%E9%9A%8F%E7%AC%94/</guid>
       <description></description>
     </item>
     

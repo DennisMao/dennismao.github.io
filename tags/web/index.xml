@@ -2,22 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web on Razil&#39;s Blog</title>
-    <link>razil.cc/tags/web/</link>
+    <link>/tags/web/</link>
     <description>Recent content in Web on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Wed, 27 Dec 2017 15:35:04 +0800</lastBuildDate>
     
-	<atom:link href="razil.cc/tags/web/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/web/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用Beego处理多文件上传</title>
-      <link>razil.cc/post/2017/12/beego-multi-file-upload/</link>
+      <link>/post/2017/12/beego-multi-file-upload/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/beego-multi-file-upload/</guid>
+      <guid>/post/2017/12/beego-multi-file-upload/</guid>
       <description>实现方法 Beego 在controller处理上提供了GetFile和GetFiles方法，以获取MultipartForm里的文件内容。详细说明查看</description>
     </item>
     

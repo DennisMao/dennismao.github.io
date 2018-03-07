@@ -2,184 +2,183 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Razil&#39;s Blog</title>
-    <link>razil.cc/post/</link>
+    <link>/post/</link>
     <description>Recent content in Posts on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>@2017-2018 版权所有.</copyright>
     <lastBuildDate>Tue, 06 Mar 2018 23:21:08 +0800</lastBuildDate>
     
-	<atom:link href="razil.cc/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>教程</title>
-      <link>razil.cc/post/course/</link>
+      <link>/post/course/</link>
       <pubDate>Tue, 06 Mar 2018 23:21:08 +0800</pubDate>
       
-      <guid>razil.cc/post/course/</guid>
+      <guid>/post/course/</guid>
       <description>日常整理的一些视频教程/课程 前端 Vue Vue.js自学手册 阿里 后端 Go</description>
     </item>
     
     <item>
       <title>书库</title>
-      <link>razil.cc/post/books/</link>
+      <link>/post/books/</link>
       <pubDate>Tue, 06 Mar 2018 23:20:18 +0800</pubDate>
       
-      <guid>razil.cc/post/books/</guid>
+      <guid>/post/books/</guid>
       <description>日常整理一些的经典技术书籍。 后端 基础 Go C C++ 容器化 大数据 前端 架构</description>
     </item>
     
     <item>
       <title>工具箱</title>
-      <link>razil.cc/post/toolkit/</link>
+      <link>/post/toolkit/</link>
       <pubDate>Tue, 06 Mar 2018 23:08:38 +0800</pubDate>
       
-      <guid>razil.cc/post/toolkit/</guid>
+      <guid>/post/toolkit/</guid>
       <description>日常整理的技术和组件开发文档，项目开发随手使用。 数据库 关系型 MySQL Sqlite PostgreSQL 非关系型 InfluxDB MQ RabbitMQ Kafka 官方文档 Issues 中文教程 博客</description>
     </item>
     
     <item>
       <title>2017 Go语言使用总结</title>
-      <link>razil.cc/post/2018/01/go-practices-in-2017/</link>
+      <link>/post/2018/01/go-practices-in-2017/</link>
       <pubDate>Sun, 28 Jan 2018 22:53:37 +0800</pubDate>
       
-      <guid>razil.cc/post/2018/01/go-practices-in-2017/</guid>
+      <guid>/post/2018/01/go-practices-in-2017/</guid>
       <description>到了年末，谈谈这一年的收获与坑。 所参与的项目从C++转到Go有两年，产品今年已经正式投入到线上商用运行。自己也从刚开始的基础模块设计开发，逐</description>
     </item>
     
     <item>
       <title>使用TravisCI持续部署Hugo博客到gitpages</title>
-      <link>razil.cc/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</link>
+      <link>/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</link>
       <pubDate>Tue, 16 Jan 2018 23:04:21 +0800</pubDate>
       
-      <guid>razil.cc/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</guid>
+      <guid>/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/</guid>
       <description>背景 年中时候着手用hugo搭建自己的技术博客。由于hugo同hexo一样，生成出的都是纯静态的页面。因此可以使用github来作为服务器存放</description>
     </item>
     
     <item>
       <title>使用Beego处理多文件上传</title>
-      <link>razil.cc/post/2017/12/beego-multi-file-upload/</link>
+      <link>/post/2017/12/beego-multi-file-upload/</link>
       <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/beego-multi-file-upload/</guid>
+      <guid>/post/2017/12/beego-multi-file-upload/</guid>
       <description>实现方法 Beego 在controller处理上提供了GetFile和GetFiles方法，以获取MultipartForm里的文件内容。详细说明查看</description>
     </item>
     
     <item>
       <title>使用Go语言处理动态JSON类型</title>
-      <link>razil.cc/post/2017/12/dynamic-json/</link>
+      <link>/post/2017/12/dynamic-json/</link>
       <pubDate>Thu, 14 Dec 2017 00:22:45 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/dynamic-json/</guid>
+      <guid>/post/2017/12/dynamic-json/</guid>
       <description>背景 在项目中有遇到JSON格式的数据流，对接的数据源其内容格式会有变化，但是内部会有字段表示其内容的类型，比如以下结构: type DataJson struct { JsonType string `json:&amp;quot;json_type&amp;quot;` Data interface{} `json:&amp;quot;data&amp;quot;`</description>
     </item>
     
     <item>
       <title>2017文章汇总</title>
-      <link>razil.cc/post/2017/12/awsome-articles-2017/</link>
+      <link>/post/2017/12/awsome-articles-2017/</link>
       <pubDate>Thu, 30 Nov 2017 20:54:52 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/12/awsome-articles-2017/</guid>
+      <guid>/post/2017/12/awsome-articles-2017/</guid>
       <description>基础 数据库 关系型 非关系型 深入理解etcd Etcd v3 服务注册与发现 Go代码 架构 高并发 分布式 设计模式 DDD TDD,BDD,FDD&amp;amp;ATDD 业务 AWS开发工具包发布适用Go 2.0的开发者</description>
     </item>
     
     <item>
       <title>[译]Context并非为cancel而生</title>
-      <link>razil.cc/post/2017/11/go-context-is-not-for-cancel/</link>
+      <link>/post/2017/11/go-context-is-not-for-cancel/</link>
       <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/11/go-context-is-not-for-cancel/</guid>
+      <guid>/post/2017/11/go-context-is-not-for-cancel/</guid>
       <description>前言 译者:Razil 本文译自:Context isn’t for cancellation</description>
     </item>
     
     <item>
       <title>系统监控:InfluxDB vs Elasticsearch</title>
-      <link>razil.cc/post/2017/10/influxdbvselasticsearch/</link>
+      <link>/post/2017/10/influxdbvselasticsearch/</link>
       <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/10/influxdbvselasticsearch/</guid>
+      <guid>/post/2017/10/influxdbvselasticsearch/</guid>
       <description>前言 译者: Razil 本文译自: System monitoring with InfluxDB vs Elasticsearch 系统的监控一直都扮演着重要角色。它能帮助我们了解系统的健康情况,发现问题甚至能预测问题。 如今，由于以下这些</description>
     </item>
     
     <item>
       <title>Go爬虫初探</title>
-      <link>razil.cc/post/2017/10/meet-go-scrapy/</link>
+      <link>/post/2017/10/meet-go-scrapy/</link>
       <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/10/meet-go-scrapy/</guid>
+      <guid>/post/2017/10/meet-go-scrapy/</guid>
       <description>背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布</description>
     </item>
     
     <item>
       <title>Websocket使用手记</title>
-      <link>razil.cc/post/2017/07/gowebsocket-experience/</link>
+      <link>/post/2017/07/gowebsocket-experience/</link>
       <pubDate>Thu, 21 Sep 2017 23:51:49 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/07/gowebsocket-experience/</guid>
+      <guid>/post/2017/07/gowebsocket-experience/</guid>
       <description>websocket是什么? Websocket最起初是在HTTP协议的基础上发展而来，后独立成为了一个标准。其特点是只要建立一次连接，即可保持</description>
     </item>
     
     <item>
       <title>Proto3使用手记</title>
-      <link>razil.cc/post/2017/08/proto3-note/</link>
+      <link>/post/2017/08/proto3-note/</link>
       <pubDate>Tue, 22 Aug 2017 23:49:14 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/08/proto3-note/</guid>
+      <guid>/post/2017/08/proto3-note/</guid>
       <description>Proto3 是什么？ 最近正在使用gRPC，当前版本gRPC使用的是google开发的Proto 3版本，因此顺带写一篇。Proto 3全称是 Protocol buffers v3.0,</description>
     </item>
     
     <item>
       <title>gRPC使用手记</title>
-      <link>razil.cc/post/2017/08/grpc-note/</link>
+      <link>/post/2017/08/grpc-note/</link>
       <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/08/grpc-note/</guid>
+      <guid>/post/2017/08/grpc-note/</guid>
       <description>gRPC是什么? gRPC是由谷歌开发的一款高性能，通用的开源RPC框架，基于HTTP/2协议标准设计.支持全双工、双向流、流控制、头部压缩单</description>
     </item>
     
     <item>
       <title>【Go】反射在Beego/Orm中的应用</title>
-      <link>razil.cc/post/2017/07/reflect-on-beego-orm/</link>
+      <link>/post/2017/07/reflect-on-beego-orm/</link>
       <pubDate>Thu, 20 Jul 2017 15:03:41 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/07/reflect-on-beego-orm/</guid>
+      <guid>/post/2017/07/reflect-on-beego-orm/</guid>
       <description>应用 在Beego Orm中，作者使用了go的反射机制，实现 1、通过数据模型建立数据表 type DataSheet struct { Name string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;name&amp;quot; //表名称 Type string orm:&amp;quot;NOT NULL&amp;quot; json:&amp;quot;type&amp;quot; //周期类型 日/月/</description>
     </item>
     
     <item>
       <title>【Go】解决“can&#39;t load package: no buildable Go source files in /...</title>
-      <link>razil.cc/post/2017/05/solve-no-buildable-go-source/</link>
+      <link>/post/2017/05/solve-no-buildable-go-source/</link>
       <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/05/solve-no-buildable-go-source/</guid>
+      <guid>/post/2017/05/solve-no-buildable-go-source/</guid>
       <description>最近在调用golang.org/x/net出现这个错误。经检查后解决方法如下。在调用外部包时候出现这种情况，应检查以下设置 &amp;gt; 1.目标外部包的</description>
     </item>
     
     <item>
       <title>【Go】常用的正则表达式</title>
-      <link>razil.cc/post/2017/05/go-regexp-pkg/</link>
+      <link>/post/2017/05/go-regexp-pkg/</link>
       <pubDate>Wed, 17 May 2017 14:58:17 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/05/go-regexp-pkg/</guid>
+      <guid>/post/2017/05/go-regexp-pkg/</guid>
       <description>/*********************************************************** *名字 golang 正则工具 *功能 支持数字，字母，字符，常用信息（电话，邮箱）等的正则匹配 *作者 Razil ************************************************************/ package models import ( &amp;quot;regexp&amp;quot; ) type RegexCheck struct { } /************************* 自定义类型 ************************/ //数字+字母</description>
     </item>
     
     <item>
       <title>【docker】Docker实战 - 将go工程部署到docker</title>
-      <link>razil.cc/post/2017/04/docker-deploy-1/</link>
+      <link>/post/2017/04/docker-deploy-1/</link>
       <pubDate>Wed, 19 Apr 2017 15:24:29 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/04/docker-deploy-1/</guid>
+      <guid>/post/2017/04/docker-deploy-1/</guid>
       <description>目标功能 使用go语言实现基本http服务 访问 localhost:8080 时能够返回 &amp;ldquo;hellodocker&amp;rdquo; 将工程部署到docker，并在后台启动 ###环境介绍 docker: golang: host(宿主机环境): Mac</description>
     </item>
     
     <item>
       <title>【Go】Web加密方案与Go语言解决</title>
-      <link>razil.cc/post/2017/03/go-encrypt/</link>
+      <link>/post/2017/03/go-encrypt/</link>
       <pubDate>Tue, 28 Mar 2017 00:08:18 +0800</pubDate>
       
-      <guid>razil.cc/post/2017/03/go-encrypt/</guid>
+      <guid>/post/2017/03/go-encrypt/</guid>
       <description>常见加密方案 1、对称加密 即加密方和解密方都使用相同的加密算法和密钥，这种方案的密钥的保存非常关键，因为算法是公开的，而密钥是保密的，一旦密匙</description>
     </item>
     
