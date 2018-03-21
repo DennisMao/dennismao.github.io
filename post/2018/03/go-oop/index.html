@@ -96,7 +96,11 @@
 <li><a href="#单一职责">单一职责</a></li>
 <li><a href="#开放封闭-ocp">开放封闭(OCP)</a></li>
 <li><a href="#替换原则-lsp">替换原则(LSP)</a></li>
-<li><a href="#依赖倒置">依赖倒置</a></li>
+<li><a href="#依赖倒置">依赖倒置</a>
+<ul>
+<li><a href="#具体依赖与抽象">具体依赖与抽象：</a></li>
+<li><a href="#上层依赖下层">上层依赖下层:</a></li>
+</ul></li>
 <li><a href="#接口隔离">接口隔离</a></li>
 </ul></li>
 <li><a href="#引用">引用</a></li>
@@ -112,11 +116,14 @@
 <p>工作中遇到转来使用Go语言的朋友或者同事，基本都是从现有语言，像C++和JAVA转来。所以在平时交流时候多少会需要引用到以前所学的一些概念和方法，而面向对象这一块就是经常碰到的讨论点之一。在面向对象设计中，Go语言有些实现并不能完全按照C++和JAVA的概念进行理解。所以本文介绍的准确说是依照Go语言自身方法，来对面向对象进行模拟实现。</p>
 
 <p>Go是否是一个面向对象语言？
-答案是: Go并不是一个纯面向对象语言。原由出自Go的<a href="https://golang.org/doc/faq#Is_Go_an_object-oriented_language">FAQ</a>
-&gt;Is Go an object-oriented language?
-Yes and no. Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of “interface” in Go provides a different approach that we believe is easy to use and in some ways more general. There are also ways to embed types in other types to provide something analogous—but not identical—to subclassing. Moreover, methods in Go are more general than in C++ or Java: they can be defined for any sort of data, even built-in types such as plain, “unboxed” integers. They are not restricted to structs (classes).
-&gt;
-&gt;Also, the lack of a type hierarchy makes “objects” in Go feel much more lightweight than in languages such as C++ or Java.</p>
+答案是: Go并不是一个纯面向对象语言。原由出自Go的<a href="https://golang.org/doc/faq#Is_Go_an_object-oriented_language">FAQ</a></p>
+
+<blockquote>
+<p>Is Go an object-oriented language?
+Yes and no. Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of “interface” in Go provides a different approach that we believe is easy to use and in some ways more general. There are also ways to embed types in other types to provide something analogous—but not identical—to subclassing. Moreover, methods in Go are more general than in C++ or Java: they can be defined for any sort of data, even built-in types such as plain, “unboxed” integers. They are not restricted to structs (classes).</p>
+
+<p>Also, the lack of a type hierarchy makes “objects” in Go feel much more lightweight than in languages such as C++ or Java.</p>
+</blockquote>
 
 <h2 id="三大特征">三大特征</h2>
 
@@ -152,7 +159,7 @@ func (this *MyStruct) Clone() {
 <p>可以让某个类型的对象获得另一个类型的对象的属性的方法。它支持按级分类的概念。继承是指这样一种能力:它可以使用现有类的所有功能,并在无需重新编写原来的类的情况下对这些功能进行扩展。 通过继承创建的新类称为“子类”或“派生类”,被继承的类称为“基类”、“父类”或“超类”</p>
 </blockquote>
 
-<p>由于Go中无类的概念。但是与封装方法相同，我们还是以结构体为基础，使用<strong>【内嵌】</strong>功能实现对结构体进行××组合××，实现类似继承的效果。其中通过内嵌方法生成的新结构体允许访问原结构体的方法。</p>
+<p>由于Go中无类的概念。但是与封装方法相同，我们还是以结构体为基础，使用<strong>[内嵌]</strong>功能实现对结构体进行<strong>组合</strong>，实现类似继承的效果。其中通过内嵌方法生成的新结构体允许访问原结构体的方法。</p>
 
 <pre><code class="language-go">//基类
 type MyStruct struct {
@@ -225,11 +232,67 @@ func main() {
 <p>一个类的功能要单一,不能包罗万象</p>
 </blockquote>
 
+<p>其核心是高内聚，低耦合。通过把不同功能的方法独立实现，以降低每个方法之前的聚合度。避免在后期改动时候的牵一发而动全身</p>
+
+<p>错误例子:</p>
+
+<pre><code class="language-go">type Student struct {
+    Name string
+    Birthday time.Time
+}
+//进行处理
+//一个方法中实现多个功能的处理
+func (this *Student)Process(method string,interface) interface{}{
+    switch method{
+        case &quot;print&quot;:
+        ...
+        case &quot;modify&quot;:
+        ...
+        case &quot;clone&quot;:
+        ...
+        default:
+        break
+    }
+}
+</code></pre>
+
+<p>正确方式:</p>
+
+<pre><code class="language-go">type Student struct {
+    Name string
+    Birthday time.Time
+}
+
+func (this *Student)print(){
+}
+
+func (this *Student)modify(){
+}
+
+func (this *Student)clone(){
+}
+
+</code></pre>
+
 <h3 id="开放封闭-ocp">开放封闭(OCP)</h3>
 
 <blockquote>
 <p>一个模块在扩展性方面应该是开放的而在更改性方面应该是封闭的</p>
 </blockquote>
+
+<p>通俗地说，软件的实体应该是可扩展的而不可修改的。在Go语言中我们可以通过<strong>内嵌</strong>方式实现对原有结构体/方法的拓展</p>
+
+<p>正确打开方式</p>
+
+<pre><code class="language-go">type A struct{
+    Name string
+}
+
+type AA struct {
+    A
+    NewName string
+}
+</code></pre>
 
 <h3 id="替换原则-lsp">替换原则(LSP)</h3>
 
@@ -237,14 +300,97 @@ func main() {
 <p>子类应当可以替换父类并出现在父类能够出现的任何地方</p>
 </blockquote>
 
+<p>替换原则通常是作为对<strong>类</strong>相关子类型与其基类关系的规范。但Go语言中没有类和继承。但是我们有很接近的interface接口类型。
+通过定义接口，我们可以对他进行不同的实现。在Go语言中这些实现是可以互相替代的。</p>
+
+<p>例子</p>
+
+<pre><code class="language-go">type Animal interface {
+    Yell()
+}
+
+type Cat struct {
+}
+
+func (this *Cat)Yell(){
+    fmt.Println(&quot;cat yell&quot;)
+}
+
+type Dog struct {
+}
+
+func(this *Dog)Yell(){
+    fmt.Prinln(&quot;dog yell)
+}
+
+func Call(a Animal){
+    a.Yell()
+}
+
+func main(){
+    Call(Animal(&amp;Cat{}))
+    Call(Animal(&amp;Dog{}))
+}
+</code></pre>
+
 <h3 id="依赖倒置">依赖倒置</h3>
 
 <blockquote>
 <p>具体依赖抽象,上层依赖下层。</p>
+</blockquote>
+
+<h4 id="具体依赖与抽象">具体依赖与抽象：</h4>
+
+<p>个人理解是在Go语言设计中，我们尽可能对功能点进行抽象，在实现中使用接口来进行抽象。比如在很多cache和session包的实现中都采用了这种思想。把<strong>存储</strong>模块进行抽象.如以下代码</p>
+
+<pre><code class="language-go">type Storage interface {
+    Add()
+    Get()
+    Fetch()
+}
+</code></pre>
+
+<p>通过对存储抽象，用户可以对这个抽象进行不同的实现。比如使用MySQL、内存又或者是MQ组件。不同的实现，并不影响原来的功能代码。</p>
+
+<pre><code class="language-go">type Cache struct {
+    mem map[string]interface{}
+    storage Storage
+}
+
+func (this *Cache) Fetch(){
+    this.Storage.Fetch()
+}
+</code></pre>
+
+<h4 id="上层依赖下层">上层依赖下层:</h4>
+
+<p>在Go语言中package包管理有着严格上下层级的关系。即上级包调用了下级包之后，下级不能反调回上级。否则会引起回调错误。</p>
 
 <h3 id="接口隔离">接口隔离</h3>
 
+<blockquote>
 <p>模块间要通过抽象接口隔离开,而不是通过具体的类强耦合起来</p>
+</blockquote>
+
+<p>在模块功能的实现上，可以通过使用特定小接口来实现高内聚。不必依赖于过大的对象和带有用不上方法的通用接口。</p>
+
+<pre><code class="language-go">type Storage interface{
+    Load()
+    Save()
+    ...
+}
+type Loader interface {
+    Load() []Byte
+}
+
+type Cache struct{
+}
+
+func (this *Cache)Loading(r Loader){
+    rawData := r.Load()
+    ..
+}
+</code></pre>
 
 <h2 id="引用">引用</h2>
 
@@ -252,8 +398,8 @@ func main() {
 <li><a href="https://github.com/luciotato/golang-notes/blob/master/OOP.md">Golang concepts from an OOP point of view</a><br /></li>
 <li><a href="https://golang.org/doc/faq">Golang FAQ</a><br /></li>
 <li><a href="https://www.aliyun.com/jiaocheng/88926.html">面向对象三大基本特性,五大基本原则</a><br /></li>
+<li><a href="https://dave.cheney.net/2016/08/20/solid-go-designhttps://dave.cheney.net/2016/08/20/solid-go-design">solid-go-design</a><br /></li>
 </ul>
-</blockquote>
 
 	</div>
   <footer class="article-footer clearfix">
