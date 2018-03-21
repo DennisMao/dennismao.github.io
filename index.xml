@@ -6,10 +6,19 @@
     <description>Recent content on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 06 Mar 2018 23:21:08 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 12 Mar 2018 23:04:21 +0800</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>【设计模式】Go语言的面向对象</title>
+      <link>/post/2018/03/go-oop/</link>
+      <pubDate>Mon, 12 Mar 2018 23:04:21 +0800</pubDate>
+      
+      <guid>/post/2018/03/go-oop/</guid>
+      <description>前言 工作中遇到转来使用Go语言的朋友或者同事，基本都是从现有语言，像C++和JAVA转来。所以在平时交流时候多少会需要引用到以前所学的一些概</description>
+    </item>
     
     <item>
       <title>教程</title>
@@ -26,7 +35,7 @@
       <pubDate>Tue, 06 Mar 2018 23:20:18 +0800</pubDate>
       
       <guid>/post/books/</guid>
-      <description>日常整理一些的经典技术书籍。 后端 基础 Go C C++ 容器化 大数据 前端 架构</description>
+      <description>日常整理一些的经典技术书籍和文章。 后端 基础 Go C/C++ 容器化 大数据 前端 架构 分布式事务处理笔记</description>
     </item>
     
     <item>
@@ -35,7 +44,7 @@
       <pubDate>Tue, 06 Mar 2018 23:08:38 +0800</pubDate>
       
       <guid>/post/toolkit/</guid>
-      <description>日常整理的技术和组件开发文档，项目开发随手使用。 数据库 关系型 MySQL Sqlite PostgreSQL 非关系型 InfluxDB MQ RabbitMQ Kafka 官方文档 Issues 中文教程 博客</description>
+      <description>日常整理的技术和组件开发文档，项目开发随手使用。 数据库 关系型 MySQL Sqlite PostgreSQL PostgreSQL资料汇总 非关系型 InfluxDB MQ RabbitMQ Kafka 官方文档 Issues 中文教程 博客</description>
     </item>
     
     <item>
@@ -89,7 +98,7 @@
       <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
       
       <guid>/post/2017/11/go-context-is-not-for-cancel/</guid>
-      <description>前言 译者:Razil 本文译自:Context isn’t for cancellation</description>
+      <description>前言 译者:Razil 本文译自:Context isn’t for cancellation 包括我自己在内的许多作者，学了许多关于contenxt.Context包使用、误用</description>
     </item>
     
     <item>

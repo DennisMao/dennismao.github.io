@@ -123,61 +123,61 @@ requests库 + re库<br />
 <pre><code class="language-go">package main
 
 import (
-	&quot;errors&quot;
-	&quot;fmt&quot;
-	&quot;io/ioutil&quot;
-	&quot;net/http&quot;
-	&quot;regexp&quot;
+    &quot;errors&quot;
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+    &quot;net/http&quot;
+    &quot;regexp&quot;
 
-	encodingConvert &quot;github.com/DennisMao/mahonia&quot;
+    encodingConvert &quot;github.com/DennisMao/mahonia&quot;
 )
 
 func SimpleScrapy(url string) (string, error) {
-	//http请求
-	resp, err := http.Get(url)
-	if err != nil {
-		return &quot;&quot;, err
-	}
+    //http请求
+    resp, err := http.Get(url)
+    if err != nil {
+        return &quot;&quot;, err
+    }
 
-	//获取响应数据
-	if resp.StatusCode != 200 {
-		return &quot;&quot;, errors.New(&quot;resp statuscode = :&quot; + fmt.Sprint(resp.StatusCode))
-	}
+    //获取响应数据
+    if resp.StatusCode != 200 {
+        return &quot;&quot;, errors.New(&quot;resp statuscode = :&quot; + fmt.Sprint(resp.StatusCode))
+    }
 
-	respBody, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return &quot;&quot;, nil
-	}
+    respBody, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        return &quot;&quot;, nil
+    }
 
-	//编码转换
-	content := encodingConvert.NewEncoder(&quot;utf-8&quot;).ConvertString(string(respBody))
-	//正则
-	re, _ := regexp.Compile(`\&lt;a.+a\&gt;`)
+    //编码转换
+    content := encodingConvert.NewEncoder(&quot;utf-8&quot;).ConvertString(string(respBody))
+    //正则
+    re, _ := regexp.Compile(`\&lt;a.+a\&gt;`)
 
-	txts := re.FindAllString(content, 10) //获取到所有 &lt;a&gt;标签
-	if len(txts) == 0 {
-		return &quot;&quot;, nil
-	}
+    txts := re.FindAllString(content, 10) //获取到所有 &lt;a&gt;标签
+    if len(txts) == 0 {
+        return &quot;&quot;, nil
+    }
 
-	reClass, _ := regexp.Compile(`class=\&quot;site-header-title\&quot;`) //筛选 &lt;a&gt;标签中 class=&quot;site-header-title&quot; 的标签
-	for _, txt := range txts {
-		if reClass.MatchString(txt) {
-			//返回数据
-			reTitle, _ := regexp.Compile(`\&gt;.+\&lt;`)  //获取元素中的内容
-			titleRaw := reTitle.FindString(txt)
-			return titleRaw[1 : len(titleRaw)-1], nil
-		}
-	}
-	return &quot;&quot;, nil
+    reClass, _ := regexp.Compile(`class=\&quot;site-header-title\&quot;`) //筛选 &lt;a&gt;标签中 class=&quot;site-header-title&quot; 的标签
+    for _, txt := range txts {
+        if reClass.MatchString(txt) {
+            //返回数据
+            reTitle, _ := regexp.Compile(`\&gt;.+\&lt;`)  //获取元素中的内容
+            titleRaw := reTitle.FindString(txt)
+            return titleRaw[1 : len(titleRaw)-1], nil
+        }
+    }
+    return &quot;&quot;, nil
 }
 
 func main() {
-	url := &quot;http://razil.cc&quot;
-	title, err := SimpleScrapy(url)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-	fmt.Println(&quot;网站Title = &quot;, title)
+    url := &quot;http://razil.cc&quot;
+    title, err := SimpleScrapy(url)
+    if err != nil {
+        fmt.Println(err.Error())
+    }
+    fmt.Println(&quot;网站Title = &quot;, title)
 }
 </code></pre>
 
@@ -242,7 +242,7 @@ func main() {
     
     <li><a href="../../../../categories/docker" title="docker">docker<sup>1</sup></a></li>
     
-    <li><a href="../../../../categories/go" title="go">go<sup>7</sup></a></li>
+    <li><a href="../../../../categories/go" title="go">go<sup>8</sup></a></li>
     
     <li><a href="../../../../categories/golang" title="golang">golang<sup>5</sup></a></li>
     
@@ -285,7 +285,7 @@ func main() {
       
 			<li><a href="../../../../tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
       
-			<li><a href="../../../../tags/go" title="go">go<sup>2</sup></a></li>
+			<li><a href="../../../../tags/go" title="go">go<sup>3</sup></a></li>
       
 			<li><a href="../../../../tags/golang" title="golang">golang<sup>3</sup></a></li>
       
@@ -294,6 +294,8 @@ func main() {
 			<li><a href="../../../../tags/influxdb" title="influxdb">influxdb<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/json" title="json">json<sup>1</sup></a></li>
+      
+			<li><a href="../../../../tags/oop" title="oop">oop<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/orm" title="orm">orm<sup>1</sup></a></li>
       
@@ -323,6 +325,8 @@ func main() {
       
 			<li><a href="../../../../tags/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
       
+			<li><a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" title="面向对象">面向对象<sup>1</sup></a></li>
+      
 		</ul>
 </div>
 
@@ -335,7 +339,7 @@ func main() {
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">3</span>
+        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">4</span>
       </li>
       
       
@@ -419,6 +423,8 @@ func main() {
     
     <a href="../../../../tags/json" style="font-size: 12px;">json</a>
     
+    <a href="../../../../tags/oop" style="font-size: 12px;">oop</a>
+    
     <a href="../../../../tags/orm" style="font-size: 12px;">orm</a>
     
     <a href="../../../../tags/relfect" style="font-size: 12px;">relfect</a>
@@ -446,6 +452,8 @@ func main() {
     <a href="../../../../tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" style="font-size: 12px;">自动化构建</a>
     
     <a href="../../../../tags/%e9%9a%8f%e7%ac%94" style="font-size: 12px;">随笔</a>
+    
+    <a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" style="font-size: 12px;">面向对象</a>
     
   </div>
 </div>

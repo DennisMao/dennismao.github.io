@@ -188,43 +188,43 @@ func main() {
 <pre><code>package main
 
 import (
-	&quot;log&quot;
-	&quot;os&quot;
+    &quot;log&quot;
+    &quot;os&quot;
 
-	&quot;golang.org/x/net/context&quot;
-	&quot;google.golang.org/grpc&quot;
-	pb &quot;google.golang.org/grpc/examples/helloworld/helloworld&quot;
+    &quot;golang.org/x/net/context&quot;
+    &quot;google.golang.org/grpc&quot;
+    pb &quot;google.golang.org/grpc/examples/helloworld/helloworld&quot;
 )
 
 const (
-	address     = &quot;localhost:50051&quot;
-	defaultName = &quot;world&quot;
+    address     = &quot;localhost:50051&quot;
+    defaultName = &quot;world&quot;
 )
 
 func main() {
-	// 新建Tcp链接
-	conn, err := grpc.Dial(address, grpc.WithInsecure())
-	if err != nil {
-		log.Fatalf(&quot;did not connect: %v&quot;, err)
-	}
-	defer conn.Close()
+    // 新建Tcp链接
+    conn, err := grpc.Dial(address, grpc.WithInsecure())
+    if err != nil {
+        log.Fatalf(&quot;did not connect: %v&quot;, err)
+    }
+    defer conn.Close()
     
     // 根据Protobuf框架，新建客户端实例
-	c := pb.NewGreeterClient(conn)
+    c := pb.NewGreeterClient(conn)
 
-	name := defaultName
-	if len(os.Args) &gt; 1 {
-		name = os.Args[1]
-	}
+    name := defaultName
+    if len(os.Args) &gt; 1 {
+        name = os.Args[1]
+    }
     
     // 调用远程方法
-	r, err := c.SayHello(context.Background(), &amp;pb.HelloRequest{Name: name})
-	if err != nil {
-		log.Fatalf(&quot;could not greet: %v&quot;, err)
-	}
+    r, err := c.SayHello(context.Background(), &amp;pb.HelloRequest{Name: name})
+    if err != nil {
+        log.Fatalf(&quot;could not greet: %v&quot;, err)
+    }
     
     // 打印响应
-	log.Printf(&quot;Greeting: %s&quot;, r.Message)
+    log.Printf(&quot;Greeting: %s&quot;, r.Message)
 }
 </code></pre>
 
@@ -290,7 +290,7 @@ Git Clone整个目录下来即可</p>
     
     <li><a href="../../../../categories/docker" title="docker">docker<sup>1</sup></a></li>
     
-    <li><a href="../../../../categories/go" title="go">go<sup>7</sup></a></li>
+    <li><a href="../../../../categories/go" title="go">go<sup>8</sup></a></li>
     
     <li><a href="../../../../categories/golang" title="golang">golang<sup>5</sup></a></li>
     
@@ -333,7 +333,7 @@ Git Clone整个目录下来即可</p>
       
 			<li><a href="../../../../tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
       
-			<li><a href="../../../../tags/go" title="go">go<sup>2</sup></a></li>
+			<li><a href="../../../../tags/go" title="go">go<sup>3</sup></a></li>
       
 			<li><a href="../../../../tags/golang" title="golang">golang<sup>3</sup></a></li>
       
@@ -342,6 +342,8 @@ Git Clone整个目录下来即可</p>
 			<li><a href="../../../../tags/influxdb" title="influxdb">influxdb<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/json" title="json">json<sup>1</sup></a></li>
+      
+			<li><a href="../../../../tags/oop" title="oop">oop<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/orm" title="orm">orm<sup>1</sup></a></li>
       
@@ -371,6 +373,8 @@ Git Clone整个目录下来即可</p>
       
 			<li><a href="../../../../tags/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
       
+			<li><a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" title="面向对象">面向对象<sup>1</sup></a></li>
+      
 		</ul>
 </div>
 
@@ -383,7 +387,7 @@ Git Clone整个目录下来即可</p>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">3</span>
+        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">4</span>
       </li>
       
       
@@ -467,6 +471,8 @@ Git Clone整个目录下来即可</p>
     
     <a href="../../../../tags/json" style="font-size: 12px;">json</a>
     
+    <a href="../../../../tags/oop" style="font-size: 12px;">oop</a>
+    
     <a href="../../../../tags/orm" style="font-size: 12px;">orm</a>
     
     <a href="../../../../tags/relfect" style="font-size: 12px;">relfect</a>
@@ -494,6 +500,8 @@ Git Clone整个目录下来即可</p>
     <a href="../../../../tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" style="font-size: 12px;">自动化构建</a>
     
     <a href="../../../../tags/%e9%9a%8f%e7%ac%94" style="font-size: 12px;">随笔</a>
+    
+    <a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" style="font-size: 12px;">面向对象</a>
     
   </div>
 </div>

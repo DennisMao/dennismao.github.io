@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>使用TravisCI持续部署Hugo博客到gitpages - Razil&#39;s Blog</title>
+  <title>【设计模式】Go语言的面向对象 - Razil&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="背景 年中时候着手用hugo搭建自己的技术博客。由于hugo同hexo一样，生成出的都是纯静态的页面。因此可以使用github来作为服务器存放">
+  <meta name="description" content="前言 工作中遇到转来使用Go语言的朋友或者同事，基本都是从现有语言，像C&#43;&#43;和JAVA转来。所以在平时交流时候多少会需要引用到以前所学的一些概">
   
-  <meta itemprop="name" content="使用TravisCI持续部署Hugo博客到gitpages - Razil&#39;s Blog">
-  <meta itemprop="description" content="背景 年中时候着手用hugo搭建自己的技术博客。由于hugo同hexo一样，生成出的都是纯静态的页面。因此可以使用github来作为服务器存放">
+  <meta itemprop="name" content="【设计模式】Go语言的面向对象 - Razil&#39;s Blog">
+  <meta itemprop="description" content="前言 工作中遇到转来使用Go语言的朋友或者同事，基本都是从现有语言，像C&#43;&#43;和JAVA转来。所以在平时交流时候多少会需要引用到以前所学的一些概">
   <meta itemprop="image" content="/img/author.jpg">
   
   
@@ -64,7 +64,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="../../../../post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/" title="使用TravisCI持续部署Hugo博客到gitpages" itemprop="url">使用TravisCI持续部署Hugo博客到gitpages</a>
+      <a href="../../../../post/2018/03/go-oop/" title="【设计模式】Go语言的面向对象" itemprop="url">【设计模式】Go语言的面向对象</a>
   </h1>
   <p class="article-author">By
     
@@ -72,7 +72,7 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2018-01-16 23:04:21 &#43;0800 CST" itemprop="datePublished">2018年01月16号</time>
+    <time datetime="2018-03-12 23:04:21 &#43;0800 CST" itemprop="datePublished">2018年03月12号</time>
   </p>
 </header>
 
@@ -84,11 +84,22 @@
 <ul>
 <li>
 <ul>
-<li><a href="#背景">背景</a></li>
-<li><a href="#操作步骤">操作步骤</a></li>
-<li><a href="#最终效果">最终效果</a></li>
-<li><a href="#注意事项">注意事项</a></li>
-<li><a href="#参考">参考</a></li>
+<li><a href="#前言">前言</a></li>
+<li><a href="#三大特征">三大特征</a>
+<ul>
+<li><a href="#封装">封装</a></li>
+<li><a href="#继承">继承</a></li>
+<li><a href="#多态">多态</a></li>
+</ul></li>
+<li><a href="#五大原则">五大原则</a>
+<ul>
+<li><a href="#单一职责">单一职责</a></li>
+<li><a href="#开放封闭-ocp">开放封闭(OCP)</a></li>
+<li><a href="#替换原则-lsp">替换原则(LSP)</a></li>
+<li><a href="#依赖倒置">依赖倒置</a></li>
+<li><a href="#接口隔离">接口隔离</a></li>
+</ul></li>
+<li><a href="#引用">引用</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -96,28 +107,153 @@
     
     
 
-<h2 id="背景">背景</h2>
+<h2 id="前言">前言</h2>
 
-<p><img src="../build-blog-by-hugo-and-travis-ci/hugo-and-travisci.jpg" alt="hugo-and-travisci" />
-年中时候着手用<a href="https://github.com/spf13/hugo">hugo</a>搭建自己的技术博客。由于hugo同hexo一样，生成出的都是纯静态的页面。因此可以使用github来作为服务器存放页面，并且github page支持CNAME解析。因此将自己的<a href="https://razil.cc">razil.cc</a>域名解析到了<a href="https://dennismao.github.io">dennismao.github.io</a>上。具体搭建方法可以参考白老师的文章<a href="http://tonybai.com/2015/09/23/intro-of-gohugo/">http://tonybai.com/2015/09/23/intro-of-gohugo/</a>。接着便开始了将csdn的文章开始往github博客上迁移。<br />
-实际使用中逐渐发现博客的维护有点麻烦。</p>
+<p>工作中遇到转来使用Go语言的朋友或者同事，基本都是从现有语言，像C++和JAVA转来。所以在平时交流时候多少会需要引用到以前所学的一些概念和方法，而面向对象这一块就是经常碰到的讨论点之一。在面向对象设计中，Go语言有些实现并不能完全按照C++和JAVA的概念进行理解。所以本文介绍的准确说是依照Go语言自身方法，来对面向对象进行模拟实现。</p>
 
-<p>痛点
-+ 1、编辑、更新后的发布流程过于繁琐
-+ 2、多人协作</p>
+<p>Go是否是一个面向对象语言？
+答案是: Go并不是一个纯面向对象语言。原由出自Go的<a href="https://golang.org/doc/faq#Is_Go_an_object-oriented_language">FAQ</a>
+&gt;Is Go an object-oriented language?
+Yes and no. Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of “interface” in Go provides a different approach that we believe is easy to use and in some ways more general. There are also ways to embed types in other types to provide something analogous—but not identical—to subclassing. Moreover, methods in Go are more general than in C++ or Java: they can be defined for any sort of data, even built-in types such as plain, “unboxed” integers. They are not restricted to structs (classes).
+&gt;
+&gt;Also, the lack of a type hierarchy makes “objects” in Go feel much more lightweight than in languages such as C++ or Java.</p>
 
-<h2 id="操作步骤">操作步骤</h2>
+<h2 id="三大特征">三大特征</h2>
 
-<h2 id="最终效果">最终效果</h2>
+<h3 id="封装">封装</h3>
 
-<h2 id="注意事项">注意事项</h2>
+<blockquote>
+<p>把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏</p>
+</blockquote>
 
-<h2 id="参考">参考</h2>
+<p>由于Go无类的概念，但是我们有interface和结构体。在Go中可以通过结构体和接口进行封装操作。通过控制变量、结构体和方法首字母大小来实现内外部访问控制。</p>
+
+<pre><code class="language-go">type MyStruct struct{
+    id int64 //仅供内部访问
+    Name string  //允许外部访问
+}
+
+//允许外部访问方法(public)
+func NewObject(){
+}
+
+//仅允许包内访问方法(private)
+func checkObject(){
+}
+
+//限定仅允许某对象示例访问方法
+func (this *MyStruct) Clone() {
+}
+</code></pre>
+
+<h3 id="继承">继承</h3>
+
+<blockquote>
+<p>可以让某个类型的对象获得另一个类型的对象的属性的方法。它支持按级分类的概念。继承是指这样一种能力:它可以使用现有类的所有功能,并在无需重新编写原来的类的情况下对这些功能进行扩展。 通过继承创建的新类称为“子类”或“派生类”,被继承的类称为“基类”、“父类”或“超类”</p>
+</blockquote>
+
+<p>由于Go中无类的概念。但是与封装方法相同，我们还是以结构体为基础，使用<strong>【内嵌】</strong>功能实现对结构体进行××组合××，实现类似继承的效果。其中通过内嵌方法生成的新结构体允许访问原结构体的方法。</p>
+
+<pre><code class="language-go">//基类
+type MyStruct struct {
+    id   int64
+    Name string
+}
+
+//限定仅允许MyStruct结构体实例访问的方法
+func (this *MyStruct) generateId() {
+    this.id = time.Now().Unix()
+    return
+}
+
+//子类(派生类)
+type MyChildStruct struct {
+    MyStruct //基类
+    Phone string
+}
+
+</code></pre>
+
+<h3 id="多态">多态</h3>
+
+<blockquote>
+<p>指一个类实例的相同方法在不同情形有不同表现形式。多态机制使具有不同内部结构的对象可以共享相同的外部接口。这意味着,虽然针对不同对象的具体操作不同,但通过一个公共的类,它们(那些操作)可以通过相同的方式予以调用。</p>
+</blockquote>
+
+<p>实现:</p>
+
+<pre><code class="language-go">type Dog struct {
+    Name string
+}
+
+func (this *Dog) String() string {
+    return `Type: Dog , Name: ` + this.Name
+}
+
+type Cat struct {
+    Name string
+}
+
+func (this *Cat) String() string {
+    return `Type: Cat , Name: ` + this.Name
+}
+
+type Aninals interface {
+    String() string
+}
+
+func main() {
+    myDog := &amp;Dog{Name: &quot;W&quot;}
+    myCat := &amp;Cat{Name: &quot;W&quot;}
+
+    myAnimals := []Aninals{}
+    myAnimals = append(myAnimals, Aninals(myDog))
+    myAnimals = append(myAnimals, Aninals(myCat))
+    for _, animal := range myAnimals {
+        fmt.Println(animal.String())
+    }
+
+}
+
+</code></pre>
+
+<h2 id="五大原则">五大原则</h2>
+
+<h3 id="单一职责">单一职责</h3>
+
+<blockquote>
+<p>一个类的功能要单一,不能包罗万象</p>
+</blockquote>
+
+<h3 id="开放封闭-ocp">开放封闭(OCP)</h3>
+
+<blockquote>
+<p>一个模块在扩展性方面应该是开放的而在更改性方面应该是封闭的</p>
+</blockquote>
+
+<h3 id="替换原则-lsp">替换原则(LSP)</h3>
+
+<blockquote>
+<p>子类应当可以替换父类并出现在父类能够出现的任何地方</p>
+</blockquote>
+
+<h3 id="依赖倒置">依赖倒置</h3>
+
+<blockquote>
+<p>具体依赖抽象,上层依赖下层。</p>
+
+<h3 id="接口隔离">接口隔离</h3>
+
+<p>模块间要通过抽象接口隔离开,而不是通过具体的类强耦合起来</p>
+
+<h2 id="引用">引用</h2>
 
 <ul>
-<li><a href="https://www.metachris.com/2017/04/continuous-deployment-hugo---travis-ci--github-pages/">Continuous Deployment: Hugo + Travis CI → GitHub Pages</a><br /></li>
-<li><a href="https://miaocode.tk/hello-hugo-and-more/">Hugo借助Travis CI实现GitHub Pages自动部署实践</a></li>
+<li><a href="https://github.com/luciotato/golang-notes/blob/master/OOP.md">Golang concepts from an OOP point of view</a><br /></li>
+<li><a href="https://golang.org/doc/faq">Golang FAQ</a><br /></li>
+<li><a href="https://www.aliyun.com/jiaocheng/88926.html">面向对象三大基本特性,五大基本原则</a><br /></li>
 </ul>
+</blockquote>
 
 	</div>
   <footer class="article-footer clearfix">
@@ -126,9 +262,11 @@
 <div class="article-tags">
   <span></span>
   
-  <a href="../../../../tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA">自动化构建</a>
+  <a href="../../../../tags/go">go</a>
   
-  <a href="../../../../tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0">使用手记</a>
+  <a href="../../../../tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">面向对象</a>
+  
+  <a href="../../../../tags/oop">oop</a>
   
 </div>
 
@@ -146,7 +284,7 @@
 
 
   <div class="article-share" id="share">
-    <div data-url="/post/2018/01/build-blog-by-hugo-and-travisci-on-gitpages/" data-title="使用TravisCI持续部署Hugo博客到gitpages" data-tsina="" class="share clearfix">
+    <div data-url="/post/2018/03/go-oop/" data-title="【设计模式】Go语言的面向对象" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>

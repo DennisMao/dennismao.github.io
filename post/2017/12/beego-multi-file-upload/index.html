@@ -371,12 +371,12 @@ juTpLFg8J10AAAAASUVORK5CYII='/></p>
 <h2 id="服务端代码">服务端代码</h2>
 
 <pre><code>import(
-	&quot;io&quot;
-	&quot;os&quot;
-	&quot;strings&quot;
+    &quot;io&quot;
+    &quot;os&quot;
+    &quot;strings&quot;
 
-	&quot;github.com/astaxie/beego&quot;
-	&quot;github.com/astaxie/beego/logs&quot;
+    &quot;github.com/astaxie/beego&quot;
+    &quot;github.com/astaxie/beego/logs&quot;
 )
 
 //默认参数
@@ -384,90 +384,90 @@ const (
     STATIC_PATH = &quot;tmp/&quot;
 )
 
-//	文件信息格式
+//  文件信息格式
 type FileRecord struct {
-	FileName   string `json:&quot;file_name&quot;`
-	Path       string `json:&quot;path&quot;`
-	FileSize   string `json:&quot;file_size&quot;`
-	UploadTime string `json:&quot;upload_time&quot;`
+    FileName   string `json:&quot;file_name&quot;`
+    Path       string `json:&quot;path&quot;`
+    FileSize   string `json:&quot;file_size&quot;`
+    UploadTime string `json:&quot;upload_time&quot;`
 }
 
 
-//	上传
+//  上传
 type UploadController struct {
-	beego.Controller
+    beego.Controller
 }
 
 func (c UploadController) Post() {
 
-	//跨域检查
-	//访问控制
-	//权限控制
+    //跨域检查
+    //访问控制
+    //权限控制
 
-	//文件保存
-	files, err := c.GetFiles(&quot;file&quot;)
-	if err != nil {
-		c.Ctx.WriteString(common.RespError(&quot;00001&quot;, &quot;Invalid file&quot;))
-		return
-	}
-	var fileRecords []FileRecord
+    //文件保存
+    files, err := c.GetFiles(&quot;file&quot;)
+    if err != nil {
+        c.Ctx.WriteString(common.RespError(&quot;00001&quot;, &quot;Invalid file&quot;))
+        return
+    }
+    var fileRecords []FileRecord
 
-	for i, _ := range files {
-		//文件后缀过滤
-		suffixIndex := strings.LastIndex(files[i].Filename, &quot;.&quot;)
-		if !strings.Contains(&quot;.doc/.docx/.xls/.xlsx/.zip/.rar &quot;, files[i].Filename[suffixIndex:]) {
-			c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;only support .doc/.docx/.xls/.xlsx/.zip/.rar file&quot;))
-			return
-		}
+    for i, _ := range files {
+        //文件后缀过滤
+        suffixIndex := strings.LastIndex(files[i].Filename, &quot;.&quot;)
+        if !strings.Contains(&quot;.doc/.docx/.xls/.xlsx/.zip/.rar &quot;, files[i].Filename[suffixIndex:]) {
+            c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;only support .doc/.docx/.xls/.xlsx/.zip/.rar file&quot;))
+            return
+        }
 
-		var fpath string = &quot;&quot;
-		fpath = STATIC_PATH + files[i].Filename + fmt.Sprint(&quot;_&quot;, time.Now().Unix())
+        var fpath string = &quot;&quot;
+        fpath = STATIC_PATH + files[i].Filename + fmt.Sprint(&quot;_&quot;, time.Now().Unix())
 
-		var record troublesheet.FileRecord
+        var record troublesheet.FileRecord
 
-		//获取文件句柄
-		hFile, err := files[i].Open()
-		if err != nil {
-			c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;]&quot;))
-			return
-		}
+        //获取文件句柄
+        hFile, err := files[i].Open()
+        if err != nil {
+            c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;]&quot;))
+            return
+        }
 
-		//获取文件大小
-		err, fSize := common.File_GetSize(hFile)
-		if err != nil {
-			logs.Debug(&quot;failed to upload [&quot; + files[i].Filename + &quot;],reason: errors on server file system,failed to get file size &quot;)
-			c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;],reason: unrecognized file&quot;))
-			return
-		}
+        //获取文件大小
+        err, fSize := common.File_GetSize(hFile)
+        if err != nil {
+            logs.Debug(&quot;failed to upload [&quot; + files[i].Filename + &quot;],reason: errors on server file system,failed to get file size &quot;)
+            c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;],reason: unrecognized file&quot;))
+            return
+        }
 
-		//创建本地文件
-		destFile, err := os.Create(fpath)
-		if err != nil {
-			logs.Debug(&quot;failed to upload [&quot; + files[i].Filename + &quot;],reason: errors on server file system,failed to create local path &quot;)
-			c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;],reason: errors on server file system &quot;))
-			return
-		}
+        //创建本地文件
+        destFile, err := os.Create(fpath)
+        if err != nil {
+            logs.Debug(&quot;failed to upload [&quot; + files[i].Filename + &quot;],reason: errors on server file system,failed to create local path &quot;)
+            c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;],reason: errors on server file system &quot;))
+            return
+        }
 
-		//文件保存
-		_, err = io.Copy(destFile, hFile)
-		if err != nil {
-			logs.Debug(&quot;failed to upload [&quot; + files[i].Filename + &quot;],reason: errors on server file system,failed to store source files &quot;)
-			c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;],reason: errors on server file system &quot;))
-			return
-		}
+        //文件保存
+        _, err = io.Copy(destFile, hFile)
+        if err != nil {
+            logs.Debug(&quot;failed to upload [&quot; + files[i].Filename + &quot;],reason: errors on server file system,failed to store source files &quot;)
+            c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;],reason: errors on server file system &quot;))
+            return
+        }
 
-		record.FileName = files[i].Filename
-		record.Path = fpath
-		record.FileSize = fmt.Sprint(fSize)
-		record.UploadTime = time.Now().Format(&quot;2006-01-02 15:04:05&quot;)
+        record.FileName = files[i].Filename
+        record.Path = fpath
+        record.FileSize = fmt.Sprint(fSize)
+        record.UploadTime = time.Now().Format(&quot;2006-01-02 15:04:05&quot;)
 
-		hFile.Close()
-		destFile.Close()
+        hFile.Close()
+        destFile.Close()
 
-		fileRecords = append(fileRecords, record)
-	}
-	c.Ctx.WriteString(RespData(nil, fileRecords))
-	return
+        fileRecords = append(fileRecords, record)
+    }
+    c.Ctx.WriteString(RespData(nil, fileRecords))
+    return
 }
 </code></pre>
 
@@ -477,7 +477,7 @@ func (c UploadController) Post() {
   &quot;errcode&quot;: &quot;00000&quot;,
   &quot;data&quot;: null,
   &quot;datas&quot;: [
-	  {
+      {
       &quot;file_name&quot;: &quot;template_1512742894.xlsx&quot;,
       &quot;path&quot;: &quot;/data/file/workflow/trouble/template_1512742894.xlsx_1514342635&quot;,
       &quot;file_size&quot;: &quot;11168&quot;,
@@ -540,7 +540,7 @@ func (c UploadController) Post() {
     
     <li><a href="../../../../categories/docker" title="docker">docker<sup>1</sup></a></li>
     
-    <li><a href="../../../../categories/go" title="go">go<sup>7</sup></a></li>
+    <li><a href="../../../../categories/go" title="go">go<sup>8</sup></a></li>
     
     <li><a href="../../../../categories/golang" title="golang">golang<sup>5</sup></a></li>
     
@@ -583,7 +583,7 @@ func (c UploadController) Post() {
       
 			<li><a href="../../../../tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
       
-			<li><a href="../../../../tags/go" title="go">go<sup>2</sup></a></li>
+			<li><a href="../../../../tags/go" title="go">go<sup>3</sup></a></li>
       
 			<li><a href="../../../../tags/golang" title="golang">golang<sup>3</sup></a></li>
       
@@ -592,6 +592,8 @@ func (c UploadController) Post() {
 			<li><a href="../../../../tags/influxdb" title="influxdb">influxdb<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/json" title="json">json<sup>1</sup></a></li>
+      
+			<li><a href="../../../../tags/oop" title="oop">oop<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/orm" title="orm">orm<sup>1</sup></a></li>
       
@@ -621,6 +623,8 @@ func (c UploadController) Post() {
       
 			<li><a href="../../../../tags/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
       
+			<li><a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" title="面向对象">面向对象<sup>1</sup></a></li>
+      
 		</ul>
 </div>
 
@@ -633,7 +637,7 @@ func (c UploadController) Post() {
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">3</span>
+        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">4</span>
       </li>
       
       
@@ -717,6 +721,8 @@ func (c UploadController) Post() {
     
     <a href="../../../../tags/json" style="font-size: 12px;">json</a>
     
+    <a href="../../../../tags/oop" style="font-size: 12px;">oop</a>
+    
     <a href="../../../../tags/orm" style="font-size: 12px;">orm</a>
     
     <a href="../../../../tags/relfect" style="font-size: 12px;">relfect</a>
@@ -744,6 +750,8 @@ func (c UploadController) Post() {
     <a href="../../../../tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" style="font-size: 12px;">自动化构建</a>
     
     <a href="../../../../tags/%e9%9a%8f%e7%ac%94" style="font-size: 12px;">随笔</a>
+    
+    <a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" style="font-size: 12px;">面向对象</a>
     
   </div>
 </div>

@@ -6,10 +6,19 @@
     <description>Recent content in Go on Razil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 28 Jan 2018 22:53:37 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 12 Mar 2018 23:04:21 +0800</lastBuildDate>
     
 	<atom:link href="/categories/go/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>【设计模式】Go语言的面向对象</title>
+      <link>/post/2018/03/go-oop/</link>
+      <pubDate>Mon, 12 Mar 2018 23:04:21 +0800</pubDate>
+      
+      <guid>/post/2018/03/go-oop/</guid>
+      <description>前言 工作中遇到转来使用Go语言的朋友或者同事，基本都是从现有语言，像C++和JAVA转来。所以在平时交流时候多少会需要引用到以前所学的一些概</description>
+    </item>
     
     <item>
       <title>2017 Go语言使用总结</title>
