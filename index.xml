@@ -12,6 +12,15 @@
     
     
     <item>
+      <title>【网络】常用http状态码及应用场景</title>
+      <link>/post/2018/03/http-status-code-in-common-use/</link>
+      <pubDate>Mon, 12 Mar 2018 23:04:21 +0800</pubDate>
+      
+      <guid>/post/2018/03/http-status-code-in-common-use/</guid>
+      <description>前言 之前在捣鼓爬虫时候，顺便整理了下常见的HTTP状态码。后面参与web服务开发，深觉这个用的还是很频繁的，故又重新整理了下，如有描述不正确</description>
+    </item>
+    
+    <item>
       <title>【设计模式】Go语言的面向对象</title>
       <link>/post/2018/03/go-oop/</link>
       <pubDate>Mon, 12 Mar 2018 23:04:21 +0800</pubDate>

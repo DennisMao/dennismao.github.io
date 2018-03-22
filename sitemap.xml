@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2018/03/http-status-code-in-common-use/</loc>
+    <lastmod>2018-03-12T23:04:21+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018/03/go-oop/</loc>
     <lastmod>2018-03-12T23:04:21+08:00</lastmod>
   </url>
@@ -179,6 +184,12 @@
   </url>
   
   <url>
+    <loc>/tags/http/</loc>
+    <lastmod>2018-03-12T23:04:21+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/influxdb/</loc>
     <lastmod>2017-10-19T23:38:17+08:00</lastmod>
     <priority>0</priority>
@@ -313,6 +324,12 @@
   <url>
     <loc>/categories/%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2017-11-30T20:54:52+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2018-03-12T23:04:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
