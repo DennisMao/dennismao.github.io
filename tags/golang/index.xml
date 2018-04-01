@@ -26,7 +26,7 @@
       <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
       
       <guid>/post/2017/11/go-context-is-not-for-cancel/</guid>
-      <description>前言 译者:Razil 本文译自:Context isn’t for cancellation 包括我自己在内的许多作者，学了许多关于contenxt.Context包使用、误用</description>
+      <description>前言 译者:Razil 本文译自:Context isn’t for cancellation</description>
     </item>
     
     <item>

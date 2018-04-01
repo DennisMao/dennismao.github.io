@@ -15,8 +15,7 @@
   <meta name="twitter:description" content="">
   
   <link rel="shortcut icon" href="../../../../img/favicon.ico"/>
-  <link rel="apple-touch-icon" href="../../../../apple-touch-icon.png" />
-  <link rel="apple-touch-icon-precomposed" href="../../../../apple-touch-icon.png" />
+
   <link rel="stylesheet" href="../../../../highlight/styles/github.css">
   <script src="../../../../highlight/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
@@ -66,10 +65,8 @@
   <h1 itemprop="name">
       <a href="../../../../post/2017/12/dynamic-json/" title="使用Go语言处理动态JSON类型" itemprop="url">使用Go语言处理动态JSON类型</a>
   </h1>
-  <p class="article-author">By
-    
-      <a href="" title=""></a>
-    
+  <p class="article-author">By 
+      <a href="" title="">""</a>
   </p>
   <p class="article-time">
     <time datetime="2017-12-14 00:22:45 &#43;0800 CST" itemprop="datePublished">2017年12月14号</time>
@@ -103,8 +100,8 @@
 <p>在项目中有遇到JSON格式的数据流，对接的数据源其内容格式会有变化，但是内部会有字段表示其内容的类型，比如以下结构:</p>
 
 <pre><code>type DataJson struct {
-    JsonType string `json:&quot;json_type&quot;`
-    Data interface{} `json:&quot;data&quot;`
+	JsonType string `json:&quot;json_type&quot;`
+	Data interface{} `json:&quot;data&quot;`
 }
 </code></pre>
 
@@ -117,20 +114,20 @@
 动态类型生成方式很简单:</p>
 
 <pre><code>type DataJson struct {
-        JsonType string `json:&quot;json_type&quot;`
-    Data interface{} `json:&quot;data&quot;`
+      	JsonType string `json:&quot;json_type&quot;`
+	Data interface{} `json:&quot;data&quot;`
 }
 
 func main(){
-    //定义两个JSON数据对象
-    var jsData1,jsData2 DataJson
-    //String数据类型对象
-    jsData1.JsonType = &quot;string&quot;
-    jsData1.Data = &quot;hello json&quot;
-    
-    //Int64数据类型对象
-    jsData2.JsonType = &quot;int64&quot;
-    jsData2.Data = 123456789    
+	//定义两个JSON数据对象
+	var jsData1,jsData2 DataJson
+	//String数据类型对象
+	jsData1.JsonType = &quot;string&quot;
+	jsData1.Data = &quot;hello json&quot;
+	
+	//Int64数据类型对象
+	jsData2.JsonType = &quot;int64&quot;
+	jsData2.Data = 123456789	
 }
 </code></pre>
 
@@ -143,48 +140,48 @@ func main(){
 <pre><code>//目标类型
 type DataJson struct {
         JsonType string `json:&quot;json_type&quot;`
-        Data interface{} `json:&quot;data&quot;`  
+        Data interface{} `json:&quot;data&quot;`	
 }
 //中间类型
 type DataJsonType struct {
-    JsonType string `json:&quot;json_type&quot;`
+	JsonType string `json:&quot;json_type&quot;`
 }
 
 //字符串类型
 type DataJsonTypeString struct {
-    Data string `json:&quot;data&quot;`
+	Data string `json:&quot;data&quot;`
 }
 
 func main(){
-    //原始JSON数据
-    var rawData = `
-    {
-    &quot;type&quot;: &quot;string&quot;,
-    &quot;data&quot;: &quot;dynamite&quot;
-    }
-    `
+	//原始JSON数据
+	var rawData = `
+	{
+	&quot;type&quot;: &quot;string&quot;,
+	&quot;data&quot;: &quot;dynamite&quot;
+	}
+	`
 
-    buffer := []byte(rawData)
-    //创建中间类型对象
-    var md DataJsonType 
-    err := json.Unmarshal(buffer,&amp;md)
-    if err != nil {
-        log.Fatalln(err)
-    }
-    switch md.Type {
-        case &quot;string&quot;:
-            var strData struct {
-                DataJsonType
-                DataJsonTypeString
-            }
-            err := json.Unmarshal(buffer,&amp;strData)
-            if err != nil {
-                log.Fatalln(err)    
-            }
-            log.Println(&quot;data:&quot;,strData.Data)
-        default :
-            log.Fatalln(&quot;error: unsupported type&quot;)
-    }
+	buffer := []byte(rawData)
+	//创建中间类型对象
+	var md DataJsonType 
+	err := json.Unmarshal(buffer,&amp;md)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	switch md.Type {
+		case &quot;string&quot;:
+			var strData struct {
+				DataJsonType
+				DataJsonTypeString
+			}
+			err := json.Unmarshal(buffer,&amp;strData)
+			if err != nil {
+				log.Fatalln(err)	
+			}
+			log.Println(&quot;data:&quot;,strData.Data)
+		default :
+			log.Fatalln(&quot;error: unsupported type&quot;)
+	}
 }
 </code></pre>
 
@@ -196,58 +193,58 @@ func main(){
 <pre><code class="language-go">package main
 
 import (
-    &quot;encoding/json&quot;
-    &quot;fmt&quot;
-    &quot;log&quot;
+	&quot;encoding/json&quot;
+	&quot;fmt&quot;
+	&quot;log&quot;
 )
 
 func main() {
-    //基本结构
-    type Color struct {
-        Space string
-        Point json.RawMessage // delay parsing until we know the color space
-    }
-    //节点结构1
-    type RGB struct {
-        R uint8
-        G uint8
-        B uint8
-    }
-    //节点结构2
-    type YCbCr struct {
-        Y  uint8
-        Cb int8
-        Cr int8
-    }
-    //模拟JSON序列化后数据
-    var j = []byte(`[
-        {&quot;Space&quot;: &quot;YCbCr&quot;, &quot;Point&quot;: {&quot;Y&quot;: 255, &quot;Cb&quot;: 0, &quot;Cr&quot;: -10}},
-        {&quot;Space&quot;: &quot;RGB&quot;,   &quot;Point&quot;: {&quot;R&quot;: 98, &quot;G&quot;: 218, &quot;B&quot;: 255}}
-    ]`)
-    //定义基本结构
-    var colors []Color
-    err := json.Unmarshal(j, &amp;colors)
-    if err != nil {
-        log.Fatalln(&quot;error:&quot;, err)
-    }
-    //通过space变量来判断节点的目标类型
-    for _, c := range colors {
-        var dst interface{}
-        switch c.Space {
-        case &quot;RGB&quot;:
-            dst = new(RGB)
-        case &quot;YCbCr&quot;:
-            dst = new(YCbCr)
-        dafult :
-            log.Fatalln(&quot;error: unsupported type&quot;)
-        }
-        //二次序列化
-        err := json.Unmarshal(c.Point, dst)
-        if err != nil {
-            log.Fatalln(&quot;error:&quot;, err)
-        }
-        fmt.Println(c.Space, dst)
-    }
+	//基本结构
+	type Color struct {
+		Space string
+		Point json.RawMessage // delay parsing until we know the color space
+	}
+	//节点结构1
+	type RGB struct {
+		R uint8
+		G uint8
+		B uint8
+	}
+	//节点结构2
+	type YCbCr struct {
+		Y  uint8
+		Cb int8
+		Cr int8
+	}
+	//模拟JSON序列化后数据
+	var j = []byte(`[
+		{&quot;Space&quot;: &quot;YCbCr&quot;, &quot;Point&quot;: {&quot;Y&quot;: 255, &quot;Cb&quot;: 0, &quot;Cr&quot;: -10}},
+		{&quot;Space&quot;: &quot;RGB&quot;,   &quot;Point&quot;: {&quot;R&quot;: 98, &quot;G&quot;: 218, &quot;B&quot;: 255}}
+	]`)
+	//定义基本结构
+	var colors []Color
+	err := json.Unmarshal(j, &amp;colors)
+	if err != nil {
+		log.Fatalln(&quot;error:&quot;, err)
+	}
+	//通过space变量来判断节点的目标类型
+	for _, c := range colors {
+		var dst interface{}
+		switch c.Space {
+		case &quot;RGB&quot;:
+			dst = new(RGB)
+		case &quot;YCbCr&quot;:
+			dst = new(YCbCr)
+		dafult :
+			log.Fatalln(&quot;error: unsupported type&quot;)
+		}
+		//二次序列化
+		err := json.Unmarshal(c.Point, dst)
+		if err != nil {
+			log.Fatalln(&quot;error:&quot;, err)
+		}
+		fmt.Println(c.Space, dst)
+	}
 }
 </code></pre>
 
@@ -300,7 +297,7 @@ func main() {
     
     <li><a href="../../../../categories/docker" title="docker">docker<sup>1</sup></a></li>
     
-    <li><a href="../../../../categories/go" title="go">go<sup>8</sup></a></li>
+    <li><a href="../../../../categories/go" title="go">go<sup>7</sup></a></li>
     
     <li><a href="../../../../categories/golang" title="golang">golang<sup>5</sup></a></li>
     
@@ -315,8 +312,6 @@ func main() {
     <li><a href="../../../../categories/%e6%95%b0%e6%8d%ae%e5%ba%93" title="数据库">数据库<sup>1</sup></a></li>
     
     <li><a href="../../../../categories/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>1</sup></a></li>
-    
-    <li><a href="../../../../categories/%e7%bd%91%e7%bb%9c" title="网络">网络<sup>1</sup></a></li>
     
     <li><a href="../../../../categories/%e8%af%91%e6%96%87" title="译文">译文<sup>2</sup></a></li>
     
@@ -345,19 +340,15 @@ func main() {
       
 			<li><a href="../../../../tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
       
-			<li><a href="../../../../tags/go" title="go">go<sup>3</sup></a></li>
+			<li><a href="../../../../tags/go" title="go">go<sup>2</sup></a></li>
       
 			<li><a href="../../../../tags/golang" title="golang">golang<sup>3</sup></a></li>
       
 			<li><a href="../../../../tags/grpc" title="grpc">grpc<sup>1</sup></a></li>
       
-			<li><a href="../../../../tags/http" title="http">http<sup>1</sup></a></li>
-      
 			<li><a href="../../../../tags/influxdb" title="influxdb">influxdb<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/json" title="json">json<sup>1</sup></a></li>
-      
-			<li><a href="../../../../tags/oop" title="oop">oop<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/orm" title="orm">orm<sup>1</sup></a></li>
       
@@ -387,8 +378,6 @@ func main() {
       
 			<li><a href="../../../../tags/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
       
-			<li><a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" title="面向对象">面向对象<sup>1</sup></a></li>
-      
 		</ul>
 </div>
 
@@ -401,7 +390,7 @@ func main() {
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">5</span>
+        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">3</span>
       </li>
       
       
@@ -481,13 +470,9 @@ func main() {
     
     <a href="../../../../tags/grpc" style="font-size: 12px;">grpc</a>
     
-    <a href="../../../../tags/http" style="font-size: 12px;">http</a>
-    
     <a href="../../../../tags/influxdb" style="font-size: 12px;">influxdb</a>
     
     <a href="../../../../tags/json" style="font-size: 12px;">json</a>
-    
-    <a href="../../../../tags/oop" style="font-size: 12px;">oop</a>
     
     <a href="../../../../tags/orm" style="font-size: 12px;">orm</a>
     
@@ -516,8 +501,6 @@ func main() {
     <a href="../../../../tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" style="font-size: 12px;">自动化构建</a>
     
     <a href="../../../../tags/%e9%9a%8f%e7%ac%94" style="font-size: 12px;">随笔</a>
-    
-    <a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" style="font-size: 12px;">面向对象</a>
     
   </div>
 </div>
@@ -550,6 +533,8 @@ func main() {
     ICP:<a href="http://www.miitbeian.gov.cn/" target=blank>粤ICP备17137859号-1</a>
     
   </p>  
+   
+    
 </div>
 </footer>
   <script src="../../../../js/jquery-2.1.0.min.js"></script>
