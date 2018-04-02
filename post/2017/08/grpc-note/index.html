@@ -15,7 +15,8 @@
   <meta name="twitter:description" content="">
   
   <link rel="shortcut icon" href="../../../../img/favicon.ico"/>
-
+  <link rel="apple-touch-icon" href="../../../../apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="../../../../apple-touch-icon.png" />
   <link rel="stylesheet" href="../../../../highlight/styles/github.css">
   <script src="../../../../highlight/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
@@ -65,8 +66,10 @@
   <h1 itemprop="name">
       <a href="../../../../post/2017/08/grpc-note/" title="gRPC使用手记" itemprop="url">gRPC使用手记</a>
   </h1>
-  <p class="article-author">By 
-      <a href="" title="">""</a>
+  <p class="article-author">By
+    
+      <a href="" title=""></a>
+    
   </p>
   <p class="article-time">
     <time datetime="2017-08-22 23:44:21 &#43;0800 CST" itemprop="datePublished">2017年08月22号</time>
@@ -185,43 +188,43 @@ func main() {
 <pre><code>package main
 
 import (
-	&quot;log&quot;
-	&quot;os&quot;
+    &quot;log&quot;
+    &quot;os&quot;
 
-	&quot;golang.org/x/net/context&quot;
-	&quot;google.golang.org/grpc&quot;
-	pb &quot;google.golang.org/grpc/examples/helloworld/helloworld&quot;
+    &quot;golang.org/x/net/context&quot;
+    &quot;google.golang.org/grpc&quot;
+    pb &quot;google.golang.org/grpc/examples/helloworld/helloworld&quot;
 )
 
 const (
-	address     = &quot;localhost:50051&quot;
-	defaultName = &quot;world&quot;
+    address     = &quot;localhost:50051&quot;
+    defaultName = &quot;world&quot;
 )
 
 func main() {
-	// 新建Tcp链接
-	conn, err := grpc.Dial(address, grpc.WithInsecure())
-	if err != nil {
-		log.Fatalf(&quot;did not connect: %v&quot;, err)
-	}
-	defer conn.Close()
+    // 新建Tcp链接
+    conn, err := grpc.Dial(address, grpc.WithInsecure())
+    if err != nil {
+        log.Fatalf(&quot;did not connect: %v&quot;, err)
+    }
+    defer conn.Close()
     
     // 根据Protobuf框架，新建客户端实例
-	c := pb.NewGreeterClient(conn)
+    c := pb.NewGreeterClient(conn)
 
-	name := defaultName
-	if len(os.Args) &gt; 1 {
-		name = os.Args[1]
-	}
+    name := defaultName
+    if len(os.Args) &gt; 1 {
+        name = os.Args[1]
+    }
     
     // 调用远程方法
-	r, err := c.SayHello(context.Background(), &amp;pb.HelloRequest{Name: name})
-	if err != nil {
-		log.Fatalf(&quot;could not greet: %v&quot;, err)
-	}
+    r, err := c.SayHello(context.Background(), &amp;pb.HelloRequest{Name: name})
+    if err != nil {
+        log.Fatalf(&quot;could not greet: %v&quot;, err)
+    }
     
     // 打印响应
-	log.Printf(&quot;Greeting: %s&quot;, r.Message)
+    log.Printf(&quot;Greeting: %s&quot;, r.Message)
 }
 </code></pre>
 
@@ -287,7 +290,7 @@ Git Clone整个目录下来即可</p>
     
     <li><a href="../../../../categories/docker" title="docker">docker<sup>1</sup></a></li>
     
-    <li><a href="../../../../categories/go" title="go">go<sup>7</sup></a></li>
+    <li><a href="../../../../categories/go" title="go">go<sup>8</sup></a></li>
     
     <li><a href="../../../../categories/golang" title="golang">golang<sup>5</sup></a></li>
     
@@ -301,11 +304,13 @@ Git Clone整个目录下来即可</p>
     
     <li><a href="../../../../categories/%e6%95%b0%e6%8d%ae%e5%ba%93" title="数据库">数据库<sup>1</sup></a></li>
     
-    <li><a href="../../../../categories/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>1</sup></a></li>
+    <li><a href="../../../../categories/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>2</sup></a></li>
+    
+    <li><a href="../../../../categories/%e7%bd%91%e7%bb%9c" title="网络">网络<sup>1</sup></a></li>
     
     <li><a href="../../../../categories/%e8%af%91%e6%96%87" title="译文">译文<sup>2</sup></a></li>
     
-    <li><a href="../../../../categories/%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0" title="阅读笔记">阅读笔记<sup>1</sup></a></li>
+    <li><a href="../../../../categories/%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0" title="阅读笔记">阅读笔记<sup>2</sup></a></li>
     
     <li><a href="../../../../categories/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
     
@@ -330,15 +335,19 @@ Git Clone整个目录下来即可</p>
       
 			<li><a href="../../../../tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
       
-			<li><a href="../../../../tags/go" title="go">go<sup>2</sup></a></li>
+			<li><a href="../../../../tags/go" title="go">go<sup>3</sup></a></li>
       
 			<li><a href="../../../../tags/golang" title="golang">golang<sup>3</sup></a></li>
       
 			<li><a href="../../../../tags/grpc" title="grpc">grpc<sup>1</sup></a></li>
       
+			<li><a href="../../../../tags/http" title="http">http<sup>1</sup></a></li>
+      
 			<li><a href="../../../../tags/influxdb" title="influxdb">influxdb<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/json" title="json">json<sup>1</sup></a></li>
+      
+			<li><a href="../../../../tags/oop" title="oop">oop<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/orm" title="orm">orm<sup>1</sup></a></li>
       
@@ -360,13 +369,15 @@ Git Clone整个目录下来即可</p>
       
 			<li><a href="../../../../tags/%e6%ad%a3%e5%88%99%e5%8c%b9%e9%85%8d" title="正则匹配">正则匹配<sup>1</sup></a></li>
       
-			<li><a href="../../../../tags/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>1</sup></a></li>
+			<li><a href="../../../../tags/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>2</sup></a></li>
       
 			<li><a href="../../../../tags/%e7%bd%91%e7%bb%9c%e7%88%ac%e8%99%ab" title="网络爬虫">网络爬虫<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" title="自动化构建">自动化构建<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
+      
+			<li><a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" title="面向对象">面向对象<sup>1</sup></a></li>
       
 		</ul>
 </div>
@@ -380,12 +391,12 @@ Git Clone整个目录下来即可</p>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">3</span>
+        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">5</span>
       </li>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="../../../../post/#2018-01">2018年01月</a><span class="archive-list-count">2</span>
+        <a class="archive-list-link" href="../../../../post/#2018-01">2018年01月</a><span class="archive-list-count">3</span>
       </li>
       
       
@@ -460,9 +471,13 @@ Git Clone整个目录下来即可</p>
     
     <a href="../../../../tags/grpc" style="font-size: 12px;">grpc</a>
     
+    <a href="../../../../tags/http" style="font-size: 12px;">http</a>
+    
     <a href="../../../../tags/influxdb" style="font-size: 12px;">influxdb</a>
     
     <a href="../../../../tags/json" style="font-size: 12px;">json</a>
+    
+    <a href="../../../../tags/oop" style="font-size: 12px;">oop</a>
     
     <a href="../../../../tags/orm" style="font-size: 12px;">orm</a>
     
@@ -491,6 +506,8 @@ Git Clone整个目录下来即可</p>
     <a href="../../../../tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" style="font-size: 12px;">自动化构建</a>
     
     <a href="../../../../tags/%e9%9a%8f%e7%ac%94" style="font-size: 12px;">随笔</a>
+    
+    <a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" style="font-size: 12px;">面向对象</a>
     
   </div>
 </div>
@@ -523,8 +540,6 @@ Git Clone整个目录下来即可</p>
     ICP:<a href="http://www.miitbeian.gov.cn/" target=blank>粤ICP备17137859号-1</a>
     
   </p>  
-   
-    
 </div>
 </footer>
   <script src="../../../../js/jquery-2.1.0.min.js"></script>

@@ -15,7 +15,8 @@
   <meta name="twitter:description" content="">
   
   <link rel="shortcut icon" href="../../../../img/favicon.ico"/>
-
+  <link rel="apple-touch-icon" href="../../../../apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="../../../../apple-touch-icon.png" />
   <link rel="stylesheet" href="../../../../highlight/styles/github.css">
   <script src="../../../../highlight/highlight.pack.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
@@ -65,8 +66,10 @@
   <h1 itemprop="name">
       <a href="../../../../post/2017/10/meet-go-scrapy/" title="Go爬虫初探" itemprop="url">Go爬虫初探</a>
   </h1>
-  <p class="article-author">By 
-      <a href="" title="">""</a>
+  <p class="article-author">By
+    
+      <a href="" title=""></a>
+    
   </p>
   <p class="article-time">
     <time datetime="2017-09-26 23:29:00 &#43;0800 CST" itemprop="datePublished">2017年09月26号</time>
@@ -120,61 +123,61 @@ requests库 + re库<br />
 <pre><code class="language-go">package main
 
 import (
-	&quot;errors&quot;
-	&quot;fmt&quot;
-	&quot;io/ioutil&quot;
-	&quot;net/http&quot;
-	&quot;regexp&quot;
+    &quot;errors&quot;
+    &quot;fmt&quot;
+    &quot;io/ioutil&quot;
+    &quot;net/http&quot;
+    &quot;regexp&quot;
 
-	encodingConvert &quot;github.com/DennisMao/mahonia&quot;
+    encodingConvert &quot;github.com/DennisMao/mahonia&quot;
 )
 
 func SimpleScrapy(url string) (string, error) {
-	//http请求
-	resp, err := http.Get(url)
-	if err != nil {
-		return &quot;&quot;, err
-	}
+    //http请求
+    resp, err := http.Get(url)
+    if err != nil {
+        return &quot;&quot;, err
+    }
 
-	//获取响应数据
-	if resp.StatusCode != 200 {
-		return &quot;&quot;, errors.New(&quot;resp statuscode = :&quot; + fmt.Sprint(resp.StatusCode))
-	}
+    //获取响应数据
+    if resp.StatusCode != 200 {
+        return &quot;&quot;, errors.New(&quot;resp statuscode = :&quot; + fmt.Sprint(resp.StatusCode))
+    }
 
-	respBody, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return &quot;&quot;, nil
-	}
+    respBody, err := ioutil.ReadAll(resp.Body)
+    if err != nil {
+        return &quot;&quot;, nil
+    }
 
-	//编码转换
-	content := encodingConvert.NewEncoder(&quot;utf-8&quot;).ConvertString(string(respBody))
-	//正则
-	re, _ := regexp.Compile(`\&lt;a.+a\&gt;`)
+    //编码转换
+    content := encodingConvert.NewEncoder(&quot;utf-8&quot;).ConvertString(string(respBody))
+    //正则
+    re, _ := regexp.Compile(`\&lt;a.+a\&gt;`)
 
-	txts := re.FindAllString(content, 10) //获取到所有 &lt;a&gt;标签
-	if len(txts) == 0 {
-		return &quot;&quot;, nil
-	}
+    txts := re.FindAllString(content, 10) //获取到所有 &lt;a&gt;标签
+    if len(txts) == 0 {
+        return &quot;&quot;, nil
+    }
 
-	reClass, _ := regexp.Compile(`class=\&quot;site-header-title\&quot;`) //筛选 &lt;a&gt;标签中 class=&quot;site-header-title&quot; 的标签
-	for _, txt := range txts {
-		if reClass.MatchString(txt) {
-			//返回数据
-			reTitle, _ := regexp.Compile(`\&gt;.+\&lt;`)  //获取元素中的内容
-			titleRaw := reTitle.FindString(txt)
-			return titleRaw[1 : len(titleRaw)-1], nil
-		}
-	}
-	return &quot;&quot;, nil
+    reClass, _ := regexp.Compile(`class=\&quot;site-header-title\&quot;`) //筛选 &lt;a&gt;标签中 class=&quot;site-header-title&quot; 的标签
+    for _, txt := range txts {
+        if reClass.MatchString(txt) {
+            //返回数据
+            reTitle, _ := regexp.Compile(`\&gt;.+\&lt;`)  //获取元素中的内容
+            titleRaw := reTitle.FindString(txt)
+            return titleRaw[1 : len(titleRaw)-1], nil
+        }
+    }
+    return &quot;&quot;, nil
 }
 
 func main() {
-	url := &quot;http://razil.cc&quot;
-	title, err := SimpleScrapy(url)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-	fmt.Println(&quot;网站Title = &quot;, title)
+    url := &quot;http://razil.cc&quot;
+    title, err := SimpleScrapy(url)
+    if err != nil {
+        fmt.Println(err.Error())
+    }
+    fmt.Println(&quot;网站Title = &quot;, title)
 }
 </code></pre>
 
@@ -239,7 +242,7 @@ func main() {
     
     <li><a href="../../../../categories/docker" title="docker">docker<sup>1</sup></a></li>
     
-    <li><a href="../../../../categories/go" title="go">go<sup>7</sup></a></li>
+    <li><a href="../../../../categories/go" title="go">go<sup>8</sup></a></li>
     
     <li><a href="../../../../categories/golang" title="golang">golang<sup>5</sup></a></li>
     
@@ -253,11 +256,13 @@ func main() {
     
     <li><a href="../../../../categories/%e6%95%b0%e6%8d%ae%e5%ba%93" title="数据库">数据库<sup>1</sup></a></li>
     
-    <li><a href="../../../../categories/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>1</sup></a></li>
+    <li><a href="../../../../categories/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>2</sup></a></li>
+    
+    <li><a href="../../../../categories/%e7%bd%91%e7%bb%9c" title="网络">网络<sup>1</sup></a></li>
     
     <li><a href="../../../../categories/%e8%af%91%e6%96%87" title="译文">译文<sup>2</sup></a></li>
     
-    <li><a href="../../../../categories/%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0" title="阅读笔记">阅读笔记<sup>1</sup></a></li>
+    <li><a href="../../../../categories/%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0" title="阅读笔记">阅读笔记<sup>2</sup></a></li>
     
     <li><a href="../../../../categories/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
     
@@ -282,15 +287,19 @@ func main() {
       
 			<li><a href="../../../../tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
       
-			<li><a href="../../../../tags/go" title="go">go<sup>2</sup></a></li>
+			<li><a href="../../../../tags/go" title="go">go<sup>3</sup></a></li>
       
 			<li><a href="../../../../tags/golang" title="golang">golang<sup>3</sup></a></li>
       
 			<li><a href="../../../../tags/grpc" title="grpc">grpc<sup>1</sup></a></li>
       
+			<li><a href="../../../../tags/http" title="http">http<sup>1</sup></a></li>
+      
 			<li><a href="../../../../tags/influxdb" title="influxdb">influxdb<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/json" title="json">json<sup>1</sup></a></li>
+      
+			<li><a href="../../../../tags/oop" title="oop">oop<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/orm" title="orm">orm<sup>1</sup></a></li>
       
@@ -312,13 +321,15 @@ func main() {
       
 			<li><a href="../../../../tags/%e6%ad%a3%e5%88%99%e5%8c%b9%e9%85%8d" title="正则匹配">正则匹配<sup>1</sup></a></li>
       
-			<li><a href="../../../../tags/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>1</sup></a></li>
+			<li><a href="../../../../tags/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>2</sup></a></li>
       
 			<li><a href="../../../../tags/%e7%bd%91%e7%bb%9c%e7%88%ac%e8%99%ab" title="网络爬虫">网络爬虫<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" title="自动化构建">自动化构建<sup>1</sup></a></li>
       
 			<li><a href="../../../../tags/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
+      
+			<li><a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" title="面向对象">面向对象<sup>1</sup></a></li>
       
 		</ul>
 </div>
@@ -332,12 +343,12 @@ func main() {
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">3</span>
+        <a class="archive-list-link" href="../../../../post/#2018-03">2018年03月</a><span class="archive-list-count">5</span>
       </li>
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="../../../../post/#2018-01">2018年01月</a><span class="archive-list-count">2</span>
+        <a class="archive-list-link" href="../../../../post/#2018-01">2018年01月</a><span class="archive-list-count">3</span>
       </li>
       
       
@@ -412,9 +423,13 @@ func main() {
     
     <a href="../../../../tags/grpc" style="font-size: 12px;">grpc</a>
     
+    <a href="../../../../tags/http" style="font-size: 12px;">http</a>
+    
     <a href="../../../../tags/influxdb" style="font-size: 12px;">influxdb</a>
     
     <a href="../../../../tags/json" style="font-size: 12px;">json</a>
+    
+    <a href="../../../../tags/oop" style="font-size: 12px;">oop</a>
     
     <a href="../../../../tags/orm" style="font-size: 12px;">orm</a>
     
@@ -443,6 +458,8 @@ func main() {
     <a href="../../../../tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" style="font-size: 12px;">自动化构建</a>
     
     <a href="../../../../tags/%e9%9a%8f%e7%ac%94" style="font-size: 12px;">随笔</a>
+    
+    <a href="../../../../tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" style="font-size: 12px;">面向对象</a>
     
   </div>
 </div>
@@ -475,8 +492,6 @@ func main() {
     ICP:<a href="http://www.miitbeian.gov.cn/" target=blank>粤ICP备17137859号-1</a>
     
   </p>  
-   
-    
 </div>
 </footer>
   <script src="../../../../js/jquery-2.1.0.min.js"></script>
