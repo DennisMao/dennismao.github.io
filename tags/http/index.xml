@@ -17,7 +17,7 @@
       <pubDate>Mon, 12 Mar 2018 23:04:21 +0800</pubDate>
       
       <guid>/post/2018/03/http-status-code-in-common-use/</guid>
-      <description>前言 之前在捣鼓爬虫时候，顺便整理了下常见的HTTP状态码。后面参与web服务开发，深觉这个用的还是很频繁的，故又重新整理了下，如有描述不正确</description>
+      <description>前言 之前在捣鼓爬虫时候，顺便整理了下常见的HTTP状态码。后面参与web服务开发，更深入理解，故又重新整理。如有描述不正确的地方，欢迎指出，</description>
     </item>
     
   </channel>
