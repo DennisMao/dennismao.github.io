@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>数据库 on Razil&#39;s Blog</title>
-    <link>/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-    <description>Recent content in 数据库 on Razil&#39;s Blog</description>
+    <title>数据库 on Coding茶餐厅</title>
+    <link>//razil.cc/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 19 Oct 2017 23:38:17 +0800</lastBuildDate>
     
-	<atom:link href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//razil.cc/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>系统监控:InfluxDB vs Elasticsearch</title>
-      <link>/post/2017/10/influxdbvselasticsearch/</link>
+      <link>//razil.cc/post/2017/10/influxdbvselasticsearch/</link>
       <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
       
-      <guid>/post/2017/10/influxdbvselasticsearch/</guid>
+      <guid>//razil.cc/post/2017/10/influxdbvselasticsearch/</guid>
       <description>前言 译者: Razil 本文译自: System monitoring with InfluxDB vs Elasticsearch 系统的监控一直都扮演着重要角色。它能帮助我们了解系统的健康情况,发现问题甚至能预测问题。 如今，由于以下这些</description>
     </item>
     

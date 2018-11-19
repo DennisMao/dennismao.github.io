@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>系统日志 on Coding茶餐厅</title>
+    <link>//razil.cc/tags/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97/</link>
+    <description>Recent content in 系统日志 on Coding茶餐厅</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 16 Sep 2018 18:12:15 +0800</lastBuildDate>
+    
+	<atom:link href="//razil.cc/tags/%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%BF%97/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Linux】 系统日志分析</title>
+      <link>//razil.cc/post/2018/08/linux-log-analysis/</link>
+      <pubDate>Sun, 16 Sep 2018 18:12:15 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/08/linux-log-analysis/</guid>
+      <description>背景 最近有个程序灰度上线，一周会有两次异常退出，检查程序的日志未发现异常，想起可以通过检查Linux系统的日志找出具体问题。整理了一下常用的</description>
+    </item>
+    
+  </channel>
+</rss>

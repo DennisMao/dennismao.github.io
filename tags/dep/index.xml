@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dep on Coding茶餐厅</title>
+    <link>//razil.cc/tags/dep/</link>
+    <description>Recent content in Dep on Coding茶餐厅</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 26 Sep 2018 21:12:15 +0800</lastBuildDate>
+    
+	<atom:link href="//razil.cc/tags/dep/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Go】记Go使用Dep获取依赖项缺少部分资源文件 解决方法</title>
+      <link>//razil.cc/post/2018/09/go-dependency-lose-resources-error/</link>
+      <pubDate>Wed, 26 Sep 2018 21:12:15 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/09/go-dependency-lose-resources-error/</guid>
+      <description>背景 同事在使用Dep拉取依赖包时候发现构建执行时部分资源文件丢失导致执行失败.但是go get和git clone下的$GOPATH/src/g</description>
+    </item>
+    
+  </channel>
+</rss>
