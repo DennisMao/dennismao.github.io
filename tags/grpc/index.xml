@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Grpc on Razil&#39;s Blog</title>
-    <link>/tags/grpc/</link>
-    <description>Recent content in Grpc on Razil&#39;s Blog</description>
+    <title>Grpc on Coding茶餐厅</title>
+    <link>//razil.cc/tags/grpc/</link>
+    <description>Recent content in Grpc on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 22 Aug 2017 23:44:21 +0800</lastBuildDate>
     
-	<atom:link href="/tags/grpc/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//razil.cc/tags/grpc/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>gRPC使用手记</title>
-      <link>/post/2017/08/grpc-note/</link>
+      <link>//razil.cc/post/2017/08/grpc-note/</link>
       <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
       
-      <guid>/post/2017/08/grpc-note/</guid>
+      <guid>//razil.cc/post/2017/08/grpc-note/</guid>
       <description>gRPC是什么? gRPC是由谷歌开发的一款高性能，通用的开源RPC框架，基于HTTP/2协议标准设计.支持全双工、双向流、流控制、头部压缩单</description>
     </item>
     

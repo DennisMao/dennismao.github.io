@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>汇总 on Razil&#39;s Blog</title>
-    <link>/tags/%E6%B1%87%E6%80%BB/</link>
-    <description>Recent content in 汇总 on Razil&#39;s Blog</description>
+    <title>汇总 on Coding茶餐厅</title>
+    <link>//razil.cc/tags/%E6%B1%87%E6%80%BB/</link>
+    <description>Recent content in 汇总 on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Tue, 02 Jan 2018 20:54:52 +0800</lastBuildDate>
     
-	<atom:link href="/tags/%E6%B1%87%E6%80%BB/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="//razil.cc/tags/%E6%B1%87%E6%80%BB/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>2018文章汇总</title>
-      <link>/post/2018/awsome-articles-2018/</link>
+      <link>//razil.cc/post/2018/awsome-articles-2018/</link>
       <pubDate>Tue, 02 Jan 2018 20:54:52 +0800</pubDate>
       
-      <guid>/post/2018/awsome-articles-2018/</guid>
-      <description>基础 数据库 关系型 非关系型 Go 性能调优 Golang 优化之路——临时对象池 【译】优化Go的模式 架构 高并发 分布式 设计模式 业务 运维 软件 CI Jenkins 测试 有趣项目 Go slab</description>
+      <guid>//razil.cc/post/2018/awsome-articles-2018/</guid>
+      <description>基础 git-flow 图示 Linux 内核網路部分文章集合 数据库 关系型 MySQL_千万级的大表要怎么优化（读写分离、水平拆分、垂直拆分） PostgreSQL优化系列 非</description>
     </item>
     
     <item>
       <title>2017文章汇总</title>
-      <link>/post/2017/12/awsome-articles-2017/</link>
+      <link>//razil.cc/post/2017/12/awsome-articles-2017/</link>
       <pubDate>Thu, 30 Nov 2017 20:54:52 +0800</pubDate>
       
-      <guid>/post/2017/12/awsome-articles-2017/</guid>
+      <guid>//razil.cc/post/2017/12/awsome-articles-2017/</guid>
       <description>基础 数据库 关系型 非关系型 深入理解etcd Etcd v3 服务注册与发现 Go代码 架构 高并发 分布式 设计模式 DDD TDD,BDD,FDD&amp;amp;ATDD 业务 AWS开发工具包发布适用Go 2.0的开发者</description>
     </item>
     
