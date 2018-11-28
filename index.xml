@@ -147,12 +147,12 @@
     </item>
     
     <item>
-      <title>教程</title>
-      <link>//razil.cc/post/course/</link>
+      <title>优秀博客</title>
+      <link>//razil.cc/post/blogs/</link>
       <pubDate>Tue, 06 Mar 2018 23:21:08 +0800</pubDate>
       
-      <guid>//razil.cc/post/course/</guid>
-      <description>日常整理的一些视频教程/课程 前端 Vue Vue.js自学手册 阿里 后端 Go</description>
+      <guid>//razil.cc/post/blogs/</guid>
+      <description>日常整理的优秀博客和资源站点 分布式系统 黄祁,分布式事务,ServerMesh</description>
     </item>
     
     <item>
