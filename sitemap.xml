@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>//razil.cc/post/2018/12/go_harbor/</loc>
+    <lastmod>2018-12-04T09:22:41+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>//razil.cc/post/2018/11/micro_service_roadmap/</loc>
     <lastmod>2018-11-23T09:42:51+08:00</lastmod>
   </url>
@@ -205,7 +210,7 @@
   
   <url>
     <loc>//razil.cc/</loc>
-    <lastmod>2018-11-23T09:42:51+08:00</lastmod>
+    <lastmod>2018-12-04T09:22:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -259,7 +264,13 @@
   
   <url>
     <loc>//razil.cc/categories/go/</loc>
-    <lastmod>2018-11-06T21:42:51+08:00</lastmod>
+    <lastmod>2018-12-04T09:22:41+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//razil.cc/tags/go-mod/</loc>
+    <lastmod>2018-12-04T09:22:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -379,7 +390,7 @@
   
   <url>
     <loc>//razil.cc/post/</loc>
-    <lastmod>2018-11-23T09:42:51+08:00</lastmod>
+    <lastmod>2018-12-04T09:22:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -542,6 +553,12 @@
   <url>
     <loc>//razil.cc/categories/%E8%AF%91%E6%96%87/</loc>
     <lastmod>2017-11-30T20:47:48+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//razil.cc/categories/%E8%BD%AC%E8%BD%BD/</loc>
+    <lastmod>2018-12-04T09:22:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   

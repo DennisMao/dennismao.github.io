@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>转载 on Coding茶餐厅</title>
+    <link>//razil.cc/categories/%E8%BD%AC%E8%BD%BD/</link>
+    <description>Recent content in 转载 on Coding茶餐厅</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 04 Dec 2018 09:22:41 +0800</lastBuildDate>
+    
+	<atom:link href="//razil.cc/categories/%E8%BD%AC%E8%BD%BD/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Go] 转载-Go Mod 基本工作流程</title>
+      <link>//razil.cc/post/2018/12/go_harbor/</link>
+      <pubDate>Tue, 04 Dec 2018 09:22:41 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/12/go_harbor/</guid>
+      <description>[TOC] #go module workflow 原作者: github.com/ofree8 夜读群里的叶飞 参照视频 一、创建新工程 &amp;gt; mkdir /tmp/test-project &amp;amp;&amp;amp; cd /tmp/test-project &amp;gt; # &amp;gt; go mod init github.com/ofree8/test-project 二、增加三方库 &amp;gt; # 方式一: &amp;gt; go get -v go.uber.org/zap &amp;gt; # 方式二: import (go.uber.org/zap) // in file source.go</description>
+    </item>
+    
+  </channel>
+</rss>
