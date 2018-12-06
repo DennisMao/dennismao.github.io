@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>[Go] Docker镜像构建与推送到Harbor - Coding茶餐厅</title>
+  <title>[Go] 转载-Go Mod 基本工作流程 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="[TOC] Harbor Harbor的定位可以看以下Docker Container的生命周期图 而Harbor的作用就是让企业可以搭建私有的Docker Regis">
+  <meta name="description" content="[TOC] #go module workflow 原作者: github.com/ofree8 夜读群里的叶飞 参照视频 一、创建新工程 &gt; mkdir /tmp/test-project &amp;&amp; cd /tmp/test-project &gt; # &gt; go mod init github.com/ofree8/test-project 二、增加三方库 &gt; # 方式一: &gt; go get -v go.uber.org/zap &gt; # 方式二: import (go.uber.org/zap) // in file source.go">
   
-  <meta itemprop="name" content="[Go] Docker镜像构建与推送到Harbor - Coding茶餐厅">
-  <meta itemprop="description" content="[TOC] Harbor Harbor的定位可以看以下Docker Container的生命周期图 而Harbor的作用就是让企业可以搭建私有的Docker Regis">
+  <meta itemprop="name" content="[Go] 转载-Go Mod 基本工作流程 - Coding茶餐厅">
+  <meta itemprop="description" content="[TOC] #go module workflow 原作者: github.com/ofree8 夜读群里的叶飞 参照视频 一、创建新工程 &gt; mkdir /tmp/test-project &amp;&amp; cd /tmp/test-project &gt; # &gt; go mod init github.com/ofree8/test-project 二、增加三方库 &gt; # 方式一: &gt; go get -v go.uber.org/zap &gt; # 方式二: import (go.uber.org/zap) // in file source.go">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
@@ -63,7 +63,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="//razil.cc/post/2018/11/go_harbor/" title="[Go] Docker镜像构建与推送到Harbor" itemprop="url">[Go] Docker镜像构建与推送到Harbor</a>
+      <a href="//razil.cc/post/2018/12/go_mod_workflow/" title="[Go] 转载-Go Mod 基本工作流程" itemprop="url">[Go] 转载-Go Mod 基本工作流程</a>
   </h1>
   <p class="article-author">By
     
@@ -71,7 +71,7 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2018-11-06 21:42:51 &#43;0800 CST" itemprop="datePublished">2018年11月06日</time>
+    <time datetime="2018-12-04 09:22:41 &#43;0800 CST" itemprop="datePublished">2018年12月04日</time>
   </p>
 </header>
 
@@ -83,22 +83,13 @@
 <ul>
 <li>
 <ul>
-<li><a href="#harbor">Harbor</a></li>
-<li><a href="#dockerfile">DockerFile</a></li>
-<li><a href="#构建">构建</a></li>
-<li><a href="#推送到harbor">推送到harbor</a>
-<ul>
-<li><a href="#创建项目">创建项目</a></li>
-<li><a href="#本地推送">本地推送</a></li>
-</ul></li>
-<li><a href="#注意事项">注意事项</a>
-<ul>
-<li><a href="#账户权限">账户权限</a></li>
-<li><a href="#项目创建">项目创建</a></li>
-<li><a href="#传输问题">传输问题</a></li>
-</ul></li>
-<li><a href="#系列阅读">系列阅读</a></li>
-<li><a href="#reference">Reference</a></li>
+<li><a href="#一-创建新工程">一、创建新工程</a></li>
+<li><a href="#二-增加三方库">二、增加三方库</a></li>
+<li><a href="#三-查看项目的库依赖和对应版本">三、查看项目的库依赖和对应版本</a></li>
+<li><a href="#四-升级项目依赖库版本">四、升级项目依赖库版本</a></li>
+<li><a href="#五-降级项目依赖库版本">五、降级项目依赖库版本</a></li>
+<li><a href="#六-三方库问题修复工作流">六、三方库问题修复工作流</a></li>
+<li><a href="#七-迁移老项目使用go-mod">七、迁移老项目使用go mod</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -108,112 +99,104 @@
 
 <p>[TOC]</p>
 
-<h2 id="harbor">Harbor</h2>
+<p>#go module workflow
+原作者: github.com/ofree8 夜读群里的<strong>叶飞</strong></p>
 
-<p>Harbor的定位可以看以下Docker Container的生命周期图
-<img src="./Figure0.png" alt="Figure0" />
-而Harbor的作用就是让企业可以搭建私有的Docker Registry，以方便镜像管理。通过helm工具还能与k8s打通，实现高效的DevOps。</p>
+<p><a href="https://www.youtube.com/watch?v=6MbIzJmLz6Q">参照视频</a></p>
 
-<h2 id="dockerfile">DockerFile</h2>
+<h2 id="一-创建新工程">一、创建新工程</h2>
 
-<pre><code>FROM        alpine:3.2
-LABEL maintainer &quot;&lt;raymond_2008@yahoo.com&gt;&quot;
+<pre><code class="language-bash">&gt; mkdir /tmp/test-project &amp;&amp; cd /tmp/test-project
+&gt; # 
+&gt; go mod init github.com/ofree8/test-project
 
-RUN mkdir -p /data/tk8s
-RUN cp conf /data/tk8s
-
-COPY tk8s                             /data/tk8s/tk8s
-RUN chmod a+x /data/tk8s/tk8s 
-
-USER       nobody
-EXPOSE     8080
-
-WORKDIR   /data/tk8s
-ENTRYPOINT [&quot;/data/tk8s/tk8s&quot;]
-CMD []
 </code></pre>
 
-<h2 id="构建">构建</h2>
+<h2 id="二-增加三方库">二、增加三方库</h2>
 
-<pre><code># 进入工程目录
-$ cd $GOPATH/src/tk8s
-
-# 构建镜像
-$ docker build -t=&quot;test_go_k8s:1.0.0&quot; ./  # 指定镜像名称为 test_go_k8s Tag为 1.0.0
-
-# 测试镜像
-$ docker run -p 8080:8080 test_go_k8s # 启动本地镜像
-
-# 访问查看
-$ curl localhost:8080 # 访问测试
+<pre><code class="language-bash">&gt; # 方式一:
+&gt; go get -v go.uber.org/zap
+&gt; # 方式二:
+  import (go.uber.org/zap) // in file source.go
+&gt; # go构建时也会自动会去获取依赖库
+&gt; go build
 </code></pre>
 
-<h2 id="推送到harbor">推送到harbor</h2>
+<h2 id="三-查看项目的库依赖和对应版本">三、查看项目的库依赖和对应版本</h2>
 
-<h3 id="创建项目">创建项目</h3>
-
-<blockquote>
-<p>若已创建了项目,请忽略本步骤</p>
-</blockquote>
-
-<ul>
-<li>1 登陆harbor后台</li>
-<li>2 创建项目</li>
-<li>3 获取标记镜像和推送的指令</li>
-<li>1 标记: docker tag {SOURCE_IMAGE}[:TAG] {Harbor_host}/{project_name}/IMAGE[:TAG]
-
-<ul>
-<li>2 推送: docker push  {Harbor_HOST}/{project_name}/IMAGE[:TAG]</li>
-</ul></li>
-</ul>
-
-<h3 id="本地推送">本地推送</h3>
-
-<p>回到镜像源机器上</p>
-
-<pre><code># 登陆harbor
-$ docker login -u XXX -p  XXX {Harbor_HOST}
-Login Succeeded
-
-# 标记镜像
-$ docker tag test_go_k8s:1.0.0 {Harbor_host}/{project_name}/test_go_k8s:1.0.0
-
-# 推送
-$ docker push  {Harbor_HOST}/{project_name}/IMAGE[:TAG]
+<pre><code class="language-bash">&gt; #
+&gt; go list -m all
 </code></pre>
 
-<p>回到Harbor后台,我们可以看到镜像已上传成功。
-<img src="./go_harbor/Figure3.md" alt="Figure3" /></p>
+<h2 id="四-升级项目依赖库版本">四、升级项目依赖库版本</h2>
 
-<h2 id="注意事项">注意事项</h2>
+<pre><code class="language-bash">&gt; # 列出当前依赖查看可供更新的版本
+&gt; go list -m -u all
+&gt; # 更新特定三方库
+&gt; go get -u -v go.uber.org/zap
+&gt; # 查看更新结果
+&gt; go list -m all
+&gt; # 运行单元测试保证代码运行正常，这会测试所有库，包括官方库
+&gt; go test -short all
+&gt; # 测试特定模块
+&gt; go test go.uber.org/zap/...
+</code></pre>
 
-<h3 id="账户权限">账户权限</h3>
+<h2 id="五-降级项目依赖库版本">五、降级项目依赖库版本</h2>
 
-<p>Harbor支持基于RBAC的权限,因此需要进行镜像推送的时候,注意在docker客户端登陆时候使用的账户需要为项目管理员或开发人员。</p>
+<pre><code class="language-bash">&gt; # 列出某三方库的所有版本号
+&gt; go list -m -versions github.com/Shopify/sarama
+&gt; # 降级库到特定版本
+&gt; go get -v github.com/Shopify/sarama@v1.12.0
+&gt; # 检查降级结果
+&gt; go list -m all
+&gt; # 运行单元测试保证代码运行正常，这会测试所有库，包括官方库
+&gt; go test -short all
+</code></pre>
 
-<h3 id="项目创建">项目创建</h3>
+<h2 id="六-三方库问题修复工作流">六、三方库问题修复工作流</h2>
 
-<p>在推送前请先创建项目,通俗理解就是github的repo。</p>
+<pre><code class="language-bash">&gt; # 一、clone三方库源码
+&gt; git clone https://github.com/Shopify/sarama /tmp/sarama
+&gt; cd /tmp/sarama
+&gt; saramaVersion=$(cd /tmp/sarama &amp;&amp; go list -m -f &quot;{{.Version}}&quot; Shopify/sarama)
+&gt; echo ${saramaVersion}
+&gt; git checkout -b sarama_fix ${saramaVersion}
+&gt; # 二、开始本地修改三方库
+&gt; # 三、三方库修改完毕后，进入实际业务工程目录
+&gt; cd /tmp/work-project
+&gt; 替换业务中的三方依赖到本地路径
+&gt; go mod edit -replace 'github.com/Shopify/sarama=../sarama'
+&gt; # 查看项目依赖，确保修改正确
+&gt; go list -m all
+&gt; go build
+&gt; 
+&gt; # 四、把修改提交到三方库做合并
+&gt; cd /tmp/sarama
+&gt; git remote add mysarama https://github.com/ofree8/mysarama
+&gt; git commit -a -m &quot;my change to sarama&quot;
+&gt; git push mysarama
+&gt; #打tag
+&gt; git tag v1.0.1-fix
+&gt; git push mysarama v1.0.1-fix
+&gt; 
+&gt; # 五、工程中使用修改过的repo
+&gt; cd /tmp/work-project
+&gt; go mod edit -replace 'github.com/Shopify/sarama=github.com/ofree8/mysarama@v1.0.1-fix'
+&gt; go list -m all
+&gt; go build
+</code></pre>
 
-<h3 id="传输问题">传输问题</h3>
+<h2 id="七-迁移老项目使用go-mod">七、迁移老项目使用go mod</h2>
 
-<p>注意docker访问时候的内外网代理问题,确保docker login成功</p>
-
-<h2 id="系列阅读">系列阅读</h2>
-
-<ul>
-<li>[Go Api服务构建]()</li>
-<li>[Go Docker镜像构建与推送到Harbor]()</li>
-<li>[Go helm+k8s部署Go应用]()</li>
-<li>[Go Gitlab CI + Harbor实现自动化构建]()</li>
-</ul>
-
-<h2 id="reference">Reference</h2>
-
-<ul>
-<li><a href="https://github.com/goharbor/harbor">Harbor Project</a></li>
-<li><a href="https://github.com/goharbor/harbor/blob/master/docs/user_guide.md#pushing-images">Harbor User Guide</a></li>
-</ul>
+<pre><code class="language-bash">&gt; git clone https://github.com/ofree8/old-project /tmp/old-project
+&gt; cd /tmp/old-project
+&gt; # 初始化go mod
+&gt; go mod init
+&gt; # 扫描并下载所有工程依赖
+&gt; go mod tidy
+&gt; 
+</code></pre>
 
 	</div>
   <footer class="article-footer clearfix">
@@ -222,9 +205,7 @@ $ docker push  {Harbor_HOST}/{project_name}/IMAGE[:TAG]
 <div class="article-tags">
   <span></span>
   
-  <a href="//razil.cc/tags/harbor">harbor</a>
-  
-  <a href="//razil.cc/tags/docker">docker</a>
+  <a href="//razil.cc/tags/go-mod">go mod</a>
   
 </div>
 
@@ -235,16 +216,16 @@ $ docker push  {Harbor_HOST}/{project_name}/IMAGE[:TAG]
 <div class="article-categories">
   <span></span>
   
-  <a class="article-category-link" href="//razil.cc/categories/docker">docker</a>
+  <a class="article-category-link" href="//razil.cc/categories/go">Go</a>
   
-  <a class="article-category-link" href="//razil.cc/categories/devops">DevOps</a>
+  <a class="article-category-link" href="//razil.cc/categories/%E8%BD%AC%E8%BD%BD">转载</a>
   
 </div>
 
 
 
   <div class="article-share" id="share">
-    <div data-url="//razil.cc/post/2018/11/go_harbor/" data-title="[Go] Docker镜像构建与推送到Harbor" data-tsina="" class="share clearfix">
+    <div data-url="//razil.cc/post/2018/12/go_mod_workflow/" data-title="[Go] 转载-Go Mod 基本工作流程" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
