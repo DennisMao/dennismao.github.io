@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Coding茶餐厅</title>
+    <link>//razil.cc/categories/</link>
+    <description>Recent content in Categories on Coding茶餐厅</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    
+	<atom:link href="//razil.cc/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Devops</title>
+      <link>//razil.cc/categories/devops/</link>
+      <pubDate>Fri, 23 Nov 2018 09:42:51 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>//razil.cc/categories/docker/</link>
+      <pubDate>Tue, 06 Nov 2018 21:42:51 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>//razil.cc/categories/go/</link>
+      <pubDate>Tue, 04 Dec 2018 09:22:41 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>//razil.cc/categories/golang/</link>
+      <pubDate>Wed, 27 Dec 2017 15:35:04 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Grpc</title>
+      <link>//razil.cc/categories/grpc/</link>
+      <pubDate>Mon, 27 Aug 2018 17:12:01 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/grpc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>K8s</title>
+      <link>//razil.cc/categories/k8s/</link>
+      <pubDate>Mon, 02 Jul 2018 22:12:21 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>//razil.cc/categories/linux/</link>
+      <pubDate>Sun, 16 Sep 2018 18:12:15 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rpc</title>
+      <link>//razil.cc/categories/rpc/</link>
+      <pubDate>Tue, 22 Aug 2017 23:49:14 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/rpc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>使用手记</title>
+      <link>//razil.cc/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</link>
+      <pubDate>Tue, 26 Sep 2017 23:29:00 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>使用笔记</title>
+      <link>//razil.cc/categories/%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Tue, 06 Nov 2018 21:42:51 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>分布式</title>
+      <link>//razil.cc/categories/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+      <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>分布式系统</title>
+      <link>//razil.cc/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Mon, 01 Oct 2018 18:02:51 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>密码学</title>
+      <link>//razil.cc/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
+      <pubDate>Tue, 28 Mar 2017 00:08:18 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>微服务</title>
+      <link>//razil.cc/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Fri, 23 Nov 2018 09:42:51 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>//razil.cc/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>汇总</title>
+      <link>//razil.cc/categories/%E6%B1%87%E6%80%BB/</link>
+      <pubDate>Wed, 21 Nov 2018 09:00:52 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E6%B1%87%E6%80%BB/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>网络</title>
+      <link>//razil.cc/categories/%E7%BD%91%E7%BB%9C/</link>
+      <pubDate>Mon, 12 Mar 2018 23:04:21 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E7%BD%91%E7%BB%9C/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>译文</title>
+      <link>//razil.cc/categories/%E8%AF%91%E6%96%87/</link>
+      <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E8%AF%91%E6%96%87/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>转载</title>
+      <link>//razil.cc/categories/%E8%BD%AC%E8%BD%BD/</link>
+      <pubDate>Tue, 04 Dec 2018 09:22:41 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E8%BD%AC%E8%BD%BD/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>运维</title>
+      <link>//razil.cc/categories/%E8%BF%90%E7%BB%B4/</link>
+      <pubDate>Mon, 02 Jul 2018 22:12:21 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E8%BF%90%E7%BB%B4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>阅读笔记</title>
+      <link>//razil.cc/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Wed, 21 Nov 2018 09:00:52 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>随笔</title>
+      <link>//razil.cc/categories/%E9%9A%8F%E7%AC%94/</link>
+      <pubDate>Sun, 28 Jan 2018 22:53:37 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/%E9%9A%8F%E7%AC%94/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

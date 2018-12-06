@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gfs on Coding茶餐厅</title>
+    <link>//razil.cc/tags/gfs/</link>
+    <description>Recent content in Gfs on Coding茶餐厅</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 01 Oct 2018 18:02:51 +0800</lastBuildDate>
+    
+	<atom:link href="//razil.cc/tags/gfs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【分布式】《The Google File System》笔记</title>
+      <link>//razil.cc/post/2018/10/gfs-note/</link>
+      <pubDate>Mon, 01 Oct 2018 18:02:51 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/10/gfs-note/</guid>
+      <description>[TOC] 背景 6.824中以谷歌的分布式系统作为例子对分布式系统架构与实际应用做了介绍，也是对分布式系统的一个基本印象,以下为自己的一些学习笔记，方</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1020 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>使用Beego处理多文件上传 - Coding茶餐厅</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+  
+  <meta name="description" content="实现方法 Beego 在controller处理上提供了GetFile和GetFiles方法，以获取MultipartForm里的文件内容。详细说明查看">
+  
+  <meta itemprop="name" content="使用Beego处理多文件上传 - Coding茶餐厅">
+  <meta itemprop="description" content="实现方法 Beego 在controller处理上提供了GetFile和GetFiles方法，以获取MultipartForm里的文件内容。详细说明查看">
+  <meta itemprop="image" content="//razil.cc/img/author.jpg">
+  
+  
+  <meta name="twitter:description" content="">
+  
+  <link rel="shortcut icon" href="//razil.cc/img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="//razil.cc/apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="//razil.cc/apple-touch-icon.png" />
+  <link rel="stylesheet" href="//razil.cc/highlight/styles/github.css">
+  <script src="//razil.cc/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="//razil.cc/font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="//razil.cc/css/style.css">
+</head>
+
+<body>
+  <header>
+    <div>
+  
+  <div id="textlogo">
+    <h1 class="site-name"><a href="//razil.cc/" title="Coding茶餐厅">Coding茶餐厅</a></h1>
+    <h2 class="blog-motto">Talk is cheap,show me the code</h2>
+  </div>
+  <div class="navbar"><a class="navbutton navmobile" href="#" title="menu"></a></div>
+  <nav class="animated">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/about">伙计介绍</a></li>
+      
+      <li><a href="/post/toolkit">腊味铺</a></li>
+      
+      <li><a href="/post/books">点心车</a></li>
+      
+      <li><a href="/post/course">海鲜档</a></li>
+      
+      <li>
+        <form class="search" method="get" action="https://www.google.com/search">
+          <div>
+            <input type="text" id="search" name="q" placeholder="搜索">
+          </div>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+  </header>
+  <div id="container">
+    <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+    <header class="article-info clearfix">
+  <h1 itemprop="name">
+      <a href="//razil.cc/post/2017/12/beego-multi-file-upload/" title="使用Beego处理多文件上传" itemprop="url">使用Beego处理多文件上传</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="//razil.cc/" title=""></a>
+    
+  </p>
+  <p class="article-time">
+    <time datetime="2017-12-27 15:35:04 &#43;0800 CST" itemprop="datePublished">2017年12月27日</time>
+  </p>
+</header>
+
+	<div class="article-content">
+    
+		<div class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#实现方法">实现方法</a></li>
+<li><a href="#服务端代码">服务端代码</a></li>
+<li><a href="#返回结果">返回结果</a></li>
+</ul></li>
+</ul>
+</nav>
+		</div>
+    
+    
+
+<h2 id="实现方法">实现方法</h2>
+
+<p>Beego 在controller处理上提供了GetFile和GetFiles方法，以获取MultipartForm里的文件内容。详细说明查看<a href="https://godoc.org/github.com/astaxie/beego">godoc</a>。</p>
+
+<p><strong>获取单个文件 func (*Controller) GetFile</strong></p>
+
+<blockquote>
+<p>func (c *Controller) GetFile(key string) (multipart.File, *multipart.FileHeader, error)
+GetFile returns the file data in file upload field named as key. it returns the first one of multi-uploaded files.</p>
+</blockquote>
+
+<p><strong>获取多个文件 func (*Controller) GetFiles</strong></p>
+
+<blockquote>
+<p>func (c *Controller) GetFiles(key string) ([]*multipart.FileHeader, error)</p>
+</blockquote>
+
+<p>本文结合示例代码和工程应用提供实际可用解决方法。
+前端页面上传的请求格式按照<a href="http://www.faqs.org/rfcs/rfc1867.html">rfc1867</a>标准即可。
+Body内容如下图所示</p>
+
+<p><img src='data:img/jpg;base64,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
+juTpLFg8J10AAAAASUVORK5CYII='/></p>
+
+<h2 id="服务端代码">服务端代码</h2>
+
+<pre><code>import(
+	&quot;io&quot;
+	&quot;os&quot;
+	&quot;strings&quot;
+
+	&quot;github.com/astaxie/beego&quot;
+	&quot;github.com/astaxie/beego/logs&quot;
+)
+
+//默认参数
+const (
+    STATIC_PATH = &quot;tmp/&quot;
+)
+
+//	文件信息格式
+type FileRecord struct {
+	FileName   string `json:&quot;file_name&quot;`
+	Path       string `json:&quot;path&quot;`
+	FileSize   string `json:&quot;file_size&quot;`
+	UploadTime string `json:&quot;upload_time&quot;`
+}
+
+
+//	上传
+type UploadController struct {
+	beego.Controller
+}
+
+func (c UploadController) Post() {
+
+	//跨域检查
+	//访问控制
+	//权限控制
+
+	//文件保存
+	files, err := c.GetFiles(&quot;file&quot;)
+	if err != nil {
+		c.Ctx.WriteString(common.RespError(&quot;00001&quot;, &quot;Invalid file&quot;))
+		return
+	}
+	var fileRecords []FileRecord
+
+	for i, _ := range files {
+		//文件后缀过滤
+		suffixIndex := strings.LastIndex(files[i].Filename, &quot;.&quot;)
+		if !strings.Contains(&quot;.doc/.docx/.xls/.xlsx/.zip/.rar &quot;, files[i].Filename[suffixIndex:]) {
+			c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;only support .doc/.docx/.xls/.xlsx/.zip/.rar file&quot;))
+			return
+		}
+
+		var fpath string = &quot;&quot;
+		fpath = STATIC_PATH + files[i].Filename + fmt.Sprint(&quot;_&quot;, time.Now().Unix())
+
+		var record troublesheet.FileRecord
+
+		//获取文件句柄
+		hFile, err := files[i].Open()
+		if err != nil {
+			c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;]&quot;))
+			return
+		}
+
+		//获取文件大小
+		err, fSize := common.File_GetSize(hFile)
+		if err != nil {
+			logs.Debug(&quot;failed to upload [&quot; + files[i].Filename + &quot;],reason: errors on server file system,failed to get file size &quot;)
+			c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;],reason: unrecognized file&quot;))
+			return
+		}
+
+		//创建本地文件
+		destFile, err := os.Create(fpath)
+		if err != nil {
+			logs.Debug(&quot;failed to upload [&quot; + files[i].Filename + &quot;],reason: errors on server file system,failed to create local path &quot;)
+			c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;],reason: errors on server file system &quot;))
+			return
+		}
+
+		//文件保存
+		_, err = io.Copy(destFile, hFile)
+		if err != nil {
+			logs.Debug(&quot;failed to upload [&quot; + files[i].Filename + &quot;],reason: errors on server file system,failed to store source files &quot;)
+			c.Ctx.WriteString(RespError(&quot;00001&quot;, &quot;failed to upload [&quot;+files[i].Filename+&quot;],reason: errors on server file system &quot;))
+			return
+		}
+
+		record.FileName = files[i].Filename
+		record.Path = fpath
+		record.FileSize = fmt.Sprint(fSize)
+		record.UploadTime = time.Now().Format(&quot;2006-01-02 15:04:05&quot;)
+
+		hFile.Close()
+		destFile.Close()
+
+		fileRecords = append(fileRecords, record)
+	}
+	c.Ctx.WriteString(RespData(nil, fileRecords))
+	return
+}
+</code></pre>
+
+<h2 id="返回结果">返回结果</h2>
+
+<pre><code>{
+  &quot;errcode&quot;: &quot;00000&quot;,
+  &quot;data&quot;: null,
+  &quot;datas&quot;: [
+	  {
+      &quot;file_name&quot;: &quot;template_1512742894.xlsx&quot;,
+      &quot;path&quot;: &quot;/data/file/workflow/trouble/template_1512742894.xlsx_1514342635&quot;,
+      &quot;file_size&quot;: &quot;11168&quot;,
+      &quot;upload_time&quot;: &quot;2017-12-27 10:43:55&quot;
+    }
+  ]
+}
+</code></pre>
+
+	</div>
+  <footer class="article-footer clearfix">
+  
+
+<div class="article-tags">
+  <span></span>
+  
+  <a href="//razil.cc/tags/golang">golang</a>
+  
+  <a href="//razil.cc/tags/beego">beego</a>
+  
+  <a href="//razil.cc/tags/web">web</a>
+  
+</div>
+
+
+
+
+
+<div class="article-categories">
+  <span></span>
+  
+  <a class="article-category-link" href="//razil.cc/categories/golang">golang</a>
+  
+</div>
+
+
+
+  <div class="article-share" id="share">
+    <div data-url="//razil.cc/post/2017/12/beego-multi-file-upload/" data-title="使用Beego处理多文件上传" data-tsina="" class="share clearfix">
+    </div>
+  </div>
+</footer>
+
+	</article>
+  
+
+
+
+</div>
+
+    <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+  
+
+<div class="categorieslist">
+  <p class="asidetitle">分类</p>
+  <ul>
+    
+    <li><a href="//razil.cc/categories/docker" title="docker">docker<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/go" title="go">go<sup>13</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/golang" title="golang">golang<sup>5</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/grpc" title="grpc">grpc<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/k8s" title="k8s">k8s<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/linux" title="linux">linux<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/rpc" title="rpc">rpc<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e4%bd%bf%e7%94%a8%e6%89%8b%e8%ae%b0" title="使用手记">使用手记<sup>4</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e5%88%86%e5%b8%83%e5%bc%8f" title="分布式">分布式<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f" title="分布式系统">分布式系统<sup>2</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e5%af%86%e7%a0%81%e5%ad%a6" title="密码学">密码学<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e5%be%ae%e6%9c%8d%e5%8a%a1" title="微服务">微服务<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e6%95%b0%e6%8d%ae%e5%ba%93" title="数据库">数据库<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>2</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e7%bd%91%e7%bb%9c" title="网络">网络<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e8%af%91%e6%96%87" title="译文">译文<sup>2</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e8%bf%90%e7%bb%b4" title="运维">运维<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0" title="阅读笔记">阅读笔记<sup>2</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
+    
+  </ul>
+</div>
+
+
+
+  
+
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+      
+			<li><a href="//razil.cc/tags/" title=""><sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/beego" title="beego">beego<sup>2</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/context" title="context">context<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/dep" title="dep">dep<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/docker" title="docker">docker<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/gfs" title="gfs">gfs<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/go" title="go">go<sup>8</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/golang" title="golang">golang<sup>3</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/grpc" title="grpc">grpc<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/http" title="http">http<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/influxdb" title="influxdb">influxdb<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/istio" title="istio">istio<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/json" title="json">json<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/k8s" title="k8s">k8s<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/linux" title="linux">linux<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/minikube" title="minikube">minikube<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/minishift" title="minishift">minishift<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/oop" title="oop">oop<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/orm" title="orm">orm<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/plugin" title="plugin">plugin<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/raft" title="raft">raft<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/relfect" title="relfect">relfect<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/rpc" title="rpc">rpc<sup>2</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/web" title="web">web<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/websocket" title="websocket">websocket<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e4%bd%bf%e7%94%a8%e6%89%8b%e8%ae%b0" title="使用手记">使用手记<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e5%88%86%e5%b8%83%e5%bc%8f" title="分布式">分布式<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e5%8a%a0%e5%af%86" title="加密">加密<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e6%ad%a3%e5%88%99" title="正则">正则<sup>2</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e6%ad%a3%e5%88%99%e5%8c%b9%e9%85%8d" title="正则匹配">正则匹配<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>2</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6" title="版本控制">版本控制<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e7%b3%bb%e7%bb%9f%e6%97%a5%e5%bf%97" title="系统日志">系统日志<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e7%bd%91%e7%bb%9c%e7%88%ac%e8%99%ab" title="网络爬虫">网络爬虫<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" title="自动化构建">自动化构建<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" title="面向对象">面向对象<sup>1</sup></a></li>
+      
+		</ul>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle">归档</p>
+    <ul class="archive-list">
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-10">2018年10月</a><span class="archive-list-count">3</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-09">2018年09月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-08">2018年08月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-07">2018年07月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-04">2018年04月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-03">2018年03月</a><span class="archive-list-count">5</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-01">2018年01月</a><span class="archive-list-count">3</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-12">2017年12月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-11">2017年11月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-10">2017年10月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-09">2017年09月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-08">2017年08月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-07">2017年07月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-05">2017年05月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-04">2017年04月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-03">2017年03月</a><span class="archive-list-count">1</span>
+      </li>
+      
+    </ul>
+
+  </div>
+
+
+  
+
+<div class="tagcloudlist">
+  <p class="asidetitle">标签云</p>
+  <div class="tagcloudlist clearfix">
+    
+    <a href="//razil.cc/tags/" style="font-size: 12px;"></a>
+    
+    <a href="//razil.cc/tags/beego" style="font-size: 12px;">beego</a>
+    
+    <a href="//razil.cc/tags/context" style="font-size: 12px;">context</a>
+    
+    <a href="//razil.cc/tags/dep" style="font-size: 12px;">dep</a>
+    
+    <a href="//razil.cc/tags/docker" style="font-size: 12px;">docker</a>
+    
+    <a href="//razil.cc/tags/elasticsearch" style="font-size: 12px;">elasticsearch</a>
+    
+    <a href="//razil.cc/tags/gfs" style="font-size: 12px;">gfs</a>
+    
+    <a href="//razil.cc/tags/go" style="font-size: 12px;">go</a>
+    
+    <a href="//razil.cc/tags/golang" style="font-size: 12px;">golang</a>
+    
+    <a href="//razil.cc/tags/grpc" style="font-size: 12px;">grpc</a>
+    
+    <a href="//razil.cc/tags/http" style="font-size: 12px;">http</a>
+    
+    <a href="//razil.cc/tags/influxdb" style="font-size: 12px;">influxdb</a>
+    
+    <a href="//razil.cc/tags/istio" style="font-size: 12px;">istio</a>
+    
+    <a href="//razil.cc/tags/json" style="font-size: 12px;">json</a>
+    
+    <a href="//razil.cc/tags/k8s" style="font-size: 12px;">k8s</a>
+    
+    <a href="//razil.cc/tags/linux" style="font-size: 12px;">linux</a>
+    
+    <a href="//razil.cc/tags/minikube" style="font-size: 12px;">minikube</a>
+    
+    <a href="//razil.cc/tags/minishift" style="font-size: 12px;">minishift</a>
+    
+    <a href="//razil.cc/tags/oop" style="font-size: 12px;">oop</a>
+    
+    <a href="//razil.cc/tags/orm" style="font-size: 12px;">orm</a>
+    
+    <a href="//razil.cc/tags/plugin" style="font-size: 12px;">plugin</a>
+    
+    <a href="//razil.cc/tags/raft" style="font-size: 12px;">raft</a>
+    
+    <a href="//razil.cc/tags/relfect" style="font-size: 12px;">relfect</a>
+    
+    <a href="//razil.cc/tags/rpc" style="font-size: 12px;">rpc</a>
+    
+    <a href="//razil.cc/tags/web" style="font-size: 12px;">web</a>
+    
+    <a href="//razil.cc/tags/websocket" style="font-size: 12px;">websocket</a>
+    
+    <a href="//razil.cc/tags/%e4%bd%bf%e7%94%a8%e6%89%8b%e8%ae%b0" style="font-size: 12px;">使用手记</a>
+    
+    <a href="//razil.cc/tags/%e5%88%86%e5%b8%83%e5%bc%8f" style="font-size: 12px;">分布式</a>
+    
+    <a href="//razil.cc/tags/%e5%8a%a0%e5%af%86" style="font-size: 12px;">加密</a>
+    
+    <a href="//razil.cc/tags/%e6%ad%a3%e5%88%99" style="font-size: 12px;">正则</a>
+    
+    <a href="//razil.cc/tags/%e6%ad%a3%e5%88%99%e5%8c%b9%e9%85%8d" style="font-size: 12px;">正则匹配</a>
+    
+    <a href="//razil.cc/tags/%e6%b1%87%e6%80%bb" style="font-size: 12px;">汇总</a>
+    
+    <a href="//razil.cc/tags/%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6" style="font-size: 12px;">版本控制</a>
+    
+    <a href="//razil.cc/tags/%e7%b3%bb%e7%bb%9f%e6%97%a5%e5%bf%97" style="font-size: 12px;">系统日志</a>
+    
+    <a href="//razil.cc/tags/%e7%bd%91%e7%bb%9c%e7%88%ac%e8%99%ab" style="font-size: 12px;">网络爬虫</a>
+    
+    <a href="//razil.cc/tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" style="font-size: 12px;">自动化构建</a>
+    
+    <a href="//razil.cc/tags/%e9%9a%8f%e7%ac%94" style="font-size: 12px;">随笔</a>
+    
+    <a href="//razil.cc/tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" style="font-size: 12px;">面向对象</a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</aside>
+</div>
+
+  </div>
+  <footer><div id="footer" >
+
+  <div class="social-font clearfix">
+    
+    
+    
+    <a href="https://github.com/dennismao.github.com" target="_blank" title="github"></a>
+    
+    
+    
+  </div>
+
+  <p class="copyright"> Copyright © 2018
+    
+    <a href="//razil.cc/" title="Coding茶餐厅">Coding茶餐厅</a>
+    
+  </p>
+
+  <p class="copyright">备案号: 粤ICP备17137859号-1 </p>
+</div>
+</footer>
+  
+
+
+
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+done = false;
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  $('form.search').on('submit', function (event) {
+    if (false === done) {
+      event.preventDefault();
+      var orgVal = $(this).find('#search').val();
+      $(this).find('#search').val('site:\/\/razil.cc\/ ' + orgVal);
+      done = true;
+      $(this).submit();
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});
+</script>
+
+
+<link rel="stylesheet" href="//razil.cc/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//razil.cc/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+
+</body>
+</html>

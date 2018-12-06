@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Coding茶餐厅</title>
+    <link>//razil.cc/tags/go/</link>
+    <description>Recent content in Go on Coding茶餐厅</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 06 Nov 2018 21:42:51 +0800</lastBuildDate>
+    
+	<atom:link href="//razil.cc/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Go] google/btree B树包使用笔记</title>
+      <link>//razil.cc/post/2018/11/google_btree_using_notes/</link>
+      <pubDate>Tue, 06 Nov 2018 21:42:51 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/11/google_btree_using_notes/</guid>
+      <description>[TOC] B-tree 库介绍 btree本库是go语言的Btree的一个实现。Btree跟二叉树相比,它是多路搜索,支持范围搜索而且搜索效率稳定。 使用方法 测试代</description>
+    </item>
+    
+    <item>
+      <title>【Go】复杂请求情况下post变成options请求后台处理方法</title>
+      <link>//razil.cc/post/2018/10/go-cors-request-on-gin/</link>
+      <pubDate>Tue, 09 Oct 2018 20:22:15 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/10/go-cors-request-on-gin/</guid>
+      <description>背景 有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Heade</description>
+    </item>
+    
+    <item>
+      <title>【Go】记Go使用Dep获取依赖项缺少部分资源文件 解决方法</title>
+      <link>//razil.cc/post/2018/09/go-dependency-lose-resources-error/</link>
+      <pubDate>Wed, 26 Sep 2018 21:12:15 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/09/go-dependency-lose-resources-error/</guid>
+      <description>背景 同事在使用Dep拉取依赖包时候发现构建执行时部分资源文件丢失导致执行失败.但是go get和git clone下的$GOPATH/src/g</description>
+    </item>
+    
+    <item>
+      <title>【go】Grpc-获取请求地址</title>
+      <link>//razil.cc/post/2018/09/go-grpc-get-requestaddr/</link>
+      <pubDate>Mon, 27 Aug 2018 17:12:01 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/09/go-grpc-get-requestaddr/</guid>
+      <description>背景 如同在走HTTP开发，在用grpc做服务时候也会有遇到需要获得请求端地址做统计或计算的需求，现有的api没有能像net/http库封装那</description>
+    </item>
+    
+    <item>
+      <title>【Go】记Go使用plugin插件功能出现plugin.Open: plugin was built with a different version of package 解决方法</title>
+      <link>//razil.cc/post/2018/08/go-plugin-package-version-error/</link>
+      <pubDate>Sat, 04 Aug 2018 12:12:15 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/08/go-plugin-package-version-error/</guid>
+      <description>背景 项目中由于需要底层业务需要动态调整，调研后组里决定使用plugin方法来解决动态加载业务的问题。 在使用过程中发现，当公共库更新后，只要平</description>
+    </item>
+    
+    <item>
+      <title>【Go】版本控制-dep介绍与应用</title>
+      <link>//razil.cc/post/2018/04/go-dep/</link>
+      <pubDate>Sat, 07 Apr 2018 21:05:21 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/04/go-dep/</guid>
+      <description>【Go】版本控制-dep介绍与应用 [TOC] 介绍 Go Dep工具是官方实践也是推荐的一款Go语言工程依赖管理工具。用法跟govendor相似。原理都是把</description>
+    </item>
+    
+    <item>
+      <title>【设计模式】Go语言的面向对象</title>
+      <link>//razil.cc/post/2018/03/go-oop/</link>
+      <pubDate>Mon, 12 Mar 2018 23:04:21 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/03/go-oop/</guid>
+      <description>前言 工作中遇到转来使用Go语言的朋友或者同事，基本都是从现有语言，像C++和JAVA转来。所以在平时交流时候多少会需要引用到以前所学的一些概</description>
+    </item>
+    
+    <item>
+      <title>【Go】解决“can&#39;t load package: no buildable Go source files in /...</title>
+      <link>//razil.cc/post/2017/05/solve-no-buildable-go-source/</link>
+      <pubDate>Sat, 20 May 2017 15:10:00 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2017/05/solve-no-buildable-go-source/</guid>
+      <description>最近在调用golang.org/x/net出现这个错误。经检查后解决方法如下。在调用外部包时候出现这种情况，应检查以下设置 &amp;gt; 1.目标外部包的</description>
+    </item>
+    
+    <item>
+      <title>【Go】Web加密方案与Go语言解决</title>
+      <link>//razil.cc/post/2017/03/go-encrypt/</link>
+      <pubDate>Tue, 28 Mar 2017 00:08:18 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2017/03/go-encrypt/</guid>
+      <description>常见加密方案 1、对称加密 即加密方和解密方都使用相同的加密算法和密钥，这种方案的密钥的保存非常关键，因为算法是公开的，而密钥是保密的，一旦密匙</description>
+    </item>
+    
+  </channel>
+</rss>
