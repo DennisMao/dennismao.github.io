@@ -5,10 +5,10 @@
   <title>[Go] 转载-Go Mod 基本工作流程 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="[TOC] #go module workflow 原作者: github.com/ofree8 夜读群里的叶飞 参照视频 一、创建新工程 &gt; mkdir /tmp/test-project &amp;&amp; cd /tmp/test-project &gt; # &gt; go mod init github.com/ofree8/test-project 二、增加三方库 &gt; # 方式一: &gt; go get -v go.uber.org/zap &gt; # 方式二: import (go.uber.org/zap) // in file source.go">
+  <meta name="description" content="[TOC] go module workflow 原作者: github.com/ofree8 夜读群里的叶飞 参照视频 一、创建新工程 &gt; mkdir /tmp/test-project &amp;&amp; cd /tmp/test-project &gt; # &gt; go mod init github.com/ofree8/test-project 二、增加三方库 &gt; # 方式一: &gt; go get -v go.uber.org/zap &gt; # 方式二: import (go.uber.org/zap) // in file source.go">
   
   <meta itemprop="name" content="[Go] 转载-Go Mod 基本工作流程 - Coding茶餐厅">
-  <meta itemprop="description" content="[TOC] #go module workflow 原作者: github.com/ofree8 夜读群里的叶飞 参照视频 一、创建新工程 &gt; mkdir /tmp/test-project &amp;&amp; cd /tmp/test-project &gt; # &gt; go mod init github.com/ofree8/test-project 二、增加三方库 &gt; # 方式一: &gt; go get -v go.uber.org/zap &gt; # 方式二: import (go.uber.org/zap) // in file source.go">
+  <meta itemprop="description" content="[TOC] go module workflow 原作者: github.com/ofree8 夜读群里的叶飞 参照视频 一、创建新工程 &gt; mkdir /tmp/test-project &amp;&amp; cd /tmp/test-project &gt; # &gt; go mod init github.com/ofree8/test-project 二、增加三方库 &gt; # 方式一: &gt; go get -v go.uber.org/zap &gt; # 方式二: import (go.uber.org/zap) // in file source.go">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
@@ -81,7 +81,7 @@
 			<strong class="toc-title">文章目录</strong>
       <nav id="TableOfContents">
 <ul>
-<li>
+<li><a href="#go-module-workflow">go module workflow</a>
 <ul>
 <li><a href="#一-创建新工程">一、创建新工程</a></li>
 <li><a href="#二-增加三方库">二、增加三方库</a></li>
@@ -99,8 +99,9 @@
 
 <p>[TOC]</p>
 
-<p>#go module workflow
-原作者: github.com/ofree8 夜读群里的<strong>叶飞</strong></p>
+<h1 id="go-module-workflow">go module workflow</h1>
+
+<p>原作者: github.com/ofree8 夜读群里的<strong>叶飞</strong></p>
 
 <p><a href="https://www.youtube.com/watch?v=6MbIzJmLz6Q">参照视频</a></p>
 

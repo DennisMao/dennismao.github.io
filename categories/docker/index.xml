@@ -26,7 +26,7 @@
       <pubDate>Wed, 19 Apr 2017 15:24:29 +0800</pubDate>
       
       <guid>//razil.cc/post/2017/04/docker-deploy-1/</guid>
-      <description>目标功能 使用go语言实现基本http服务 访问 localhost:8080 时能够返回 &amp;ldquo;hellodocker&amp;rdquo; 将工程部署到docker，并在后台启动 ###环境介绍 docker: golang: host(宿主机环境): Mac</description>
+      <description>目标功能 使用go语言实现基本http服务 访问 localhost:8080 时能够返回 &amp;ldquo;hellodocker&amp;rdquo; 将工程部署到docker，并在后台启动 环境介绍 docker: golang: host(宿主机环境): Mac os 10.12 重</description>
     </item>
     
   </channel>
