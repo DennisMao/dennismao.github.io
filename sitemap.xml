@@ -38,11 +38,6 @@
   </url>
   
   <url>
-    <loc>//razil.cc/post/2018/10/gfs-note/</loc>
-    <lastmod>2018-10-01T18:02:51+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//razil.cc/post/2018/09/go-dependency-lose-resources-error/</loc>
     <lastmod>2018-09-26T21:12:15+08:00</lastmod>
   </url>
@@ -251,12 +246,6 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/gfs/</loc>
-    <lastmod>2018-10-01T18:02:51+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>//razil.cc/tags/go/</loc>
     <lastmod>2018-11-06T21:42:51+08:00</lastmod>
     <priority>0</priority>
@@ -444,12 +433,6 @@
   
   <url>
     <loc>//razil.cc/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</loc>
-    <lastmod>2017-09-26T23:29:00+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//razil.cc/categories/%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2018-11-06T21:42:51+08:00</lastmod>
     <priority>0</priority>
   </url>

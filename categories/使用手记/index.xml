@@ -6,10 +6,19 @@
     <description>Recent content in 使用手记 on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 26 Sep 2017 23:29:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 06 Nov 2018 21:42:51 +0800</lastBuildDate>
     
 	<atom:link href="//razil.cc/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Go] google/btree B树包使用笔记</title>
+      <link>//razil.cc/post/2018/11/google_btree_using_notes/</link>
+      <pubDate>Tue, 06 Nov 2018 21:42:51 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/11/google_btree_using_notes/</guid>
+      <description>[TOC] B-tree 库介绍 btree本库是go语言的Btree的一个实现。Btree跟二叉树相比,它是多路搜索,支持范围搜索而且搜索效率稳定。 使用方法 测试代</description>
+    </item>
     
     <item>
       <title>Go爬虫初探</title>
