@@ -246,15 +246,6 @@
     </item>
     
     <item>
-      <title>[译]Context并非为cancel而生</title>
-      <link>//razil.cc/post/2017/11/go-context-is-not-for-cancel/</link>
-      <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
-      
-      <guid>//razil.cc/post/2017/11/go-context-is-not-for-cancel/</guid>
-      <description>前言 译者:Razil 本文译自:Context isn’t for cancellation 包括我自己在内的许多作者，学了许多关于contenxt.Context包使用、误用</description>
-    </item>
-    
-    <item>
       <title>系统监控:InfluxDB vs Elasticsearch</title>
       <link>//razil.cc/post/2017/10/influxdbvselasticsearch/</link>
       <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>

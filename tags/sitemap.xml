@@ -133,11 +133,6 @@
   </url>
   
   <url>
-    <loc>//razil.cc/post/2017/11/go-context-is-not-for-cancel/</loc>
-    <lastmod>2017-11-30T20:47:48+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//razil.cc/post/2017/10/influxdbvselasticsearch/</loc>
     <lastmod>2017-10-19T23:38:17+08:00</lastmod>
   </url>
@@ -223,12 +218,6 @@
   <url>
     <loc>//razil.cc/</loc>
     <lastmod>2019-01-06T23:26:32+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//razil.cc/tags/context/</loc>
-    <lastmod>2017-11-30T20:47:48+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -552,7 +541,7 @@
   
   <url>
     <loc>//razil.cc/categories/%E8%AF%91%E6%96%87/</loc>
-    <lastmod>2017-11-30T20:47:48+08:00</lastmod>
+    <lastmod>2017-10-19T23:38:17+08:00</lastmod>
     <priority>0</priority>
   </url>
   
