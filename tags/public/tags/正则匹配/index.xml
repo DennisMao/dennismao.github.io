@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>正则匹配 on Coding茶餐厅</title>
+    <link>//razil.cc/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D/</link>
+    <description>Recent content in 正则匹配 on Coding茶餐厅</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 17 May 2017 14:58:17 +0800</lastBuildDate>
+    
+	<atom:link href="//razil.cc/tags/%E6%AD%A3%E5%88%99%E5%8C%B9%E9%85%8D/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【Go】常用的正则表达式</title>
+      <link>//razil.cc/post/2017/05/go-regexp-pkg/</link>
+      <pubDate>Wed, 17 May 2017 14:58:17 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2017/05/go-regexp-pkg/</guid>
+      <description>/*********************************************************** *名字 golang 正则工具 *功能 支持数字，字母，字符，常用信息（电话，邮箱）等的正则匹配 *作者 Razil ************************************************************/ package models import ( &amp;quot;regexp&amp;quot; ) type RegexCheck struct { } /************************* 自定义类型 ************************/ //数字+字母</description>
+    </item>
+    
+  </channel>
+</rss>

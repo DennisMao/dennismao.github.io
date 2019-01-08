@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Minikube on Coding茶餐厅</title>
+    <link>//razil.cc/tags/minikube/</link>
+    <description>Recent content in Minikube on Coding茶餐厅</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 02 Jul 2018 22:12:21 +0800</lastBuildDate>
+    
+	<atom:link href="//razil.cc/tags/minikube/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【k8s】使用Minikube搭建模拟本机K8s实验环境</title>
+      <link>//razil.cc/post/2018/07/k8s-minikube/</link>
+      <pubDate>Mon, 02 Jul 2018 22:12:21 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/07/k8s-minikube/</guid>
+      <description>使用Minikube搭建模拟本机K8s实验环境 [TOC] 前言 由于研究istio需要,准备在本机搭建一套k8s环境,测试完成后再部署到线上。通过搜集了</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -13,11 +13,11 @@
     
     <item>
       <title>[Go] 转载-Go Mod 基本工作流程</title>
-      <link>//razil.cc/post/2018/12/go_harbor/</link>
+      <link>//razil.cc/post/2018/12/go_mod_workflow/</link>
       <pubDate>Tue, 04 Dec 2018 09:22:41 +0800</pubDate>
       
-      <guid>//razil.cc/post/2018/12/go_harbor/</guid>
-      <description>[TOC] #go module workflow 原作者: github.com/ofree8 夜读群里的叶飞 参照视频 一、创建新工程 &amp;gt; mkdir /tmp/test-project &amp;amp;&amp;amp; cd /tmp/test-project &amp;gt; # &amp;gt; go mod init github.com/ofree8/test-project 二、增加三方库 &amp;gt; # 方式一: &amp;gt; go get -v go.uber.org/zap &amp;gt; # 方式二: import (go.uber.org/zap) // in file source.go</description>
+      <guid>//razil.cc/post/2018/12/go_mod_workflow/</guid>
+      <description>[TOC] go module workflow 原作者: github.com/ofree8 夜读群里的叶飞 参照视频 一、创建新工程 &amp;gt; mkdir /tmp/test-project &amp;amp;&amp;amp; cd /tmp/test-project &amp;gt; # &amp;gt; go mod init github.com/ofree8/test-project 二、增加三方库 &amp;gt; # 方式一: &amp;gt; go get -v go.uber.org/zap &amp;gt; # 方式二: import (go.uber.org/zap) // in file source.go</description>
     </item>
     
     <item>
@@ -72,15 +72,6 @@
       
       <guid>//razil.cc/post/2018/10/raft-note/</guid>
       <description>[TOC] 背景 在学习6.824时候lab2需要研究分布式一致性算法,课程为了方便学生理解,算法由Paxos改成Raft。本文是在阅读《In Search of an Understandable Consensus</description>
-    </item>
-    
-    <item>
-      <title>【分布式】《The Google File System》笔记</title>
-      <link>//razil.cc/post/2018/10/gfs-note/</link>
-      <pubDate>Mon, 01 Oct 2018 18:02:51 +0800</pubDate>
-      
-      <guid>//razil.cc/post/2018/10/gfs-note/</guid>
-      <description>[TOC] 背景 6.824中以谷歌的分布式系统作为例子对分布式系统架构与实际应用做了介绍，也是对分布式系统的一个基本印象,以下为自己的一些学习笔记，方</description>
     </item>
     
     <item>
@@ -323,7 +314,7 @@
       <pubDate>Wed, 19 Apr 2017 15:24:29 +0800</pubDate>
       
       <guid>//razil.cc/post/2017/04/docker-deploy-1/</guid>
-      <description>目标功能 使用go语言实现基本http服务 访问 localhost:8080 时能够返回 &amp;ldquo;hellodocker&amp;rdquo; 将工程部署到docker，并在后台启动 ###环境介绍 docker: golang: host(宿主机环境): Mac</description>
+      <description>目标功能 使用go语言实现基本http服务 访问 localhost:8080 时能够返回 &amp;ldquo;hellodocker&amp;rdquo; 将工程部署到docker，并在后台启动 环境介绍 docker: golang: host(宿主机环境): Mac os 10.12 重</description>
     </item>
     
     <item>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>微服务 on Coding茶餐厅</title>
+    <link>//razil.cc/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <description>Recent content in 微服务 on Coding茶餐厅</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 23 Nov 2018 09:42:51 +0800</lastBuildDate>
+    
+	<atom:link href="//razil.cc/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[微服务] kubernates平台Roadmap</title>
+      <link>//razil.cc/post/2018/11/micro_service_roadmap/</link>
+      <pubDate>Fri, 23 Nov 2018 09:42:51 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/11/micro_service_roadmap/</guid>
+      <description>[TOC] 背景 收集了一些比较好的微服务和DevOps的Roadmap,后续会整理出一套完整的脑图,由于近些年新的组件层出不穷Roadmap会不断更新</description>
+    </item>
+    
+    <item>
+      <title>【k8s】使用Minikube搭建模拟本机K8s实验环境</title>
+      <link>//razil.cc/post/2018/07/k8s-minikube/</link>
+      <pubDate>Mon, 02 Jul 2018 22:12:21 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/07/k8s-minikube/</guid>
+      <description>使用Minikube搭建模拟本机K8s实验环境 [TOC] 前言 由于研究istio需要,准备在本机搭建一套k8s环境,测试完成后再部署到线上。通过搜集了</description>
+    </item>
+    
+  </channel>
+</rss>
