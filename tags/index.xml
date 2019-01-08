@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>[Go]Go并发模型与工程应用</title>
+      <link>//razil.cc/post/2018/12/go_concurrency_pattern/</link>
+      <pubDate>Sun, 09 Dec 2018 20:22:15 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/12/go_concurrency_pattern/</guid>
+      <description>并发模型 写了一个示例代码,讲解一些实际工作中用到的并发模型(生产者/消费者组合)和一些并发下的函数处理方案. 在使用go并发时候有以下内容需要</description>
+    </item>
+    
+    <item>
       <title>[Go] 转载-Go Mod 基本工作流程</title>
       <link>//razil.cc/post/2018/12/go_mod_workflow/</link>
       <pubDate>Tue, 04 Dec 2018 09:22:41 +0800</pubDate>
@@ -80,6 +89,15 @@
       <pubDate>Tue, 09 Oct 2018 20:22:15 +0800</pubDate>
       
       <guid>//razil.cc/post/2018/10/go-cors-request-on-gin/</guid>
+      <description>背景 有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Heade</description>
+    </item>
+    
+    <item>
+      <title>【Go】复杂请求情况下post变成options请求后台处理方法</title>
+      <link>//razil.cc/post/2018/10/go_concurrency_pattern/</link>
+      <pubDate>Tue, 09 Oct 2018 20:22:15 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/10/go_concurrency_pattern/</guid>
       <description>背景 有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Heade</description>
     </item>
     

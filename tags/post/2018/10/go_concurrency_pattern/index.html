@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>404 Page not found - Coding茶餐厅</title>
+  <title>【Go】复杂请求情况下post变成options请求后台处理方法 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="404 Page not found">
+  <meta name="description" content="背景 有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Heade">
   
-  <meta itemprop="name" content="404 Page not found - Coding茶餐厅">
-  <meta itemprop="description" content="404 Page not found">
+  <meta itemprop="name" content="【Go】复杂请求情况下post变成options请求后台处理方法 - Coding茶餐厅">
+  <meta itemprop="description" content="背景 有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Heade">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
@@ -59,11 +59,178 @@
 
   </header>
   <div id="container">
-    <div id="main">
-      
-      你访问的页面不存在
-      
+    <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+    <header class="article-info clearfix">
+  <h1 itemprop="name">
+      <a href="//razil.cc/post/2018/10/go_concurrency_pattern/" title="【Go】复杂请求情况下post变成options请求后台处理方法" itemprop="url">【Go】复杂请求情况下post变成options请求后台处理方法</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="//razil.cc/" title=""></a>
+    
+  </p>
+  <p class="article-time">
+    <time datetime="2018-10-09 20:22:15 &#43;0800 CST" itemprop="datePublished">2018年10月09日</time>
+  </p>
+</header>
+
+	<div class="article-content">
+    
+		<div class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#背景">背景</a></li>
+<li><a href="#原因">原因</a></li>
+<li><a href="#解决方法">解决方法</a></li>
+</ul></li>
+</ul>
+</nav>
+		</div>
+    
+    
+
+<h2 id="背景">背景</h2>
+
+<p>有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Header,导致违反了简单请求要求自动变成了复杂请求,因此请求失败。
+n作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Header,导致违反了简单请求要求自动变成了复杂请求,因此请求失败。</p>
+
+<h2 id="原因">原因</h2>
+
+<p>由于Axios将简单请求(单次post)请求变成了二次请求,即先发一次<code>options</code>请求去判断域是否被允许,再发送真实请求<code>post</code>得到结果。</p>
+
+<p>而我们后台正常的跨域处理仅是针对简单请求增加了允许域通过</p>
+
+<pre><code>origin := c.Request.Header.Get(&quot;Origin&quot;)
+c.Header(&quot;Access-Control-Allow-Origin&quot;, origin)
+或者
+c.Header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;)
+</code></pre>
+
+<p>对于复杂请求需要增加对<code>options</code>方法的处理,解决代码请看下一节</p>
+
+<p>关于跨域的简单请求和复杂请求介绍可以看以下这篇文章<a href="http://www.poorren.com/cross-origin-resource-sharing-simple-complex">CORS跨域请求(简单请求与复杂请求)</a><br />
+关于跨域标准可以看<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a></p>
+
+<h2 id="解决方法">解决方法</h2>
+
+<p>增加中间件,添加<code>options</code>方法的处理</p>
+
+<pre><code>        if method == &quot;OPTIONS&quot; {
+            c.Header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;)
+            c.Header(&quot;Access-Control-Allow-Headers&quot;, &quot;Content-Type,AccessToken,X-CSRF-Token, Authorization&quot;) //自定义 Header
+            c.Header(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, GET, OPTIONS&quot;)
+            c.Header(&quot;Access-Control-Expose-Headers&quot;, &quot;Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type&quot;)
+            c.Header(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;)
+            c.AbortWithStatus(http.StatusNoContent)  // 截获处理,并响应成功即可
+        }
+</code></pre>
+
+<p>添加完整gin的中间件文件<br />
+//gin/middleware/cors.go</p>
+
+<pre><code>//
+// 模块名称: Gin框架中间件-允许跨域
+// 模块描述: 处理跨域请求,支持options访问
+// 创建时间: 20181009
+//
+package middleware
+
+import (
+    &quot;net/http&quot;
+
+    &quot;github.com/gin-gonic/gin&quot;
+)
+
+func Cors() gin.HandlerFunc {
+    return func(c *gin.Context) {
+        method := c.Request.Method
+
+        origin := c.Request.Header.Get(&quot;Origin&quot;)
+
+        if origin != &quot;&quot; {
+            c.Header(&quot;Access-Control-Allow-Origin&quot;, origin)
+            c.Header(&quot;Access-Control-Allow-Headers&quot;, &quot;Content-Type,AccessToken,X-CSRF-Token, Authorization&quot;) //自定义 Header
+            c.Header(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, GET, OPTIONS&quot;)
+            c.Header(&quot;Access-Control-Expose-Headers&quot;, &quot;Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type&quot;)
+            c.Header(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;)
+
+        }
+
+        if method == &quot;OPTIONS&quot; {
+            c.Header(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;)
+            c.Header(&quot;Access-Control-Allow-Headers&quot;, &quot;Content-Type,AccessToken,X-CSRF-Token, Authorization&quot;) //自定义 Header
+            c.Header(&quot;Access-Control-Allow-Methods&quot;, &quot;POST, GET, OPTIONS&quot;)
+            c.Header(&quot;Access-Control-Expose-Headers&quot;, &quot;Content-Length, Access-Control-Allow-Origin, Access-Control-Allow-Headers, Content-Type&quot;)
+            c.Header(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;)
+            c.AbortWithStatus(http.StatusNoContent)
+        }
+
+        c.Next()
+    }
+}
+
+</code></pre>
+
+<p>应用中间件</p>
+
+<pre><code>package main
+
+import(
+    &quot;gin/middleware&quot;
+
+    &quot;github.com/gin-gonic/gin&quot;
+)
+
+func main(){
+    gin.SetMode(gin.ReleaseMode)
+    engine = gin.Default()
+
+    //绑定中间件
+    engine.Use(middleware.Cors())  
+}
+</code></pre>
+
+	</div>
+  <footer class="article-footer clearfix">
+  
+
+<div class="article-tags">
+  <span></span>
+  
+  <a href="//razil.cc/tags/go">go</a>
+  
+</div>
+
+
+
+
+
+<div class="article-categories">
+  <span></span>
+  
+  <a class="article-category-link" href="//razil.cc/categories/go">go</a>
+  
+</div>
+
+
+
+  <div class="article-share" id="share">
+    <div data-url="//razil.cc/post/2018/10/go_concurrency_pattern/" data-title="【Go】复杂请求情况下post变成options请求后台处理方法" data-tsina="" class="share clearfix">
     </div>
+  </div>
+</footer>
+
+	</article>
+  
+
+
+
+</div>
+
     <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -74,13 +241,15 @@
   <p class="asidetitle">分类</p>
   <ul>
     
+    <li><a href="//razil.cc/categories/" title=""><sup>1</sup></a></li>
+    
     <li><a href="//razil.cc/categories/devops" title="devops">devops<sup>2</sup></a></li>
     
     <li><a href="//razil.cc/categories/docker" title="docker">docker<sup>2</sup></a></li>
     
-    <li><a href="//razil.cc/categories/go" title="go">go<sup>15</sup></a></li>
+    <li><a href="//razil.cc/categories/go" title="go">go<sup>17</sup></a></li>
     
-    <li><a href="//razil.cc/categories/golang" title="golang">golang<sup>5</sup></a></li>
+    <li><a href="//razil.cc/categories/golang" title="golang">golang<sup>4</sup></a></li>
     
     <li><a href="//razil.cc/categories/grpc" title="grpc">grpc<sup>1</sup></a></li>
     
@@ -92,7 +261,7 @@
     
     <li><a href="//razil.cc/categories/%e4%bd%bf%e7%94%a8%e6%89%8b%e8%ae%b0" title="使用手记">使用手记<sup>5</sup></a></li>
     
-    <li><a href="//razil.cc/categories/%e5%88%86%e5%b8%83%e5%bc%8f" title="分布式">分布式<sup>1</sup></a></li>
+    <li><a href="//razil.cc/categories/%e5%88%86%e5%b8%83%e5%bc%8f" title="分布式">分布式<sup>2</sup></a></li>
     
     <li><a href="//razil.cc/categories/%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f" title="分布式系统">分布式系统<sup>1</sup></a></li>
     
@@ -106,7 +275,7 @@
     
     <li><a href="//razil.cc/categories/%e7%bd%91%e7%bb%9c" title="网络">网络<sup>1</sup></a></li>
     
-    <li><a href="//razil.cc/categories/%e8%af%91%e6%96%87" title="译文">译文<sup>2</sup></a></li>
+    <li><a href="//razil.cc/categories/%e8%af%91%e6%96%87" title="译文">译文<sup>1</sup></a></li>
     
     <li><a href="//razil.cc/categories/%e8%bd%ac%e8%bd%bd" title="转载">转载<sup>1</sup></a></li>
     
@@ -127,11 +296,9 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
       
-			<li><a href="//razil.cc/tags/" title=""><sup>1</sup></a></li>
+			<li><a href="//razil.cc/tags/" title=""><sup>3</sup></a></li>
       
 			<li><a href="//razil.cc/tags/beego" title="beego">beego<sup>2</sup></a></li>
-      
-			<li><a href="//razil.cc/tags/context" title="context">context<sup>1</sup></a></li>
       
 			<li><a href="//razil.cc/tags/dep" title="dep">dep<sup>1</sup></a></li>
       
@@ -139,11 +306,11 @@
       
 			<li><a href="//razil.cc/tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
       
-			<li><a href="//razil.cc/tags/go" title="go">go<sup>9</sup></a></li>
+			<li><a href="//razil.cc/tags/go" title="go">go<sup>11</sup></a></li>
       
 			<li><a href="//razil.cc/tags/go-mod" title="go-mod">go-mod<sup>1</sup></a></li>
       
-			<li><a href="//razil.cc/tags/golang" title="golang">golang<sup>3</sup></a></li>
+			<li><a href="//razil.cc/tags/golang" title="golang">golang<sup>2</sup></a></li>
       
 			<li><a href="//razil.cc/tags/grpc" title="grpc">grpc<sup>1</sup></a></li>
       
@@ -219,7 +386,12 @@
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="//razil.cc/post/#2018-12">2018年12月</a><span class="archive-list-count">1</span>
+        <a class="archive-list-link" href="//razil.cc/post/#2019-01">2019年01月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-12">2018年12月</a><span class="archive-list-count">3</span>
       </li>
       
       
@@ -229,7 +401,7 @@
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="//razil.cc/post/#2018-10">2018年10月</a><span class="archive-list-count">2</span>
+        <a class="archive-list-link" href="//razil.cc/post/#2018-10">2018年10月</a><span class="archive-list-count">3</span>
       </li>
       
       
@@ -269,7 +441,7 @@
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="//razil.cc/post/#2017-11">2017年11月</a><span class="archive-list-count">2</span>
+        <a class="archive-list-link" href="//razil.cc/post/#2017-11">2017年11月</a><span class="archive-list-count">1</span>
       </li>
       
       
@@ -321,8 +493,6 @@
     <a href="//razil.cc/tags/" style="font-size: 12px;"></a>
     
     <a href="//razil.cc/tags/beego" style="font-size: 12px;">beego</a>
-    
-    <a href="//razil.cc/tags/context" style="font-size: 12px;">context</a>
     
     <a href="//razil.cc/tags/dep" style="font-size: 12px;">dep</a>
     
@@ -421,7 +591,7 @@
     
   </div>
 
-  <p class="copyright"> Copyright © 2018
+  <p class="copyright"> Copyright © 2019
     
     <a href="//razil.cc/" title="Coding茶餐厅">Coding茶餐厅</a>
     
@@ -492,6 +662,38 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
   var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
@@ -518,6 +720,27 @@ $(document).ready(function(){
 });
 </script>
 
+
+<link rel="stylesheet" href="//razil.cc/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//razil.cc/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
 
 
 
