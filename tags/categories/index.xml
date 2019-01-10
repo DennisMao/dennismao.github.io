@@ -6,9 +6,19 @@
     <description>Recent content in Categories on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
+    <lastBuildDate>Sat, 29 Dec 2018 19:22:41 +0800</lastBuildDate>
     
 	<atom:link href="//razil.cc/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title></title>
+      <link>//razil.cc/categories/</link>
+      <pubDate>Sat, 29 Dec 2018 19:22:41 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Devops</title>
@@ -31,7 +41,7 @@
     <item>
       <title>Go</title>
       <link>//razil.cc/categories/go/</link>
-      <pubDate>Tue, 04 Dec 2018 09:22:41 +0800</pubDate>
+      <pubDate>Sun, 09 Dec 2018 20:22:15 +0800</pubDate>
       
       <guid>//razil.cc/categories/go/</guid>
       <description></description>
@@ -94,7 +104,7 @@
     <item>
       <title>分布式</title>
       <link>//razil.cc/categories/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
-      <pubDate>Tue, 22 Aug 2017 23:44:21 +0800</pubDate>
+      <pubDate>Sun, 06 Jan 2019 23:26:32 +0800</pubDate>
       
       <guid>//razil.cc/categories/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
       <description></description>
@@ -157,7 +167,7 @@
     <item>
       <title>译文</title>
       <link>//razil.cc/categories/%E8%AF%91%E6%96%87/</link>
-      <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
+      <pubDate>Thu, 19 Oct 2017 23:38:17 +0800</pubDate>
       
       <guid>//razil.cc/categories/%E8%AF%91%E6%96%87/</guid>
       <description></description>

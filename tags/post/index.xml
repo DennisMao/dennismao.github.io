@@ -6,10 +6,37 @@
     <description>Recent content in Posts on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 04 Dec 2018 09:22:41 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 06 Jan 2019 23:26:32 +0800</lastBuildDate>
     
 	<atom:link href="//razil.cc/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[分布式] 分布式系统学习资源</title>
+      <link>//razil.cc/post/2019/01/distributed_system_roadmap/</link>
+      <pubDate>Sun, 06 Jan 2019 23:26:32 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2019/01/distributed_system_roadmap/</guid>
+      <description>[TOC] 分布式学习路线 博客 名称|简介|地址 :-|:-|:- Leslie Lamport|Paxos作者,分布式系统专家|http://lamport.azurewebsit</description>
+    </item>
+    
+    <item>
+      <title>[分布式] 分布式系统学习Roadmap</title>
+      <link>//razil.cc/post/2018/12/distributed_system_roadmap/</link>
+      <pubDate>Sat, 29 Dec 2018 19:22:41 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/12/distributed_system_roadmap/</guid>
+      <description>[TOC] 分布式学习路线 博客 名称|简介|地址 :-|:-|:- Leslie Lamport|Paxos作者,分布式系统专家|http://lamport.azurewebsit</description>
+    </item>
+    
+    <item>
+      <title>[Go]Go并发模型与工程应用</title>
+      <link>//razil.cc/post/2018/12/go_concurrency_pattern/</link>
+      <pubDate>Sun, 09 Dec 2018 20:22:15 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/12/go_concurrency_pattern/</guid>
+      <description>并发模型 写了一个示例代码,讲解一些实际工作中用到的并发模型(生产者/消费者组合)和一些并发下的函数处理方案. 在使用go并发时候有以下内容需要</description>
+    </item>
     
     <item>
       <title>[Go] 转载-Go Mod 基本工作流程</title>
@@ -62,6 +89,15 @@
       <pubDate>Tue, 09 Oct 2018 20:22:15 +0800</pubDate>
       
       <guid>//razil.cc/post/2018/10/go-cors-request-on-gin/</guid>
+      <description>背景 有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Heade</description>
+    </item>
+    
+    <item>
+      <title>【Go】复杂请求情况下post变成options请求后台处理方法</title>
+      <link>//razil.cc/post/2018/10/go_concurrency_pattern/</link>
+      <pubDate>Tue, 09 Oct 2018 20:22:15 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/10/go_concurrency_pattern/</guid>
       <description>背景 有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Heade</description>
     </item>
     
@@ -225,15 +261,6 @@
       
       <guid>//razil.cc/post/2017/12/awsome-articles-2017/</guid>
       <description>基础 数据库 关系型 非关系型 深入理解etcd Etcd v3 服务注册与发现 Go代码 架构 高并发 分布式 设计模式 DDD TDD,BDD,FDD&amp;amp;ATDD 业务 AWS开发工具包发布适用Go 2.0的开发者</description>
-    </item>
-    
-    <item>
-      <title>[译]Context并非为cancel而生</title>
-      <link>//razil.cc/post/2017/11/go-context-is-not-for-cancel/</link>
-      <pubDate>Thu, 30 Nov 2017 20:47:48 +0800</pubDate>
-      
-      <guid>//razil.cc/post/2017/11/go-context-is-not-for-cancel/</guid>
-      <description>前言 译者:Razil 本文译自:Context isn’t for cancellation 包括我自己在内的许多作者，学了许多关于contenxt.Context包使用、误用</description>
     </item>
     
     <item>
