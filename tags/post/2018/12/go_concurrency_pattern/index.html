@@ -109,11 +109,14 @@
 
 <p>写了一个示例代码,讲解一些实际工作中用到的并发模型(生产者/消费者组合)和一些并发下的函数处理方案.</p>
 
-<p>在使用go并发时候有以下内容需要注意:
-+ 1.在协程的函数中注意return,防止协程泄露 (泄露可以通过pprof看出)
-+ 2.协程内的panic会引起整个程序的panic,但go语言并不支持跨协程去recover,所以根据业务需要在协程内的函数做好recover处理。
-+ 3.协程入参建议加入&rsquo;context&rsquo;,方便传参和控制
-+ 4.注意<code>race</code>情况的发生,debug时候使用[go test -race]检测。</p>
+<p>在使用go并发时候有以下内容需要注意:</p>
+
+<ul>
+<li>1.在协程的函数中注意return,防止协程泄露 (泄露可以通过pprof看出)</li>
+<li>2.协程内的panic会引起整个程序的panic,但go语言并不支持跨协程去recover,所以根据业务需要在协程内的函数做好recover处理。</li>
+<li>3.协程入参建议加入&rsquo;context&rsquo;,方便传参和控制</li>
+<li>4.注意<code>race</code>情况的发生,debug时候使用[go test -race]检测。</li>
+</ul>
 
 <h2 id="无并发">无并发</h2>
 
@@ -245,7 +248,7 @@
     
     <li><a href="//razil.cc/categories/docker" title="docker">docker<sup>2</sup></a></li>
     
-    <li><a href="//razil.cc/categories/go" title="go">go<sup>17</sup></a></li>
+    <li><a href="//razil.cc/categories/go" title="go">go<sup>16</sup></a></li>
     
     <li><a href="//razil.cc/categories/golang" title="golang">golang<sup>4</sup></a></li>
     
@@ -302,7 +305,7 @@
       
 			<li><a href="//razil.cc/tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
       
-			<li><a href="//razil.cc/tags/go" title="go">go<sup>11</sup></a></li>
+			<li><a href="//razil.cc/tags/go" title="go">go<sup>10</sup></a></li>
       
 			<li><a href="//razil.cc/tags/go-mod" title="go-mod">go-mod<sup>1</sup></a></li>
       
@@ -397,7 +400,7 @@
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="//razil.cc/post/#2018-10">2018年10月</a><span class="archive-list-count">3</span>
+        <a class="archive-list-link" href="//razil.cc/post/#2018-10">2018年10月</a><span class="archive-list-count">2</span>
       </li>
       
       

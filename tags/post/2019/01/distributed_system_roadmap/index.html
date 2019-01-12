@@ -5,10 +5,10 @@
   <title>[分布式] 分布式系统学习资源 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="[TOC] 分布式学习路线 博客 名称|简介|地址 :-|:-|:- Leslie Lamport|Paxos作者,分布式系统专家|http://lamport.azurewebsit">
+  <meta name="description" content="[TOC] 分布式学习路线 博客 名称 简介 地址 Leslie Lamport Paxos作者,分布式系统专家 http://lamport.azurewebsites.net/pubs/pubs.html 论文 系统 名称 简介 论文 翻译 笔记 MapReduce 分布式计算框架 1.MapReduce: Simplified Data Processing on Large Clusters 2.MapReduce: A major step backwards Bigtable 分">
   
   <meta itemprop="name" content="[分布式] 分布式系统学习资源 - Coding茶餐厅">
-  <meta itemprop="description" content="[TOC] 分布式学习路线 博客 名称|简介|地址 :-|:-|:- Leslie Lamport|Paxos作者,分布式系统专家|http://lamport.azurewebsit">
+  <meta itemprop="description" content="[TOC] 分布式学习路线 博客 名称 简介 地址 Leslie Lamport Paxos作者,分布式系统专家 http://lamport.azurewebsites.net/pubs/pubs.html 论文 系统 名称 简介 论文 翻译 笔记 MapReduce 分布式计算框架 1.MapReduce: Simplified Data Processing on Large Clusters 2.MapReduce: A major step backwards Bigtable 分">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
@@ -102,34 +102,161 @@
 
 <h2 id="博客">博客</h2>
 
-<p>名称|简介|地址
-:-|:-|:-
-Leslie Lamport|Paxos作者,分布式系统专家|<a href="http://lamport.azurewebsites.net/pubs/pubs.html">http://lamport.azurewebsites.net/pubs/pubs.html</a></p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="center">简介</th>
+<th align="right">地址</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Leslie Lamport</td>
+<td align="center">Paxos作者,分布式系统专家</td>
+<td align="right"><a href="http://lamport.azurewebsites.net/pubs/pubs.html">http://lamport.azurewebsites.net/pubs/pubs.html</a></td>
+</tr>
+</tbody>
+</table>
 
 <h2 id="论文">论文</h2>
 
 <h3 id="系统">系统</h3>
 
-<p>名称|简介|论文|翻译|笔记
-:-|:-|:-|:-|:-
-MapReduce | 分布式计算框架|1.<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/mapreduce.pdf">MapReduce: Simplified Data Processing on Large Clusters</a> 2.<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/dewitt_mr_db.pdf">MapReduce: A major step backwards</a>||
-Bigtable |分布式非关系型数据库|<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/bigtable-osdi06.pdf">Bigtable: A Distributed Storage System for Structured Data</a>
-Google File System|分布式文件系统|<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/gfs.pdf">The Google File System</a>
-Spanner|分布式关系型数据库|<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/Spanner.pdf">Spanner: Google’s Globally-Distributed Database</a>
-F1|分布式关系型数据库|<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/41344.pdf">F1: A Distributed SQL Database That Scales</a>|||<br />
-Dynamo|分布式高可用KV数据库| <a href="https://github.com/DennisMao/books/paper/distributed_system/systems/amazon-dynamo-sosp2007.pdf">Dynamo: Amazon’s Highly Available Key-value Store</a>|
-Chubby|分布式锁| <a href="https://github.com/DennisMao/books/paper/distributed_system/systems/chubby-osdi06.pdf">The Chubby lock service for loosely-coupled distributed syste</a>
-Spark|分布式计算框架|<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/zaharia-spark.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a>|
-MillWheel|分布式流式计算和处理系统|<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/41378.pdf">MillWheel: Fault-Tolerant Stream Processing at Internet Scale</a> |
-HBase|分布式列式数据存储系统|<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/9353-login1210_khurana.pdf">Introduction to HBase Schema Design</a>
-RAMcloud|分布式内存存储系统|<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/10_Stanford_RAMcloud.pdf">RAMCloud: A Low-Latency Datacenter Storage Syste.pdf</a>|</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="center">简介</th>
+<th align="center">论文</th>
+<th align="center">翻译</th>
+<th align="right">笔记</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">MapReduce</td>
+<td align="center">分布式计算框架</td>
+<td align="center">1.<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/mapreduce.pdf">MapReduce: Simplified Data Processing on Large Clusters</a> 2.<a href="https://github.com/DennisMao/books/paper/distributed_system/systems/dewitt_mr_db.pdf">MapReduce: A major step backwards</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">Bigtable</td>
+<td align="center">分布式非关系型数据库</td>
+<td align="center"><a href="https://github.com/DennisMao/books/paper/distributed_system/systems/bigtable-osdi06.pdf">Bigtable: A Distributed Storage System for Structured Data</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">Google File System</td>
+<td align="center">分布式文件系统</td>
+<td align="center"><a href="https://github.com/DennisMao/books/paper/distributed_system/systems/gfs.pdf">The Google File System</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">Spanner</td>
+<td align="center">分布式关系型数据库</td>
+<td align="center"><a href="https://github.com/DennisMao/books/paper/distributed_system/systems/Spanner.pdf">Spanner: Google’s Globally-Distributed Database</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">F1</td>
+<td align="center">分布式关系型数据库</td>
+<td align="center"><a href="https://github.com/DennisMao/books/paper/distributed_system/systems/41344.pdf">F1: A Distributed SQL Database That Scales</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">Dynamo</td>
+<td align="center">分布式高可用KV数据库</td>
+<td align="center"><a href="https://github.com/DennisMao/books/paper/distributed_system/systems/amazon-dynamo-sosp2007.pdf">Dynamo: Amazon’s Highly Available Key-value Store</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">Chubby</td>
+<td align="center">分布式锁</td>
+<td align="center"><a href="https://github.com/DennisMao/books/paper/distributed_system/systems/chubby-osdi06.pdf">The Chubby lock service for loosely-coupled distributed syste</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">Spark</td>
+<td align="center">分布式计算框架</td>
+<td align="center"><a href="https://github.com/DennisMao/books/paper/distributed_system/systems/zaharia-spark.pdf">Resilient Distributed Datasets: A Fault-Tolerant Abstraction for In-Memory Cluster Computing</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">MillWheel</td>
+<td align="center">分布式流式计算和处理系统</td>
+<td align="center"><a href="https://github.com/DennisMao/books/paper/distributed_system/systems/41378.pdf">MillWheel: Fault-Tolerant Stream Processing at Internet Scale</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">HBase</td>
+<td align="center">分布式列式数据存储系统</td>
+<td align="center"><a href="https://github.com/DennisMao/books/paper/distributed_system/systems/9353-login1210_khurana.pdf">Introduction to HBase Schema Design</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">RAMcloud</td>
+<td align="center">分布式内存存储系统</td>
+<td align="center"><a href="https://github.com/DennisMao/books/paper/distributed_system/systems/10_Stanford_RAMcloud.pdf">RAMCloud: A Low-Latency Datacenter Storage Syste.pdf</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
 
 <h3 id="一致性算法">一致性算法</h3>
 
-<p>名称|简介|论文|翻译|笔记
-:-|:-|:-|:-|:-|
-Raft| 分布式一致性算法| 1.<a href="https://github.com/DennisMao/books/paper/distributed_system/consensus-algorithms/raft-extended.pdf">In Search of an Understandable Consensus Algorithm (Extended Version)</a> 2.<a href="https://github.com/DennisMao/books/paper/distributed_system/consensus-algorithms/thesis.pdf">CONSENSUS: BRIDGING THEORY AND PRACTI</a>
-Paxos| 分布式一致性算法|1.<a href="https://github.com/DennisMao/books/paper/distributed_system/consensus-algorithms/paxos-simple.pdf">Paxos Made Simple</a> 2.<a href="https://github.com/DennisMao/books/paper/distributed_system/consensus-algorithms/paper2-1.pdf">Paxos Made Live - An Engineering Perspective</a>||</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th align="center">简介</th>
+<th align="center">论文</th>
+<th align="center">翻译</th>
+<th align="right">笔记</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">Raft</td>
+<td align="center">分布式一致性算法</td>
+<td align="center">1.<a href="https://github.com/DennisMao/books/paper/distributed_system/consensus-algorithms/raft-extended.pdf">In Search of an Understandable Consensus Algorithm (Extended Version)</a> 2.<a href="https://github.com/DennisMao/books/paper/distributed_system/consensus-algorithms/thesis.pdf">CONSENSUS: BRIDGING THEORY AND PRACTI</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+
+<tr>
+<td align="left">Paxos</td>
+<td align="center">分布式一致性算法</td>
+<td align="center">1.<a href="https://github.com/DennisMao/books/paper/distributed_system/consensus-algorithms/paxos-simple.pdf">Paxos Made Simple</a> 2.<a href="https://github.com/DennisMao/books/paper/distributed_system/consensus-algorithms/paper2-1.pdf">Paxos Made Live - An Engineering Perspective</a></td>
+<td align="center"></td>
+<td align="right"></td>
+</tr>
+</tbody>
+</table>
 
 	</div>
   <footer class="article-footer clearfix">
@@ -184,7 +311,7 @@ Paxos| 分布式一致性算法|1.<a href="https://github.com/DennisMao/books/pa
     
     <li><a href="//razil.cc/categories/docker" title="docker">docker<sup>2</sup></a></li>
     
-    <li><a href="//razil.cc/categories/go" title="go">go<sup>17</sup></a></li>
+    <li><a href="//razil.cc/categories/go" title="go">go<sup>16</sup></a></li>
     
     <li><a href="//razil.cc/categories/golang" title="golang">golang<sup>4</sup></a></li>
     
@@ -241,7 +368,7 @@ Paxos| 分布式一致性算法|1.<a href="https://github.com/DennisMao/books/pa
       
 			<li><a href="//razil.cc/tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
       
-			<li><a href="//razil.cc/tags/go" title="go">go<sup>11</sup></a></li>
+			<li><a href="//razil.cc/tags/go" title="go">go<sup>10</sup></a></li>
       
 			<li><a href="//razil.cc/tags/go-mod" title="go-mod">go-mod<sup>1</sup></a></li>
       
@@ -336,7 +463,7 @@ Paxos| 分布式一致性算法|1.<a href="https://github.com/DennisMao/books/pa
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="//razil.cc/post/#2018-10">2018年10月</a><span class="archive-list-count">3</span>
+        <a class="archive-list-link" href="//razil.cc/post/#2018-10">2018年10月</a><span class="archive-list-count">2</span>
       </li>
       
       
