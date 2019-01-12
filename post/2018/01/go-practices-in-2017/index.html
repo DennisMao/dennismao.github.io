@@ -1,0 +1,729 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>2017 Go语言使用总结 - Coding茶餐厅</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+  
+  <meta name="description" content="到了年末，谈谈这一年的收获与坑。 所参与的项目从C&#43;&#43;转到Go有两年，产品今年已经正式投入到线上商用运行。自己也从刚开始的基础模块设计开发，逐">
+  
+  <meta itemprop="name" content="2017 Go语言使用总结 - Coding茶餐厅">
+  <meta itemprop="description" content="到了年末，谈谈这一年的收获与坑。 所参与的项目从C&#43;&#43;转到Go有两年，产品今年已经正式投入到线上商用运行。自己也从刚开始的基础模块设计开发，逐">
+  <meta itemprop="image" content="//razil.cc/img/author.jpg">
+  
+  
+  <meta name="twitter:description" content="">
+  
+  <link rel="shortcut icon" href="//razil.cc/img/favicon.ico"/>
+  <link rel="apple-touch-icon" href="//razil.cc/apple-touch-icon.png" />
+  <link rel="apple-touch-icon-precomposed" href="//razil.cc/apple-touch-icon.png" />
+  <link rel="stylesheet" href="//razil.cc/highlight/styles/github.css">
+  <script src="//razil.cc/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="//razil.cc/font/hack/css/hack.min.css">
+  <link rel="stylesheet" href="//razil.cc/css/style.css">
+</head>
+
+<body>
+  <header>
+    <div>
+  
+  <div id="textlogo">
+    <h1 class="site-name"><a href="//razil.cc/" title="Coding茶餐厅">Coding茶餐厅</a></h1>
+    <h2 class="blog-motto">不积跬步,无以至千里</h2>
+  </div>
+  <div class="navbar"><a class="navbutton navmobile" href="#" title="menu"></a></div>
+  <nav class="animated">
+    <ul>
+      
+      <li><a href="/">首页</a></li>
+      
+      <li><a href="/about">关于我</a></li>
+      
+      <li><a href="/post/toolkit">工具箱</a></li>
+      
+      <li><a href="/post/books">书库</a></li>
+      
+      <li><a href="/post/blogs">优秀博客</a></li>
+      
+      <li>
+        <form class="search" method="get" action="https://www.google.com/search">
+          <div>
+            <input type="text" id="search" name="q" placeholder="搜索">
+          </div>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+  </header>
+  <div id="container">
+    <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+    <header class="article-info clearfix">
+  <h1 itemprop="name">
+      <a href="//razil.cc/post/2018/01/go-practices-in-2017/" title="2017 Go语言使用总结" itemprop="url">2017 Go语言使用总结</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="//razil.cc/" title=""></a>
+    
+  </p>
+  <p class="article-time">
+    <time datetime="2018-01-28 22:53:37 &#43;0800 CST" itemprop="datePublished">2018年01月28日</time>
+  </p>
+</header>
+
+	<div class="article-content">
+    
+		<div class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+      <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#语法风格简单">语法风格简单</a></li>
+<li><a href="#支持跨平台">支持跨平台</a></li>
+<li><a href="#高性能-低消耗-易部署">高性能、低消耗、易部署</a></li>
+<li><a href="#坑">坑</a>
+<ul>
+<li><a href="#滥用协程">滥用协程</a></li>
+<li><a href="#第三方包质量">第三方包质量</a></li>
+<li><a href="#生态">生态</a></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+</ul>
+</nav>
+		</div>
+    
+    
+
+<p>到了年末，谈谈这一年的收获与坑。<br />
+所参与的项目从C++转到Go有两年，产品今年已经正式投入到线上商用运行。自己也从刚开始的基础模块设计开发，逐渐转到上层业务的开发。从底层到业务层的转变，对语言的需求和看法，也了有一定的变化。作为小coder，谈谈这年在实际项目中用Go语言的一些心得和踩坑经历。</p>
+
+<h2 id="语法风格简单">语法风格简单</h2>
+
+<p>Go在开发方面很吸引人的一点就是语法简单，容易上手。组里的同事基本都是从C++和JAVA两个方向转到Go语言来开发这个项目。通过相互沟通，大家普通花了一个月时间左右熟悉这门语言并能上手进行开发实际模块。因为有官方的<strong>gofmt</strong>格式化工具，大家的代码风格都基本与《effective go》中的相近。这点好处就是非常有效地提高code review的效率和效果。</p>
+
+<p>关于网上的一直争议的错误处理，团队也有过讨论。讨论的结果就是两种方案有原则的并存,根据业务情况进行选择。
+在一般流程中，使用独立的错误处理</p>
+
+<pre><code>if err := func();err != nil {
+    return err 
+}
+</code></pre>
+
+<p>在业务流中，使用统一的错误处理</p>
+
+<pre><code>func xx() (err error) {
+	defer func() {
+		if err != nil {
+			collcetErr(err)
+			return
+		}
+	}()
+
+    return 
+}
+</code></pre>
+
+<h2 id="支持跨平台">支持跨平台</h2>
+
+<p>在go 1.5后，语言原生支持了跨平台编译，通过设置环境参数<strong>GOOS</strong>和<strong>GOARCH</strong>,直接go build，即可非常便捷地进行跨平台编译。如果代码中有需要加入CGO的东西，则会稍麻烦些。与所在操作系统一下，安装支持跨平台编辑gcc，在go env中配置好<strong>cc</strong>的参数即可。由于项目需要兼容多种环境，支持跨平台编辑还是非常便于开发和部署管理。</p>
+
+<h2 id="高性能-低消耗-易部署">高性能、低消耗、易部署</h2>
+
+<p>实际项目使用中最明显的应该是它的运行效率非常高、内存消耗低和直接可以生成可执行文件部署起来十分便捷。生成出的可执行文件体积很小，生成docker container体积相比起java的也是小不少。
+当然效率高和消耗低与开发是密切相关的。前期在对语言使用上还不够理解深入的情况下，开发过程中会有出现部分内存泄漏、GC过频等情况。通过官方提供的pprof、test包和benchmark工具，搭配像<a href="https://github.com/uber/go-torch">flamegraph</a>等工具。可以高效地进行程序的漏洞修复和性能调优。</p>
+
+<p>有了上述的优点，团队也开始考虑能否能进一步拓宽Go语言的应用领域，往物联网和其他硬件相关的领域发展。</p>
+
+<h2 id="坑">坑</h2>
+
+<p>说完了优点，再说说开发和应用过程中，踩过的坑和一些解决方法。</p>
+
+<h3 id="滥用协程">滥用协程</h3>
+
+<p>由于在绝大部分介绍中都强调了Go的goroutine优势，在前面的优点讲述中就不再过多描述。但是正因为Go开协程是如此便捷，在初期开发时，会遇到在底层模块中滥用goroutine的现象。部分协程由于开了后，跑完主任务却没有正确关闭，资源一直被占用。
+对于这种解决方法有三个。
+(1)针对编程习惯上，参考了官方的并发模型，对代码质量进行规范，加强code review中这部分的检查。通过runtime/pprof包能十分便捷有效地查看当前的goroutine信息，判断是否有异常和未正确关闭的协程。
+(2)引入context包进行上下文控制，在并发模型中有cancel和wait模型，底层模块我们更多选择的是cancel模型来规范和解决goroutine管理的问题。但是在业务流程调用的时候会偏向于选择wait模型。
+(3)构建集中的任务管理器包，采用注册的方式对需要用到goroutine的任务采用wait模型进行管理。</p>
+
+<h3 id="第三方包质量">第三方包质量</h3>
+
+<p>虽然官方的底层操作库已经十分完善，但在系统整个开发过程中难免会用到第三方包。而第三方包的质量问题一直存开发过程中。由于Go语言还属于一门新的语言，跟JAVA和C++相比，相关的第三方功能包都不是那么完善，在蓬勃发展中。所以在当前需要使用第三方包还是要格外慎重，决定引入之前需要根据项目需求进行深入测试。
+这个问题主要影响是的开发的进度。底层组件开发过程，修复第三方包花费了一定时间。</p>
+
+<p>下面整理了第三方包容易存在的一些问题:
++ 多系统环境兼容性: 第三方包容易出现只支持某个系统，多系统的兼容在设计初并未考虑到
++ 版本控制: 早期包很多未采用版本控制，当第三方包内由引入其他包时候直接<strong>go get -u</strong>会引发各种奇怪问题。所以在进行二次开发时候注意增加像<strong>dep</strong>,<strong>glide</strong>这种，包的版本控制工具。
++ CGO: 有部分包因为调用了c++/c的代码引入了cgo，在开发过程中着重检查其中的c/c++代码正确性。
++ Go语言版本: 部分包会使用到一些新语法特性,像1.9的sync.map。但如果主代码编译环境与第三方包不同步时会存在编译不通过的问题，需要兼容性修改。
++ 性能: 部分开源组件提供的Go语言接口包部分的实现并不是最优解，也没有紧跟语言版本同步更新，引入新特性。所以在实现高性能底层组件的时候需要花点时间优化这些接口包。</p>
+
+<h3 id="生态">生态</h3>
+
+<p>在进行基础模块开发的过程中，Go语言带给我的感觉是简洁和轻快。设计和编码习惯可以很好继承C语言，语言轻，但是我们能用它能清晰地完成很复杂的逻辑。大概是缘因这些特点，大厂们选择用Go语言来开发像docker、k8s、prometheus、influxdb和eth等这些复杂项目。</p>
+
+<p>但在业务模块开发中，Go语言却未能带给很好体验。由于业务需要，团队尝试采用Go进行类ERP系统的开发，这种强业务型的需求一向是JAVA的优势。所以选择使用Go语言来开发也是一项尝试。实际开发过程中，没有JAVA的SSH全家桶，对于业务流的开发效率会比JAVA低不少。经过分析，主要问题出于缺少完整的业务框架。因此我们选择应用JAVA的开发经验，进行Go语言的业务框架研发。</p>
+
+<h2 id="总结">总结</h2>
+
+<p>经过一年的工程应用，对语言有了进一步认识。自己的总结就是Go的使用跟C一样，正因为语法简单，贴近底层，若侧重开发基础组件，则更需要增加像数据结构、算法和操作系统的基础的学习，若侧重应用服务，则需要更优秀的设计架构基础。通过与其他Gopher的沟通，国内越来越多公司正因看中了Go语言鲜明的优点，逐步把后端业务转向Go语言。大家都处在摸索和成长过程中。自己也希望随着对语言理解的深入，能把Go应用到更多领域。</p>
+
+	</div>
+  <footer class="article-footer clearfix">
+  
+
+<div class="article-tags">
+  <span></span>
+  
+  <a href="//razil.cc/tags/%E9%9A%8F%E7%AC%94">随笔</a>
+  
+</div>
+
+
+
+
+
+<div class="article-categories">
+  <span></span>
+  
+  <a class="article-category-link" href="//razil.cc/categories/go">go</a>
+  
+  <a class="article-category-link" href="//razil.cc/categories/%E9%9A%8F%E7%AC%94">随笔</a>
+  
+</div>
+
+
+
+  <div class="article-share" id="share">
+    <div data-url="//razil.cc/post/2018/01/go-practices-in-2017/" data-title="2017 Go语言使用总结" data-tsina="" class="share clearfix">
+    </div>
+  </div>
+</footer>
+
+	</article>
+  
+
+
+
+</div>
+
+    <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+  
+
+<div class="categorieslist">
+  <p class="asidetitle">分类</p>
+  <ul>
+    
+    <li><a href="//razil.cc/categories/" title=""><sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/devops" title="devops">devops<sup>2</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/docker" title="docker">docker<sup>2</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/go" title="go">go<sup>16</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/golang" title="golang">golang<sup>4</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/grpc" title="grpc">grpc<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/k8s" title="k8s">k8s<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/linux" title="linux">linux<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/rpc" title="rpc">rpc<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e4%bd%bf%e7%94%a8%e6%89%8b%e8%ae%b0" title="使用手记">使用手记<sup>5</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e5%88%86%e5%b8%83%e5%bc%8f%e7%b3%bb%e7%bb%9f" title="分布式系统">分布式系统<sup>2</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e5%af%86%e7%a0%81%e5%ad%a6" title="密码学">密码学<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e5%be%ae%e6%9c%8d%e5%8a%a1" title="微服务">微服务<sup>2</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e6%95%b0%e6%8d%ae%e5%ba%93" title="数据库">数据库<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>3</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e7%bd%91%e7%bb%9c" title="网络">网络<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e8%af%91%e6%96%87" title="译文">译文<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e8%bd%ac%e8%bd%bd" title="转载">转载<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e8%bf%90%e7%bb%b4" title="运维">运维<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e9%98%85%e8%af%bb%e7%ac%94%e8%ae%b0" title="阅读笔记">阅读笔记<sup>3</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
+    
+  </ul>
+</div>
+
+
+
+  
+
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+      
+			<li><a href="//razil.cc/tags/" title=""><sup>3</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/beego" title="beego">beego<sup>2</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/dep" title="dep">dep<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/docker" title="docker">docker<sup>2</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/elasticsearch" title="elasticsearch">elasticsearch<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/go" title="go">go<sup>10</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/go-mod" title="go-mod">go-mod<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/golang" title="golang">golang<sup>2</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/grpc" title="grpc">grpc<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/harbor" title="harbor">harbor<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/http" title="http">http<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/influxdb" title="influxdb">influxdb<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/istio" title="istio">istio<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/json" title="json">json<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/k8s" title="k8s">k8s<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/kubernates" title="kubernates">kubernates<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/linux" title="linux">linux<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/minikube" title="minikube">minikube<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/minishift" title="minishift">minishift<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/oop" title="oop">oop<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/orm" title="orm">orm<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/plugin" title="plugin">plugin<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/raft" title="raft">raft<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/relfect" title="relfect">relfect<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/rpc" title="rpc">rpc<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/web" title="web">web<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/websocket" title="websocket">websocket<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e4%bd%bf%e7%94%a8%e6%89%8b%e8%ae%b0" title="使用手记">使用手记<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e5%88%86%e5%b8%83%e5%bc%8f" title="分布式">分布式<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e5%8a%a0%e5%af%86" title="加密">加密<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e6%ad%a3%e5%88%99" title="正则">正则<sup>2</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e6%ad%a3%e5%88%99%e5%8c%b9%e9%85%8d" title="正则匹配">正则匹配<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e6%b1%87%e6%80%bb" title="汇总">汇总<sup>3</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6" title="版本控制">版本控制<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e7%b3%bb%e7%bb%9f%e6%97%a5%e5%bf%97" title="系统日志">系统日志<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e7%bd%91%e7%bb%9c%e7%88%ac%e8%99%ab" title="网络爬虫">网络爬虫<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" title="自动化构建">自动化构建<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e9%9a%8f%e7%ac%94" title="随笔">随笔<sup>1</sup></a></li>
+      
+			<li><a href="//razil.cc/tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" title="面向对象">面向对象<sup>1</sup></a></li>
+      
+		</ul>
+</div>
+
+
+
+  
+  <div class="archiveslist">
+    <p class="asidetitle">归档</p>
+    <ul class="archive-list">
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2019-01">2019年01月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-12">2018年12月</a><span class="archive-list-count">3</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-11">2018年11月</a><span class="archive-list-count">4</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-10">2018年10月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-09">2018年09月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-08">2018年08月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-07">2018年07月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-04">2018年04月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-03">2018年03月</a><span class="archive-list-count">5</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2018-01">2018年01月</a><span class="archive-list-count">3</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-12">2017年12月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-11">2017年11月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-10">2017年10月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-09">2017年09月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-08">2017年08月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-07">2017年07月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-05">2017年05月</a><span class="archive-list-count">2</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-04">2017年04月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2017-03">2017年03月</a><span class="archive-list-count">1</span>
+      </li>
+      
+    </ul>
+
+  </div>
+
+
+  
+
+<div class="tagcloudlist">
+  <p class="asidetitle">标签云</p>
+  <div class="tagcloudlist clearfix">
+    
+    <a href="//razil.cc/tags/" style="font-size: 12px;"></a>
+    
+    <a href="//razil.cc/tags/beego" style="font-size: 12px;">beego</a>
+    
+    <a href="//razil.cc/tags/dep" style="font-size: 12px;">dep</a>
+    
+    <a href="//razil.cc/tags/docker" style="font-size: 12px;">docker</a>
+    
+    <a href="//razil.cc/tags/elasticsearch" style="font-size: 12px;">elasticsearch</a>
+    
+    <a href="//razil.cc/tags/go" style="font-size: 12px;">go</a>
+    
+    <a href="//razil.cc/tags/go-mod" style="font-size: 12px;">go-mod</a>
+    
+    <a href="//razil.cc/tags/golang" style="font-size: 12px;">golang</a>
+    
+    <a href="//razil.cc/tags/grpc" style="font-size: 12px;">grpc</a>
+    
+    <a href="//razil.cc/tags/harbor" style="font-size: 12px;">harbor</a>
+    
+    <a href="//razil.cc/tags/http" style="font-size: 12px;">http</a>
+    
+    <a href="//razil.cc/tags/influxdb" style="font-size: 12px;">influxdb</a>
+    
+    <a href="//razil.cc/tags/istio" style="font-size: 12px;">istio</a>
+    
+    <a href="//razil.cc/tags/json" style="font-size: 12px;">json</a>
+    
+    <a href="//razil.cc/tags/k8s" style="font-size: 12px;">k8s</a>
+    
+    <a href="//razil.cc/tags/kubernates" style="font-size: 12px;">kubernates</a>
+    
+    <a href="//razil.cc/tags/linux" style="font-size: 12px;">linux</a>
+    
+    <a href="//razil.cc/tags/minikube" style="font-size: 12px;">minikube</a>
+    
+    <a href="//razil.cc/tags/minishift" style="font-size: 12px;">minishift</a>
+    
+    <a href="//razil.cc/tags/oop" style="font-size: 12px;">oop</a>
+    
+    <a href="//razil.cc/tags/orm" style="font-size: 12px;">orm</a>
+    
+    <a href="//razil.cc/tags/plugin" style="font-size: 12px;">plugin</a>
+    
+    <a href="//razil.cc/tags/raft" style="font-size: 12px;">raft</a>
+    
+    <a href="//razil.cc/tags/relfect" style="font-size: 12px;">relfect</a>
+    
+    <a href="//razil.cc/tags/rpc" style="font-size: 12px;">rpc</a>
+    
+    <a href="//razil.cc/tags/web" style="font-size: 12px;">web</a>
+    
+    <a href="//razil.cc/tags/websocket" style="font-size: 12px;">websocket</a>
+    
+    <a href="//razil.cc/tags/%e4%bd%bf%e7%94%a8%e6%89%8b%e8%ae%b0" style="font-size: 12px;">使用手记</a>
+    
+    <a href="//razil.cc/tags/%e5%88%86%e5%b8%83%e5%bc%8f" style="font-size: 12px;">分布式</a>
+    
+    <a href="//razil.cc/tags/%e5%8a%a0%e5%af%86" style="font-size: 12px;">加密</a>
+    
+    <a href="//razil.cc/tags/%e6%ad%a3%e5%88%99" style="font-size: 12px;">正则</a>
+    
+    <a href="//razil.cc/tags/%e6%ad%a3%e5%88%99%e5%8c%b9%e9%85%8d" style="font-size: 12px;">正则匹配</a>
+    
+    <a href="//razil.cc/tags/%e6%b1%87%e6%80%bb" style="font-size: 12px;">汇总</a>
+    
+    <a href="//razil.cc/tags/%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6" style="font-size: 12px;">版本控制</a>
+    
+    <a href="//razil.cc/tags/%e7%b3%bb%e7%bb%9f%e6%97%a5%e5%bf%97" style="font-size: 12px;">系统日志</a>
+    
+    <a href="//razil.cc/tags/%e7%bd%91%e7%bb%9c%e7%88%ac%e8%99%ab" style="font-size: 12px;">网络爬虫</a>
+    
+    <a href="//razil.cc/tags/%e8%87%aa%e5%8a%a8%e5%8c%96%e6%9e%84%e5%bb%ba" style="font-size: 12px;">自动化构建</a>
+    
+    <a href="//razil.cc/tags/%e9%9a%8f%e7%ac%94" style="font-size: 12px;">随笔</a>
+    
+    <a href="//razil.cc/tags/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1" style="font-size: 12px;">面向对象</a>
+    
+  </div>
+</div>
+
+
+
+  
+
+</aside>
+</div>
+
+  </div>
+  <footer><div id="footer" >
+
+  <div class="social-font clearfix">
+    
+    
+    
+    <a href="https://github.com/dennismao.github.com" target="_blank" title="github"></a>
+    
+    
+    
+  </div>
+
+  <p class="copyright"> Copyright © 2019
+    
+    <a href="//razil.cc/" title="Coding茶餐厅">Coding茶餐厅</a>
+    
+  </p>
+
+  <p class="copyright">备案号: 粤ICP备17137859号-1 </p>
+</div>
+</footer>
+  
+
+
+
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+
+<script type="text/javascript">
+done = false;
+$(document).ready(function(){
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize();
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  $('form.search').on('submit', function (event) {
+    if (false === done) {
+      event.preventDefault();
+      var orgVal = $(this).find('#search').val();
+      $(this).find('#search').val('site:\/\/razil.cc\/ ' + orgVal);
+      done = true;
+      $(this).submit();
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});
+</script>
+
+
+<link rel="stylesheet" href="//razil.cc/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//razil.cc/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
+
+
+
+
+</body>
+</html>

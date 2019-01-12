@@ -48,11 +48,6 @@
   </url>
   
   <url>
-    <loc>//razil.cc/post/2018/10/go_concurrency_pattern/</loc>
-    <lastmod>2018-10-09T20:22:15+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//razil.cc/post/2018/10/raft-note/</loc>
     <lastmod>2018-10-01T18:02:51+08:00</lastmod>
   </url>
@@ -198,14 +193,14 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/</loc>
-    <lastmod>2019-01-06T23:26:32+08:00</lastmod>
+    <loc>//razil.cc/categories/</loc>
+    <lastmod>2018-12-29T19:22:41+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//razil.cc/categories/</loc>
-    <lastmod>2018-12-29T19:22:41+08:00</lastmod>
+    <loc>//razil.cc/tags/</loc>
+    <lastmod>2019-01-06T23:26:32+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -244,13 +239,13 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/docker/</loc>
+    <loc>//razil.cc/categories/docker/</loc>
     <lastmod>2018-11-06T21:42:51+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//razil.cc/categories/docker/</loc>
+    <loc>//razil.cc/tags/docker/</loc>
     <lastmod>2018-11-06T21:42:51+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -262,13 +257,13 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/go/</loc>
+    <loc>//razil.cc/categories/go/</loc>
     <lastmod>2018-12-09T20:22:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//razil.cc/categories/go/</loc>
+    <loc>//razil.cc/tags/go/</loc>
     <lastmod>2018-12-09T20:22:15+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -280,26 +275,26 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/golang/</loc>
-    <lastmod>2017-12-27T15:35:04+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>//razil.cc/categories/golang/</loc>
     <lastmod>2017-12-27T15:35:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//razil.cc/tags/grpc/</loc>
-    <lastmod>2017-08-22T23:44:21+08:00</lastmod>
+    <loc>//razil.cc/tags/golang/</loc>
+    <lastmod>2017-12-27T15:35:04+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//razil.cc/categories/grpc/</loc>
     <lastmod>2018-08-27T17:12:01+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>//razil.cc/tags/grpc/</loc>
+    <lastmod>2017-08-22T23:44:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -334,13 +329,13 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/k8s/</loc>
+    <loc>//razil.cc/categories/k8s/</loc>
     <lastmod>2018-07-02T22:12:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//razil.cc/categories/k8s/</loc>
+    <loc>//razil.cc/tags/k8s/</loc>
     <lastmod>2018-07-02T22:12:21+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -352,13 +347,13 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/linux/</loc>
+    <loc>//razil.cc/categories/linux/</loc>
     <lastmod>2018-09-16T18:12:15+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//razil.cc/categories/linux/</loc>
+    <loc>//razil.cc/tags/linux/</loc>
     <lastmod>2018-09-16T18:12:15+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -412,13 +407,13 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/rpc/</loc>
+    <loc>//razil.cc/categories/rpc/</loc>
     <lastmod>2017-08-22T23:49:14+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//razil.cc/categories/rpc/</loc>
+    <loc>//razil.cc/tags/rpc/</loc>
     <lastmod>2017-08-22T23:49:14+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -442,14 +437,14 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</loc>
-    <lastmod>2018-01-16T23:04:21+08:00</lastmod>
+    <loc>//razil.cc/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</loc>
+    <lastmod>2018-11-06T21:42:51+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//razil.cc/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</loc>
-    <lastmod>2018-11-06T21:42:51+08:00</lastmod>
+    <loc>//razil.cc/tags/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0/</loc>
+    <lastmod>2018-01-16T23:04:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -502,13 +497,13 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/%E6%B1%87%E6%80%BB/</loc>
+    <loc>//razil.cc/categories/%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2018-11-21T09:00:52+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//razil.cc/categories/%E6%B1%87%E6%80%BB/</loc>
+    <loc>//razil.cc/tags/%E6%B1%87%E6%80%BB/</loc>
     <lastmod>2018-11-21T09:00:52+08:00</lastmod>
     <priority>0</priority>
   </url>
@@ -568,13 +563,13 @@
   </url>
   
   <url>
-    <loc>//razil.cc/tags/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>//razil.cc/categories/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2018-01-28T22:53:37+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>//razil.cc/categories/%E9%9A%8F%E7%AC%94/</loc>
+    <loc>//razil.cc/tags/%E9%9A%8F%E7%AC%94/</loc>
     <lastmod>2018-01-28T22:53:37+08:00</lastmod>
     <priority>0</priority>
   </url>

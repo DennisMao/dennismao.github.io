@@ -17,7 +17,7 @@
       <pubDate>Sun, 06 Jan 2019 23:26:32 +0800</pubDate>
       
       <guid>//razil.cc/post/2019/01/distributed_system_roadmap/</guid>
-      <description>[TOC] 分布式学习路线 博客 名称|简介|地址 :-|:-|:- Leslie Lamport|Paxos作者,分布式系统专家|http://lamport.azurewebsit</description>
+      <description>[TOC] 分布式学习路线 博客 名称 简介 地址 Leslie Lamport Paxos作者,分布式系统专家 http://lamport.azurewebsites.net/pubs/pubs.html 论文 系统 名称 简介 论文 翻译 笔记 MapReduce 分布式计算框架 1.MapReduce: Simplified Data Processing on Large Clusters 2.MapReduce: A major step backwards Bigtable 分</description>
     </item>
     
     <item>
@@ -89,15 +89,6 @@
       <pubDate>Tue, 09 Oct 2018 20:22:15 +0800</pubDate>
       
       <guid>//razil.cc/post/2018/10/go-cors-request-on-gin/</guid>
-      <description>背景 有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Heade</description>
-    </item>
-    
-    <item>
-      <title>【Go】复杂请求情况下post变成options请求后台处理方法</title>
-      <link>//razil.cc/post/2018/10/go_concurrency_pattern/</link>
-      <pubDate>Tue, 09 Oct 2018 20:22:15 +0800</pubDate>
-      
-      <guid>//razil.cc/post/2018/10/go_concurrency_pattern/</guid>
       <description>背景 有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Heade</description>
     </item>
     

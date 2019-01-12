@@ -48,15 +48,6 @@
     </item>
     
     <item>
-      <title>【Go】复杂请求情况下post变成options请求后台处理方法</title>
-      <link>//razil.cc/post/2018/10/go_concurrency_pattern/</link>
-      <pubDate>Tue, 09 Oct 2018 20:22:15 +0800</pubDate>
-      
-      <guid>//razil.cc/post/2018/10/go_concurrency_pattern/</guid>
-      <description>背景 有群友在使用gin作为服务端后台，给vue前端处理跨域请求时候遇到点问题。前端使用Axios发送Post请求时候增加了自定义的Heade</description>
-    </item>
-    
-    <item>
       <title>【Go】记Go使用Dep获取依赖项缺少部分资源文件 解决方法</title>
       <link>//razil.cc/post/2018/09/go-dependency-lose-resources-error/</link>
       <pubDate>Wed, 26 Sep 2018 21:12:15 +0800</pubDate>
