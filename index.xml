@@ -138,6 +138,15 @@
     </item>
     
     <item>
+      <title>[Go] 解决Go Http服务出现大量Timewait</title>
+      <link>//razil.cc/post/2018/07/go_httpserver_timewait/</link>
+      <pubDate>Mon, 16 Jul 2018 10:44:58 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/07/go_httpserver_timewait/</guid>
+      <description>解决Go Http服务出现大量Timewait 背景 运维反馈得知有少部分机器上出现了大量的TIME_WAIT,上面运行着一个老版本的Go写的Ht</description>
+    </item>
+    
+    <item>
       <title>【k8s】使用Minikube搭建模拟本机K8s实验环境</title>
       <link>//razil.cc/post/2018/07/k8s-minikube/</link>
       <pubDate>Mon, 02 Jul 2018 22:12:21 +0800</pubDate>
