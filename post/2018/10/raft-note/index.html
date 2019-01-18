@@ -47,7 +47,7 @@
       <li><a href="/post/blogs">优秀博客</a></li>
       
       <li>
-        <form class="search" method="get" action="https://www.google.com/search">
+        <form class="search" method="get" action="https://www.baidu.com/search">
           <div>
             <input type="text" id="search" name="q" placeholder="搜索">
           </div>
@@ -76,35 +76,6 @@
 </header>
 
 	<div class="article-content">
-    
-		<div class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-      <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#背景">背景</a></li>
-<li><a href="#raft">Raft</a></li>
-<li><a href="#2-replicatd-state-machines-rsm">2 Replicatd state machines (RSM)</a></li>
-<li><a href="#3-what-s-wrong-with-paxos">3 What&rsquo;s wrong with Paxos?</a></li>
-<li><a href="#4-designing-for-understandability">4 Designing for understandability</a></li>
-<li><a href="#5-the-raft-consensus-algorithm">5 The Raft consensus algorithm</a>
-<ul>
-<li><a href="#5-1-raft-basics">5.1 Raft basics</a></li>
-<li><a href="#5-2-leader-election">5.2 Leader election</a></li>
-<li><a href="#5-3-log-replication">5.3 Log replication</a></li>
-<li><a href="#5-4-safty">5.4 Safty</a></li>
-<li><a href="#5-5-follower-and-candidate-crashes">5.5 Follower and candidate crashes</a></li>
-<li><a href="#5-6-timming-and-availability">5.6 Timming and availability</a></li>
-</ul></li>
-<li><a href="#6-cluster-membership-changes">6 Cluster membership changes</a></li>
-<li><a href="#7-log-compation">7 Log compation</a></li>
-<li><a href="#8-client-interaction">8 Client interaction</a></li>
-</ul></li>
-</ul>
-</nav>
-		</div>
-    
     
 
 <p>[TOC]</p>
@@ -466,12 +437,40 @@
   
 
 
-
 </div>
 
     <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+  
+	<div class="toc-article">
+		<div class="toc-title">文章目录</div>
+		<div class="toc-content">   <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#背景">背景</a></li>
+<li><a href="#raft">Raft</a></li>
+<li><a href="#2-replicatd-state-machines-rsm">2 Replicatd state machines (RSM)</a></li>
+<li><a href="#3-what-s-wrong-with-paxos">3 What&rsquo;s wrong with Paxos?</a></li>
+<li><a href="#4-designing-for-understandability">4 Designing for understandability</a></li>
+<li><a href="#5-the-raft-consensus-algorithm">5 The Raft consensus algorithm</a>
+<ul>
+<li><a href="#5-1-raft-basics">5.1 Raft basics</a></li>
+<li><a href="#5-2-leader-election">5.2 Leader election</a></li>
+<li><a href="#5-3-log-replication">5.3 Log replication</a></li>
+<li><a href="#5-4-safty">5.4 Safty</a></li>
+<li><a href="#5-5-follower-and-candidate-crashes">5.5 Follower and candidate crashes</a></li>
+<li><a href="#5-6-timming-and-availability">5.6 Timming and availability</a></li>
+</ul></li>
+<li><a href="#6-cluster-membership-changes">6 Cluster membership changes</a></li>
+<li><a href="#7-log-compation">7 Log compation</a></li>
+<li><a href="#8-client-interaction">8 Client interaction</a></li>
+</ul></li>
+</ul>
+</nav> </div>
+	</div>
+  
 <aside class="clearfix">
   
 
@@ -823,8 +822,6 @@
     
     <a href="https://github.com/dennismao.github.com" target="_blank" title="github"></a>
     
-    
-    
   </div>
 
   <p class="copyright"> Copyright © 2019
@@ -936,23 +933,13 @@ $(document).ready(function(){
       title = $this.attr('data-title'),
       tsina = $this.attr('data-tsina');
   var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
   '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
   '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
   '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
   '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
   '<span title="Share to"></span>'
   ].join('');
   $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
 });
 </script>
 
@@ -976,6 +963,16 @@ $(document).ready(function(){
     $('.fancybox').fancybox();
   }
 });
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132752811-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-132752811-1');
 </script>
 
 

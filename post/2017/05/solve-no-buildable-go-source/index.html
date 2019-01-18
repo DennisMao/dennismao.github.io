@@ -47,7 +47,7 @@
       <li><a href="/post/blogs">优秀博客</a></li>
       
       <li>
-        <form class="search" method="get" action="https://www.google.com/search">
+        <form class="search" method="get" action="https://www.baidu.com/search">
           <div>
             <input type="text" id="search" name="q" placeholder="搜索">
           </div>
@@ -76,12 +76,6 @@
 </header>
 
 	<div class="article-content">
-    
-		<div class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-      
-		</div>
-    
     <p>最近在调用golang.org/x/net出现这个错误。经检查后解决方法如下。在调用外部包时候出现这种情况，应检查以下设置
 &gt;
 1.目标外部包的编译环境是否与当前工程的环境相同
@@ -135,12 +129,17 @@ golang.org/x/net
   
 
 
-
 </div>
 
     <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+  
+	<div class="toc-article">
+		<div class="toc-title">文章目录</div>
+		<div class="toc-content">    </div>
+	</div>
+  
 <aside class="clearfix">
   
 
@@ -492,8 +491,6 @@ golang.org/x/net
     
     <a href="https://github.com/dennismao.github.com" target="_blank" title="github"></a>
     
-    
-    
   </div>
 
   <p class="copyright"> Copyright © 2019
@@ -605,23 +602,13 @@ $(document).ready(function(){
       title = $this.attr('data-title'),
       tsina = $this.attr('data-tsina');
   var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
   '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
   '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
   '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
   '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
   '<span title="Share to"></span>'
   ].join('');
   $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
 });
 </script>
 
@@ -645,6 +632,16 @@ $(document).ready(function(){
     $('.fancybox').fancybox();
   }
 });
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132752811-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-132752811-1');
 </script>
 
 

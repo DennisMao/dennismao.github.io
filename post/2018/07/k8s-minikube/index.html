@@ -47,7 +47,7 @@
       <li><a href="/post/blogs">优秀博客</a></li>
       
       <li>
-        <form class="search" method="get" action="https://www.google.com/search">
+        <form class="search" method="get" action="https://www.baidu.com/search">
           <div>
             <input type="text" id="search" name="q" placeholder="搜索">
           </div>
@@ -76,37 +76,6 @@
 </header>
 
 	<div class="article-content">
-    
-		<div class="toc-article">
-			<strong class="toc-title">文章目录</strong>
-      <nav id="TableOfContents">
-<ul>
-<li><a href="#使用minikube搭建模拟本机k8s实验环境">使用Minikube搭建模拟本机K8s实验环境</a>
-<ul>
-<li><a href="#前言">前言</a></li>
-<li><a href="#准备">准备</a>
-<ul>
-<li><a href="#virtualbox安装">VirtualBox安装</a></li>
-<li><a href="#kubectl安装">KubeCtl安装</a></li>
-<li><a href="#minikube安装">Minikube安装</a></li>
-<li><a href="#kvm2虚拟机环境安装">Kvm2虚拟机环境安装</a></li>
-</ul></li>
-<li><a href="#运行">运行</a>
-<ul>
-<li><a href="#常用指令">常用指令</a></li>
-</ul></li>
-<li><a href="#踩坑与填坑">踩坑与填坑</a>
-<ul>
-<li><a href="#virtualbox无法运行">VirtualBox无法运行</a></li>
-<li><a href="#启动minikube时候卡在-starting-cluster-components">启动Minikube时候卡在 Starting cluster components</a></li>
-<li><a href="#dashboarh-无法启动">Dashboarh 无法启动</a></li>
-</ul></li>
-<li><a href="#参考资料">参考资料</a></li>
-</ul></li>
-</ul>
-</nav>
-		</div>
-    
     
 
 <h1 id="使用minikube搭建模拟本机k8s实验环境">使用Minikube搭建模拟本机K8s实验环境</h1>
@@ -421,12 +390,42 @@ docker tag dieudonnecc/storage-provisioner:v1.8.1 gcr.io/k8s-minikube/storage-pr
   
 
 
-
 </div>
 
     <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+  
+	<div class="toc-article">
+		<div class="toc-title">文章目录</div>
+		<div class="toc-content">   <nav id="TableOfContents">
+<ul>
+<li><a href="#使用minikube搭建模拟本机k8s实验环境">使用Minikube搭建模拟本机K8s实验环境</a>
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#准备">准备</a>
+<ul>
+<li><a href="#virtualbox安装">VirtualBox安装</a></li>
+<li><a href="#kubectl安装">KubeCtl安装</a></li>
+<li><a href="#minikube安装">Minikube安装</a></li>
+<li><a href="#kvm2虚拟机环境安装">Kvm2虚拟机环境安装</a></li>
+</ul></li>
+<li><a href="#运行">运行</a>
+<ul>
+<li><a href="#常用指令">常用指令</a></li>
+</ul></li>
+<li><a href="#踩坑与填坑">踩坑与填坑</a>
+<ul>
+<li><a href="#virtualbox无法运行">VirtualBox无法运行</a></li>
+<li><a href="#启动minikube时候卡在-starting-cluster-components">启动Minikube时候卡在 Starting cluster components</a></li>
+<li><a href="#dashboarh-无法启动">Dashboarh 无法启动</a></li>
+</ul></li>
+<li><a href="#参考资料">参考资料</a></li>
+</ul></li>
+</ul>
+</nav> </div>
+	</div>
+  
 <aside class="clearfix">
   
 
@@ -778,8 +777,6 @@ docker tag dieudonnecc/storage-provisioner:v1.8.1 gcr.io/k8s-minikube/storage-pr
     
     <a href="https://github.com/dennismao.github.com" target="_blank" title="github"></a>
     
-    
-    
   </div>
 
   <p class="copyright"> Copyright © 2019
@@ -891,23 +888,13 @@ $(document).ready(function(){
       title = $this.attr('data-title'),
       tsina = $this.attr('data-tsina');
   var html = [
-  '<a href="#" class="overlay" id="qrcode"></a>',
-  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
   '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
   '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
   '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
   '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
   '<span title="Share to"></span>'
   ].join('');
   $this.append(html);
-  $('.article-share-qrcode').click(function(){
-    var imgSrc = $('#qrcode-pic').attr('data-src');
-    $('#qrcode-pic').attr('src', imgSrc);
-    $('#qrcode-pic').load(function(){
-        $('.qrcode strong').text(' ');
-    });
-  });
 });
 </script>
 
@@ -931,6 +918,16 @@ $(document).ready(function(){
     $('.fancybox').fancybox();
   }
 });
+</script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132752811-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-132752811-1');
 </script>
 
 

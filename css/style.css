@@ -24,6 +24,15 @@ h1{font-size:1.5em}
 .clearfix{zoom:1}
 .clearfix:before,.clearfix:after{content:"";display:table}
 .clearfix:after{clear:both}
+
+.toc-article{zoom:1,margin:0 0 0 0;padding:2em 0em 0em 0em;line-height:2em;font-size:.8em;}
+.toc-content{font-size:1.1em;color:#2ca6cb;padding:0 0 0 2em}
+.toc-title{font-size:1.3em;color:#2ca6cb;padding:0 0 .3125em 0;border-bottom:.1875em solid #ccc;}
+.toc-title a{color:#2ca6cb;}
+.toc-title a:hover{color:#99ccff;-webkit-transition:color 0.5s;-moz-transition:color 0.5s;-o-transition:color 0.5s;-ms-transition:color 0.5s;transition:color 0.5s}
+
+/*.toc-article{zoom:1,margin:2em 0 0 .5em;padding:1em 1em 1em 2.5em;line-height:1em;font-size:.8em;float:right;}*/
+
 ::-webkit-input-placeholder{color:#fff;padding:2px 0 0 4px}
 ::-moz-placeholder{color:#fff;padding:2px 0 0 4px}
 :-ms-input-placeholder{color:#fff;padding:2px 0 0 4px}
@@ -232,7 +241,6 @@ footer.article-footer{background:#fafafa;padding:0 4%;margin:0;border-top:1px so
 .article-nav .next span:after{font-family:"FontAwesome";-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;content:"\f101";padding-left:.5em}
 }section.comment{padding:0 4%;margin:1em 0}
 
-.toc-article{background:#eee;margin:2em 0 0 .5em;padding:1em 1em 1em 2.5em;line-height:1em;font-size:.8em;float:right;}
 
 #TableOfContents { margin: 1em 0 0 0; }
 #TableOfContents ul { list-style-type:decimal; margin: 0; padding: 0 25px;  }
