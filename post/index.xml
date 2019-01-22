@@ -21,15 +21,6 @@
     </item>
     
     <item>
-      <title>[分布式] 分布式系统学习Roadmap</title>
-      <link>//razil.cc/post/2018/12/distributed_system_roadmap/</link>
-      <pubDate>Sat, 29 Dec 2018 19:22:41 +0800</pubDate>
-      
-      <guid>//razil.cc/post/2018/12/distributed_system_roadmap/</guid>
-      <description>[TOC] 分布式学习路线 博客 名称|简介|地址 :-|:-|:- Leslie Lamport|Paxos作者,分布式系统专家|http://lamport.azurewebsit</description>
-    </item>
-    
-    <item>
       <title>[Go]Go并发模型与工程应用</title>
       <link>//razil.cc/post/2018/12/go_concurrency_pattern/</link>
       <pubDate>Sun, 09 Dec 2018 20:22:15 +0800</pubDate>
@@ -206,7 +197,7 @@
       <pubDate>Tue, 06 Mar 2018 23:08:38 +0800</pubDate>
       
       <guid>//razil.cc/post/toolkit/</guid>
-      <description>日常整理的技术和组件开发文档和工具网站，方便日常使用。 工具站 IP地址查询 Linux指令 数据库 关系型 MySQL Sqlite PostgreSQL PostgreSQL资料汇总 非关系型</description>
+      <description>日常整理的技术和组件开发文档和工具网站，方便日常使用。 工具站 IP地址查询 Linux指令 Linux Top指令 数据库 关系型 MySQL Sqlite PostgreSQL PostgreSQL资料</description>
     </item>
     
     <item>

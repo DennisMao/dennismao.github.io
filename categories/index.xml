@@ -6,19 +6,9 @@
     <description>Recent content in Categories on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 29 Dec 2018 19:22:41 +0800</lastBuildDate>
     
 	<atom:link href="//razil.cc/categories/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title></title>
-      <link>//razil.cc/categories/</link>
-      <pubDate>Sat, 29 Dec 2018 19:22:41 +0800</pubDate>
-      
-      <guid>//razil.cc/categories/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>Devops</title>
