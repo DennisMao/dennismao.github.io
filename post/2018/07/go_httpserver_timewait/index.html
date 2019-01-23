@@ -170,20 +170,73 @@ Keep-Alive：300
 <p>TCP的状态定义可以看下图：<br />
 <img src="./status.gif" alt="status" /></p>
 
-<p>下面表格按出现的常见度列出了全部状态。
-|状态|表现|
-|:-|-:|
-|ESTABLISHED|正常数据传输状态|
-|LISTEN|服务器在等待进入呼叫|
-|TIME_WAIT|另一边已初始化一个释放|
-|CLOSED|无连接是活动的或正在进行|
-|SYN_RECV|一个连接请求已经到达，等待确认|
-|SYN_SENT|应用已经开始，打开一个连接|
-|FIN_WAIT1|应用说它已经完成|
-|FIN_WAIT2|另一边已同意释放|
-|ITMED_WAIT|等待所有分组死掉|
-|CLOSING|两边同时尝试关闭|
-|LAST_ACK|等待所有分组死掉|</p>
+<p>下面表格按出现的常见度列出了全部状态。</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">状态</th>
+<th align="right">表现</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">ESTABLISHED</td>
+<td align="right">正常数据传输状态</td>
+</tr>
+
+<tr>
+<td align="left">LISTEN</td>
+<td align="right">服务器在等待进入呼叫</td>
+</tr>
+
+<tr>
+<td align="left">TIME_WAIT</td>
+<td align="right">另一边已初始化一个释放</td>
+</tr>
+
+<tr>
+<td align="left">CLOSED</td>
+<td align="right">无连接是活动的或正在进行</td>
+</tr>
+
+<tr>
+<td align="left">SYN_RECV</td>
+<td align="right">一个连接请求已经到达，等待确认</td>
+</tr>
+
+<tr>
+<td align="left">SYN_SENT</td>
+<td align="right">应用已经开始，打开一个连接</td>
+</tr>
+
+<tr>
+<td align="left">FIN_WAIT1</td>
+<td align="right">应用说它已经完成</td>
+</tr>
+
+<tr>
+<td align="left">FIN_WAIT2</td>
+<td align="right">另一边已同意释放</td>
+</tr>
+
+<tr>
+<td align="left">ITMED_WAIT</td>
+<td align="right">等待所有分组死掉</td>
+</tr>
+
+<tr>
+<td align="left">CLOSING</td>
+<td align="right">两边同时尝试关闭</td>
+</tr>
+
+<tr>
+<td align="left">LAST_ACK</td>
+<td align="right">等待所有分组死掉</td>
+</tr>
+</tbody>
+</table>
 
 <p>常用指令：</p>
 
