@@ -2,18 +2,18 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>密码学 - Coding茶餐厅</title>
+  <title>【Go源码】map类型与实现 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="密码学">
+  <meta name="description" content="Go源码-map类型与实现 go项目分支:release-branch.go1.5 代码地址:https://github.com/golang">
   
-  <meta itemprop="name" content="密码学 - Coding茶餐厅">
-  <meta itemprop="description" content="密码学">
+  <meta itemprop="name" content="【Go源码】map类型与实现 - Coding茶餐厅">
+  <meta itemprop="description" content="Go源码-map类型与实现 go项目分支:release-branch.go1.5 代码地址:https://github.com/golang">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
   <meta name="twitter:description" content="">
-  <link rel="alternate" href="//razil.cc/feed.xml" title="Coding茶餐厅" type="application/rss+xml"/>
+  
   <link rel="shortcut icon" href="//razil.cc/img/favicon.ico"/>
   <link rel="apple-touch-icon" href="//razil.cc/apple-touch-icon.png" />
   <link rel="apple-touch-icon-precomposed" href="//razil.cc/apple-touch-icon.png" />
@@ -59,24 +59,235 @@
 
   </header>
   <div id="container">
-    <div id="main">
-      
-      <h2 id="2017-03">2017-03</h2>
-      
-      <section class="post" itemscope itemprop="blogPost">
-    <a href="//razil.cc/post/2017/03/go-encrypt/" title="【Go】Web加密方案与Go语言解决" itemprop="url">
-    <h1 itemprop="name">【Go】Web加密方案与Go语言解决</h1>
-    <p itemprop="description">常见加密方案 1、对称加密 即加密方和解密方都使用相同的加密算法和密钥，这种方案的密钥的保存非常关键，因为算法是公开的，而密钥是保密的，一旦密匙</p>
-    <time datetime="2017-03-28 00:08:18 &#43;0800 CST" itemprop="datePublished">2017年03月28日</time>
-  </a>
-</section>
+    <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+    <header class="article-info clearfix">
+  <h1 itemprop="name">
+      <a href="//razil.cc/post/2018/04/go_type_map/" title="【Go源码】map类型与实现" itemprop="url">【Go源码】map类型与实现</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="//razil.cc/" title=""></a>
+    
+  </p>
+  <p class="article-time">
+    <time datetime="2018-04-21 11:25:11 &#43;0800 CST" itemprop="datePublished">2018年04月21日</time>
+  </p>
+</header>
 
-      
-      
+	<div class="article-content">
+    
+
+<h1 id="go源码-map类型与实现">Go源码-map类型与实现</h1>
+
+<p>go项目分支:release-branch.go1.5<br />
+代码地址:<a href="https://github.com/golang/go/blob/release-branch.go1.10/src/runtime/hashmap.go">https://github.com/golang/go/blob/release-branch.go1.10/src/runtime/hashmap.go</a></p>
+
+<p>本文主要介绍了go语言<code>map</code>类型的使用和内部实现过程,代码是基于go1.5分支为例,与最新的版本可能会有出入,希望大家举一反三，有说的不正确的希望能指出谢谢！本文重点在map的结构和查找的过程,插入和删除的过程涉及扩展和收缩代码比较绕,后续会继续深入。</p>
+
+<h2 id="常用操作">常用操作</h2>
+
+<pre><code>var m map[string]interface{}        // 声明一个map
+m := map[string]interface{}         // 定义一个map
+m := make(map[string]interface{},3) // 初始化一个map,并设置元素容量,1.5版本未支持容量设置,但最新的1.10已支持,hashmap会自动根据负载因子6.5设置合适的桶大小.至于负载因子为什么为6.5,在hashmap.go文件注释中有说明,这是作者通过实践得出的经验值。
+
+m[k] = v                            // 设置值
+v := m[k]                           // 取值
+v,ok := m[k]                        // 取值,带结果判断  v:结果 ok:返回bool判断结构是否存在
+for k,v := range m {}               // 迭代
+</code></pre>
+
+<h2 id="类型结构">类型结构</h2>
+
+<h3 id="hashmap结构">HashMap结构</h3>
+
+<pre><code>type hmap struct {
+    count int    // 表中的元素总量
+    flags uint8  // 当前桶标志,1:使用的是buckets,2:使用的是oldbuckets
+    B     uint8  // 桶总大小的对数
+    hash0 uint32 // 哈希函数种子
+
+    buckets    unsafe.Pointer // 桶队列的首地址,2的B次方长度的队列作为桶,当表中元素count==0的时候指针有可能为nil
+    oldbuckets unsafe.Pointer // 前半部分桶的队列指针
+    nevacuate  uintptr        // 收缩操作计数器 ()
+    overflow *[2]*[]*bmap     // 溢出区,其中 overflow[0]为buckets的溢出区,overflow[1]为oldbuckets的溢出区。好处:1.减少hash表的长度 2.可以把指针存到一个数组中
+}
+</code></pre>
+
+<p>Go的Map内部就是一般的HashMap结构,数据均衡存储到多个桶中。通过大量指针与偏移量操作实现数据的插入和查找。</p>
+
+<p><img src="./hashmap.png" alt="hashmap" /></p>
+
+<h3 id="桶内部结构">桶内部结构</h3>
+
+<pre><code>type bmap struct {
+    tophash [bucketCnt]uint8
+}
+</code></pre>
+
+<p><img src="./bucket.png" alt=".bucket" /></p>
+
+<h2 id="操作实现">操作实现</h2>
+
+<h3 id="创建">创建</h3>
+
+<p><a href="https://github.com/golang/go/blob/release-branch.go1.5/src/runtime/hashmap.go#L187">.makemap</a></p>
+
+<pre><code>// t: map的类型
+// hint: 容量
+// h: 指定hmap指针,如果存在则直接在该地址创建
+// bucket: 指针bucket指针,如果存在直接把该桶地址作为首个桶
+func makemap(t *maptype, hint int64, h *hmap, bucket unsafe.Pointer) *hmap {
+    // 容量检查-编译过程长度检查
+    if sz := unsafe.Sizeof(hmap{}); sz &gt; 48 || sz != uintptr(t.hmap.size) {
+        println(&quot;runtime: sizeof(hmap) =&quot;, sz, &quot;, t.hmap.size =&quot;, t.hmap.size)
+        throw(&quot;bad hmap size&quot;)
+    }
+
+    // 容量检查-容量不能大于int64长度
+    if hint &lt; 0 || int64(int32(hint)) != hint { panic(&quot;makemap: size out of range&quot;) }
+
+    // 元素类型检查
+    mapzero(t.elem)
+
+    // 根据元素容量hint和负载因子找到合适的桶队列大小B
+    B := uint8(0)
+    for ; hint &gt; bucketCnt &amp;&amp; float32(hint) &gt; loadFactor*float32(uintptr(1)&lt;&lt;B); B++ {
+    }
+
+    // 对桶队列分配内存
+    buckets := bucket
+    if B != 0 {
+        buckets = newarray(t.bucket, uintptr(1)&lt;&lt;B)
+    }
+
+    // 初始化HashMap对象
+    if h == nil {
+        h = (*hmap)(newobject(t.hmap))
+    }
+    h.count = 0
+    h.B = B
+    h.flags = 0
+    h.hash0 = fastrand1()
+    h.buckets = buckets
+    h.oldbuckets = nil
+    h.nevacuate = 0
+
+    return h
+}
+</code></pre>
+
+<h3 id="查找">查找</h3>
+
+<p><a href="https://github.com/golang/go/blob/release-branch.go1.5/src/runtime/hashmap.go#L320">.mapaccess2</a></p>
+
+<pre><code>func mapaccess2(t *maptype, h *hmap, key unsafe.Pointer) (unsafe.Pointer, bool) {
+    // 此处省略一些边界和条件判断
+    alg := t.key.alg
+    hash := alg.hash(key, uintptr(h.hash0))     // 哈希函数
+    m := uintptr(1)&lt;&lt;h.B - 1
+    b := (*bmap)(unsafe.Pointer(uintptr(h.buckets) + (hash&amp;m)*uintptr(t.bucketsize)))           // 通过对key进行哈希找到所在桶的末地址,针对.Buckets  这个地方写的有点啰嗦,可以考虑先对.oldbuckets做运算如果存在直接跳过.Buckets的运算
+    if c := h.oldbuckets; c != nil {
+        oldb := (*bmap)(unsafe.Pointer(uintptr(c) + (hash&amp;(m&gt;&gt;1))*uintptr(t.bucketsize)))       // 通过对key进行哈希找到所在桶的末地址,针对oldBuckets
+        if !evacuated(oldb) {
+            b = oldb
+        }
+    }
+    top := uint8(hash &gt;&gt; (ptrSize*8 - 8))   // 移向桶组数的首地址 
+    if top &lt; minTopHash {
+        top += minTopHash
+    }
+    for {
+        // 在topHash桶队列中查找该桶
+        for i := uintptr(0); i &lt; bucketCnt; i++ {  
+            if b.tophash[i] != top {         
+                continue
+            }
+            k := add(unsafe.Pointer(b), dataOffset+i*uintptr(t.keysize))
+            if t.indirectkey {
+                k = *((*unsafe.Pointer)(k))
+            }
+            if alg.equal(key, k) {
+                v := add(unsafe.Pointer(b), dataOffset+bucketCnt*uintptr(t.keysize)+i*uintptr(t.valuesize))
+                if t.indirectvalue {
+                    v = *((*unsafe.Pointer)(v))
+                }
+                return v, true
+            }
+        }
+        
+        // 在溢出区返回该元素
+        b = b.overflow(t)
+        if b == nil {
+            return unsafe.Pointer(t.elem.zero), false
+        }
+    }
+}
+</code></pre>
+
+<h2 id="总结">总结</h2>
+
+<ul>
+<li>Go的map类型由Hashmap实现,底层由一系列[8]int8的桶数组构成,总长度为 2^B</li>
+<li>map的负载因子为6.5</li>
+<li>查找的过程:通过对key进行取mod找到桶地址,从桶队列<code>topHash</code>中定位到该桶,通过对桶首地址加入元素的偏移量找到该元素。当<code>topHash</code>桶未查找成功,从溢出区返回具体元素指针.</li>
+</ul>
+
+	</div>
+  <footer class="article-footer clearfix">
+  
+
+
+
+
+
+<div class="article-categories">
+  <span></span>
+  
+  <a class="article-category-link" href="//razil.cc/categories/go">go</a>
+  
+</div>
+
+
+
+  <div class="article-share" id="share">
+    <div data-url="//razil.cc/post/2018/04/go_type_map/" data-title="【Go源码】map类型与实现" data-tsina="" class="share clearfix">
     </div>
+  </div>
+</footer>
+
+	</article>
+  
+
+
+</div>
+
     <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+  
+	<div class="toc-article">
+		<p class="toc-title">文章目录</p>
+		<div class="toc-content">   <nav id="TableOfContents">
+<ul>
+<li><a href="#go源码-map类型与实现">Go源码-map类型与实现</a>
+<ul>
+<li><a href="#常用操作">常用操作</a></li>
+<li><a href="#类型结构">类型结构</a>
+<ul>
+<li><a href="#hashmap结构">HashMap结构</a></li>
+<li><a href="#桶内部结构">桶内部结构</a></li>
+</ul></li>
+<li><a href="#操作实现">操作实现</a>
+<ul>
+<li><a href="#创建">创建</a></li>
+<li><a href="#查找">查找</a></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+</ul>
+</nav> </div>
+	</div>
   
 <aside class="clearfix">
   
@@ -414,10 +625,6 @@
 
 
   
-<div class="rsspart">
-  <a rel="nofollow" href="//razil.cc/feed.xml" type="application/rss+xml" target="_blank">RSS 订阅</a>
-</div>
-
 
 </aside>
 </div>
@@ -504,6 +711,38 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
   var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
@@ -520,6 +759,27 @@ $(document).ready(function(){
 });
 </script>
 
+
+<link rel="stylesheet" href="//razil.cc/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//razil.cc/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
 
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132752811-1"></script>

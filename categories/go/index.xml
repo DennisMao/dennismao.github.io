@@ -84,6 +84,15 @@
     </item>
     
     <item>
+      <title>【Go源码】map类型与实现</title>
+      <link>//razil.cc/post/2018/04/go_type_map/</link>
+      <pubDate>Sat, 21 Apr 2018 11:25:11 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2018/04/go_type_map/</guid>
+      <description>Go源码-map类型与实现 go项目分支:release-branch.go1.5 代码地址:https://github.com/golang</description>
+    </item>
+    
+    <item>
       <title>【Go】版本控制-dep介绍与应用</title>
       <link>//razil.cc/post/2018/04/go-dep/</link>
       <pubDate>Sat, 07 Apr 2018 21:05:21 +0800</pubDate>
