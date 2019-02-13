@@ -2,18 +2,18 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>版本控制 - Coding茶餐厅</title>
+  <title>[Go] golang-lru包学习 - simple-lru - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="版本控制">
+  <meta name="description" content="[TOC] golang-lru包学习 - simple-lru simple-lru 代码:simple-lru LRU算法核心是把最近使用的条目放到靠近缓存的顶部位置,最少使用的条目自然会被移">
   
-  <meta itemprop="name" content="版本控制 - Coding茶餐厅">
-  <meta itemprop="description" content="版本控制">
+  <meta itemprop="name" content="[Go] golang-lru包学习 - simple-lru - Coding茶餐厅">
+  <meta itemprop="description" content="[TOC] golang-lru包学习 - simple-lru simple-lru 代码:simple-lru LRU算法核心是把最近使用的条目放到靠近缓存的顶部位置,最少使用的条目自然会被移">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
   <meta name="twitter:description" content="">
-  <link rel="alternate" href="//razil.cc/feed.xml" title="Coding茶餐厅" type="application/rss+xml"/>
+  
   <link rel="shortcut icon" href="//razil.cc/img/favicon.ico"/>
   <link rel="apple-touch-icon" href="//razil.cc/apple-touch-icon.png" />
   <link rel="apple-touch-icon-precomposed" href="//razil.cc/apple-touch-icon.png" />
@@ -59,24 +59,170 @@
 
   </header>
   <div id="container">
-    <div id="main">
-      
-      <h2 id="2018-04">2018-04</h2>
-      
-      <section class="post" itemscope itemprop="blogPost">
-    <a href="//razil.cc/post/2018/04/go-dep/" title="【Go】版本控制-dep介绍与应用" itemprop="url">
-    <h1 itemprop="name">【Go】版本控制-dep介绍与应用</h1>
-    <p itemprop="description">【Go】版本控制-dep介绍与应用 [TOC] 介绍 Go Dep工具是官方实践也是推荐的一款Go语言工程依赖管理工具。用法跟govendor相似。原理都是把</p>
-    <time datetime="2018-04-07 21:05:21 &#43;0800 CST" itemprop="datePublished">2018年04月07日</time>
-  </a>
-</section>
+    <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+    <header class="article-info clearfix">
+  <h1 itemprop="name">
+      <a href="//razil.cc/post/2019/01/golang_lru/" title="[Go] golang-lru包学习 - simple-lru" itemprop="url">[Go] golang-lru包学习 - simple-lru</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="//razil.cc/" title=""></a>
+    
+  </p>
+  <p class="article-time">
+    <time datetime="2019-01-29 21:16:22 &#43;0800 CST" itemprop="datePublished">2019年01月29日</time>
+  </p>
+</header>
 
-      
-      
+	<div class="article-content">
+    
+
+<p>[TOC]</p>
+
+<h1 id="golang-lru包学习-simple-lru">golang-lru包学习 - simple-lru</h1>
+
+<h2 id="simple-lru">simple-lru</h2>
+
+<p>代码:<a href="https://github.com/hashicorp/golang-lru/blob/master/simplelru/lru.go">simple-lru</a></p>
+
+<p>LRU算法核心是<code>把最近使用的条目放到靠近缓存的顶部位置,最少使用的条目自然会被移动到末端被淘汰</code>,其淘汰规则是基于访问时间而不是LFU的基于访问次数,即添加、更新、获取操作都会使得目标条目放到队列的前端(front)。<br />
+simple-lru是lru算法一个简单实现,但是整个包的基础数据结构,接下来的2q和arc算法都是以当前的数据结构进行展开实现。</p>
+
+<pre><code>type LRU struct {
+	size      int							// 队列既定长度
+	evictList *list.List					// 元素队列
+	items     map[interface{}]*list.Element // 元素哈希索引
+	onEvict   EvictCallback					// 淘汰操作的回调函数
+}
+</code></pre>
+
+<p>由于链表的添加、删除都会涉及遍历查找操作,即便<code>list</code>用的是官方的<code>container/list</code>双向链表,但是操作频繁的时候其
+O(n)的时间复杂度还是会对性能有影响。simple-lru的底层利用了map来给元素加索引,实现<code>key -&gt; element(key)</code>结构,
+通过map结构能直接取到元素地址,时间复杂度将为O(1).</p>
+
+<blockquote>
+<p>优化: 如果缓存队列长度是既定的,那索引map容量是与队列长度一致,因此底层的map在初始化的时候也建议直接指定cap大小。
+减少底层map的rehash操作。</p>
+</blockquote>
+
+<h3 id="函数">函数</h3>
+
+<pre><code>type LRUCache interface {
+  Add(key, value interface{}) bool 						// 添加元素,若元素不存在则添加元素,当该操作导致其他元素淘汰时候返回true.若元素存在则更新元素
+  Get(key interface{}) (value interface{}, ok bool) 	// 获取元素,如果成功找到该元素会自动将当前元素放到队列前端(front)
+  Contains(key interface{}) (ok bool) 					// 查看该元素是否存在,但不会更新元素位置
+  Peek(key interface{}) (value interface{}, ok bool)	// 获取元素,但不会更新元素位置
+  Remove(key interface{}) bool							// 删除元素
+  RemoveOldest() (interface{}, interface{}, bool)		// 删除最不常用元素(后端rear元素)
+  GetOldest() (interface{}, interface{}, bool)			// 获取最不常用元素(后端rear元素),但不更新元素位置
+  Keys() []interface{}									// 以数组形式返回全部key,由最不常用(后端rear)到最常用(前端front)
+  Len() int												// 返回队列中元素数量
+  Purge()												// 清除队列中全部元素
+}
+</code></pre>
+
+<h3 id="过程">过程</h3>
+
+<p>LRU算法核心过程是Get和Add,我们针对这两个方法进到代码里看看</p>
+
+<p>Add() 添加元素</p>
+
+<pre><code>func (c *LRU) Add(key, value interface{}) (evicted bool) {
+	// 在map中查找该元素是否存在
+	if ent, ok := c.items[key]; ok {  		
+		c.evictList.MoveToFront(ent)		// 存在,在队列中把该元素移到前端
+		ent.Value.(*entry).value = value	// 更新值
+		return false
+	}
+
+	ent := &amp;entry{key, value}				// 不存在,创建新元素
+	entry := c.evictList.PushFront(ent)		// 添加元素到队列的前端
+	c.items[key] = entry					// 添加元素到map中
+
+	evict := c.evictList.Len() &gt; c.size		// 判断当前队列是否超出既定长度
+	if evict {
+		c.removeOldest()					// 超出,淘汰最不常用(后端rear)元素
+	}
+	return evict
+}
+</code></pre>
+
+<p>Get() 获取元素</p>
+
+<pre><code>func (c *LRU) Get(key interface{}) (value interface{}, ok bool) {
+	// 在map中查找该元素是否存在	
+	if ent, ok := c.items[key]; ok {	
+		c.evictList.MoveToFront(ent)			// 存在,在队列中把该元素移到前端
+		return ent.Value.(*entry).value, true   // 返回元素
+	}
+	return
+}
+</code></pre>
+
+<h2 id="总结">总结</h2>
+
+<ul>
+<li>simple-lru基础<code>container/list</code>包,底层为一个双向链表和map索引</li>
+<li>simple-lru数据结构并非线程安全,需要外部增加互斥锁或读写锁</li>
+</ul>
+
+	</div>
+  <footer class="article-footer clearfix">
+  
+
+<div class="article-tags">
+  <span></span>
+  
+  <a href="//razil.cc/tags/"></a>
+  
+</div>
+
+
+
+
+
+<div class="article-categories">
+  <span></span>
+  
+  <a class="article-category-link" href="//razil.cc/categories/go">go</a>
+  
+</div>
+
+
+
+  <div class="article-share" id="share">
+    <div data-url="//razil.cc/post/2019/01/golang_lru/" data-title="[Go] golang-lru包学习 - simple-lru" data-tsina="" class="share clearfix">
     </div>
+  </div>
+</footer>
+
+	</article>
+  
+
+
+</div>
+
     <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+  
+	<div class="toc-article">
+		<p class="toc-title">文章目录</p>
+		<div class="toc-content">   <nav id="TableOfContents">
+<ul>
+<li><a href="#golang-lru包学习-simple-lru">golang-lru包学习 - simple-lru</a>
+<ul>
+<li><a href="#simple-lru">simple-lru</a>
+<ul>
+<li><a href="#函数">函数</a></li>
+<li><a href="#过程">过程</a></li>
+</ul></li>
+<li><a href="#总结">总结</a></li>
+</ul></li>
+</ul>
+</nav> </div>
+	</div>
   
 <aside class="clearfix">
   
@@ -419,10 +565,6 @@
 
 
   
-<div class="rsspart">
-  <a rel="nofollow" href="//razil.cc/feed.xml" type="application/rss+xml" target="_blank">RSS 订阅</a>
-</div>
-
 
 </aside>
 </div>
@@ -509,6 +651,38 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
   var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
@@ -525,6 +699,27 @@ $(document).ready(function(){
 });
 </script>
 
+
+<link rel="stylesheet" href="//razil.cc/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="//razil.cc/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
 
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132752811-1"></script>

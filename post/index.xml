@@ -6,10 +6,28 @@
     <description>Recent content in Posts on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 06 Jan 2019 23:26:32 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Feb 2019 20:14:22 +0800</lastBuildDate>
     
 	<atom:link href="//razil.cc/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Go] golang-lru包学习 - 2Q算法</title>
+      <link>//razil.cc/post/2019/02/golang_2q/</link>
+      <pubDate>Fri, 01 Feb 2019 20:14:22 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2019/02/golang_2q/</guid>
+      <description>[TOC] golang-lru包学习 - 2Q算法 2Q算法 代码:2Q 论文:A low overhead high performance buffer replacement algorithm 2Q算法的描述: &amp;gt;2Q与LRU/2对于LRU的改进在某种</description>
+    </item>
+    
+    <item>
+      <title>[Go] golang-lru包学习 - simple-lru</title>
+      <link>//razil.cc/post/2019/01/golang_lru/</link>
+      <pubDate>Tue, 29 Jan 2019 21:16:22 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2019/01/golang_lru/</guid>
+      <description>[TOC] golang-lru包学习 - simple-lru simple-lru 代码:simple-lru LRU算法核心是把最近使用的条目放到靠近缓存的顶部位置,最少使用的条目自然会被移</description>
+    </item>
     
     <item>
       <title>[分布式] 分布式系统学习资源</title>
