@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 01 Feb 2019 20:14:22 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 02 Feb 2019 18:54:12 +0800</lastBuildDate>
     
 	<atom:link href="//razil.cc/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Go] golang-lru包学习 - 2Q算法</title>
+      <link>//razil.cc/post/2019/02/golang_arc/</link>
+      <pubDate>Sat, 02 Feb 2019 18:54:12 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2019/02/golang_arc/</guid>
+      <description>[TOC] #golang-lru包学习 - ARC算法 ARC算法 代码:ARC Wiki:Adaptive replacement cache 论文:A low overhead high performance buffer replacement algorithm ARC算法的描述 ARC算法是为了整个LFU和LR</description>
+    </item>
     
     <item>
       <title>[Go] golang-lru包学习 - 2Q算法</title>
@@ -215,7 +224,7 @@
       <pubDate>Tue, 06 Mar 2018 23:20:18 +0800</pubDate>
       
       <guid>//razil.cc/post/books/</guid>
-      <description>日常整理一些的经典技术书籍和文章。 精彩文章 2019 2018 2017 后端 基础 编程之法：面试和算法心得 算法4习题答案 Go C/C++ 容器化 大数据 架构 分布式事务处理笔记</description>
+      <description>日常整理一些的经典技术书籍和文章。 精彩文章 2019 2018 2017 论文与刊物 计算机科学刊物 计科顶刊 usenix 操作系统、体系结构、存储 后端 基础 编程之法：面试和算法心得 算</description>
     </item>
     
     <item>

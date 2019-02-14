@@ -181,7 +181,7 @@ ele(A)-&gt;  | ele(A)    |      |            |       |         |
 <pre><code>type 2QCache interface {
   New2Q(size int) (*TwoQueueCache, error) 				// 创建一个2Q算法的缓存对象,队列长度参数使用默认参数 1:0.5:0.25
   New2QParams(size int, recentRatio float64, ghostRatio float64) (*TwoQueueCache, error) // 创建一个2Q算法的缓存对象,队列长度参数使用自定义参数
-  Add(key, value interface{}) bool 						// 添加元素,若元素不存在则添加元素,当该操作导致其他元素淘汰时候返回true.若元素存在则更新元素
+  Add(key, value interface{})  						// 添加元素,若元素不存在则添加元素,若元素存在则更新元素
   Get(key interface{}) (value interface{}, ok bool) 	// 获取元素
   Contains(key interface{}) (ok bool) 					// 查看该元素是否存在,但不会更新元素位置
   Peek(key interface{}) (value interface{}, ok bool)	// 获取元素,但不会更新元素位置
@@ -323,7 +323,7 @@ func (c *TwoQueueCache) Add(key, value interface{}) {
     
     <li><a href="//razil.cc/categories/docker" title="docker">docker<sup>2</sup></a></li>
     
-    <li><a href="//razil.cc/categories/go" title="go">go<sup>20</sup></a></li>
+    <li><a href="//razil.cc/categories/go" title="go">go<sup>21</sup></a></li>
     
     <li><a href="//razil.cc/categories/golang" title="golang">golang<sup>4</sup></a></li>
     
@@ -370,7 +370,7 @@ func (c *TwoQueueCache) Add(key, value interface{}) {
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
       
-			<li><a href="//razil.cc/tags/" title=""><sup>4</sup></a></li>
+			<li><a href="//razil.cc/tags/" title=""><sup>5</sup></a></li>
       
 			<li><a href="//razil.cc/tags/beego" title="beego">beego<sup>2</sup></a></li>
       
@@ -460,7 +460,7 @@ func (c *TwoQueueCache) Add(key, value interface{}) {
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="//razil.cc/post/#2019-02">2019年02月</a><span class="archive-list-count">1</span>
+        <a class="archive-list-link" href="//razil.cc/post/#2019-02">2019年02月</a><span class="archive-list-count">2</span>
       </li>
       
       

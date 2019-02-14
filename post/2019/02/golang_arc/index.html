@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>系统监控:InfluxDB vs Elasticsearch - Coding茶餐厅</title>
+  <title>[Go] golang-lru包学习 - 2Q算法 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="前言 译者: Razil 本文译自: System monitoring with InfluxDB vs Elasticsearch 系统的监控一直都扮演着重要角色。它能帮助我们了解系统的健康情况,发现问题甚至能预测问题。 如今，由于以下这些">
+  <meta name="description" content="[TOC] #golang-lru包学习 - ARC算法 ARC算法 代码:ARC Wiki:Adaptive replacement cache 论文:A low overhead high performance buffer replacement algorithm ARC算法的描述 ARC算法是为了整个LFU和LR">
   
-  <meta itemprop="name" content="系统监控:InfluxDB vs Elasticsearch - Coding茶餐厅">
-  <meta itemprop="description" content="前言 译者: Razil 本文译自: System monitoring with InfluxDB vs Elasticsearch 系统的监控一直都扮演着重要角色。它能帮助我们了解系统的健康情况,发现问题甚至能预测问题。 如今，由于以下这些">
+  <meta itemprop="name" content="[Go] golang-lru包学习 - 2Q算法 - Coding茶餐厅">
+  <meta itemprop="description" content="[TOC] #golang-lru包学习 - ARC算法 ARC算法 代码:ARC Wiki:Adaptive replacement cache 论文:A low overhead high performance buffer replacement algorithm ARC算法的描述 ARC算法是为了整个LFU和LR">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
@@ -63,7 +63,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="//razil.cc/post/2017/10/influxdbvselasticsearch/" title="系统监控:InfluxDB vs Elasticsearch" itemprop="url">系统监控:InfluxDB vs Elasticsearch</a>
+      <a href="//razil.cc/post/2019/02/golang_arc/" title="[Go] golang-lru包学习 - 2Q算法" itemprop="url">[Go] golang-lru包学习 - 2Q算法</a>
   </h1>
   <p class="article-author">By
     
@@ -71,143 +71,236 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2017-10-19 23:38:17 &#43;0800 CST" itemprop="datePublished">2017年10月19日</time>
+    <time datetime="2019-02-02 18:54:12 &#43;0800 CST" itemprop="datePublished">2019年02月02日</time>
   </p>
 </header>
 
 	<div class="article-content">
     
 
-<h2 id="前言">前言</h2>
+<p>[TOC]
+#golang-lru包学习 - ARC算法</p>
 
-<p>译者: <a href="razil.cc">Razil</a><br />
-本文译自: <a href="http://www.spectory.com/blog/System%20monitoring%20with%20InfluxDB%20vs%20Elasticsearch">System monitoring with InfluxDB vs Elasticsearch</a></p>
+<h2 id="arc算法">ARC算法</h2>
 
-<p>系统的监控一直都扮演着重要角色。它能帮助我们了解系统的健康情况,发现问题甚至能预测问题。<br />
-如今，由于以下这些原因监控变得越来越重要:</p>
+<p>代码:<a href="https://github.com/hashicorp/golang-lru/blob/master/arc.go">ARC</a><br />
+Wiki:<a href="https://en.wikipedia.org/wiki/Adaptive_replacement_cache">Adaptive replacement cache</a>
+论文:<a href="http://www.vldb.org/conf/1994/P439.PDF">A low overhead high performance buffer replacement algorithm</a></p>
 
-<ul>
-<li>云服务（存储价格的降低）使我们可以一直监控和存储几乎所有东西</li>
-<li>系统变得越来越复杂。系统包含了各种各样的灵活部件比如虚拟机、docker、数据库和服务,应有尽有。</li>
-<li>物联网的逐步普及使得大量的硬件设备需要我们去追踪和监测。</li>
-<li>数据分析得以升级，让我们只需要通过关注系统的稳定性和健康状态，就能达到了解客户需求、掌握发展趋势、对客户进行分类等多种目的。</li>
-</ul>
+<h3 id="arc算法的描述">ARC算法的描述</h3>
 
-<p>本文将对比两个流行的监控解决方案。两者有着不同的处理方法和实现方式，相比起来各有千秋。
-首先是TICK框架中的InfluxDB，第二个是ELK框架中的Elasticsearch。</p>
+<blockquote>
+<p>ARC算法是为了整个LFU和LRU两种替换算法的优点,实现他们之间的自适应的workload调整。算法把有效缓存队列划分为两个,T1和T2,其中T1是LRU队列用于保存最近使用的条目、T2是LFU队列用于保存最常使用的条目。
+他们各自都包含了一个名为ghost list的淘汰队列,分别命名为B1、B2,但tracking操作(即外部添加、查找操作)只针对T1、T2进行.ARC算法会根据缓存命中情况自动调整T1、T2的大小,以保证整个缓存既定长度的恒定。当新元素较多的时候,T1长度会增长T2长度会缩小,而当旧元素命中较多时候
+T2长度会增长T1长度会缩小。</p>
+</blockquote>
 
-<h2 id="什么是监控">什么是监控？</h2>
-
-<p>监控由以下活动组成：</p>
+<p>理论ARC算法核心结构:</p>
 
 <ul>
-<li>采集数据</li>
-<li>保存数据</li>
-<li>可视化数据</li>
-<li>产生告警</li>
+<li>T1, 用于保存最近的条目</li>
+<li>T2, 用于保存最常用的条目,至少被引用两次</li>
+<li>B1, 用于保存从T1淘汰的条目</li>
+<li>B2, 用于保存从T2淘汰的条目</li>
 </ul>
 
-<h2 id="tick">TICK</h2>
+<pre><code>. . . [   B1  &lt;-[     T1    &lt;-!-&gt;      T2   ]-&gt;  B2   ] . .
+      [ . . . . [ . . . . . . ! . .^. . . . ] . . . . ]
+                [   fixed cache size (c)    ]
+				[             L             ]
+L可视为一个有效的缓存队列整体,其长度恒定不变。通过T1、T2长度的变化改变偏重P的大小。
 
-<p>Tick框架:</p>
-
-<ul>
-<li>Telegraf - 用于在系统运行时从系统或者其他服务采集指标和数据</li>
-<li>InfluxDB - 高可用和高性能的时序数据库</li>
-<li>Chronograf - 数据可视化的web应用</li>
-<li>Kapacitor - 告警和数据处理引擎</li>
-</ul>
-
-<p>本框架的而核心是时序数据库InfluxDB。时序数据库(Time series database TSDB)是一个为了处理时序数据(一系列由时间作为索引的数据)而特别优化的软件系统。例如，一段时间内锅炉里的水温或者一段时间内CPU的使用率。TSDB是一个NoSQL数据库，它支持增删改查操作和条件查询。与其他类型数据库最大的区别在于，它能在数据量庞大的情况下对时间索引维护的最优化。其他主要的时序数据库有 Graphite,Prometheus,OpenTSDB等等。我选择InfluxDB的真实原因是它是一个现代的数据库，用Go语言编写，非常容易安装和配置，而且性能出色。</p>
-
-<h3 id="influxdb的数据模型">InfluxDB的数据模型</h3>
-
-<p>InfluxDB 是一种无模式数据库。我们可以任意添加series,measurements和tags。例如：</p>
-
-<pre><code>app_degrees, country=Canada, city=Toronto degree=77.5 1422568543702900257
+				
+首次添加  Add(&quot;A&quot;)
+          | T1(LRU)  |      | B1(LRU)  |       | T2 (LFU)|     | B2 (LFU)|
+	  |----------|      |----------|       |---------|     |---------|
+ele(A)-&gt;  |  ele(A)  |      |          |       |         |     |         |
+	  |----------|      |----------|       |---------|     |---------|
+		
+第二次添加或者访问 Add(&quot;A&quot;) / Get(&quot;A&quot;)
+          | T1(LRU)  |      | B1(LRU)  |       | T2 (LFU)|     | B2 (LFU)|
+	  |----------|      |----------|       |---------|     |---------|
+          |          |      |          |       |  ele(A) |     |         |
+	  |----------|      |----------|       |---------|     |---------|
+		
+对于已被T1或者T2淘汰的数据,再次添加 Add(&quot;A&quot;),会直接进入T2
+          | T1(LRU)  |      | B1(LRU)  |       | T2 (LFU)|     | B2 (LFU)|
+	  |----------|      |----------|       |---------|     |---------|
+          |          |      |  ele(A)  |       |         |     |         |
+	  |----------|      |----------|       |---------|     |---------|
+		
+          | T1(LRU)  |      | B1(LRU)  |       | T2 (LFU)|     | B2 (LFU)|
+	  |----------|      |----------|       |---------|     |---------|
+          |          |      |          |       |  ele(A) |     |         |
+	  |----------|      |----------|       |---------|     |---------|		
 </code></pre>
 
-<p>相关术语（这里表述的还是比较抽象，括号是本人的理解）:</p>
+<h3 id="理论arc算法替换过程">理论ARC算法替换过程</h3>
 
-<ul>
-<li>Measurement - 一个数字值 (相当于关系型数据里的一个表)</li>
-<li>Series - 数据收集和分析的单位 (一个表里数据的系列,可以理解为多条曲线)</li>
-<li>Tag - Key/Value 键值对,可选,用于描述measurement (字符串型的键值对，用于描述这个点，可以用作索引)</li>
-<li>Timestamp - Measurement的确切时间点(微妙级时间戳)</li>
-</ul>
+<p>新元素:
++ 若空间不足,淘汰T2
++ 添加新元素到T1</p>
 
-<p>这个模型是的我们可以高效而且便捷地插入Measurements。</p>
+<p>已存在元素:
++ 若在B1或B2存在,移动到T2
++ 若空间不足,淘汰T1</p>
 
-<h3 id="influxdb的读写">InfluxDB的读写</h3>
+<p>查询命中
++ 若T1查询命中,移动到T2</p>
 
-<p>InfluxDB有支持许多语言例如Ruby、Go、Java、Node等等的HTTP API和客户端库。
-InfluxDB支持通过API写入单条数据或从文件获取然后写入多行数据。
-InfluxDB拥有非常近似SQL的查询语言。查询例子如下：</p>
+<h2 id="算法实现">算法实现:</h2>
 
-<pre><code>select degrees from app_degrees where country = ‘Canada’
+<p>本包跟2Q算法实现类似,将T2用LRU队列来实现。其结构如下图所示。T1,T2,B1,B2依然按照理论ARC中的设计,区别只是T2 B2用的是LRU算法而不是LFU。</p>
+
+<p>本包算法实现结构:</p>
+
+<pre><code>          | T1(LRU)  |      | B1(LRU)  |       | T2 (LRU)|     | B2 (LRU)|
+          |----------|      |----------|       |---------|     |---------|
+ele(A)-&gt;  |  ele(A)  |      |          |       |         |     |         |
+	  |----------|      |----------|       |---------|     |---------|
 </code></pre>
 
-<p>它拥有以下查询描述: SELECT、WHERE、GROUP BY、ORDER BY、LIMIT 等等。这对于拥有SQL相关知识的开发者会
-来说会觉得非常方便。<br />
-查询结构将以JSON结构展示。</p>
+<p>ARC算法结构对象:</p>
 
-<h3 id="数据可视化">数据可视化</h3>
+<pre><code>type ARCCache struct {
+	size int // 整体缓存的既定长度
+	p    int // P T1和T2的侧重值
 
-<p>&ldquo;TICK&rdquo;框架会通过Chronograf这款WEB应用进行对(InfluxDB中的)series的展示。它可以生成图像、表格仪表图等等。它有着非常容易上手的用户体验可以让你在短时间内构建一个仪表图。</p>
+	t1 simplelru.LRUCache // T1 最近使用队列
+	b1 simplelru.LRUCache // B1 T1淘汰队列
 
-<h3 id="其他特性">其他特性</h3>
+	t2 simplelru.LRUCache // T2 最常使用队列
+	b2 simplelru.LRUCache // B2 T2淘汰队列
+
+	lock sync.RWMutex  // 读写锁
+}
+</code></pre>
+
+<h3 id="函数">函数</h3>
+
+<pre><code>type ARCCache interface {
+  NewARC(size int) (*TwoQueueCache, error) 				// 创建一个ARC算法的缓存对象
+  Add(key, value interface{}) 					    	// 添加元素,若元素不存在则添加元素，若元素存在则更新元素
+  Get(key interface{}) (value interface{}, ok bool) 	// 获取元素
+  Contains(key interface{}) (ok bool) 					// 查看该元素是否存在,但不会更新元素位置
+  Peek(key interface{}) (value interface{}, ok bool)	// 获取元素,但不会更新元素位置
+  Remove(key interface{}) bool							// 删除元素
+  Len() int												// 返回队列中元素数量
+  Purge()												// 清除队列中全部元素
+}
+</code></pre>
+
+<h3 id="过程">过程</h3>
+
+<p>ARC算法核心过程是Add(),在Add()方法中需要针对不同情况处理四个队列的淘汰问题和T1、T2长度问题,最后更新偏重值P。</p>
+
+<p>Add() 添加元素</p>
+
+<pre><code>func (c *ARCCache) Add(key, value interface{}) {
+	c.lock.Lock()
+	defer c.lock.Unlock()
+
+	if c.t1.Contains(key) {		// 若在T1存在,移动到T2
+		c.t1.Remove(key)
+		c.t2.Add(key, value)
+		return
+	}
+
+	if c.t2.Contains(key) {		// 若在T2存在,更新值
+		c.t2.Add(key, value)
+		return
+	}
+
+	if c.b1.Contains(key) {		// 若在B1存在,移动到T2
+		delta := 1				// 侧重增量
+		b1Len := c.b1.Len()
+		b2Len := c.b2.Len()
+		if b2Len &gt; b1Len {
+			delta = b2Len / b1Len	
+		}
+		if c.p+delta &gt;= c.size { 	// 调整侧重,靠近T1这边
+			c.p = c.size
+		} else {
+			c.p += delta
+		}
+
+		if c.t1.Len()+c.t2.Len() &gt;= c.size {
+			c.replace(false)		// 淘汰T2,缓存窗口往T1移动
+		}
+
+		c.b1.Remove(key)
+		
+		c.t2.Add(key, value)
+		return
+	}
+
+	if c.b2.Contains(key) {		// 若在B2存在,移动到T2
+		delta := 1				// 侧重增量
+		b1Len := c.b1.Len()
+		b2Len := c.b2.Len()
+		if b1Len &gt; b2Len {
+			delta = b1Len / b2Len
+		}
+		if delta &gt;= c.p {		// 调整侧重,靠近T2这边
+			c.p = 0
+		} else {
+			c.p -= delta
+		}
+
+		if c.t1.Len()+c.t2.Len() &gt;= c.size {
+			c.replace(true)		// 淘汰T1,缓存窗口往T2移动
+		}
+
+		c.b2.Remove(key)
+
+		c.t2.Add(key, value)
+		return
+	}
+
+	// T1 T2 B1 B2 都无该元素,添加到T1
+	if c.t1.Len()+c.t2.Len() &gt;= c.size {	// 超出整体缓存既定大小
+		c.replace(false)					// T2淘汰
+	}
+
+	if c.b1.Len() &gt; c.size-c.p {
+		c.b1.RemoveOldest()
+	}
+	if c.b2.Len() &gt; c.p {
+		c.b2.RemoveOldest()
+	}
+
+	c.t1.Add(key, value)
+	return
+}
+</code></pre>
+
+<p>Get方法与2Q相似,T1命中的则移动到T2队列<br />
+Get() 获取元素</p>
+
+<pre><code>func (c *ARCCache) Get(key interface{}) (value interface{}, ok bool) {
+	c.lock.Lock()
+	defer c.lock.Unlock()
+
+	if val, ok := c.t1.Peek(key); ok {		// 若在T1存在,移动到T2
+		c.t1.Remove(key)
+		c.t2.Add(key, val)
+		return val, ok
+	}
+
+	if val, ok := c.t2.Get(key); ok {
+		return val, ok
+	}
+
+	// No hit
+	return nil, false
+}
+</code></pre>
+
+<h2 id="总结">总结</h2>
 
 <ul>
-<li>Retention policy - 你可以配置是否自动删除过期数据</li>
-<li>Continues queries - 自动完成数据的聚合</li>
-<li>High availability - 高可用(商业版支持集群，社区办只能支持单机)</li>
-</ul>
-
-<h2 id="elk">ELK</h2>
-
-<p>ELK框架:
-+ Elasticsearch - 一个基于Lucene的搜索引擎
-+ Logstash - 数据采集、整理和流水线传输。通过连接器与其他公共组件相连
-+ Kibana - 数据可视化平台</p>
-
-<p>&ldquo;Elastic&rdquo;官方提供了一些补充的产品，为框架增加了丰富了许多功能，例如用于安全的&rdquo;Shield&rdquo;，用于告警的Wtercher&rdquo;等等。
-等。然而这些产品都并不开源，也不免费。</p>
-
-<h3 id="elasticsearch">Elasticsearch</h3>
-
-<p>Elasticsearch是一个基于apache Lucene的搜索引擎。本质上是一个为了全文搜索(例如谷歌搜索)而进行特别调整NoSQL数据库。
-Elasticsearch支持分布式、可伸缩而且高可用。它非常容易去安全和配置。目前Elasticsearch非常流行，有着非常好的相关生态。
-Elasticsearch也是无模式而且用JSON格式保存数据(就像MonogDB)的数据库。它为所有字段都建了索引，拥有许多能力，比如复杂的文本查询、文本高亮、联想、定位等等。
-它也拥有许多restful API和多种语言的客户端。对于全文搜索能力，需要补充的是Elasticsearch也支持时序数据，这让他也成为系统监控的有优秀备选者。我们不仅可以进行系统监控还能对日志进行全文搜索。它能在不增加别的数据库情况下增加多些功能。</p>
-
-<h3 id="logstash">Logstash</h3>
-
-<p>Logstash是一个数据采集器，基本上它用于：<br />
-+ 从数据源获取数据
-+ 筛选数据，完善数据
-+ 将数据发送到目标</p>
-
-<p>所有这些操作都在一个文件内配置。<br />
-Logstash有许多输入插件，可以让它从各种不同的数据源获取数据例如文件、HTTP、log4j、syslog等等。你只需要去配置数据源，Logstash就会帮你从数据源获取数据。<br />
-Logstash也拥有许多插件用于筛选和处理数据例如聚合、解析、转换甚至让你可以用Ruby来编程。<br />
-输出也同样，你可以将数据传输到许多输出接口，首选的当然就是Elasticsearch，但同样也有文件、Redis、Kafka甚至InfluxDB等等。如果有缺漏不支持的，有教程可以指导你编写出自己的插件。</p>
-
-<h3 id="数据可视化-1">数据可视化</h3>
-
-<p>Kibana相对于Chronograf来说会更复杂些。它拥有更多的功能例如各种各样的图表，地图的GEO定位等等。我想顺便也提一下Grafana，她也是一个非常出色可视化工具，可同样搭配Elasticsearch和InfluxDB。</p>
-
-<h2 id="哪一方更好">哪一方更好？</h2>
-
-<p>两个解决方案都很棒，他们都是可伸缩、支持高可用、容易安装配置和维护。而且两者都是开源和免费。在性能测试上，InfluxData(开发InfluxDB的公司)表现更为出色。但Elasticsearch可以承受到目前为止一个常规系统能够承受巨大的负载。<br />
-Elasticsearch拥有一个超越InfluxDB的优点，就是全文搜索的能力。如果你想要保存日志(消息)和使用它们，这将会是一个非常有用的功能。为了让时序数据库比如InfluxDB的拥有这些功能，我们还需要增加其他支持这些功能的数据库。这会让系统更加复杂。为了实现监控我们将会不得不维护两个数据库，万一发生错误需要同步他们，可能增加一个消息队列例如RabbitMQ,所有的这些都会大大增加时间和金钱成本。<br />
-我想对于工具的选择还是要根据需求。如果监控系统仅仅需要监测时间段的数据，我会选择InfluxDB，因为它更适合这项工作。如果需要保存日志或者文本数据，为了简化工作，我会选择Elasticsearch。</p>
-
-<h2 id="引用">引用</h2>
-
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Time_series_database">https://en.wikipedia.org/wiki/Time_series_database</a></li>
-<li><a href="https://www.influxdata.com/">https://www.influxdata.com/</a></li>
-<li><a href="https://www.elastic.co/">https://www.elastic.co/</a></li>
+<li>ARC算法最大优势是自动调整两种队列的负载,也无需像2Q算法那样需要设置参数</li>
+<li>ARC算法可减弱遍历访问造成的缓存污染</li>
 </ul>
 
 	</div>
@@ -217,9 +310,7 @@ Elasticsearch拥有一个超越InfluxDB的优点，就是全文搜索的能力�
 <div class="article-tags">
   <span></span>
   
-  <a href="//razil.cc/tags/influxdb">InfluxDB</a>
-  
-  <a href="//razil.cc/tags/elasticsearch">Elasticsearch</a>
+  <a href="//razil.cc/tags/"></a>
   
 </div>
 
@@ -230,16 +321,14 @@ Elasticsearch拥有一个超越InfluxDB的优点，就是全文搜索的能力�
 <div class="article-categories">
   <span></span>
   
-  <a class="article-category-link" href="//razil.cc/categories/%E6%95%B0%E6%8D%AE%E5%BA%93">数据库</a>
-  
-  <a class="article-category-link" href="//razil.cc/categories/%E8%AF%91%E6%96%87">译文</a>
+  <a class="article-category-link" href="//razil.cc/categories/go">go</a>
   
 </div>
 
 
 
   <div class="article-share" id="share">
-    <div data-url="//razil.cc/post/2017/10/influxdbvselasticsearch/" data-title="系统监控:InfluxDB vs Elasticsearch" data-tsina="" class="share clearfix">
+    <div data-url="//razil.cc/post/2019/02/golang_arc/" data-title="[Go] golang-lru包学习 - 2Q算法" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -260,23 +349,17 @@ Elasticsearch拥有一个超越InfluxDB的优点，就是全文搜索的能力�
 <ul>
 <li>
 <ul>
-<li><a href="#前言">前言</a></li>
-<li><a href="#什么是监控">什么是监控？</a></li>
-<li><a href="#tick">TICK</a>
+<li><a href="#arc算法">ARC算法</a>
 <ul>
-<li><a href="#influxdb的数据模型">InfluxDB的数据模型</a></li>
-<li><a href="#influxdb的读写">InfluxDB的读写</a></li>
-<li><a href="#数据可视化">数据可视化</a></li>
-<li><a href="#其他特性">其他特性</a></li>
+<li><a href="#arc算法的描述">ARC算法的描述</a></li>
+<li><a href="#理论arc算法替换过程">理论ARC算法替换过程</a></li>
 </ul></li>
-<li><a href="#elk">ELK</a>
+<li><a href="#算法实现">算法实现:</a>
 <ul>
-<li><a href="#elasticsearch">Elasticsearch</a></li>
-<li><a href="#logstash">Logstash</a></li>
-<li><a href="#数据可视化-1">数据可视化</a></li>
+<li><a href="#函数">函数</a></li>
+<li><a href="#过程">过程</a></li>
 </ul></li>
-<li><a href="#哪一方更好">哪一方更好？</a></li>
-<li><a href="#引用">引用</a></li>
+<li><a href="#总结">总结</a></li>
 </ul></li>
 </ul>
 </nav> </div>
