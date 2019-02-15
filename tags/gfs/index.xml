@@ -17,7 +17,7 @@
       <pubDate>Mon, 01 Oct 2018 18:02:51 +0800</pubDate>
       
       <guid>//razil.cc/post/2018/10/gfs-note/</guid>
-      <description>[TOC] 背景 6.824中以谷歌的分布式系统作为例子对分布式系统架构与实际应用做了介绍，也是对分布式系统的一个基本印象,以下为自己的一些学习笔记，方</description>
+      <description>[TOC] 背景 The Google File System 在6.824中以谷歌的分布式系统作为例子对分布式系统架构与实际应用做了介绍，也是对分布式系统的一个基本印象,以下为自己的一些学</description>
     </item>
     
   </channel>
