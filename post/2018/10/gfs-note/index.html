@@ -71,7 +71,7 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2018-10-01 18:02:51 &#43;0800 CST" itemprop="datePublished">2018年10月01日</time>
+    <time datetime="2018-10-03 20:02:51 &#43;0800 CST" itemprop="datePublished">2018年10月03日</time>
   </p>
 </header>
 
@@ -86,11 +86,14 @@
 
 <h2 id="简介">简介</h2>
 
-<p>需要考虑的设计点
-+ 1.容错(持续监控、错误探测、容错和自动恢复)
-+ 2.文件存储设计(I/O,Block Size)
-+ 3.针对<code>数据追加</code>特性进行设计与优化
-+ 4.应用灵活性设计</p>
+<p>需要考虑的设计点:</p>
+
+<ul>
+<li>1.容错(持续监控、错误探测、容错和自动恢复)</li>
+<li>2.文件存储设计(I/O,Block Size)</li>
+<li>3.针对<code>数据追加</code>特性进行设计与优化</li>
+<li>4.应用灵活性设计</li>
+</ul>
 
 <h2 id="2-设计">2 设计</h2>
 
@@ -129,7 +132,7 @@
 
 <h3 id="2-3-架构">2.3 架构</h3>
 
-<p><img src="./gfs-note/Figure1.png" alt="架构图" /></p>
+<p><img src="./Figure1.png" alt="架构图" /></p>
 
 <ul>
 <li>只能存在有且只有一个<code>逻辑master</code></li>
@@ -281,7 +284,7 @@
 
 <h3 id="3-1-租约与变更顺序">3.1 租约与变更顺序</h3>
 
-<p><img src="./gfs-note/Figure2.png" alt="写流程的租约机制" /></p>
+<p><img src="./Figure2.png" alt="写流程的租约机制" /></p>
 
 <ul>
 <li>变更(mutation)定义:改变块内容或者块元数据的操作。</li>
