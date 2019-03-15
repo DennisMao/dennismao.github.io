@@ -17,11 +17,11 @@
       <pubDate>Sun, 03 Feb 2019 20:14:22 +0800</pubDate>
       
       <guid>//razil.cc/post/2019/02/golang_2q/</guid>
-      <description>[TOC] golang-lru包学习 - 2Q算法 2Q算法 代码:2Q 论文:A low overhead high performance buffer replacement algorithm 2Q算法的描述: &amp;gt;2Q与LRU/2对于LRU的改进在某种</description>
+      <description>[TOC] golang-lru包学习 - 2Q算法 2Q算法 代码:2Q 论文:A low overhead high performance buffer replacement algorithm 2Q算法的描述: 2Q与LRU/2对于LRU的改进在某种程度上存</description>
     </item>
     
     <item>
-      <title>[Go] golang-lru包学习 - 2Q算法</title>
+      <title>[Go] golang-lru包学习 - ARC算法</title>
       <link>//razil.cc/post/2019/02/golang_arc/</link>
       <pubDate>Sat, 02 Feb 2019 14:00:12 +0800</pubDate>
       

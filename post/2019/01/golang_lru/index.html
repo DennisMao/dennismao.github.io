@@ -99,12 +99,11 @@ simple-lru是lru算法一个简单实现,但是整个包的基础数据结构,�
 
 <p>由于链表的添加、删除都会涉及遍历查找操作,即便<code>list</code>用的是官方的<code>container/list</code>双向链表,但是操作频繁的时候其
 O(n)的时间复杂度还是会对性能有影响。simple-lru的底层利用了map来给元素加索引,实现<code>key -&gt; element(key)</code>结构,
-通过map结构能直接取到元素地址,时间复杂度将为O(1).</p>
+通过map结构能直接取到元素地址,时间复杂度降至O(1).</p>
 
-<blockquote>
-<p>优化: 如果缓存队列长度是既定的,那索引map容量是与队列长度一致,因此底层的map在初始化的时候也建议直接指定cap大小。
-减少底层map的rehash操作。</p>
-</blockquote>
+<p>优化tips:
+&gt;如果缓存队列长度是既定的,那索引map容量是与队列长度一致,因此底层的map在初始化的时候也建议直接指定cap大小。
+&gt;减少底层map的rehash操作。</p>
 
 <h3 id="函数">函数</h3>
 
@@ -124,7 +123,7 @@ O(n)的时间复杂度还是会对性能有影响。simple-lru的底层利用了
 
 <h3 id="过程">过程</h3>
 
-<p>LRU算法核心过程是Get和Add,我们针对这两个方法进到代码里看看</p>
+<p>LRU算法核心过程是Get和Add</p>
 
 <p>Add() 添加元素</p>
 

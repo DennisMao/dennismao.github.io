@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>[Go] golang-lru包学习 - 2Q算法 - Coding茶餐厅</title>
+  <title>[Go] golang-lru包学习 - ARC算法 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
   <meta name="description" content="[TOC] #golang-lru包学习 - ARC算法 ARC算法 代码:ARC Wiki:Adaptive replacement cache 论文:A low overhead high performance buffer replacement algorithm ARC算法的描述 ARC算法是为了整个LFU和LR">
   
-  <meta itemprop="name" content="[Go] golang-lru包学习 - 2Q算法 - Coding茶餐厅">
+  <meta itemprop="name" content="[Go] golang-lru包学习 - ARC算法 - Coding茶餐厅">
   <meta itemprop="description" content="[TOC] #golang-lru包学习 - ARC算法 ARC算法 代码:ARC Wiki:Adaptive replacement cache 论文:A low overhead high performance buffer replacement algorithm ARC算法的描述 ARC算法是为了整个LFU和LR">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
@@ -63,7 +63,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="//razil.cc/post/2019/02/golang_arc/" title="[Go] golang-lru包学习 - 2Q算法" itemprop="url">[Go] golang-lru包学习 - 2Q算法</a>
+      <a href="//razil.cc/post/2019/02/golang_arc/" title="[Go] golang-lru包学习 - ARC算法" itemprop="url">[Go] golang-lru包学习 - ARC算法</a>
   </h1>
   <p class="article-author">By
     
@@ -78,13 +78,14 @@
 	<div class="article-content">
     
 
-<p>[TOC]
-#golang-lru包学习 - ARC算法</p>
+<p>[TOC]</p>
+
+<p>#golang-lru包学习 - ARC算法</p>
 
 <h2 id="arc算法">ARC算法</h2>
 
 <p>代码:<a href="https://github.com/hashicorp/golang-lru/blob/master/arc.go">ARC</a><br />
-Wiki:<a href="https://en.wikipedia.org/wiki/Adaptive_replacement_cache">Adaptive replacement cache</a>
+Wiki:<a href="https://en.wikipedia.org/wiki/Adaptive_replacement_cache">Adaptive replacement cache</a><br />
 论文:<a href="http://www.vldb.org/conf/1994/P439.PDF">A low overhead high performance buffer replacement algorithm</a></p>
 
 <h3 id="arc算法的描述">ARC算法的描述</h3>
@@ -98,16 +99,16 @@ T2长度会增长T1长度会缩小。</p>
 <p>理论ARC算法核心结构:</p>
 
 <ul>
-<li>T1, 用于保存最近的条目</li>
-<li>T2, 用于保存最常用的条目,至少被引用两次</li>
-<li>B1, 用于保存从T1淘汰的条目</li>
-<li>B2, 用于保存从T2淘汰的条目</li>
+<li>T1, 用于保存<code>最近</code>的条目</li>
+<li>T2, 用于保存<code>最常用</code>的条目,至少被引用两次</li>
+<li>B1, 用于保存<code>从T1淘汰</code>的条目</li>
+<li>B2, 用于保存<code>从T2淘汰</code>的条目</li>
 </ul>
 
 <pre><code>. . . [   B1  &lt;-[     T1    &lt;-!-&gt;      T2   ]-&gt;  B2   ] . .
       [ . . . . [ . . . . . . ! . .^. . . . ] . . . . ]
                 [   fixed cache size (c)    ]
-				[             L             ]
+		[             L             ]
 L可视为一个有效的缓存队列整体,其长度恒定不变。通过T1、T2长度的变化改变偏重P的大小。
 
 				
@@ -328,7 +329,7 @@ Get() 获取元素</p>
 
 
   <div class="article-share" id="share">
-    <div data-url="//razil.cc/post/2019/02/golang_arc/" data-title="[Go] golang-lru包学习 - 2Q算法" data-tsina="" class="share clearfix">
+    <div data-url="//razil.cc/post/2019/02/golang_arc/" data-title="[Go] golang-lru包学习 - ARC算法" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
