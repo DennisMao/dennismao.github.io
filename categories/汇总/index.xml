@@ -17,7 +17,7 @@
       <pubDate>Wed, 21 Nov 2018 09:00:52 +0800</pubDate>
       
       <guid>//razil.cc/post/2019/awsome-articles-2019/</guid>
-      <description>基础 分布式Log概念 数据库 关系型 非关系型 C++ Go 性能调优 运维 软件 Jaeger部署 Jaeger部署Guide Docker-Compose部署Cas</description>
+      <description>基础 分布式Log概念 分布式锁-redis 数据库 关系型 非关系型 C++ Go 性能调优 Go36-48,49-程序性能分析基础 Go channel详解 Go的主动</description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Tue, 02 Jan 2018 20:54:52 +0800</pubDate>
       
       <guid>//razil.cc/post/2018/awsome-articles-2018/</guid>
-      <description>基础 git-flow 图示 Linux 内核網路部分文章集合 数据库 关系型 MySQL_千万级的大表要怎么优化（读写分离、水平拆分、垂直拆分） PostgreSQL优化系列 非</description>
+      <description>基础 git-flow 图示 Linux 内核網路部分文章集合 数据库 关系型 MySQL_千万级的大表要怎么优化（读写分离、水平拆分、垂直拆分） PostgreSQL优化系列 M</description>
     </item>
     
     <item>
@@ -36,6 +36,15 @@
       
       <guid>//razil.cc/post/2017/12/awsome-articles-2017/</guid>
       <description>基础 数据库 关系型 非关系型 深入理解etcd Etcd v3 服务注册与发现 Go代码 架构 高并发 分布式 设计模式 DDD TDD,BDD,FDD&amp;amp;ATDD 业务 AWS开发工具包发布适用Go 2.0的开发者</description>
+    </item>
+    
+    <item>
+      <title>2018文章汇总</title>
+      <link>//razil.cc/post/2017/awsome-articles-2017/</link>
+      <pubDate>Wed, 04 Jan 2017 10:51:06 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2017/awsome-articles-2017/</guid>
+      <description>C VScode c/c++开发环境 有趣项目 Go redis 3.0源码注释 redis源码 beego go语言web框架</description>
     </item>
     
   </channel>
