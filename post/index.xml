@@ -53,7 +53,7 @@
       <pubDate>Sun, 06 Jan 2019 23:26:32 +0800</pubDate>
       
       <guid>//razil.cc/post/2019/01/distributed_system_roadmap/</guid>
-      <description>[TOC] 分布式学习路线 博客 名称 简介 地址 Leslie Lamport Paxos作者,分布式系统专家 http://lamport.azurewebsites.net/pubs/pubs.html 论文 系统 名称 简介 论文 翻译 笔记 MapReduce 分布式计算框架 1.MapReduce: Simplified Data Processing on Large Clusters 2.MapReduce: A major step backwards Bigtable 分</description>
+      <description>[TOC] 分布式学习路线 博客 名称 简介 地址 Leslie Lamport Paxos作者,分布式系统专家 http://lamport.azurewebsites.net/pubs/pubs.html 论文 相关资源地址:https://github.com/DennisMa</description>
     </item>
     
     <item>
@@ -251,7 +251,7 @@
       <pubDate>Tue, 06 Mar 2018 23:08:38 +0800</pubDate>
       
       <guid>//razil.cc/post/toolkit/</guid>
-      <description>日常整理的技术和组件开发文档和工具网站，方便日常使用。 工具站 IP地址查询 Linux指令 Linux Top指令 数据库 关系型 MySQL Sqlite PostgreSQL PostgreSQL资料</description>
+      <description>日常整理的技术和组件开发文档和工具网站，方便日常使用。 工具站 IP地址查询 Linux指令 Linux Top指令 数据库 关系型 MySQL MySQL 5.7 变量快查 Sqlite PostgreSQL Postgr</description>
     </item>
     
     <item>
