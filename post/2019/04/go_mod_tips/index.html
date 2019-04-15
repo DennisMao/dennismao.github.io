@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>【设计模式】Go语言的面向对象 - Coding茶餐厅</title>
+  <title>[go] Go Module 迁移与进阶 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="前言 工作中遇到转来使用Go语言的朋友或者同事，基本都是从现有语言，像C&#43;&#43;和JAVA转来。所以在平时交流时候多少会需要引用到以前所学的一些概">
+  <meta name="description" content="C] 背景 Go依赖包的管理一直是个诟病,不管是google groups社区还是gopherchina一些会议和meetup，大家都会常聊到相关话">
   
-  <meta itemprop="name" content="【设计模式】Go语言的面向对象 - Coding茶餐厅">
-  <meta itemprop="description" content="前言 工作中遇到转来使用Go语言的朋友或者同事，基本都是从现有语言，像C&#43;&#43;和JAVA转来。所以在平时交流时候多少会需要引用到以前所学的一些概">
+  <meta itemprop="name" content="[go] Go Module 迁移与进阶 - Coding茶餐厅">
+  <meta itemprop="description" content="C] 背景 Go依赖包的管理一直是个诟病,不管是google groups社区还是gopherchina一些会议和meetup，大家都会常聊到相关话">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
@@ -63,7 +63,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="//razil.cc/post/2018/03/go-oop/" title="【设计模式】Go语言的面向对象" itemprop="url">【设计模式】Go语言的面向对象</a>
+      <a href="//razil.cc/post/2019/04/go_mod_tips/" title="[go] Go Module 迁移与进阶" itemprop="url">[go] Go Module 迁移与进阶</a>
   </h1>
   <p class="article-author">By
     
@@ -71,301 +71,103 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2018-03-12 23:04:21 &#43;0800 CST" itemprop="datePublished">2018年03月12日</time>
+    <time datetime="2019-04-14 21:24:11 &#43;0800 CST" itemprop="datePublished">2019年04月14日</time>
   </p>
 </header>
 
 	<div class="article-content">
     
 
-<h2 id="前言">前言</h2>
+<p>C]</p>
 
-<p>工作中遇到转来使用Go语言的朋友或者同事，基本都是从现有语言，像C++和JAVA转来。所以在平时交流时候多少会需要引用到以前所学的一些概念和方法，而面向对象这一块就是经常碰到的讨论点之一。在面向对象设计中，Go语言有些实现并不能完全按照C++和JAVA的概念进行理解。所以本文介绍的准确说是依照Go语言自身方法，来对面向对象进行模拟实现。</p>
+<h2 id="背景">背景</h2>
 
-<p>Go是否是一个面向对象语言？
-答案是: Go并不是一个纯面向对象语言。原由出自Go的<a href="https://golang.org/doc/faq#Is_Go_an_object-oriented_language">FAQ</a></p>
+<p>Go依赖包的管理一直是个诟病,不管是google groups社区还是gopherchina一些会议和meetup，大家都会常聊到相关话题，以寻求<code>最佳实践</code>。在没有官方唯一指定的版本管理器出来前，各种第三方工具可以说是百花齐放,<code>glide</code>、<code>govendor</code>、<code>dep</code>。中间官方还推出了试验性的管理工具<code>vgo</code>,由于发布时候作者已强调为实验版本,而且使用上并未真正解决痛点,生态也缺乏,因此实际上未能引起太多的影响。<br />
+伴随GO1.11版本发布的<code>go module</code>成为官方钦点的包管理器,进入19年大家对于Go版本管理器的讨论已经日渐减少,不少公司开始生产上使用GoModule。去年年底,我厂新的Go项目已经采用GoModule,而原有线上项目到今年3月份才真正实现全部升级改造。<br />
+本文主要分享我厂在线上使用GoModule和旧项目升级改造中遇到的问题和解决方法。</p>
 
-<blockquote>
-<p>Is Go an object-oriented language?
-Yes and no. Although Go has types and methods and allows an object-oriented style of programming, there is no type hierarchy. The concept of “interface” in Go provides a different approach that we believe is easy to use and in some ways more general. There are also ways to embed types in other types to provide something analogous—but not identical—to subclassing. Moreover, methods in Go are more general than in C++ or Java: they can be defined for any sort of data, even built-in types such as plain, “unboxed” integers. They are not restricted to structs (classes).</p>
-
-<p>Also, the lack of a type hierarchy makes “objects” in Go feel much more lightweight than in languages such as C++ or Java.</p>
-</blockquote>
-
-<h2 id="三大特征">三大特征</h2>
-
-<h3 id="封装">封装</h3>
+<h2 id="基本操作">基本操作</h2>
 
 <blockquote>
-<p>把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏</p>
+<p>在Go1.11版本时候需要指定环境变量 GO111MODULE=on 以启用 go mod,否则使用的仍是原有的依赖实现.<br />
+GO111MODULE = on  强制使用go module<br />
+GO111MODULE = off 强制关闭go module<br />
+GO111MODULE = auto 自动选择,若项目在$GOPATH/src下,关闭go module,若不是则开启go module</p>
 </blockquote>
 
-<p>由于Go无类的概念，但是我们有interface和结构体。在Go中可以通过结构体和接口进行封装操作。通过控制变量、结构体和方法首字母大小来实现内外部访问控制。</p>
+<ul>
+<li>go mod init 创建一个新的module,并初始化[<code>go.mod</code>]文件,若原始项目已存在dep,glide等第三依赖工具,init会自动从原有工具进行迁移</li>
+<li>go mod tidy 更新与同步依赖项</li>
+<li>go list -m all 输出当前项目的所有依赖项</li>
+</ul>
 
-<pre><code class="language-go">type MyStruct struct{
-	id int64 //仅供内部访问
-	Name string  //允许外部访问
-}
+<h3 id="进阶使用">进阶使用</h3>
 
-//允许外部访问方法(public)
-func NewObject(){
-}
+<ul>
+<li>go mod vendor 把依赖项包下载到目录下的<code>vendor</code>文件夹,对于墙和部分私有包可以使用该方式,搭配<code>go build -mod=vendor</code>即可直接用目录下的依赖项进行编译</li>
+<li>go mod download 直接下载指定依赖项,并放入gomod cache文件夹</li>
+</ul>
 
-//仅允许包内访问方法(private)
-func checkObject(){
-}
+<h2 id="问题与解决">问题与解决</h2>
 
-//限定仅允许某对象示例访问方法
-func (this *MyStruct) Clone() {
-}
+<h3 id="q-依赖包下载慢">Q 依赖包下载慢</h3>
+
+<p>A: 这个问题从<code>go get</code>开始就已经存在,核心方法都是使用代理。由于<code>go get</code>走的是http协议,对于墙外的我们使用ss代理到就近服务器即可。回到<code>go module</code>也存在该问题,但是目前已经有针对的代理加速服务。核心原理是在靠近用户侧部署加速缓存服务,类似CDN原理，实现依赖包下载的加速。<br />
+核心架构:</p>
+
+<pre><code>开发环境/CI环境    
+    ↓  (拉取+缓存)    
+ 代理服务器   
+    ↓  (拉取+缓存)
+依赖包源站(github,gitlab,gopkg...)  
 </code></pre>
 
-<h3 id="继承">继承</h3>
+<p>目前支持<code>go module</code>的代理服务方案有:<br />
+<a href="https://github.com/gomods/athens">1. 微软的athens</a> 支持多种持久化方案,支持纯内存存储加速<br />
+<a href="https://github.com/goproxyio/goproxy">2. Goproxy</a> 支持指定磁盘存储</p>
+
+<p>我厂代理服务是基于<code>Goproxy</code>的二次开发来实现,主要修改了底层通信的加密、缓存策略和存储。通过压缩备份支持快速扩展。</p>
+
+<h3 id="q-引用包丢失">Q 引用包丢失</h3>
 
 <blockquote>
-<p>可以让某个类型的对象获得另一个类型的对象的属性的方法。它支持按级分类的概念。继承是指这样一种能力:它可以使用现有类的所有功能,并在无需重新编写原来的类的情况下对这些功能进行扩展。 通过继承创建的新类称为“子类”或“派生类”,被继承的类称为“基类”、“父类”或“超类”</p>
+<p>在迁移旧项目过程中我们遇到了依赖项的丢失，即通过<code>go mod download</code>已经无法找到源包,源项目地址404.</p>
 </blockquote>
 
-<p>由于Go中无类的概念。但是与封装方法相同，我们还是以结构体为基础，使用<strong>[内嵌]</strong>功能实现对结构体进行<strong>组合</strong>，实现类似继承的效果。其中通过内嵌方法生成的新结构体允许访问原结构体的方法。</p>
+<p>A: 事实上升级过程中我们遇到了几种引用包丢失情况,分别说说我们的解决方案:</p>
 
-<pre><code class="language-go">//基类
-type MyStruct struct {
-	id   int64
-	Name string
-}
+<h4 id="情况1-依赖项为私有站点-404无法访问-github无备份-原工程-gopath-src下存在源码">情况1 依赖项为私有站点,404无法访问,github无备份,原工程$GOPATH/src下存在源码</h4>
 
-//限定仅允许MyStruct结构体实例访问的方法
-func (this *MyStruct) generateId() {
-	this.id = time.Now().Unix()
-	return
-}
+<p>解决: 通过直接拷贝依赖项目源码到缓存服务器的缓存目录中,强制增加缓存</p>
 
-//子类(派生类)
-type MyChildStruct struct {
-	MyStruct //基类
-	Phone string
-}
+<h4 id="情况2-依赖项为私有站点-404无法访问-github有备份">情况2 依赖项为私有站点,404无法访问,github有备份</h4>
 
-</code></pre>
+<p>解决: 使用replace指令替换依赖项,<code>go mod edit -replace 'honnef.co/go/errcheck=github.com/dominikh/go-tools/errcheck@2019.1.1'</code>,对于被墙的包也同样适用。替换后<code>go mod tidy</code>即可.</p>
 
-<h3 id="多态">多态</h3>
+<h4 id="情况3-依赖项为github-原项目已不维护和内容删除">情况3 依赖项为github,原项目已不维护和内容删除</h4>
+
+<p>解决: 首先先看项目的tag是否还存在,若存在直接指定tag.<code>go mod edit -require=&quot;github.com/uber/jaeger-client-go@v2.16.0&quot;</code>,若tag也不存在,可以尝试到<a href="http://labix.org/gopkg.in">gopkg.in</a>找找是否有进行托管。如果有用 <code>go get -u gopkg.in/XXX(原项目地址)</code>,然后进入到<code>$GOPATH/src/gopkg.in/XXX</code>并创建一个github repo作为远端地址,把本地推送上作为一个备份地址即可(需要注意原项目的LICENSE)。</p>
+
+<h3 id="q-vscode无法使用go-module进行代码跳转">Q vscode无法使用go module进行代码跳转</h3>
 
 <blockquote>
-<p>指一个类实例的相同方法在不同情形有不同表现形式。多态机制使具有不同内部结构的对象可以共享相同的外部接口。这意味着,虽然针对不同对象的具体操作不同,但通过一个公共的类,它们(那些操作)可以通过相同的方式予以调用。</p>
+<p>在更新到go module之后部分同事发现新的开发环境中直接使用<code>go mod tidy</code>拉取的依赖项无法直接通过vsc</p>
 </blockquote>
 
-<p>实现:</p>
+<p>A: 由于像vscode和liteIDE等编辑器都是使用的go工具以实现,目前版本虽然官方已支持go module,但部分插件仍默认使用的$GOPATH/src进行代码搜索。具体更新进度可看<a href="https://github.com/golang/go/issues/24661。目前我们的解决方案是`go">https://github.com/golang/go/issues/24661。目前我们的解决方案是`go</a> mod vendor<code>到项目的vendor文件夹,让插件到vendor目录进行代码查找,并且利用</code>go mod<code>把控的</code>项目/vendor<code>目录中依赖项的版本。等后续包括配套插件和静态检查工具都全部支持</code>go module`后再考虑去除vendor目录。</p>
 
-<pre><code class="language-go">type Dog struct {
-	Name string
-}
+<h2 id="tips">Tips</h2>
 
-func (this *Dog) String() string {
-	return `Type: Dog , Name: ` + this.Name
-}
+<h3 id="1-为缺失版本的依赖项增加版本号">1.为缺失版本的依赖项增加版本号</h3>
 
-type Cat struct {
-	Name string
-}
-
-func (this *Cat) String() string {
-	return `Type: Cat , Name: ` + this.Name
-}
-
-type Aninals interface {
-	String() string
-}
-
-func main() {
-	myDog := &amp;Dog{Name: &quot;W&quot;}
-	myCat := &amp;Cat{Name: &quot;W&quot;}
-
-	myAnimals := []Aninals{}
-	myAnimals = append(myAnimals, Aninals(myDog))
-	myAnimals = append(myAnimals, Aninals(myCat))
-	for _, animal := range myAnimals {
-		fmt.Println(animal.String())
-	}
-
-}
-
-</code></pre>
-
-<h2 id="五大原则">五大原则</h2>
-
-<h3 id="单一职责">单一职责</h3>
-
-<blockquote>
-<p>一个类的功能要单一,不能包罗万象</p>
-</blockquote>
-
-<p>其核心是高内聚，低耦合。通过把不同功能的方法独立实现，以降低每个方法之前的聚合度。避免在后期改动时候的牵一发而动全身</p>
-
-<p>错误例子:</p>
-
-<pre><code class="language-go">type Student struct {
-	Name string
-	Birthday time.Time
-}
-//进行处理
-//一个方法中实现多个功能的处理
-func (this *Student)Process(method string,interface) interface{}{
-	switch method{
-		case &quot;print&quot;:
-		...
-		case &quot;modify&quot;:
-		...
-		case &quot;clone&quot;:
-		...
-		default:
-		break
-	}
-}
-</code></pre>
-
-<p>正确方式:</p>
-
-<pre><code class="language-go">type Student struct {
-	Name string
-	Birthday time.Time
-}
-
-func (this *Student)print(){
-}
-
-func (this *Student)modify(){
-}
-
-func (this *Student)clone(){
-}
-
-</code></pre>
-
-<h3 id="开放封闭-ocp">开放封闭(OCP)</h3>
-
-<blockquote>
-<p>一个模块在扩展性方面应该是开放的而在更改性方面应该是封闭的</p>
-</blockquote>
-
-<p>通俗地说，软件的实体应该是可扩展的而不可修改的。在Go语言中我们可以通过<strong>内嵌</strong>方式实现对原有结构体/方法的拓展</p>
-
-<p>正确打开方式</p>
-
-<pre><code class="language-go">type A struct{
-	Name string
-}
-
-type AA struct {
-	A
-	NewName string
-}
-</code></pre>
-
-<h3 id="替换原则-lsp">替换原则(LSP)</h3>
-
-<blockquote>
-<p>子类应当可以替换父类并出现在父类能够出现的任何地方</p>
-</blockquote>
-
-<p>替换原则通常是作为对<strong>类</strong>相关子类型与其基类关系的规范。但Go语言中没有类和继承。但是我们有很接近的interface接口类型。
-通过定义接口，我们可以对他进行不同的实现。在Go语言中这些实现是可以互相替代的。</p>
-
-<p>例子</p>
-
-<pre><code class="language-go">type Animal interface {
-	Yell()
-}
-
-type Cat struct {
-}
-
-func (this *Cat)Yell(){
-	fmt.Println(&quot;cat yell&quot;)
-}
-
-type Dog struct {
-}
-
-func(this *Dog)Yell(){
-	fmt.Prinln(&quot;dog yell)
-}
-
-func Call(a Animal){
-	a.Yell()
-}
-
-func main(){
-	Call(Animal(&amp;Cat{}))
-	Call(Animal(&amp;Dog{}))
-}
-</code></pre>
-
-<h3 id="依赖倒置">依赖倒置</h3>
-
-<blockquote>
-<p>具体依赖抽象,上层依赖下层。</p>
-</blockquote>
-
-<h4 id="具体依赖与抽象">具体依赖与抽象：</h4>
-
-<p>个人理解是在Go语言设计中，我们尽可能对功能点进行抽象，在实现中使用接口来进行抽象。比如在很多cache和session包的实现中都采用了这种思想。把<strong>存储</strong>模块进行抽象.如以下代码</p>
-
-<pre><code class="language-go">type Storage interface {
-	Add()
-	Get()
-	Fetch()
-}
-</code></pre>
-
-<p>通过对存储抽象，用户可以对这个抽象进行不同的实现。比如使用MySQL、内存又或者是MQ组件。不同的实现，并不影响原来的功能代码。</p>
-
-<pre><code class="language-go">type Cache struct {
-	mem map[string]interface{}
-	storage Storage
-}
-
-func (this *Cache) Fetch(){
-	this.Storage.Fetch()
-}
-</code></pre>
-
-<h4 id="上层依赖下层">上层依赖下层:</h4>
-
-<p>在Go语言中package包管理有着严格上下层级的关系。即上级包调用了下级包之后，下级不能反调回上级。否则会引起回调错误。</p>
-
-<h3 id="接口隔离">接口隔离</h3>
-
-<blockquote>
-<p>模块间要通过抽象接口隔离开,而不是通过具体的类强耦合起来</p>
-</blockquote>
-
-<p>在模块功能的实现上，可以通过使用特定小接口来实现高内聚。不必依赖于过大的对象和带有用不上方法的通用接口。</p>
-
-<pre><code class="language-go">type Storage interface{
-	Load()
-	Save()
-	...
-}
-type Loader interface {
-	Load() []Byte
-}
-
-type Cache struct{
-}
-
-func (this *Cache)Loading(r Loader){
-	rawData := r.Load()
-	..
-}
-</code></pre>
+<p>在新项目<code>go mod init</code>时候,往往我们会直接先<code>go get -u</code>获取新项目再执行<code>go mod tidy</code>,导致当前项目为最新的tag版本。我们实际使用过程中会更建议创建一个模板工程,里面<code>go.mod</code>已经强制设置了部分包的版本,对于新包会使用<code>go mod edit -require=&quot;github.com/uber/jaeger-client-go@v2.16.0&quot;</code>进行设置。<br />
+设置版本号的好处是统一线上依赖项的版本，防止出现由于开发<code>$GOPATH/src</code>和CI系统的依赖版本不同导致的编译错误和实际业务错误。</p>
 
 <h2 id="引用">引用</h2>
 
 <ul>
-<li><a href="https://github.com/luciotato/golang-notes/blob/master/OOP.md">Golang concepts from an OOP point of view</a><br /></li>
-<li><a href="https://golang.org/doc/faq">Golang FAQ</a><br /></li>
-<li><a href="https://www.aliyun.com/jiaocheng/88926.html">面向对象三大基本特性,五大基本原则</a><br /></li>
-<li><a href="https://dave.cheney.net/2016/08/20/solid-go-designhttps://dave.cheney.net/2016/08/20/solid-go-design">solid-go-design</a><br /></li>
+<li><a href="https://blog.golang.org/using-go-modules">using-go-modules</a></li>
+<li><a href="http://razil.cc/post/2018/12/go_mod_workflow/">Go Mod 基本工作流程</a></li>
 </ul>
 
 	</div>
@@ -375,11 +177,7 @@ func (this *Cache)Loading(r Loader){
 <div class="article-tags">
   <span></span>
   
-  <a href="//razil.cc/tags/go">go</a>
-  
-  <a href="//razil.cc/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1">面向对象</a>
-  
-  <a href="//razil.cc/tags/oop">oop</a>
+  <a href="//razil.cc/tags/"></a>
   
 </div>
 
@@ -397,7 +195,7 @@ func (this *Cache)Loading(r Loader){
 
 
   <div class="article-share" id="share">
-    <div data-url="//razil.cc/post/2018/03/go-oop/" data-title="【设计模式】Go语言的面向对象" data-tsina="" class="share clearfix">
+    <div data-url="//razil.cc/post/2019/04/go_mod_tips/" data-title="[go] Go Module 迁移与进阶" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -418,24 +216,25 @@ func (this *Cache)Loading(r Loader){
 <ul>
 <li>
 <ul>
-<li><a href="#前言">前言</a></li>
-<li><a href="#三大特征">三大特征</a>
+<li><a href="#背景">背景</a></li>
+<li><a href="#基本操作">基本操作</a>
 <ul>
-<li><a href="#封装">封装</a></li>
-<li><a href="#继承">继承</a></li>
-<li><a href="#多态">多态</a></li>
+<li><a href="#进阶使用">进阶使用</a></li>
 </ul></li>
-<li><a href="#五大原则">五大原则</a>
+<li><a href="#问题与解决">问题与解决</a>
 <ul>
-<li><a href="#单一职责">单一职责</a></li>
-<li><a href="#开放封闭-ocp">开放封闭(OCP)</a></li>
-<li><a href="#替换原则-lsp">替换原则(LSP)</a></li>
-<li><a href="#依赖倒置">依赖倒置</a>
+<li><a href="#q-依赖包下载慢">Q 依赖包下载慢</a></li>
+<li><a href="#q-引用包丢失">Q 引用包丢失</a>
 <ul>
-<li><a href="#具体依赖与抽象">具体依赖与抽象：</a></li>
-<li><a href="#上层依赖下层">上层依赖下层:</a></li>
+<li><a href="#情况1-依赖项为私有站点-404无法访问-github无备份-原工程-gopath-src下存在源码">情况1 依赖项为私有站点,404无法访问,github无备份,原工程$GOPATH/src下存在源码</a></li>
+<li><a href="#情况2-依赖项为私有站点-404无法访问-github有备份">情况2 依赖项为私有站点,404无法访问,github有备份</a></li>
+<li><a href="#情况3-依赖项为github-原项目已不维护和内容删除">情况3 依赖项为github,原项目已不维护和内容删除</a></li>
 </ul></li>
-<li><a href="#接口隔离">接口隔离</a></li>
+<li><a href="#q-vscode无法使用go-module进行代码跳转">Q vscode无法使用go module进行代码跳转</a></li>
+</ul></li>
+<li><a href="#tips">Tips</a>
+<ul>
+<li><a href="#1-为缺失版本的依赖项增加版本号">1.为缺失版本的依赖项增加版本号</a></li>
 </ul></li>
 <li><a href="#引用">引用</a></li>
 </ul></li>

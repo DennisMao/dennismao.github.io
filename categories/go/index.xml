@@ -6,10 +6,19 @@
     <description>Recent content in Go on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 03 Feb 2019 20:14:22 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 14 Apr 2019 21:24:11 +0800</lastBuildDate>
     
 	<atom:link href="//razil.cc/categories/go/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[go] Go Module 迁移与进阶</title>
+      <link>//razil.cc/post/2019/04/go_mod_tips/</link>
+      <pubDate>Sun, 14 Apr 2019 21:24:11 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2019/04/go_mod_tips/</guid>
+      <description>C] 背景 Go依赖包的管理一直是个诟病,不管是google groups社区还是gopherchina一些会议和meetup，大家都会常聊到相关话</description>
+    </item>
     
     <item>
       <title>[Go] golang-lru包学习 - 2Q算法</title>
