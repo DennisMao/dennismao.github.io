@@ -5,10 +5,10 @@
   <title>[go] Go Module 迁移与进阶 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="C] 背景 Go依赖包的管理一直是个诟病,不管是google groups社区还是gopherchina一些会议和meetup，大家都会常聊到相关话">
+  <meta name="description" content="背景 Go依赖包的管理一直是个诟病,不管是google groups社区还是gopherchina一些会议和meetup，大家都会常聊到相关话题">
   
   <meta itemprop="name" content="[go] Go Module 迁移与进阶 - Coding茶餐厅">
-  <meta itemprop="description" content="C] 背景 Go依赖包的管理一直是个诟病,不管是google groups社区还是gopherchina一些会议和meetup，大家都会常聊到相关话">
+  <meta itemprop="description" content="背景 Go依赖包的管理一直是个诟病,不管是google groups社区还是gopherchina一些会议和meetup，大家都会常聊到相关话题">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
@@ -77,8 +77,6 @@
 
 	<div class="article-content">
     
-
-<p>C]</p>
 
 <h2 id="背景">背景</h2>
 
@@ -154,7 +152,7 @@ GO111MODULE = auto 自动选择,若项目在$GOPATH/src下,关闭go module,若�
 <p>在更新到go module之后部分同事发现新的开发环境中直接使用<code>go mod tidy</code>拉取的依赖项无法直接通过vsc</p>
 </blockquote>
 
-<p>A: 由于像vscode和liteIDE等编辑器都是使用的go工具以实现,目前版本虽然官方已支持go module,但部分插件仍默认使用的$GOPATH/src进行代码搜索。具体更新进度可看<a href="https://github.com/golang/go/issues/24661。目前我们的解决方案是`go">https://github.com/golang/go/issues/24661。目前我们的解决方案是`go</a> mod vendor<code>到项目的vendor文件夹,让插件到vendor目录进行代码查找,并且利用</code>go mod<code>把控的</code>项目/vendor<code>目录中依赖项的版本。等后续包括配套插件和静态检查工具都全部支持</code>go module`后再考虑去除vendor目录。</p>
+<p>A: 由于像vscode和liteIDE等编辑器都是使用的go工具以实现,目前版本虽然官方已支持go module,但部分插件仍默认使用的$GOPATH/src进行代码搜索。具体更新进度可看<a href="https://github.com/golang/go/issues/24661">https://github.com/golang/go/issues/24661</a>。目前我们的解决方案是<code>go mod vendor</code>到项目的vendor文件夹,让插件到vendor目录进行代码查找,并且利用<code>go mod</code>把控的<code>项目/vendor</code>目录中依赖项的版本。等后续包括配套插件和静态检查工具都全部支持<code>go module</code>后再考虑去除vendor目录。</p>
 
 <h2 id="tips">Tips</h2>
 
