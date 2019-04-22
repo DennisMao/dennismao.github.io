@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Http on Coding茶餐厅</title>
+    <link>//razil.cc/categories/http/</link>
+    <description>Recent content in Http on Coding茶餐厅</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 21 Apr 2019 11:21:21 +0800</lastBuildDate>
+    
+	<atom:link href="//razil.cc/categories/http/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[go] Gin中间件中获取request.body</title>
+      <link>//razil.cc/post/2019/04/go_gin_middleware_request_body/</link>
+      <pubDate>Sun, 21 Apr 2019 11:21:21 +0800</pubDate>
+      
+      <guid>//razil.cc/post/2019/04/go_gin_middleware_request_body/</guid>
+      <description>背景 参考issue 线上有个中间件开发需求，需要对请求内容进行部分过滤。由于默认http.Request.Body类型为io.ReadClos</description>
+    </item>
+    
+  </channel>
+</rss>

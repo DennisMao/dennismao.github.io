@@ -41,7 +41,7 @@
     <item>
       <title>Go</title>
       <link>//razil.cc/categories/go/</link>
-      <pubDate>Sun, 14 Apr 2019 21:24:11 +0800</pubDate>
+      <pubDate>Sun, 21 Apr 2019 11:21:21 +0800</pubDate>
       
       <guid>//razil.cc/categories/go/</guid>
       <description></description>
@@ -62,6 +62,15 @@
       <pubDate>Mon, 27 Aug 2018 17:12:01 +0800</pubDate>
       
       <guid>//razil.cc/categories/grpc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Http</title>
+      <link>//razil.cc/categories/http/</link>
+      <pubDate>Sun, 21 Apr 2019 11:21:21 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/http/</guid>
       <description></description>
     </item>
     

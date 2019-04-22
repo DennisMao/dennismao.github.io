@@ -2,18 +2,18 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Go爬虫初探 - Coding茶餐厅</title>
+  <title>Http - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布">
+  <meta name="description" content="Http">
   
-  <meta itemprop="name" content="Go爬虫初探 - Coding茶餐厅">
-  <meta itemprop="description" content="背景 前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布">
+  <meta itemprop="name" content="Http - Coding茶餐厅">
+  <meta itemprop="description" content="Http">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
   <meta name="twitter:description" content="">
-  
+  <link rel="alternate" href="//razil.cc/feed.xml" title="Coding茶餐厅" type="application/rss+xml"/>
   <link rel="shortcut icon" href="//razil.cc/img/favicon.ico"/>
   <link rel="apple-touch-icon" href="//razil.cc/apple-touch-icon.png" />
   <link rel="apple-touch-icon-precomposed" href="//razil.cc/apple-touch-icon.png" />
@@ -59,177 +59,24 @@
 
   </header>
   <div id="container">
-    <div id="main" class="post" itemscope itemprop="blogPost">
-	<article itemprop="articleBody">
-    <header class="article-info clearfix">
-  <h1 itemprop="name">
-      <a href="//razil.cc/post/2017/10/meet-go-scrapy/" title="Go爬虫初探" itemprop="url">Go爬虫初探</a>
-  </h1>
-  <p class="article-author">By
-    
-      <a href="//razil.cc/" title=""></a>
-    
-  </p>
-  <p class="article-time">
-    <time datetime="2017-09-26 23:29:00 &#43;0800 CST" itemprop="datePublished">2017年09月26日</time>
-  </p>
-</header>
+    <div id="main">
+      
+      <h2 id="2019-04">2019-04</h2>
+      
+      <section class="post" itemscope itemprop="blogPost">
+    <a href="//razil.cc/post/2019/04/go_gin_middleware_request_body/" title="[go] Gin中间件中获取request.body" itemprop="url">
+    <h1 itemprop="name">[go] Gin中间件中获取request.body</h1>
+    <p itemprop="description">背景 参考issue 线上有个中间件开发需求，需要对请求内容进行部分过滤。由于默认http.Request.Body类型为io.ReadClos</p>
+    <time datetime="2019-04-21 11:21:21 &#43;0800 CST" itemprop="datePublished">2019年04月21日</time>
+  </a>
+</section>
 
-	<div class="article-content">
-    
-
-<h2 id="背景">背景</h2>
-
-<p>前些天用Python实践了一下爬虫功能，强大的requests库、re库、beautifulsoup库和scrapy框架以及其附属的分布式数据库配套库，开发起来十分高效。对于复杂的爬虫规则和验证规则，Python的相关生态也能提供很好的解决方案。回到golang，也想尝试是否能用go语言也构建一个基本爬虫，看实现上会有多大差异。</p>
-
-<h2 id="目标功能">目标功能</h2>
-
-<p>获取 <strong><a href="http://razil.cc">http://razil.cc</a></strong> 首页上的网站名称元素内容。<br />
-目标内容为<strong>“后端小筑”</strong></p>
-
-<h2 id="基本结构">基本结构</h2>
-
-<p>由于是基本的定向爬虫，类比Python的结构是<br />
-requests库 + re库<br />
-即基本请求后处理转码，再通过正则获得需要的数据<br />
-在go实现的结构如下:</p>
-
-<ul>
-<li>[net/http]  基本请求<br /></li>
-<li>[mahonia] 第三方库实现编码转换<br /></li>
-<li>[regexp]  正则匹配数据<br /></li>
-</ul>
-
-<h2 id="代码实现">代码实现</h2>
-
-<pre><code class="language-go">package main
-
-import (
-	&quot;errors&quot;
-	&quot;fmt&quot;
-	&quot;io/ioutil&quot;
-	&quot;net/http&quot;
-	&quot;regexp&quot;
-
-	encodingConvert &quot;github.com/DennisMao/mahonia&quot;
-)
-
-func SimpleScrapy(url string) (string, error) {
-	//http请求
-	resp, err := http.Get(url)
-	if err != nil {
-		return &quot;&quot;, err
-	}
-
-	//获取响应数据
-	if resp.StatusCode != 200 {
-		return &quot;&quot;, errors.New(&quot;resp statuscode = :&quot; + fmt.Sprint(resp.StatusCode))
-	}
-
-	respBody, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return &quot;&quot;, nil
-	}
-
-	//编码转换
-	content := encodingConvert.NewEncoder(&quot;utf-8&quot;).ConvertString(string(respBody))
-	//正则
-	re, _ := regexp.Compile(`\&lt;a.+a\&gt;`)
-
-	txts := re.FindAllString(content, 10) //获取到所有 &lt;a&gt;标签
-	if len(txts) == 0 {
-		return &quot;&quot;, nil
-	}
-
-	reClass, _ := regexp.Compile(`class=\&quot;site-header-title\&quot;`) //筛选 &lt;a&gt;标签中 class=&quot;site-header-title&quot; 的标签
-	for _, txt := range txts {
-		if reClass.MatchString(txt) {
-			//返回数据
-			reTitle, _ := regexp.Compile(`\&gt;.+\&lt;`)  //获取元素中的内容
-			titleRaw := reTitle.FindString(txt)
-			return titleRaw[1 : len(titleRaw)-1], nil
-		}
-	}
-	return &quot;&quot;, nil
-}
-
-func main() {
-	url := &quot;http://razil.cc&quot;
-	title, err := SimpleScrapy(url)
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-	fmt.Println(&quot;网站Title = &quot;, title)
-}
-</code></pre>
-
-<p>打印输出:
-<img src="http://ovfxonyuf.bkt.clouddn.com/2017-10-gospider-1.png" alt="simpleScrapy输出结果" /></p>
-
-<h2 id="总结">总结</h2>
-
-<p>通过初探，可以了解使用Go基本库可以轻松进行爬虫的编写。与Python相比,Go语言没有那么多丰富的库供我们调用，但是通过对Python相关库的理解，我们也可以自己用Go来“翻译”相关的库。另外由于语言异常处理的风格不同，Go这块的代码里会稍多一些。<br />
-项目地址: <a href="https://github.com/DennisMao/gospider">https://github.com/DennisMao/gospider</a></p>
-
-	</div>
-  <footer class="article-footer clearfix">
-  
-
-<div class="article-tags">
-  <span></span>
-  
-  <a href="//razil.cc/tags/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB">网络爬虫</a>
-  
-  <a href="//razil.cc/tags/%E6%AD%A3%E5%88%99">正则</a>
-  
-</div>
-
-
-
-
-
-<div class="article-categories">
-  <span></span>
-  
-  <a class="article-category-link" href="//razil.cc/categories/%E4%BD%BF%E7%94%A8%E6%89%8B%E8%AE%B0">使用手记</a>
-  
-  <a class="article-category-link" href="//razil.cc/categories/golang">golang</a>
-  
-</div>
-
-
-
-  <div class="article-share" id="share">
-    <div data-url="//razil.cc/post/2017/10/meet-go-scrapy/" data-title="Go爬虫初探" data-tsina="" class="share clearfix">
+      
+      
     </div>
-  </div>
-</footer>
-
-	</article>
-  
-
-
-</div>
-
     <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
-  
-	<div class="toc-article">
-		<p class="toc-title">文章目录</p>
-		<div class="toc-content">   <nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#背景">背景</a></li>
-<li><a href="#目标功能">目标功能</a></li>
-<li><a href="#基本结构">基本结构</a></li>
-<li><a href="#代码实现">代码实现</a></li>
-<li><a href="#总结">总结</a></li>
-</ul></li>
-</ul>
-</nav> </div>
-	</div>
   
 <aside class="clearfix">
   
@@ -590,6 +437,10 @@ func main() {
 
 
   
+<div class="rsspart">
+  <a rel="nofollow" href="//razil.cc/feed.xml" type="application/rss+xml" target="_blank">RSS 订阅</a>
+</div>
+
 
 </aside>
 </div>
@@ -676,38 +527,6 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function(){
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){
   var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
@@ -724,27 +543,6 @@ $(document).ready(function(){
 });
 </script>
 
-
-<link rel="stylesheet" href="//razil.cc/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="//razil.cc/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-});
-</script>
 
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132752811-1"></script>
