@@ -5,10 +5,10 @@
   <title>2019文章汇总 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="基础 分布式Log概念 分布式锁-redis 数据库 关系型 非关系型 C&#43;&#43; Go 性能调优 Go36-48,49-程序性能分析基础 Go channel详解 Go的主动">
+  <meta name="description" content="基础 分布式Log概念 分布式锁-redis 数据库 关系型 分库 方案虽好，成本先行：数据库Sharding&#43;Proxy实践解析 mysql中间件研究（">
   
   <meta itemprop="name" content="2019文章汇总 - Coding茶餐厅">
-  <meta itemprop="description" content="基础 分布式Log概念 分布式锁-redis 数据库 关系型 非关系型 C&#43;&#43; Go 性能调优 Go36-48,49-程序性能分析基础 Go channel详解 Go的主动">
+  <meta itemprop="description" content="基础 分布式Log概念 分布式锁-redis 数据库 关系型 分库 方案虽好，成本先行：数据库Sharding&#43;Proxy实践解析 mysql中间件研究（">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
@@ -89,22 +89,52 @@
 
 <h3 id="关系型">关系型</h3>
 
+<p>分库</p>
+
+<ul>
+<li><a href="https://dbaplus.cn/news-11-1854-1.html">方案虽好，成本先行：数据库Sharding+Proxy实践解析</a></li>
+<li><a href="https://www.guokr.com/blog/475765/">mysql中间件研究（Atlas，cobar，TDDL）</a></li>
+<li><a href="https://www.zhihu.com/question/19719997">MySQL 对于千万级的大表要怎么优化？</a></li>
+<li><a href="http://liky.farbox.com/post/tidb">MySQL VS RocksDB VS TiDB 完全版性能测试</a></li>
+</ul>
+
 <h3 id="非关系型">非关系型</h3>
 
-<h2 id="c">C++</h2>
+<h2 id="c-c">C/C++</h2>
+
+<ul>
+<li><p><a href="http://www.groupsys.com/topinfo/download.html">linux-top源码 用于查看各个数据的计算公式</a></p>
 
 <h2 id="go">Go</h2>
 
-<h3 id="性能调优">性能调优</h3>
+<h3 id="性能调优">性能调优</h3></li>
 
-<ul>
-<li><a href="http://blog.51cto.com/steed/2349944">Go36-48,49-程序性能分析基础</a></li>
-<li><a href="https://www.jianshu.com/p/84bcb26c4fb7">Go channel详解</a></li>
-<li><a href="https://devmethodologies.blogspot.com/2017/11/active-object.html">Go的主动对象模式,用内部处理协程替换锁解决同步问题</a></li>
-<li><a href="https://blog.dgraph.io/post/caching-in-go/">Go缓存现况</a></li>
+<li><p><a href="http://blog.51cto.com/steed/2349944">Go36-48,49-程序性能分析基础</a></p></li>
+
+<li><p><a href="https://www.jianshu.com/p/84bcb26c4fb7">Go channel详解</a></p></li>
+
+<li><p><a href="https://devmethodologies.blogspot.com/2017/11/active-object.html">Go的主动对象模式,用内部处理协程替换锁解决同步问题</a></p></li>
+
+<li><p><a href="https://blog.dgraph.io/post/caching-in-go/">Go缓存现况</a></p></li>
+
+<li><p><a href="https://github.com/golang-standards/project-layout">Go项目标准目录结构</a></p></li>
+
+<li><p><a href="https://github.com/siddontang/go-mysql">go-mysql: mysql协议库</a></p></li>
 </ul>
 
+<h3 id="grpc">grpc</h3>
+
+<p>http2相关:
++ <a href="https://httpwg.org/specs/rfc7540.html">http-协议定义</a>
++ <a href="https://www.nginx.com/wp-content/uploads/2015/09/NGINX_HTTP2_White_Paper_v4.pdf">http2-nginx白皮书</a>
++ <a href="https://httpwg.org/specs/rfc7541.html">http2-HPACK头部压缩算法</a>
++ <a href="https://blog.csdn.net/u010129119/article/details/79361949">http2-协议翻译</a></p>
+
 <h2 id="运维">运维</h2>
+
+<ul>
+<li><a href="http://dockone.io/article/8828">10个Docker镜像安全tips</a></li>
+</ul>
 
 <h3 id="软件">软件</h3>
 
@@ -123,12 +153,23 @@
 
 <h2 id="有趣项目">有趣项目</h2>
 
+<ul>
+<li><a href="https://www.reddit.com/r/golang/comments/bjoc7l/video_livestreaming_with_go/">Go直播系统构建</a></li>
+<li><a href="https://github.com/grafov/m3u8">Go m3u8库</a></li>
+<li><a href="https://github.com/XiaoMi/Gaea">Gaea数据库中间件</a></li>
+<li><a href="https://yq.aliyun.com/articles/692437">eleme linDB时序数据库</a></li>
+</ul>
+
 <h3 id="go-1">Go</h3>
 
 <ul>
 <li><a href="https://github.com/ibuildthecloud/k3s">k3s-轻量级的K8S</a></li>
 <li><a href="https://github.com/tsuru/tsuru">基于Docker的PaaS平台</a></li>
 <li><a href="https://cloud.tencent.com/developer/news/330802">基于RDMA高速网络的高性能分布式系统</a></li>
+<li><a href="https://github.com/bilibili/kratos">B站微服务框架kratos</a></li>
+<li><a href="https://github.com/tsenart/vegeta">vegeta-http接口压测工具</a></li>
+<li><a href="https://github.com/rs/jplot">jplot-json转plot命令行图形化工具</a></li>
+<li><a href="https://github.com/bettercap/bettercap">bettercap Go实现的网络抓包工具</a></li>
 </ul>
 
 	</div>
@@ -185,10 +226,11 @@
 <li><a href="#关系型">关系型</a></li>
 <li><a href="#非关系型">非关系型</a></li>
 </ul></li>
-<li><a href="#c">C++</a></li>
+<li><a href="#c-c">C/C++</a></li>
 <li><a href="#go">Go</a>
 <ul>
 <li><a href="#性能调优">性能调优</a></li>
+<li><a href="#grpc">grpc</a></li>
 </ul></li>
 <li><a href="#运维">运维</a>
 <ul>
@@ -217,17 +259,19 @@
     
     <li><a href="//razil.cc/categories/docker" title="docker">docker<sup>2</sup></a></li>
     
-    <li><a href="//razil.cc/categories/go" title="go">go<sup>23</sup></a></li>
+    <li><a href="//razil.cc/categories/go" title="go">go<sup>25</sup></a></li>
     
     <li><a href="//razil.cc/categories/golang" title="golang">golang<sup>4</sup></a></li>
     
-    <li><a href="//razil.cc/categories/grpc" title="grpc">grpc<sup>1</sup></a></li>
+    <li><a href="//razil.cc/categories/grpc" title="grpc">grpc<sup>2</sup></a></li>
     
     <li><a href="//razil.cc/categories/http" title="http">http<sup>1</sup></a></li>
     
     <li><a href="//razil.cc/categories/k8s" title="k8s">k8s<sup>1</sup></a></li>
     
     <li><a href="//razil.cc/categories/linux" title="linux">linux<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/redis" title="redis">redis<sup>1</sup></a></li>
     
     <li><a href="//razil.cc/categories/rpc" title="rpc">rpc<sup>1</sup></a></li>
     
@@ -266,7 +310,7 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
       
-			<li><a href="//razil.cc/tags/" title=""><sup>8</sup></a></li>
+			<li><a href="//razil.cc/tags/" title=""><sup>10</sup></a></li>
       
 			<li><a href="//razil.cc/tags/beego" title="beego">beego<sup>2</sup></a></li>
       
@@ -355,6 +399,16 @@
   <div class="archiveslist">
     <p class="asidetitle">归档</p>
     <ul class="archive-list">
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2019-06">2019年06月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2019-05">2019年05月</a><span class="archive-list-count">1</span>
+      </li>
       
       
       <li class="archive-list-item">

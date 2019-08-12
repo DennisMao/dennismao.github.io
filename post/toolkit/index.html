@@ -5,10 +5,10 @@
   <title>工具箱 - Coding茶餐厅</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="日常整理的技术和组件开发文档和工具网站，方便日常使用。 工具站 IP地址查询 Linux指令 Linux Top指令 数据库 关系型 MySQL MySQL 5.7 变量快查 Sqlite PostgreSQL Postgr">
+  <meta name="description" content="日常整理的技术和组件开发文档和工具网站，方便日常使用。 工具站 IP地址查询 Linux指令 Linux Top指令 系统镜像与安装包 数据库 关系型 MySQL MySQL 5.7 变量快查">
   
   <meta itemprop="name" content="工具箱 - Coding茶餐厅">
-  <meta itemprop="description" content="日常整理的技术和组件开发文档和工具网站，方便日常使用。 工具站 IP地址查询 Linux指令 Linux Top指令 数据库 关系型 MySQL MySQL 5.7 变量快查 Sqlite PostgreSQL Postgr">
+  <meta itemprop="description" content="日常整理的技术和组件开发文档和工具网站，方便日常使用。 工具站 IP地址查询 Linux指令 Linux Top指令 系统镜像与安装包 数据库 关系型 MySQL MySQL 5.7 变量快查">
   <meta itemprop="image" content="//razil.cc/img/author.jpg">
   
   
@@ -85,8 +85,9 @@
 <ul>
 <li><a href="https://www.ipip.net/ip.html">IP地址查询</a></li>
 <li><a href="http://man.linuxde.net">Linux指令</a></li>
+<li><a href="https://javawind.net/p131">Linux Top指令</a></li>
 
-<li><p><a href="https://javawind.net/p131">Linux Top指令</a></p>
+<li><p><a href="http://msdn.itellyou.cn/">系统镜像与安装包</a></p>
 
 <h2 id="数据库">数据库</h2>
 
@@ -95,19 +96,25 @@
 <h4 id="mysql">MySQL</h4></li>
 
 <li><p><a href="https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html">MySQL 5.7 变量快查</a></p></li>
-</ul>
+
+<li><p><a href="https://shardingsphere.apache.org/">shardingsphere-JDBC层的分库中间件</a></p>
 
 <h4 id="sqlite">Sqlite</h4>
 
-<h4 id="postgresql">PostgreSQL</h4>
+<h4 id="postgresql">PostgreSQL</h4></li>
 
-<ul>
 <li><p><a href="https://www.jianshu.com/p/15f0841a4ab4?">PostgreSQL资料汇总</a></p>
 
 <h3 id="非关系型">非关系型</h3>
 
-<h4 id="influxdb">InfluxDB</h4></li>
+<h4 id="redis">Redis</h4></li>
+
+<li><p><a href="http://redisdoc.com/topic/cluster-spec.html">中文文档</a></p></li>
+
+<li><p><a href="https://carlosfu.iteye.com/blog/2254573">集群运维指南</a></p></li>
 </ul>
+
+<h4 id="influxdb">InfluxDB</h4>
 
 <h2 id="mq">MQ</h2>
 
@@ -124,20 +131,27 @@
 
 <h2 id="微服务">微服务</h2>
 
-<h3 id="框架">框架</h3>
+<ul>
+<li><p><a href="https://developers.google.cn/protocol-buffers/docs/proto3#scalar">protobuf3 scalar</a></p>
+
+<h3 id="框架">框架</h3></li>
+</ul>
 
 <h2 id="运维">运维</h2>
 
 <ul>
-<li><p><a href="http://ipv6-test.com/validate.php">ipv6网页测试工具</a></p>
+<li><a href="http://ipv6-test.com/validate.php">ipv6网页测试工具</a></li>
+<li><a href="http://nginx.org/en/download.html">nginx源码下载页</a></li>
+</ul>
 
 <h3 id="docker">docker</h3>
 
 <h3 id="k8s">k8s</h3>
 
-<h3 id="ci-cd">CI/CD</h3></li>
+<h3 id="ci-cd">CI/CD</h3>
 
-<li><p><a href="https://github.com/dominikh/go-tools">go代码静态检查</a></p></li>
+<ul>
+<li><a href="https://github.com/dominikh/go-tools">go代码静态检查</a></li>
 </ul>
 
 <h2 id="开发">开发</h2>
@@ -145,13 +159,15 @@
 <h3 id="go生态">Go生态</h3>
 
 <ul>
-<li><p><a href="https://github.com/gomods/athens">GoModule 镜像存储</a></p>
+<li><a href="https://github.com/gomods/athens">GoModule 镜像</a></li>
+<li><a href="https://golang.google.cn/dl/">Go安装包地址</a></li>
+</ul>
 
-<h3 id="流程">流程</h3></li>
+<h3 id="流程">流程</h3>
 
-<li><p><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow">git-flow流程简要说明</a></p></li>
-
-<li><p><a href="https://git-scm.com/book/zh/v2">git使用说明</a></p></li>
+<ul>
+<li><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/git-flow">git-flow流程简要说明</a></li>
+<li><a href="https://git-scm.com/book/zh/v2">git使用说明</a></li>
 </ul>
 
 	</div>
@@ -197,6 +213,7 @@
 </ul></li>
 <li><a href="#非关系型">非关系型</a>
 <ul>
+<li><a href="#redis">Redis</a></li>
 <li><a href="#influxdb">InfluxDB</a></li>
 </ul></li>
 </ul></li>
@@ -238,17 +255,19 @@
     
     <li><a href="//razil.cc/categories/docker" title="docker">docker<sup>2</sup></a></li>
     
-    <li><a href="//razil.cc/categories/go" title="go">go<sup>23</sup></a></li>
+    <li><a href="//razil.cc/categories/go" title="go">go<sup>25</sup></a></li>
     
     <li><a href="//razil.cc/categories/golang" title="golang">golang<sup>4</sup></a></li>
     
-    <li><a href="//razil.cc/categories/grpc" title="grpc">grpc<sup>1</sup></a></li>
+    <li><a href="//razil.cc/categories/grpc" title="grpc">grpc<sup>2</sup></a></li>
     
     <li><a href="//razil.cc/categories/http" title="http">http<sup>1</sup></a></li>
     
     <li><a href="//razil.cc/categories/k8s" title="k8s">k8s<sup>1</sup></a></li>
     
     <li><a href="//razil.cc/categories/linux" title="linux">linux<sup>1</sup></a></li>
+    
+    <li><a href="//razil.cc/categories/redis" title="redis">redis<sup>1</sup></a></li>
     
     <li><a href="//razil.cc/categories/rpc" title="rpc">rpc<sup>1</sup></a></li>
     
@@ -287,7 +306,7 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
       
-			<li><a href="//razil.cc/tags/" title=""><sup>8</sup></a></li>
+			<li><a href="//razil.cc/tags/" title=""><sup>10</sup></a></li>
       
 			<li><a href="//razil.cc/tags/beego" title="beego">beego<sup>2</sup></a></li>
       
@@ -376,6 +395,16 @@
   <div class="archiveslist">
     <p class="asidetitle">归档</p>
     <ul class="archive-list">
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2019-06">2019年06月</a><span class="archive-list-count">1</span>
+      </li>
+      
+      
+      <li class="archive-list-item">
+        <a class="archive-list-link" href="//razil.cc/post/#2019-05">2019年05月</a><span class="archive-list-count">1</span>
+      </li>
       
       
       <li class="archive-list-item">

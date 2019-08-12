@@ -41,7 +41,7 @@
     <item>
       <title>Go</title>
       <link>//razil.cc/categories/go/</link>
-      <pubDate>Sun, 21 Apr 2019 11:21:21 +0800</pubDate>
+      <pubDate>Wed, 19 Jun 2019 23:01:59 +0800</pubDate>
       
       <guid>//razil.cc/categories/go/</guid>
       <description></description>
@@ -59,7 +59,7 @@
     <item>
       <title>Grpc</title>
       <link>//razil.cc/categories/grpc/</link>
-      <pubDate>Mon, 27 Aug 2018 17:12:01 +0800</pubDate>
+      <pubDate>Wed, 19 Jun 2019 23:01:59 +0800</pubDate>
       
       <guid>//razil.cc/categories/grpc/</guid>
       <description></description>
@@ -89,6 +89,15 @@
       <pubDate>Sun, 16 Sep 2018 18:12:15 +0800</pubDate>
       
       <guid>//razil.cc/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Redis</title>
+      <link>//razil.cc/categories/redis/</link>
+      <pubDate>Mon, 27 May 2019 21:15:29 +0800</pubDate>
+      
+      <guid>//razil.cc/categories/redis/</guid>
       <description></description>
     </item>
     
