@@ -6,28 +6,10 @@
     <description>Recent content on Coding茶餐厅</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 19 Jun 2019 23:01:59 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 21 Apr 2019 11:21:21 +0800</lastBuildDate>
     
 	<atom:link href="//razil.cc/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>[grpc] Grpc开发小tips</title>
-      <link>//razil.cc/post/2019/06/grpc_tips/</link>
-      <pubDate>Wed, 19 Jun 2019 23:01:59 +0800</pubDate>
-      
-      <guid>//razil.cc/post/2019/06/grpc_tips/</guid>
-      <description>Grpc开发小tips 总结了一些在日常使用grpc过程中踩的坑。 1.流的context控制 2.传输最大发送和接受数据大小限制 conn, err := grpc.Dial( &amp;quot;127.0.0.1:10000&amp;quot;, grpc.WithInsecure(), grpc.WithDefaultCallOptions( grpc.MaxCallRecvMsgSize(32*1024*1024),</description>
-    </item>
-    
-    <item>
-      <title>[go] Go实战-Redis集群</title>
-      <link>//razil.cc/post/2019/05/redis_cluster/</link>
-      <pubDate>Mon, 27 May 2019 21:15:29 +0800</pubDate>
-      
-      <guid>//razil.cc/post/2019/05/redis_cluster/</guid>
-      <description>Go实战-Redis集群 本文将介绍Redis原生的集群方案与Go语言下的使用方法。 Redis集群介绍 集群部署 Go使用 总结 引用</description>
-    </item>
     
     <item>
       <title>[go] Gin中间件中获取request.body</title>

@@ -3,16 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>//razil.cc/post/2019/06/grpc_tips/</loc>
-    <lastmod>2019-06-19T23:01:59+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>//razil.cc/post/2019/05/redis_cluster/</loc>
-    <lastmod>2019-05-27T21:15:29+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>//razil.cc/post/2019/04/go_gin_middleware_request_body/</loc>
     <lastmod>2019-04-21T11:21:21+08:00</lastmod>
   </url>
@@ -249,7 +239,7 @@
   
   <url>
     <loc>//razil.cc/tags/</loc>
-    <lastmod>2019-06-19T23:01:59+08:00</lastmod>
+    <lastmod>2019-04-21T11:21:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -277,7 +267,7 @@
   
   <url>
     <loc>//razil.cc/</loc>
-    <lastmod>2019-06-19T23:01:59+08:00</lastmod>
+    <lastmod>2019-04-21T11:21:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -325,7 +315,7 @@
   
   <url>
     <loc>//razil.cc/categories/go/</loc>
-    <lastmod>2019-06-19T23:01:59+08:00</lastmod>
+    <lastmod>2019-04-21T11:21:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -355,7 +345,7 @@
   
   <url>
     <loc>//razil.cc/categories/grpc/</loc>
-    <lastmod>2019-06-19T23:01:59+08:00</lastmod>
+    <lastmod>2018-08-27T17:12:01+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -457,19 +447,13 @@
   
   <url>
     <loc>//razil.cc/post/</loc>
-    <lastmod>2019-06-19T23:01:59+08:00</lastmod>
+    <lastmod>2019-04-21T11:21:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>//razil.cc/tags/raft/</loc>
     <lastmod>2018-10-01T18:02:51+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>//razil.cc/categories/redis/</loc>
-    <lastmod>2019-05-27T21:15:29+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -493,7 +477,7 @@
   
   <url>
     <loc>//razil.cc/tags/</loc>
-    <lastmod>2019-06-19T23:01:59+08:00</lastmod>
+    <lastmod>2019-04-21T11:21:21+08:00</lastmod>
     <priority>0</priority>
   </url>
   
